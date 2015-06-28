@@ -1,0 +1,11 @@
+language: r
+
+sudo: required
+
+r_binary_packages:
+ - data.table
+ - ggplot2
+ - scales
+ - gridExtra
+ - reshape2
+ - rmarkdown
