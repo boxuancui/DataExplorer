@@ -2,18 +2,24 @@
 % Please edit documentation in R/PlotMissing.r
 \name{PlotMissing}
 \alias{PlotMissing}
-\title{PlotMissing Function}
+\title{Plot missing values}
 \usage{
 PlotMissing(data)
 }
 \arguments{
-\item{data}{data to be analyzed}
+\item{data}{input data to be profiled, in either \code{\link{data.frame}} or \code{\link{data.table}} format.}
+}
+\value{
+a \code{\link{data.table}} object containing frequency, percentage and group of all missing values.
 }
 \description{
-This function plots frequency of missing values for each feature.
+This function returns and plots frequency of missing values for each feature.
 }
 \examples{
-PlotMissing()
+data <- data.table(iris)
+for (j in 1:4) set(data, i=sample(150, j*30), j, value=NA_integer_)
+plot_data <- PlotMissing(data)
+plot_data
 }
 \keyword{plotmissing}
 

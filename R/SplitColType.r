@@ -1,4 +1,21 @@
-## split data into discrete and continuous tables
+#' Split data into discrete and continuous
+#'
+#' This function splits the input data into two \code{\link{data.table}} objects: discrete and continuous. A feature is continuous if \code{is.numeric()} returns \code{TRUE}.
+#' @param data input data to be split, in either \code{\link{data.frame}} or \code{\link{data.table}} format.
+#' @keywords splitcoltype
+#' @return \code{discrete} all discrete features in \code{\link{data.table}} format
+#' @return \code{continous} all continuous features in \code{\link{data.table}} format
+#' @return \code{num_discrete} number of discrete features
+#' @return \code{num_continuous} number of continuous features
+#' @import data.table
+#' @export
+#' @examples
+#' output <- SplitColType(iris)
+#' output$discrete
+#' output$continuous
+#' output$num_discrete
+#' output$num_continuous
+
 SplitColType <- function(data) {
   if (!is.data.table(data)) {data <- data.table(data)}
   # find indicies for continuous features

@@ -1,7 +1,8 @@
+# Sample .travis.yml for R projects
+
 language: r
-
+warnings_are_errors: true
 sudo: required
-
 r_binary_packages:
  - data.table
  - ggplot2

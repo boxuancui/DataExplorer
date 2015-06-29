@@ -1,17 +1,22 @@
-#' PlotMissing Function
+#' Plot missing values
 #'
-#' This function plots frequency of missing values for each feature.
-#' @param data data to be analyzed
+#' This function returns and plots frequency of missing values for each feature.
+#' @param data input data to be profiled, in either \code{\link{data.frame}} or \code{\link{data.table}} format.
 #' @keywords plotmissing
+#' @return a \code{\link{data.table}} object containing frequency, percentage and group of all missing values.
+#' @import data.table
 #' @export
 #' @examples
-#' PlotMissing()
+#' data <- data.table(iris)
+#' for (j in 1:4) set(data, i=sample(150, j*30), j, value=NA_integer_)
+#' plot_data <- PlotMissing(data)
+#' plot_data
 
 PlotMissing <- function(data) {
   if (!is.data.table(data)) {data <- data.table(data)}
   # extract missing value distribution
-  missing_value <- data.table("feature" = names(data), "num_missing" = sapply(data, function(x) {sum(is.na(x))}))
-  missing_value[, feature := factor(feature, levels = feature[order(-rank(num_missing))])]
+  missing_value <- data.table("feature"=names(data), "num_missing"=sapply(data, function(x) {sum(is.na(x))}))
+  missing_value[, feature:=factor(feature, levels = feature[order(-rank(num_missing))])]
   missing_value[, pct_missing := num_missing/nrow(data)]
   missing_value[pct_missing<0.05, group:="Good"]
   missing_value[pct_missing>=0.05 & pct_missing<0.4, group:="OK"]

@@ -1,4 +1,18 @@
-## histogram for continuous features
+#' Create histogram for continuous features
+#'
+#' This function creates histogram for each continuous feature.
+#' @param data input data to be plotted, in either \code{\link{data.frame}} or \code{\link{data.table}} format.
+#' @keywords histogramcontinuous
+#' @import data.table
+#' @export
+#' @examples
+#' # plot using iris data
+#' HistogramContinuous(iris)
+#' 
+#' # plot using random data
+#' data <- data.table(matrix(rnorm(160000), ncol=16))
+#' HistogramContinuous(data)
+
 HistogramContinuous <- function(data) {
   if (!is.data.table(data)) {data <- data.table(data)}
   # get continuous features

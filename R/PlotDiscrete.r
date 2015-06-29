@@ -1,4 +1,36 @@
-##bar chart for discrete features
+#' Create bar charts for discrete features
+#'
+#' This function plots bar charts for each discrete feature which displays the frequency of all categories.
+#' @param data input data to be plotted, in either \code{\link{data.frame}} or \code{\link{data.table}} format.
+#' @param na.rm logical, indicating if missing values should be removed for each feature. The default is \code{TRUE}.
+#' @param maxcat maximum categories allowed for each feature. The default is 50. More information in 'Details' section.
+#' @keywords plotdiscrete
+#' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function. Instead, it will be passed to warnings messages with number of categories.
+#' @import data.table
+#' @export
+#' @examples
+#' # load packages
+#' library(ggplot2)
+#' library(data.table)
+#' # load diamonds dataset from ggplot2
+#' data("diamonds")
+#' # making more columns as factors
+#' diamonds <- data.table(diamonds)
+#' diamonds[, color_clarity:=as.factor(paste0(color, "_", clarity))]
+#' diamonds[, cut_color:=as.factor(paste0(cut, "_", color))]
+#' diamonds[, cut_clarity:=as.factor(paste0(cut, "_", clarity))]
+#' diamonds[, color_clarity:=as.factor(paste0(color, "_", clarity))]
+#' diamonds2 <- dcast.data.table(diamonds,
+#'                               carat+cut+color+clarity+cut_color+cut_clarity+color_clarity+depth+table+x+y+z~color_clarity,
+#'                               fun=sum,
+#'                               value.var="price",
+#'                               fill=NA)
+#' for (col in names(diamonds2)[grep("D_|E_|F_|G_|H_|I_|J_", names(diamonds2))]) {
+#'   set(diamonds2, j=col, value=as.factor(diamonds2[[col]]))
+#' }
+#' # plot bar charts for discrete features
+#' PlotDiscrete(diamonds2, maxcat=100)
+
 PlotDiscrete <- function(data, na.rm=TRUE, maxcat=50) {
   if (!is.data.table(data)) {data <- data.table(data)}
   # get discrete features
