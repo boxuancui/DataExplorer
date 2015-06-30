@@ -18,6 +18,9 @@ This function creates boxplot for each continuous feature.
 Setting \code{five_points_only} to \code{TRUE} could improve performance dramatically when dealing with large skewed datasets. Outliers (except for minimum and maximum) and whiskers may not be plotted.
 }
 \examples{
+# load library
+library(data.table)
+
 # plot using iris data
 BoxplotContinuous(iris)
 BoxplotContinuous(iris, five_points_only=TRUE)

@@ -9,6 +9,9 @@
 #' @import gridExtra
 #' @export
 #' @examples
+#' # load library
+#' library(data.table)
+#' 
 #' # plot using iris data
 #' HistogramContinuous(iris)
 #' 
