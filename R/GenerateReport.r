@@ -1,11 +1,12 @@
 #' GenerateReport Function
 #'
 #' This function generates the report of data profiling.
-#' @param input_data data source to be profiled, in either \code{\link{data.frame}} or \code{\link{data.table}} format.
+#' @param input_data data source to be profiled, in either \link{data.frame} or \link{data.table} format.
 #' @param output_file output file name. The default is "report.html".
 #' @param output_dir output directory for report. The default is user's current directory.
-#' @param \dots other arguments to be passed to \code{\link{render()}}.
+#' @param \dots other arguments to be passed to \link{knitr::render}.
 #' @keywords generatereport
+#' @import rmarkdown
 #' @export
 #' @examples
 #' # generate data profiling report for iris dataset
@@ -35,7 +36,7 @@
 #'   set(diamonds2, j=col, value=as.factor(diamonds2[[col]]))
 #' }
 #' for (col in names(diamonds2)[grep("G_|H_|I_|J_", names(diamonds2))]) {
-#'   set(diamonds, i=sample(floor(runif(1) * nrow(diamonds))), j=col, value=sample(18823, 1))
+#'   set(diamonds2, i=sample(floor(runif(1) * nrow(diamonds2))), j=col, value=round(runif(1, max=20000)))
 #' }
 #' # generate report
 #' GenerateReport(diamonds2)

@@ -1,9 +1,12 @@
 #' Create histogram for continuous features
 #'
 #' This function creates histogram for each continuous feature.
-#' @param data input data to be plotted, in either \code{\link{data.frame}} or \code{\link{data.table}} format.
+#' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
 #' @keywords histogramcontinuous
 #' @import data.table
+#' @import ggplot2
+#' @import scales
+#' @import gridExtra
 #' @export
 #' @examples
 #' # plot using iris data

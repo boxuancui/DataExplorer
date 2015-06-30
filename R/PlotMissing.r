@@ -1,10 +1,12 @@
 #' Plot missing values
 #'
 #' This function returns and plots frequency of missing values for each feature.
-#' @param data input data to be profiled, in either \code{\link{data.frame}} or \code{\link{data.table}} format.
+#' @param data input data to be profiled, in either \link{data.frame} or \link{data.table} format.
 #' @keywords plotmissing
-#' @return a \code{\link{data.table}} object containing frequency, percentage and group of all missing values.
+#' @return a \link{data.table} object containing frequency, percentage and group of all missing values.
 #' @import data.table
+#' @import ggplot2
+#' @import scales
 #' @export
 #' @examples
 #' data <- data.table(iris)

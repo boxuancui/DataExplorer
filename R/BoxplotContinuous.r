@@ -1,11 +1,14 @@
 #' Create boxplot for continuous features
 #'
 #' This function creates boxplot for each continuous feature.
-#' @param data input data to be plotted, in either \code{\link{data.frame}} or \code{\link{data.table}} format.
+#' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
 #' @param five_points_only logical, indicating if plot with only minimum, Q1, Q2, Q3 and maximum, i.e., 5 points. The default is \code{FALSE}. More information in 'Details' section.
 #' @keywords boxplotcontinuous
 #' @details Setting \code{five_points_only} to \code{TRUE} could improve performance dramatically when dealing with large skewed datasets. Outliers (except for minimum and maximum) and whiskers may not be plotted.
 #' @import data.table
+#' @import ggplot2
+#' @import scales
+#' @import reshape2
 #' @export
 #' @examples
 #' # plot using iris data

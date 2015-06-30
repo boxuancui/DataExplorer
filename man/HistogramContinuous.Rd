@@ -7,7 +7,7 @@
 HistogramContinuous(data)
 }
 \arguments{
-\item{data}{input data to be plotted, in either \code{\link{data.frame}} or \code{\link{data.table}} format.}
+\item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
 }
 \description{
 This function creates histogram for each continuous feature.

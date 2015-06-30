@@ -7,19 +7,19 @@
 SplitColType(data)
 }
 \arguments{
-\item{data}{input data to be split, in either \code{\link{data.frame}} or \code{\link{data.table}} format.}
+\item{data}{input data to be split, in either \link{data.frame} or \link{data.table} format.}
 }
 \value{
-\code{discrete} all discrete features in \code{\link{data.table}} format
+\code{discrete} all discrete features in \link{data.table} format
 
-\code{continous} all continuous features in \code{\link{data.table}} format
+\code{continous} all continuous features in \link{data.table} format
 
 \code{num_discrete} number of discrete features
 
 \code{num_continuous} number of continuous features
 }
 \description{
-This function splits the input data into two \code{\link{data.table}} objects: discrete and continuous. A feature is continuous if \code{is.numeric()} returns \code{TRUE}.
+This function splits the input data into two \link{data.table} objects: discrete and continuous. A feature is continuous if \code{is.numeric} returns \code{TRUE}.
 }
 \examples{
 output <- SplitColType(iris)

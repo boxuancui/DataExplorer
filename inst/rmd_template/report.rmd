@@ -31,7 +31,7 @@ PlotMissing(data)
 #### Discrete Features
 The following graph shows the frequency distribution of all discrete features.
 ```{r }
-PlotDiscrete(data)
+BarDiscrete(data)
 ```
 
 #### Continuous Features

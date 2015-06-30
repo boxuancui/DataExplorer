@@ -7,7 +7,7 @@
 BoxplotContinuous(data, five_points_only = FALSE)
 }
 \arguments{
-\item{data}{input data to be plotted, in either \code{\link{data.frame}} or \code{\link{data.table}} format.}
+\item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
 
 \item{five_points_only}{logical, indicating if plot with only minimum, Q1, Q2, Q3 and maximum, i.e., 5 points. The default is \code{FALSE}. More information in 'Details' section.}
 }

@@ -7,10 +7,10 @@
 PlotMissing(data)
 }
 \arguments{
-\item{data}{input data to be profiled, in either \code{\link{data.frame}} or \code{\link{data.table}} format.}
+\item{data}{input data to be profiled, in either \link{data.frame} or \link{data.table} format.}
 }
 \value{
-a \code{\link{data.table}} object containing frequency, percentage and group of all missing values.
+a \link{data.table} object containing frequency, percentage and group of all missing values.
 }
 \description{
 This function returns and plots frequency of missing values for each feature.
