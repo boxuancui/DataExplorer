@@ -11,6 +11,9 @@
 #' @import reshape2
 #' @export
 #' @examples
+#' # load library
+#' library(data.table)
+#' 
 #' # plot using iris data
 #' BoxplotContinuous(iris)
 #' BoxplotContinuous(iris, five_points_only=TRUE)

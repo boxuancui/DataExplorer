@@ -13,6 +13,9 @@ HistogramContinuous(data)
 This function creates histogram for each continuous feature.
 }
 \examples{
+# load library
+library(data.table)
+
 # plot using iris data
 HistogramContinuous(iris)
 

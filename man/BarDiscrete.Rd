@@ -36,7 +36,9 @@ diamonds[, cut_color:=as.factor(paste0(cut, "_", color))]
 diamonds[, cut_clarity:=as.factor(paste0(cut, "_", clarity))]
 diamonds[, color_clarity:=as.factor(paste0(color, "_", clarity))]
 diamonds2 <- dcast.data.table(diamonds,
-                              carat+cut+color+clarity+cut_color+cut_clarity+color_clarity+depth+table+x+y+z~color_clarity,
+                              carat + cut + color + clarity + cut_color +
+                              cut_clarity + color_clarity + depth + table +
+                              x + y + z ~ color_clarity,
                               fun=sum,
                               value.var="price",
                               fill=NA)
