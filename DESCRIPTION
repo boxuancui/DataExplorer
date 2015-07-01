@@ -1,6 +1,6 @@
 Package: exploreR
 Title: R package for exploratory data analysis
-Version: 0.1.0.9000
+Version: 0.1.1
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: This package automates most of EDA (Exploratory Data Analysis)
     process for data analysis and model building, so that users could focus on
