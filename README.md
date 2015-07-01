@@ -1,5 +1,5 @@
 # exploreR
-![Build Status](https://travis-ci.org/boxuancui/exploreR.svg?branch=master)
+[![Build Status](https://travis-ci.org/boxuancui/exploreR.svg?branch=master)](https://travis-ci.org/boxuancui/exploreR)
 
 -----
 ## Background
