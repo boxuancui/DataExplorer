@@ -17,5 +17,11 @@ understanding data and extracting insights.
 }
 
 \seealso{
-\link{GenerateReport}, \link{PlotMissing}, \link{BarDiscrete}, \link{BoxplotContinuous}, \link{HistogramContinuous}
+\link{GenerateReport},
+\link{PlotMissing},
+\link{BarDiscrete},
+\link{BoxplotContinuous},
+\link{HistogramContinuous},
+\link{CorrelationDiscrete},
+\link{CorrelationContinuous}
 }
