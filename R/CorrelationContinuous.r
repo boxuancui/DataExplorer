@@ -26,7 +26,7 @@ CorrelationContinuous <- function(data) {
     geom_text(aes(label=round(value, 2))) +
     scale_fill_gradient2("Correlation Meter", low="#0571b0", high="#ca0020", space="Lab") +
     xlab("Features") + ylab("Features") +
-    theme(legend.position="bottom")
+    theme(legend.position="bottom", axis.text.x=element_text(angle=90))
   # print plot object
   print(plot)
 }

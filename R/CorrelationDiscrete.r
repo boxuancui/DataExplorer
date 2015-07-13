@@ -24,12 +24,20 @@ CorrelationDiscrete <- function(data) {
   discrete_pivot <- model.matrix(as.formula(paste0("~ ", paste0(names(discrete), collapse="+"))), data=discrete)[, -1]
   plot_data <- melt(cor(discrete_pivot))
   # create ggplot object
-  plot <- ggplot(plot_data, aes(x=Var1, y=Var2, fill=value)) +
-    geom_tile() +
-    geom_text(aes(label=round(value, 2))) +
-    scale_fill_gradient2("Correlation Meter", low="#0571b0", high="#ca0020", space="Lab") +
-    xlab("Features") + ylab("Features") +
-    theme(legend.position="bottom")
+  if (ncol(discrete_pivot) >= 15) {
+    plot <- ggplot(plot_data, aes(x=Var1, y=Var2, fill=value)) +
+      geom_tile() +
+      scale_fill_gradient2("Correlation Meter", low="#0571b0", high="#ca0020", space="Lab") +
+      xlab("Features") + ylab("Features") +
+      theme(legend.position="bottom", axis.text.x=element_text(angle=90))
+  } else {
+    plot <- ggplot(plot_data, aes(x=Var1, y=Var2, fill=value)) +
+      geom_tile() +
+      geom_text(aes(label=round(value, 2))) +
+      scale_fill_gradient2("Correlation Meter", low="#0571b0", high="#ca0020", space="Lab") +
+      xlab("Features") + ylab("Features") +
+      theme(legend.position="bottom", axis.text.x=element_text(angle=90))
+  }
   # print plot object
   print(plot)
 }
