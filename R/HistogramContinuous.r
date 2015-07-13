@@ -11,10 +11,10 @@
 #' @examples
 #' # load library
 #' library(data.table)
-#' 
+#'
 #' # plot using iris data
 #' HistogramContinuous(iris)
-#' 
+#'
 #' # plot using random data
 #' data <- data.table(matrix(rnorm(160000), ncol=16))
 #' HistogramContinuous(data)
@@ -40,6 +40,6 @@ HistogramContinuous <- function(data) {
                        ylab("Density")
                    })
     # print plot object
-    suppressWarnings(do.call(grid.arrange, plot))
+    suppressWarnings(do.call(grid.arrange, c(plot, ncol=4, nrow=4)))
   }
 }

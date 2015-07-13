@@ -8,16 +8,17 @@
 #' @import data.table
 #' @import ggplot2
 #' @import scales
+#' @import gridExtra
 #' @import reshape2
 #' @export
 #' @examples
 #' # load library
 #' library(data.table)
-#' 
+#'
 #' # plot using iris data
 #' BoxplotContinuous(iris)
 #' BoxplotContinuous(iris, five_points_only=TRUE)
-#' 
+#'
 #' # plot using random data
 #' data <- data.table(matrix(rnorm(16000000), ncol=16))
 #' BoxplotContinuous(data)
@@ -36,17 +37,20 @@ BoxplotContinuous <- function(data, five_points_only=FALSE) {
     # subset data by column
     subset_data <- continuous[, (16*pg-15):min(p, 16*pg), with=FALSE]
     # melt data and calculate quantiles for plotting
-    plot_full_data <- suppressWarnings(melt(subset_data, measure.vars = names(subset_data), na.rm = TRUE))
     if (five_points_only) {
-      plot_data <- plot_full_data[, list(value=quantile(value)), by=variable]
+      plot_data <- data.table(t(do.call(rbind, lapply(subset_data, quantile))))
     } else {
-      plot_data <- plot_full_data
+      plot_data <- subset_data
     }
     # create ggplot object
-    plot <- ggplot(plot_data, aes(x=variable, y=value)) + geom_boxplot() +
-      scale_y_continuous(labels=comma) + facet_wrap(~variable, ncol=4, scales="free") +
-      xlab("Features") + ylab("Value")
+    plot <- lapply(seq_along(plot_data),
+                   function(j) {
+                     ggplot(plot_data, aes_string(x=names(plot_data)[j], y=names(plot_data)[j])) +
+                       geom_boxplot() +
+                       scale_y_continuous(labels=comma) +
+                       ylab("Value")
+                   })
     # print plot object
-    print(plot)
+    suppressWarnings(do.call(grid.arrange, c(plot, ncol=4, nrow=4)))
   }
 }

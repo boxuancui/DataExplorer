@@ -17,10 +17,10 @@
 #' library(data.table)
 #' # load diamonds dataset from ggplot2
 #' data("diamonds")
-#' 
+#'
 #' # plot bar charts for diamonds dataset
 #' BarDiscrete(diamonds)
-#' 
+#'
 #' # making more columns as factors
 #' diamonds <- data.table(diamonds)
 #' diamonds[, color_clarity:=as.factor(paste0(color, "_", clarity))]
@@ -65,10 +65,12 @@ BarDiscrete <- function(data, na.rm=TRUE, maxcat=50) {
                      x <- subset_data[, j, with=FALSE]
                      agg_x <- x[, list(frequency=.N), by=names(x)]
                      if (na.rm) {agg_x <- na.omit(agg_x)}
-                     ggplot(agg_x, aes_string(x=names(agg_x)[1], y="frequency")) + geom_bar(stat="identity") +
-                       scale_y_continuous(labels=comma) + coord_flip() + ylab("Frequency")
+                     ggplot(agg_x, aes_string(x=names(agg_x)[1], y="frequency")) +
+                       geom_bar(stat="identity", alpha=0.4, colour="black") +
+                       scale_y_continuous(labels=comma) +
+                       coord_flip() + ylab("Frequency")
                    })
     # print plot object
-    suppressWarnings(do.call(grid.arrange, plot))
+    suppressWarnings(do.call(grid.arrange, c(plot, ncol=3, nrow=3)))
   }
 }
