@@ -2,6 +2,8 @@
 
 export(BarDiscrete)
 export(BoxplotContinuous)
+export(CorrelationContinuous)
+export(CorrelationDiscrete)
 export(GenerateReport)
 export(HistogramContinuous)
 export(PlotMissing)
