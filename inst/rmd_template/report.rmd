@@ -2,14 +2,17 @@
 title: "Data Profiling Report"
 output:
   html_document: 
-    theme: readable
+    theme: cerulean
     toc: yes
+    toc_depth: 6
 params:
   data: data
+  fun_options: fun_options
 ---
 
 ```{r global_options, include=FALSE}
 data <- params$data
+opts <- params$fun_options
 knitr::opts_chunk$set(fig.width=14, fig.height=10, echo=FALSE)
 ```
 
@@ -29,9 +32,15 @@ PlotMissing(data)
 
 ### Data Distribution
 #### Discrete Features
+###### Bar Charts
 The following graph shows the frequency distribution of all discrete features.
-```{r }
+```{r}
 BarDiscrete(data)
+```
+
+###### Correlation Heatmap
+```{r}
+CorrelationDiscrete(data)
 ```
 
 #### Continuous Features
@@ -47,3 +56,7 @@ The following graph shows the density distribution of all continuous features.
 HistogramContinuous(data)
 ```
 
+###### Correlation Heatmap
+```{r}
+CorrelationContinuous(data)
+```

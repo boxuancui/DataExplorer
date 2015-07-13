@@ -14,6 +14,8 @@
 
 CorrelationContinuous <- function(data) {
   if (!is.data.table(data)) {data <- data.table(data)}
+  # stop if no continuous features
+  if (SplitColType(data)$num_continuous == 0) return("No Continuous Features")
   # get continuous features
   continuous <- SplitColType(data)$continuous
   # calculate correlation and melt into tidy data format

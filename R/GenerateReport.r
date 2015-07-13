@@ -15,7 +15,7 @@
 #'                output_file="report.html",
 #'                output_dir=getwd(),
 #'                html_document(toc=TRUE, theme="flatly"))
-#' 
+#'
 #' # generate data profiling report for transformed diamonds dataset
 #' # load packages
 #' library(ggplot2)
@@ -46,7 +46,7 @@
 #' }
 #' # generate report
 #' GenerateReport(diamonds2)
-#' 
+#'
 
 GenerateReport <- function(input_data, output_file="report.html", output_dir=getwd(), ...) {
   # get directory of report markdown template
@@ -55,7 +55,7 @@ GenerateReport <- function(input_data, output_file="report.html", output_dir=get
   render(input=report_dir,
          output_file=output_file,
          output_dir=output_dir,
-         params=list(data=input_data),
+         params=list(data=input_data, fun_options=list()),
          ...)
   # open report
   browseURL(file.path(output_dir, output_file))

@@ -16,6 +16,8 @@
 
 CorrelationDiscrete <- function(data) {
   if (!is.data.table(data)) {data <- data.table(data)}
+  # stop if no discrete features
+  if (SplitColType(data)$num_discrete == 0) return("No Discrete Features")
   # get discrete features
   discrete <- SplitColType(data.table(data))$discrete
   # calculate categorical correlation and melt into tidy data format

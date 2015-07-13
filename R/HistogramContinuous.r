@@ -21,6 +21,8 @@
 
 HistogramContinuous <- function(data) {
   if (!is.data.table(data)) {data <- data.table(data)}
+  # stop if no continuous features
+  if (SplitColType(data)$num_continuous == 0) return("No Continuous Features")
   # get continuous features
   continuous <- SplitColType(data)$continuous
   # get dimension
@@ -40,6 +42,10 @@ HistogramContinuous <- function(data) {
                        ylab("Density")
                    })
     # print plot object
-    suppressWarnings(do.call(grid.arrange, c(plot, ncol=4, nrow=4)))
+    if (pages > 1) {
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol=4, nrow=4)))
+    } else {
+      suppressWarnings(do.call(grid.arrange, plot))
+    }
   }
 }

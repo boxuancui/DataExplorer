@@ -26,6 +26,8 @@
 
 BoxplotContinuous <- function(data, five_points_only=FALSE) {
   if (!is.data.table(data)) {data <- data.table(data)}
+  # stop if no continuous features
+  if (SplitColType(data)$num_continuous == 0) return("No Continuous Features")
   # get continuous features
   continuous <- SplitColType(data)$continuous
   # get dimension
@@ -51,6 +53,10 @@ BoxplotContinuous <- function(data, five_points_only=FALSE) {
                        ylab("Value")
                    })
     # print plot object
-    suppressWarnings(do.call(grid.arrange, c(plot, ncol=4, nrow=4)))
+    if (pages > 1) {
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol=4, nrow=4)))
+    } else {
+      suppressWarnings(do.call(grid.arrange, plot))
+    }
   }
 }

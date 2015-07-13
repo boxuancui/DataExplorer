@@ -42,6 +42,8 @@
 
 BarDiscrete <- function(data, na.rm=TRUE, maxcat=50) {
   if (!is.data.table(data)) {data <- data.table(data)}
+  # stop if no discrete features
+  if (SplitColType(data)$num_discrete == 0) return("No Discrete Features")
   # get discrete features
   discrete <- SplitColType(data)$discrete
   # get number of categories for each feature
@@ -71,6 +73,11 @@ BarDiscrete <- function(data, na.rm=TRUE, maxcat=50) {
                        coord_flip() + ylab("Frequency")
                    })
     # print plot object
-    suppressWarnings(do.call(grid.arrange, c(plot, ncol=3, nrow=3)))
+    if (pages > 1) {
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol=3, nrow=3)))
+    }
+    else {
+      suppressWarnings(do.call(grid.arrange, plot))
+    }
   }
 }
