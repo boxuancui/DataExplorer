@@ -47,7 +47,7 @@ HistogramContinuous(data)
 
 ###### Correlation Heatmap
 ```{r correlation_continuous}
-CorrelationContinuous(data)
+CorrelationContinuous(data, use="na.or.complete")
 ```
 
 #### Discrete Features
@@ -59,6 +59,6 @@ BarDiscrete(data)
 
 ###### Correlation Heatmap
 ```{r correlation_discrete}
-CorrelationDiscrete(data)
+CorrelationDiscrete(data, use="pairwise.complete.obs")
 ```
 

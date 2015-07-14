@@ -4,10 +4,14 @@
 \alias{CorrelationDiscrete}
 \title{Create correlation heatmap for discrete features}
 \usage{
-CorrelationDiscrete(data)
+CorrelationDiscrete(data, maxcat = 20, ...)
 }
 \arguments{
 \item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
+
+\item{maxcat}{maximum categories allowed for each feature. The default is 20.}
+
+\item{\dots}{other arguments to be passed to \link{cor}.}
 }
 \description{
 This function creates a correlation heatmap for all discrete categories.

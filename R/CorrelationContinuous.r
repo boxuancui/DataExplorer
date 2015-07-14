@@ -2,6 +2,7 @@
 #'
 #' This function creates a correlation heatmap for all continuous features.
 #' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
+#' @param \dots other arguments to be passed to \link{cor}.
 #' @keywords correlationcontinuous
 #' @import data.table
 #' @import ggplot2
@@ -12,14 +13,14 @@
 #' data(mtcars)
 #' CorrelationContinuous(mtcars)
 
-CorrelationContinuous <- function(data) {
+CorrelationContinuous <- function(data, ...) {
   if (!is.data.table(data)) {data <- data.table(data)}
   # stop if no continuous features
   if (SplitColType(data)$num_continuous == 0) return("No Continuous Features")
   # get continuous features
   continuous <- SplitColType(data)$continuous
   # calculate correlation and melt into tidy data format
-  plot_data <- melt(cor(continuous))
+  plot_data <- melt(cor(continuous, ...))
   # create ggplot object
   if (ncol(continuous) >= 20) {
     plot <- ggplot(plot_data, aes(x=Var1, y=Var2, fill=value)) +

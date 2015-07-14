@@ -2,6 +2,8 @@
 #'
 #' This function creates a correlation heatmap for all discrete categories.
 #' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
+#' @param maxcat maximum categories allowed for each feature. The default is 20.
+#' @param \dots other arguments to be passed to \link{cor}.
 #' @keywords correlationdiscrete
 #' @details The function first transposes all discrete categories into columns with binary outcomes (see \link{model.matrix}), then calculates the correlation matrix (see \link{cor}) and plots it.
 #' @import data.table
@@ -14,15 +16,22 @@
 #' data(diamonds)
 #' CorrelationDiscrete(diamonds)
 
-CorrelationDiscrete <- function(data) {
+CorrelationDiscrete <- function(data, maxcat=20, ...) {
   if (!is.data.table(data)) {data <- data.table(data)}
   # stop if no discrete features
   if (SplitColType(data)$num_discrete == 0) return("No Discrete Features")
   # get discrete features
   discrete <- SplitColType(data.table(data))$discrete
+  # get number of categories for each feature
+  n_cat <- sapply(discrete, function(x) {length(levels(x))})
+  ign_ind <- which(n_cat > maxcat)
+  if (length(ign_ind)>0) {
+    set(discrete, j=ign_ind, value=NULL)
+    cat(length(ign_ind), " columns ignored with more than ", maxcat, " categories.\n", paste0(names(ign_ind), ": ", n_cat[ign_ind], " categories", collapse = "\n"))
+  }
   # calculate categorical correlation and melt into tidy data format
   discrete_pivot <- model.matrix(as.formula(paste0("~ ", paste0(names(discrete), collapse="+"))), data=discrete)[, -1]
-  plot_data <- melt(cor(discrete_pivot))
+  plot_data <- melt(cor(discrete_pivot, ...))
   # create ggplot object
   if (ncol(discrete_pivot) >= 20) {
     plot <- ggplot(plot_data, aes(x=Var1, y=Var2, fill=value)) +

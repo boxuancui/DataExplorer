@@ -4,10 +4,12 @@
 \alias{CorrelationContinuous}
 \title{Create correlation heatmap for continuous features}
 \usage{
-CorrelationContinuous(data)
+CorrelationContinuous(data, ...)
 }
 \arguments{
 \item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
+
+\item{\dots}{other arguments to be passed to \link{cor}.}
 }
 \description{
 This function creates a correlation heatmap for all continuous features.
