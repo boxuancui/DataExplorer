@@ -21,12 +21,20 @@ CorrelationContinuous <- function(data) {
   # calculate correlation and melt into tidy data format
   plot_data <- melt(cor(continuous))
   # create ggplot object
-  plot <- ggplot(plot_data, aes(x=Var1, y=Var2, fill=value)) +
-    geom_tile() +
-    geom_text(aes(label=round(value, 2))) +
-    scale_fill_gradient2("Correlation Meter", low="#0571b0", high="#ca0020", space="Lab") +
-    xlab("Features") + ylab("Features") +
-    theme(legend.position="bottom", axis.text.x=element_text(angle=90))
+  if (ncol(continuous) >= 20) {
+    plot <- ggplot(plot_data, aes(x=Var1, y=Var2, fill=value)) +
+      geom_tile() +
+      scale_fill_gradient2("Correlation Meter", low="#0571b0", high="#ca0020", space="Lab") +
+      xlab("Features") + ylab("Features") +
+      theme(legend.position="bottom", axis.text.x=element_text(angle=90))
+  } else {
+    plot <- ggplot(plot_data, aes(x=Var1, y=Var2, fill=value)) +
+      geom_tile() +
+      geom_text(aes(label=round(value, 2))) +
+      scale_fill_gradient2("Correlation Meter", low="#0571b0", high="#ca0020", space="Lab") +
+      xlab("Features") + ylab("Features") +
+      theme(legend.position="bottom", axis.text.x=element_text(angle=90))
+  }
   # print plot object
   print(plot)
 }

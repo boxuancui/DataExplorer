@@ -24,7 +24,7 @@ CorrelationDiscrete <- function(data) {
   discrete_pivot <- model.matrix(as.formula(paste0("~ ", paste0(names(discrete), collapse="+"))), data=discrete)[, -1]
   plot_data <- melt(cor(discrete_pivot))
   # create ggplot object
-  if (ncol(discrete_pivot) >= 15) {
+  if (ncol(discrete_pivot) >= 20) {
     plot <- ggplot(plot_data, aes(x=Var1, y=Var2, fill=value)) +
       geom_tile() +
       scale_fill_gradient2("Correlation Meter", low="#0571b0", high="#ca0020", space="Lab") +

@@ -31,17 +31,6 @@ PlotMissing(data)
 ```
 
 ### Data Distribution
-#### Discrete Features
-###### Bar Charts
-The following graph shows the frequency distribution of all discrete features.
-```{r}
-BarDiscrete(data)
-```
-
-###### Correlation Heatmap
-```{r}
-CorrelationDiscrete(data)
-```
 
 #### Continuous Features
 ###### Boxplot
@@ -60,3 +49,16 @@ HistogramContinuous(data)
 ```{r}
 CorrelationContinuous(data)
 ```
+
+#### Discrete Features
+###### Bar Charts
+The following graph shows the frequency distribution of all discrete features.
+```{r}
+BarDiscrete(data)
+```
+
+###### Correlation Heatmap
+```{r}
+CorrelationDiscrete(data)
+```
+
