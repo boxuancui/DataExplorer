@@ -1,3 +1,6 @@
-.Rproj.user
+.Rbuildignore
 .Rhistory
-.RData
+*.Rproj
+.DS_Store
+.Rproj.user
+*.html

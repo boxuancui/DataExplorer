@@ -17,44 +17,43 @@
 #'
 #' # plot using iris data
 #' BoxplotContinuous(iris)
-#' BoxplotContinuous(iris, five_points_only=TRUE)
+#' BoxplotContinuous(iris, five_points_only = TRUE)
 #'
 #' # plot using random data
-#' data <- data.table(matrix(rnorm(16000000), ncol=16))
-#' BoxplotContinuous(data)
-#' BoxplotContinuous(data, five_points_only=TRUE)
+#' data <- data.table(matrix(rnorm(16000000), ncol = 16))
+#' BoxplotContinuous(data, five_points_only = TRUE)
 
-BoxplotContinuous <- function(data, five_points_only=FALSE) {
+BoxplotContinuous <- function(data, five_points_only = FALSE) {
   if (!is.data.table(data)) {data <- data.table(data)}
   # stop if no continuous features
-  if (SplitColType(data)$num_continuous == 0) return("No Continuous Features")
+  if (SplitColType(data)$num_continuous == 0) stop("No Continuous Features")
   # get continuous features
   continuous <- SplitColType(data)$continuous
   # get dimension
   n <- nrow(continuous)
   p <- ncol(continuous)
   # calculate number of pages if showing 16 features on each page
-  pages <- ceiling(p/16)
+  pages <- ceiling(p / 16)
   for (pg in 1:pages) {
     # subset data by column
-    subset_data <- continuous[, (16*pg-15):min(p, 16*pg), with=FALSE]
+    subset_data <- continuous[, (16 * pg - 15):min(p, 16 * pg), with = FALSE]
     # melt data and calculate quantiles for plotting
     if (five_points_only) {
-      plot_data <- data.table(t(do.call(rbind, lapply(subset_data, quantile))))
+      plot_data <- data.table(t(do.call(rbind, lapply(subset_data, quantile, na.rm = TRUE))))
     } else {
       plot_data <- subset_data
     }
     # create ggplot object
     plot <- lapply(seq_along(plot_data),
                    function(j) {
-                     ggplot(plot_data, aes_string(x=names(plot_data)[j], y=names(plot_data)[j])) +
-                       geom_boxplot() +
-                       scale_y_continuous(labels=comma) +
+                     ggplot(plot_data, aes_string(x = names(plot_data)[j], y = names(plot_data)[j])) +
+                       geom_boxplot(na.rm = FALSE) +
+                       scale_y_continuous(labels = comma) +
                        ylab("Value")
                    })
     # print plot object
     if (pages > 1) {
-      suppressWarnings(do.call(grid.arrange, c(plot, ncol=4, nrow=4)))
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol = 4, nrow = 4)))
     } else {
       suppressWarnings(do.call(grid.arrange, plot))
     }

@@ -24,8 +24,8 @@ SplitColType <- function(data) {
   n_continuous <- sum(ind)
   n_discrete <- ncol(data) - n_continuous
   # create object for continuous features
-  continuous <- data[, which(ind), with=FALSE]
+  continuous <- data[, which(ind), with = FALSE]
   # create object for discrete features
-  discrete <- data[, which(!ind), with=FALSE]
-  return(list("discrete" = discrete, "continuous" = continuous, "num_discrete"=n_discrete, "num_continuous"=n_continuous))
+  discrete <- data[, which(!ind), with = FALSE]
+  return(list("discrete" = discrete, "continuous" = continuous, "num_discrete" = n_discrete, "num_continuous" = n_continuous))
 }

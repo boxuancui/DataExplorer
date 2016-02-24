@@ -14,25 +14,31 @@
 #' library(ggplot2)
 #' library(data.table)
 #'
-#' # generate report for diamonds dataset
+#' # load data
 #' data(diamonds)
-#' GenerateReport(diamonds,
-#'                output_file="report.html",
-#'                output_dir=getwd(),
-#'                html_document(toc=TRUE, theme="flatly"))
+#' diamonds2 <- data.table(diamonds)
 #'
-#' # generate report for
-#' data <- read.csv("http://www.cftc.gov/dea/newcot/deacit.txt", header=FALSE)[, -c(2:3, 32)]
-#' GenerateReport(data)
+#' # manually set some missing values
+#' for (j in 5:ncol(diamonds2)) {
+#'   set(diamonds2,
+#'       i = sample.int(nrow(diamonds2), sample.int(nrow(diamonds2), 1)),
+#'       j,
+#'       value = NA_integer_)}
+#'
+#' # generate report for diamonds dataset
+#' GenerateReport(diamonds2,
+#'                output_file = "report.html",
+#'                output_dir = getwd(),
+#'                html_document(toc = TRUE, theme = "flatly"))
 
-GenerateReport <- function(input_data, output_file="report.html", output_dir=getwd(), ...) {
+GenerateReport <- function(input_data, output_file = "report.html", output_dir = getwd(), ...) {
   # get directory of report markdown template
-  report_dir <- system.file("rmd_template/report.rmd", package="exploreR")
+  report_dir <- system.file("rmd_template/report.rmd", package = "exploreR")
   # render report into html
-  render(input=report_dir,
-         output_file=output_file,
-         output_dir=output_dir,
-         params=list(data=input_data, fun_options=list()),
+  render(input = report_dir,
+         output_file = output_file,
+         output_dir = output_dir,
+         params=list(data = input_data, fun_options = list()),
          ...)
   # open report
   browseURL(file.path(output_dir, output_file))

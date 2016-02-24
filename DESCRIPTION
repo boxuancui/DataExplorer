@@ -1,16 +1,17 @@
 Package: exploreR
 Title: R package for exploratory data analysis
-Version: 0.2.0.9000
+Version: 0.1.1.9000
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: This package automates most of EDA (Exploratory Data Analysis)
     process for data analysis and model building, so that users could focus on
     understanding data and extracting insights. The package automatically scans
     through each variable and does data profiling. Typical graphical techniques
     will be performed for both discrete and continuous features.
-Depends: R (>= 3.2.0),
-    ggplot2 (>= 1.0.1)
-Imports: data.table (>= 1.9.4),
+Depends:
+    R (>= 3.2.0)
+Imports:
     reshape2 (>= 1.4.1),
+    data.table (>= 1.9.4),
     ggplot2 (>= 1.0.1),
     scales (>= 0.2.5),
     gridExtra (>= 0.9.1),
@@ -19,3 +20,4 @@ License: GPL-2
 LazyData: true
 URL: https://github.com/boxuancui/exploreR
 BugReports: https://github.com/boxuancui/exploreR/issues
+RoxygenNote: 5.0.1

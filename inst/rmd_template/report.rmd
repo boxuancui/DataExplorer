@@ -17,7 +17,7 @@ knitr::opts_chunk$set(fig.width=14, fig.height=10, echo=FALSE)
 ```
 
 ### Basic Statistics
-The data is **`r format(object.size(data), units="auto")`** in size. There are **`r format(nrow(data), big.mark=",")`** observations (rows) and **`r format(ncol(data), big.mark=",")`** features (columns), with **`r SplitColType(data)$num_discrete`** discrete and **`r SplitColType(data)$num_continuous`** continuous. There are **`r format(sum(is.na(data)), big.mark=",")`** missing values out of **`r format(nrow(data)*ncol(data), big.mark=",")`** data points.
+The data is **`r format(object.size(data), units = "auto")`** in size. There are **`r format(nrow(data), big.mark = ",")`** observations (rows) and **`r format(ncol(data), big.mark = ",")`** features (columns), with **`r SplitColType(data)$num_discrete`** discrete and **`r SplitColType(data)$num_continuous`** continuous. There are **`r format(sum(is.na(data)), big.mark = ",")`** missing values out of **`r format(nrow(data)*ncol(data), big.mark = ",")`** data points.
 
 Below is the structure of the data.
 ```{r data_structure}
@@ -33,11 +33,6 @@ PlotMissing(data)
 ### Data Distribution
 
 #### Continuous Features
-###### Boxplot
-The following graph shows the general distribution of all continuous features.
-```{r boxplot_continuous}
-BoxplotContinuous(data)
-```
 
 ###### Histogram
 The following graph shows the density distribution of all continuous features.
