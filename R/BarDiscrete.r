@@ -8,7 +8,7 @@
 #' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function. Instead, it will be passed to \code{cat} with number of categories.
 #' @import data.table
 #' @import ggplot2
-#' @import scales
+#' @importFrom scales comma
 #' @import gridExtra
 #' @export
 #' @examples

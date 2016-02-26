@@ -1,10 +1,19 @@
-exploreR 0.1.1.9000
--------------------
+## eda 0.2.0
 
+### New Features
 * added function `CollapseCategory` to collapse sparse categories for discrete features.
-* added correlation heatmap for continuous and discrete features.
-* changed grid layout for `BoxplotContinuous`, `BarDiscrete` and `HistogramContinuous`.
-* switched position between continuous and discrete features in report template.
-* added `NEWS.md`.
+* added correlation heatmap for both continuous and discrete features.
+* added density plot for continuous features.
+
+### Bug Fixes
+
 * fixed a bug in `BarDiscrete` and `CorrelationDiscrete` for not plotting non-factor class.
-* removed `BoxplotContinuous` from `GenerateReport`.
+
+### Enhancement
+
+* changed grid layout for `BarDiscrete` and `HistogramContinuous`.
+* features with all missing values will be ignored.
+* switched position between continuous and discrete features in report template.
+* renamed package name to **eda**.
+* added `NEWS.md`.
+* removed `BoxplotContinuous`.

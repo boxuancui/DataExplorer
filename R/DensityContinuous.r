@@ -1,12 +1,12 @@
-#' Create histogram for continuous features
+#' Visualize density estimates for continuous features
 #'
-#' This function creates histogram for each continuous feature.
+#' This function visualizes density estimates for each continuous feature.
 #' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
-#' @param ... other arguments to be passed to \link{geom_histogram}.
-#' @keywords histogramcontinuous
+#' @param ... other arguments to be passed to \link{geom_density}.
+#' @keywords densitycontinuous
 #' @import data.table
 #' @import ggplot2
-#' @importFrom scales comma
+#' @importFrom scales comma percent
 #' @import gridExtra
 #' @export
 #' @examples
@@ -14,14 +14,14 @@
 #' library(data.table)
 #'
 #' # plot using iris data
-#' HistogramContinuous(iris)
+#' DensityContinuous(iris)
 #'
 #' # plot using random data
 #' set.seed(1)
-#' data <- cbind(sapply(1:9, function(x) {rnorm(10000, sd = 30 * x)}))
-#' HistogramContinuous(data, breaks = seq(-400, 400, length = 10))
+#' data <- cbind(sapply(1:9, function(x) {runif(500, min = sample(100, 1), max = sample(1000, 1))}))
+#' DensityContinuous(data)
 
-HistogramContinuous <- function(data, ...) {
+DensityContinuous <- function(data, ...) {
   if (!is.data.table(data)) {data <- data.table(data)}
   # stop if no continuous features
   if (SplitColType(data)$num_continuous == 0) stop("No Continuous Features")
@@ -40,10 +40,10 @@ HistogramContinuous <- function(data, ...) {
                    function(j) {
                      x <- na.omit(subset_data[, j, with = FALSE])
                      ggplot(x, aes_string(x = names(x))) +
-                       geom_histogram(bins = 30, colour = "black", alpha = 0.4, ...) +
+                       geom_density(...) +
                        scale_x_continuous(labels = comma) +
-                       scale_y_continuous(labels = comma) +
-                       ylab("Frequency")
+                       scale_y_continuous(labels = percent) +
+                       ylab("Density")
                    })
     # print plot object
     if (pages > 1) {

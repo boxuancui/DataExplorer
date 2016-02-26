@@ -8,7 +8,6 @@
 #' @details The function first transposes all discrete categories into columns with binary outcomes (see \link{model.matrix}), then calculates the correlation matrix (see \link{cor}) and plots it.
 #' @import data.table
 #' @import ggplot2
-#' @import reshape2
 #' @export
 #' @examples
 #' # correlation of discrete categories from diamonds dataset
@@ -31,7 +30,7 @@ CorrelationDiscrete <- function(data, maxcat = 20, ...) {
   }
   # calculate categorical correlation and melt into tidy data format
   discrete_pivot <- model.matrix(as.formula(paste0("~ ", paste0(names(discrete), collapse = "+"))), data = discrete)[, -1]
-  plot_data <- melt(cor(discrete_pivot, ...))
+  plot_data <- reshape2::melt(cor(discrete_pivot, ...))
   # create ggplot object
   if (ncol(discrete_pivot) >= 20) {
     plot <- ggplot(plot_data, aes(x = Var1, y = Var2, fill = value)) +

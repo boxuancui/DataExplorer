@@ -6,7 +6,6 @@
 #' @keywords correlationcontinuous
 #' @import data.table
 #' @import ggplot2
-#' @import reshape2
 #' @export
 #' @examples
 #' # correlation of features from mtcars dataset
@@ -20,7 +19,7 @@ CorrelationContinuous <- function(data, ...) {
   # get continuous features
   continuous <- SplitColType(data)$continuous
   # calculate correlation and melt into tidy data format
-  plot_data <- melt(cor(continuous, ...))
+  plot_data <- reshape2::melt(cor(continuous, ...))
   # create ggplot object
   if (ncol(continuous) >= 20) {
     plot <- ggplot(plot_data, aes(x = Var1, y = Var2, fill = value)) +

@@ -18,9 +18,11 @@ This function returns and plots frequency of missing values for each feature.
 \examples{
 # load packages
 library(data.table)
+
 # manipulate data
 data <- data.table(iris)
 for (j in 1:4) set(data, i=sample(150, j * 30), j, value = NA_integer_)
+
 # plot and store missing values
 plot_data <- PlotMissing(data)
 plot_data

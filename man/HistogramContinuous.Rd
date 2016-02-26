@@ -4,10 +4,12 @@
 \alias{HistogramContinuous}
 \title{Create histogram for continuous features}
 \usage{
-HistogramContinuous(data)
+HistogramContinuous(data, ...)
 }
 \arguments{
 \item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
+
+\item{...}{other arguments to be passed to \link{geom_histogram}.}
 }
 \description{
 This function creates histogram for each continuous feature.
@@ -20,8 +22,9 @@ library(data.table)
 HistogramContinuous(iris)
 
 # plot using random data
-data <- data.table(matrix(rnorm(160000), ncol=16))
-HistogramContinuous(data)
+set.seed(1)
+data <- cbind(sapply(1:9, function(x) {rnorm(10000, sd = 30 * x)}))
+HistogramContinuous(data, breaks = seq(-400, 400, length = 10))
 }
 \keyword{histogramcontinuous}
 

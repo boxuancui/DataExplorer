@@ -1,6 +1,6 @@
-Package: exploreR
+Package: eda
 Title: R package for exploratory data analysis
-Version: 0.1.1.9000
+Version: 0.2.0
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: This package automates most of EDA (Exploratory Data Analysis)
     process for data analysis and model building, so that users could focus on
@@ -10,14 +10,14 @@ Description: This package automates most of EDA (Exploratory Data Analysis)
 Depends:
     R (>= 3.2.0)
 Imports:
-    reshape2 (>= 1.4.1),
     data.table (>= 1.9.4),
+    reshape2 (>= 1.4.1),
     ggplot2 (>= 1.0.1),
-    scales (>= 0.2.5),
+    scales (>= 0.3.0),
     gridExtra (>= 0.9.1),
-    rmarkdown (>= 0.7)
+    rmarkdown (>= 0.9.5)
 License: GPL-2
 LazyData: true
-URL: https://github.com/boxuancui/exploreR
-BugReports: https://github.com/boxuancui/exploreR/issues
+URL: https://github.com/boxuancui/eda
+BugReports: https://github.com/boxuancui/eda/issues
 RoxygenNote: 5.0.1

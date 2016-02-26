@@ -21,12 +21,16 @@ SplitColType(data)
 \description{
 This function splits the input data into two \link{data.table} objects: discrete and continuous. A feature is continuous if \code{is.numeric} returns \code{TRUE}.
 }
+\details{
+Features with all missing values will be dropped from the output data, but will be counted towards the column count.
+}
 \examples{
 output <- SplitColType(iris)
 output$discrete
 output$continuous
 output$num_discrete
 output$num_continuous
+output$num_all_missing
 }
 \keyword{splitcoltype}
 

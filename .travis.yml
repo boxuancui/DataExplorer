@@ -6,7 +6,9 @@ sudo: required
 r_binary_packages:
  - data.table
  - ggplot2
- - scales
  - gridExtra
- - reshape2
  - rmarkdown
+r_github_packages:
+  - jimhester/covr
+after_success:
+  - Rscript -e 'library(covr);codecov()'
