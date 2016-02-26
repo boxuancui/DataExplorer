@@ -9,7 +9,7 @@ DensityContinuous(data, ...)
 \arguments{
 \item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
 
-\item{...}{other arguments to be passed to \link{geom_density}.}
+\item{\dots}{other arguments to be passed to \link{geom_density}.}
 }
 \description{
 This function visualizes density estimates for each continuous feature.
@@ -23,7 +23,9 @@ DensityContinuous(iris)
 
 # plot using random data
 set.seed(1)
-data <- cbind(sapply(1:9, function(x) {runif(500, min = sample(100, 1), max = sample(1000, 1))}))
+data <- cbind(sapply(1:9, function(x) {
+          runif(500, min = sample(100, 1), max = sample(1000, 1))
+        }))
 DensityContinuous(data)
 }
 \keyword{densitycontinuous}

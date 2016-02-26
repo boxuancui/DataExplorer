@@ -10,10 +10,10 @@ params:
   fun_options: fun_options
 ---
 
-```{r global_options, include=FALSE}
+```{r global_options, include = FALSE}
 data <- params$data
 opts <- params$fun_options
-knitr::opts_chunk$set(fig.width=14, fig.height=10, echo=FALSE)
+knitr::opts_chunk$set(fig.width = 14, fig.height = 10, echo = FALSE)
 ```
 
 ### Basic Statistics
@@ -35,14 +35,20 @@ PlotMissing(data)
 #### Continuous Features
 
 ###### Histogram
-The following graph shows the density distribution of all continuous features.
+The following graph shows the frequency distribution of all continuous features.
 ```{r histogram_continuous}
 HistogramContinuous(data)
 ```
 
+###### Density Estimates
+The following graph shows the density estimates of all continuous features.
+```{r density_continuous}
+DensityContinuous(data)
+```
+
 ###### Correlation Heatmap
 ```{r correlation_continuous}
-CorrelationContinuous(data, use="na.or.complete")
+CorrelationContinuous(data, use = "na.or.complete")
 ```
 
 #### Discrete Features
@@ -54,6 +60,6 @@ BarDiscrete(data)
 
 ###### Correlation Heatmap
 ```{r correlation_discrete}
-CorrelationDiscrete(data, use="pairwise.complete.obs")
+CorrelationDiscrete(data, use = "pairwise.complete.obs")
 ```
 

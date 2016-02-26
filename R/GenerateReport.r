@@ -33,7 +33,7 @@
 
 GenerateReport <- function(input_data, output_file = "report.html", output_dir = getwd(), ...) {
   # get directory of report markdown template
-  report_dir <- system.file("rmd_template/report.rmd", package = "exploreR")
+  report_dir <- system.file("rmd_template/report.rmd", package = "eda")
   # render report into html
   render(input = report_dir,
          output_file = output_file,

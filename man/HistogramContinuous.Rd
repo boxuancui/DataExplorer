@@ -9,7 +9,7 @@ HistogramContinuous(data, ...)
 \arguments{
 \item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
 
-\item{...}{other arguments to be passed to \link{geom_histogram}.}
+\item{\dots}{other arguments to be passed to \link{geom_histogram}.}
 }
 \description{
 This function creates histogram for each continuous feature.
