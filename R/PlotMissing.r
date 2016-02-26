@@ -21,6 +21,9 @@
 #' plot_data
 
 PlotMissing <- function(data) {
+  # declare variable first to pass R CMD check
+  feature <- num_missing <- pct_missing <- group <- NULL
+  # set data to data.table
   if (!is.data.table(data)) {data <- data.table(data)}
   # extract missing value distribution
   missing_value <- data.table("feature" = names(data), "num_missing" = sapply(data, function(x) {sum(is.na(x))}))

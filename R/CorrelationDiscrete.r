@@ -16,6 +16,9 @@
 #' CorrelationDiscrete(diamonds)
 
 CorrelationDiscrete <- function(data, maxcat = 20, ...) {
+  # declare variable first to pass R CMD check
+  Var1 <- Var2 <- value <- NULL
+  # set data to data.table
   if (!is.data.table(data)) {data <- data.table(data)}
   # stop if no discrete features
   if (SplitColType(data)$num_discrete == 0) stop("No Discrete Features")

@@ -25,12 +25,14 @@
 #' BarDiscrete(data)
 
 CollapseCategory <- function(data, feature, threshold, update = FALSE) {
+  # declare variable first to pass R CMD check
+  cnt <- pct <- cum_pct <- NULL
   # set data to data.table
   if (!is.data.table(data)) {data <- data.table(data)}
   # set feature to discrete
   set(data, j = feature, value = as.character(data[[feature]]))
   # count frequency of each category and order in descending order
-  var <- data[, .(cnt = .N), by = feature][order(-cnt)]
+  var <- data[, list(cnt = .N), by = feature][order(-cnt)]
   # calcualte cumulative frequency for each category
   var[, pct := cnt / sum(cnt)][, cum_pct := cumsum(pct)]
   # identify categories not to be collapased based on input threshold
