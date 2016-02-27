@@ -6,6 +6,7 @@
 #' @keywords correlationcontinuous
 #' @import data.table
 #' @import ggplot2
+#' @importFrom stats cor
 #' @export
 #' @examples
 #' # correlation of features from mtcars dataset

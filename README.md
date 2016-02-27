@@ -3,11 +3,11 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eda)](http://cran.r-project.org/package=eda)
 
 Master:
-[![Build Status](https://travis-ci.org/boxuancui/exploreR.svg?branch=master)](https://travis-ci.org/boxuancui/eda)
+[![Build Status](https://travis-ci.org/boxuancui/eda.svg?branch=master)](https://travis-ci.org/boxuancui/eda)
 [![codecov.io](https://codecov.io/github/boxuancui/eda/coverage.svg?branch=master)](https://codecov.io/github/boxuancui/eda)
 
 Develop:
-[![Build Status](https://travis-ci.org/boxuancui/exploreR.svg?branch=develop)](https://travis-ci.org/boxuancui/eda)
+[![Build Status](https://travis-ci.org/boxuancui/eda.svg?branch=develop)](https://travis-ci.org/boxuancui/eda)
 [![codecov.io](https://codecov.io/github/boxuancui/eda/coverage.svg?branch=develop)](https://codecov.io/github/boxuancui/eda)
 
 -----

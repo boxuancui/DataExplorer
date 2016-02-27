@@ -8,6 +8,7 @@
 #' @details The function first transposes all discrete categories into columns with binary outcomes (see \link{model.matrix}), then calculates the correlation matrix (see \link{cor}) and plots it.
 #' @import data.table
 #' @import ggplot2
+#' @importFrom stats model.matrix as.formula
 #' @export
 #' @examples
 #' # correlation of discrete categories from diamonds dataset
