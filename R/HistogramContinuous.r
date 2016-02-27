@@ -7,6 +7,7 @@
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma
+#' @importFrom stats na.omit
 #' @import gridExtra
 #' @export
 #' @examples

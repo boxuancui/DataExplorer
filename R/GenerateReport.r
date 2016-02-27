@@ -7,6 +7,7 @@
 #' @param \dots other arguments to be passed to \link{render}.
 #' @keywords generatereport
 #' @import rmarkdown
+#' @importFrom utils browseURL
 #' @export
 #' @examples
 #' # load library
