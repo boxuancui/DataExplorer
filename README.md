@@ -4,11 +4,11 @@
 
 Master:
 [![Build Status](https://travis-ci.org/boxuancui/eda.svg?branch=master)](https://travis-ci.org/boxuancui/eda)
-[![codecov.io](https://codecov.io/github/boxuancui/eda/coverage.svg?branch=master)](https://codecov.io/github/boxuancui/eda)
+[![codecov.io](https://codecov.io/github/boxuancui/eda/coverage.svg?branch=master)](https://codecov.io/github/boxuancui/eda?branch=master)
 
 Develop:
 [![Build Status](https://travis-ci.org/boxuancui/eda.svg?branch=develop)](https://travis-ci.org/boxuancui/eda)
-[![codecov.io](https://codecov.io/github/boxuancui/eda/coverage.svg?branch=develop)](https://codecov.io/github/boxuancui/eda)
+[![codecov.io](https://codecov.io/github/boxuancui/eda/coverage.svg?branch=develop)](https://codecov.io/github/boxuancui/eda?branch=develo[)
 
 -----
 

@@ -1,3 +1,14 @@
+## eda 0.2.0.9000
+
+### New Features
+
+
+### Bug Fixes
+
+
+### Enhancement
+* generate `eda-package.Rd` from `roxygen2` instead of creating it manually.
+
 ## eda 0.2.0
 
 ### New Features
