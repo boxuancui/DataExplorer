@@ -10,6 +10,7 @@
 #' @importFrom utils browseURL
 #' @export
 #' @examples
+#' \dontrun{
 #' # load library
 #' library(rmarkdown)
 #' library(ggplot2)
@@ -30,7 +31,8 @@
 #' GenerateReport(diamonds2,
 #'                output_file = "report.html",
 #'                output_dir = getwd(),
-#'                html_document(toc = TRUE, theme = "flatly"))
+#'                html_document(toc = TRUE, toc_depth = 6, theme = "flatly"))
+#' }
 
 GenerateReport <- function(input_data, output_file = "report.html", output_dir = getwd(), ...) {
   # get directory of report markdown template

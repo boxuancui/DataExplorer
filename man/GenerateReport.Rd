@@ -20,6 +20,7 @@ GenerateReport(input_data, output_file = "report.html",
 This function generates the report of data profiling.
 }
 \examples{
+\dontrun{
 # load library
 library(rmarkdown)
 library(ggplot2)
@@ -40,7 +41,8 @@ for (j in 5:ncol(diamonds2)) {
 GenerateReport(diamonds2,
                output_file = "report.html",
                output_dir = getwd(),
-               html_document(toc = TRUE, theme = "flatly"))
+               html_document(toc = TRUE, toc_depth = 6, theme = "flatly"))
+}
 }
 \keyword{generatereport}
 
