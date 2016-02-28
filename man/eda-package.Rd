@@ -5,28 +5,16 @@
 \alias{EDA}
 \alias{eda}
 \alias{eda-package}
-<<<<<<< HEAD
 \title{Exploratory Data Analysis}
-=======
-\title{Exploratory Data Analysis in R}
->>>>>>> 72faf31487c9fa73733561f45660e98fc689c91d
 \description{
 Simplify and automate EDA process and report generation.
 }
 \details{
-<<<<<<< HEAD
 EDA (Exploratory Data Analysis) process for data analysis and model
 building, so that users could focus on understanding data and extracting
 insights. The package automatically scans through each variable and does
 data profiling. Typical graphical techniques will be performed for both
 discrete and continuous features.
-=======
-A collection of functions to simplify EDA (Exploratory Data Analysis)
-process for data analysis and model building, so that users could focus on
-understanding data and extracting insights. The package automatically scans
-through each variable and does data profiling. Typical graphical techniques
-will be performed for both discrete and continuous features.
->>>>>>> 72faf31487c9fa73733561f45660e98fc689c91d
 }
 \seealso{
 \link{PlotMissing},
