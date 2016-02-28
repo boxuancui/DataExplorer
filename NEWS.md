@@ -1,7 +1,19 @@
+<<<<<<< HEAD
 ## eda 0.2.1
 
 ### Bug Fixes
 * minor changes for CRAN re-submission.
+=======
+## eda 0.2.0.9000
+
+### New Features
+
+
+### Bug Fixes
+
+
+### Enhancement
+>>>>>>> 72faf31487c9fa73733561f45660e98fc689c91d
 * generate `eda-package.Rd` from `roxygen2` instead of creating it manually.
 
 ## eda 0.2.0
