@@ -2,11 +2,12 @@
 #'
 #' This function creates histogram for each continuous feature.
 #' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
-#' @param ... other arguments to be passed to \link{geom_histogram}.
+#' @param \dots other arguments to be passed to \link{geom_histogram}.
 #' @keywords histogramcontinuous
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma
+#' @importFrom stats na.omit
 #' @import gridExtra
 #' @export
 #' @examples

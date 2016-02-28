@@ -6,6 +6,7 @@
 #' @keywords correlationcontinuous
 #' @import data.table
 #' @import ggplot2
+#' @importFrom stats cor
 #' @export
 #' @examples
 #' # correlation of features from mtcars dataset
@@ -13,6 +14,9 @@
 #' CorrelationContinuous(mtcars)
 
 CorrelationContinuous <- function(data, ...) {
+  # declare variable first to pass R CMD check
+  Var1 <- Var2 <- value <- NULL
+  # set data to data.table
   if (!is.data.table(data)) {data <- data.table(data)}
   # stop if no continuous features
   if (SplitColType(data)$num_continuous == 0) stop("No Continuous Features")

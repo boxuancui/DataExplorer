@@ -1,12 +1,12 @@
 Package: eda
-Title: R package for exploratory data analysis
-Version: 0.2.0
+Title: Exploratory Data Analysis
+Version: 0.2.1
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
-Description: This package automates most of EDA (Exploratory Data Analysis)
-    process for data analysis and model building, so that users could focus on
-    understanding data and extracting insights. The package automatically scans
-    through each variable and does data profiling. Typical graphical techniques
-    will be performed for both discrete and continuous features.
+Description: EDA (Exploratory Data Analysis) process for data analysis and model
+    building, so that users could focus on understanding data and extracting
+    insights. The package automatically scans through each variable and does
+    data profiling. Typical graphical techniques will be performed for both
+    discrete and continuous features.
 Depends:
     R (>= 3.2.0)
 Imports:

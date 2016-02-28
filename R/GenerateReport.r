@@ -7,8 +7,10 @@
 #' @param \dots other arguments to be passed to \link{render}.
 #' @keywords generatereport
 #' @import rmarkdown
+#' @importFrom utils browseURL
 #' @export
 #' @examples
+#' \dontrun{
 #' # load library
 #' library(rmarkdown)
 #' library(ggplot2)
@@ -29,11 +31,12 @@
 #' GenerateReport(diamonds2,
 #'                output_file = "report.html",
 #'                output_dir = getwd(),
-#'                html_document(toc = TRUE, theme = "flatly"))
+#'                html_document(toc = TRUE, toc_depth = 6, theme = "flatly"))
+#' }
 
 GenerateReport <- function(input_data, output_file = "report.html", output_dir = getwd(), ...) {
   # get directory of report markdown template
-  report_dir <- system.file("rmd_template/report.rmd", package = "exploreR")
+  report_dir <- system.file("rmd_template/report.rmd", package = "eda")
   # render report into html
   render(input = report_dir,
          output_file = output_file,

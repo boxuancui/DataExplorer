@@ -8,6 +8,7 @@
 #' @details The function first transposes all discrete categories into columns with binary outcomes (see \link{model.matrix}), then calculates the correlation matrix (see \link{cor}) and plots it.
 #' @import data.table
 #' @import ggplot2
+#' @importFrom stats model.matrix as.formula
 #' @export
 #' @examples
 #' # correlation of discrete categories from diamonds dataset
@@ -16,6 +17,9 @@
 #' CorrelationDiscrete(diamonds)
 
 CorrelationDiscrete <- function(data, maxcat = 20, ...) {
+  # declare variable first to pass R CMD check
+  Var1 <- Var2 <- value <- NULL
+  # set data to data.table
   if (!is.data.table(data)) {data <- data.table(data)}
   # stop if no discrete features
   if (SplitColType(data)$num_discrete == 0) stop("No Discrete Features")
