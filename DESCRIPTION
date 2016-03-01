@@ -1,12 +1,12 @@
 Package: DataExplorer
 Title: Data Explorer
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
-Description: EDA (Exploratory Data Analysis) process for data analysis and model
-    building, so that users could focus on understanding data and extracting
-    insights. The package automatically scans through each variable and does
-    data profiling. Typical graphical techniques will be performed for both
-    discrete and continuous features.
+Description: Data exploration process for data analysis and model building, so
+    that users could focus on understanding data and extracting insights. The
+    package automatically scans through each variable and does data profiling.
+    Typical graphical techniques will be performed for both discrete and
+    continuous features.
 Depends:
     R (>= 3.2.0)
 Imports:
@@ -15,7 +15,9 @@ Imports:
     ggplot2 (>= 1.0.1),
     scales (>= 0.3.0),
     gridExtra (>= 0.9.1),
-    rmarkdown (>= 0.9.5)
+    rmarkdown (>= 0.9.5),
+    stats,
+    utils
 License: GPL-2
 LazyData: true
 URL: https://github.com/boxuancui/DataExplorer
