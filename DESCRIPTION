@@ -1,6 +1,6 @@
-Package: eda
-Title: Exploratory Data Analysis
-Version: 0.2.1
+Package: DataExplorer
+Title: Data Explorer
+Version: 0.2.2
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: EDA (Exploratory Data Analysis) process for data analysis and model
     building, so that users could focus on understanding data and extracting
@@ -18,6 +18,6 @@ Imports:
     rmarkdown (>= 0.9.5)
 License: GPL-2
 LazyData: true
-URL: https://github.com/boxuancui/eda
-BugReports: https://github.com/boxuancui/eda/issues
+URL: https://github.com/boxuancui/DataExplorer
+BugReports: https://github.com/boxuancui/DataExplorer/issues
 RoxygenNote: 5.0.1

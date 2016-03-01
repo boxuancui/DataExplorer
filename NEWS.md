@@ -1,10 +1,15 @@
-## eda 0.2.1
+## DataExplorer 0.2.2
+
+### Enhancement
+* Renamed package name from **eda** to **DataExplorer**.
+
+## DataExplorer 0.2.1
 
 ### Bug Fixes
 * minor changes for CRAN re-submission.
 * generate `eda-package.Rd` from `roxygen2` instead of creating it manually.
 
-## eda 0.2.0
+## DataExplorer 0.2.0
 
 ### New Features
 * added function `CollapseCategory` to collapse sparse categories for discrete features.

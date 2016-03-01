@@ -1,14 +1,14 @@
-# eda
+# Data Explorer
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eda)](http://cran.r-project.org/package=eda)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/DataExplorer)](http://cran.r-project.org/package=DataExplorer)
 
 Master:
-[![Build Status](https://travis-ci.org/boxuancui/eda.svg?branch=master)](https://travis-ci.org/boxuancui/eda)
-[![codecov.io](https://codecov.io/github/boxuancui/eda/coverage.svg?branch=master)](https://codecov.io/github/boxuancui/eda?branch=master)
+[![Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer)
+[![codecov.io](https://codecov.io/github/boxuancui/DataExplorer/coverage.svg?branch=master)](https://codecov.io/github/boxuancui/DataExplorer?branch=master)
 
 Develop:
-[![Build Status](https://travis-ci.org/boxuancui/eda.svg?branch=develop)](https://travis-ci.org/boxuancui/eda)
-[![codecov.io](https://codecov.io/github/boxuancui/eda/coverage.svg?branch=develop)](https://codecov.io/github/boxuancui/eda?branch=develo[)
+[![Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop)](https://travis-ci.org/boxuancui/DataExplorer)
+[![codecov.io](https://codecov.io/github/boxuancui/DataExplorer/coverage.svg?branch=develop)](https://codecov.io/github/boxuancui/DataExplorer?branch=develo[)
 
 -----
 
@@ -20,25 +20,25 @@ The package can be installed from `github` using `devtools` package.
 
     if (!require(devtools)) install.packages("devtools")
     library(devtools)
-    install_github("boxuancui/eda")
+    install_github("boxuancui/DataExplorer")
 
 If you would like to get the latest development version, you may run the following code in `R`.
 
     if (!require(devtools)) install.packages("devtools")
     library(devtools)
-    install_github("boxuancui/eda", ref="develop")
+    install_github("boxuancui/DataExplorer", ref="develop")
 
 ## Examples
 The package is extremely easy to use. Almost everything could be done in one line of `R` code. Please refer to the package manuals for more information.
 
 To get a report for the `iris` dataset:
 
-    library(eda)
+    library(DataExplorer)
     GenerateReport(iris)
 
 To get a report for the `diamonds` dataset in `ggplot2` package:
 
-    library(eda)
+    library(DataExplorer)
     library(ggplot2)
     GenerateReport(diamonds)
     
