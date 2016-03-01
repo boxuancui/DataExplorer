@@ -1,7 +1,7 @@
 #' @docType package
-#' @name eda-package
-#' @aliases eda EDA eda-package
-#' @title Exploratory Data Analysis
+#' @name DataExplorer-package
+#' @aliases DataExplorer dataexplorer DataExplorer-package
+#' @title Data Explorer
 #' @description Simplify and automate EDA process and report generation.
 #' @details EDA (Exploratory Data Analysis) process for data analysis and model
 #' building, so that users could focus on understanding data and extracting
