@@ -1,4 +1,4 @@
-# DataExplorer [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/DataExplorer)](http://cran.r-project.org/package=DataExplorer)
+# DataExplorer [![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/web/packages/DataExplorer) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](http://cran.r-project.org/web/packages/DataExplorer)
 
 Master:
 [![Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer)
