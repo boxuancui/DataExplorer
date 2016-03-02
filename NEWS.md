@@ -1,6 +1,17 @@
+## DataExplorer 0.2.4
+
+### Bug Fixes
+
+* Fixed a major bug in `GenerateReport` function due to package renaming.
+
+### Enhancement
+
+* `GenerateReport` will now print the directory of the report to console.
+
 ## DataExplorer 0.2.3
 
 ### New Features
+
 * added function `CollapseCategory` to collapse sparse categories for discrete features.
 * added correlation heatmap for both continuous and discrete features.
 * added density plot for continuous features.
