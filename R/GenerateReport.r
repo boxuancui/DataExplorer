@@ -36,7 +36,7 @@
 
 GenerateReport <- function(input_data, output_file = "report.html", output_dir = getwd(), ...) {
   # get directory of report markdown template
-  report_dir <- system.file("rmd_template/report.rmd", package = "eda")
+  report_dir <- system.file("rmd_template/report.rmd", package = "DataExplorer")
   # render report into html
   render(input = report_dir,
          output_file = output_file,
@@ -44,5 +44,8 @@ GenerateReport <- function(input_data, output_file = "report.html", output_dir =
          params=list(data = input_data, fun_options = list()),
          ...)
   # open report
-  browseURL(file.path(output_dir, output_file))
+  report_path <- file.path(output_dir, output_file)
+  browseURL(report_path)
+  # print report directory
+  cat(paste0("\n\nReport is generated at \"", report_path, "\"."))
 }
