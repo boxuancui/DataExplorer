@@ -20,7 +20,7 @@ continuous_error <- function(e) {
   if (num_continuous == 0) {
     cat("No continuous features found.")
   } else {
-    cat("Continuous features contain too many missing values.")
+    cat("Continuous features contain too many missing values.\n")
     cat("Try using PlotMissing() to determine which features to drop.")
   }
 }
@@ -29,8 +29,8 @@ discrete_error <- function(e) {
   if (num_discrete == 0) {
     cat("No discrete features found.")
   } else {
-    cat("Discrete features contain too many categories.")
-    cat("try using CollapseCategory() to reduce categories.")
+    cat("Discrete features contain too many categories.\n")
+    cat("Try using CollapseCategory() to reduce categories.")
   }
 }
 
