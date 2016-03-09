@@ -12,12 +12,34 @@ params:
 
 ```{r global_options, include = FALSE}
 data <- params$data
+num_discrete <- SplitColType(params$data)$num_discrete
+num_continuous <- SplitColType(params$data)$num_continuous
+num_all_missing <- SplitColType(params$data)$num_all_missing
+
+continuous_error <- function(e) {
+  if (num_continuous == 0) {
+    cat("No continuous features found.")
+  } else {
+    cat("Continuous features contain too many missing values.\n")
+    cat("Try using PlotMissing() to determine which features to drop.")
+  }
+}
+
+discrete_error <- function(e) {
+  if (num_discrete == 0) {
+    cat("No discrete features found.")
+  } else {
+    cat("Discrete features contain too many categories.\n")
+    cat("Try using CollapseCategory() to reduce categories.")
+  }
+}
+
 opts <- params$fun_options
 knitr::opts_chunk$set(fig.width = 14, fig.height = 10, echo = FALSE)
 ```
 
 ### Basic Statistics
-The data is **`r format(object.size(data), units = "auto")`** in size. There are **`r format(nrow(data), big.mark = ",")`** observations (rows) and **`r format(ncol(data), big.mark = ",")`** features (columns), with **`r SplitColType(data)$num_discrete`** discrete and **`r SplitColType(data)$num_continuous`** continuous. There are **`r format(sum(is.na(data)), big.mark = ",")`** missing values out of **`r format(nrow(data)*ncol(data), big.mark = ",")`** data points.
+The data is **`r format(object.size(data), units = "auto")`** in size. There are **`r format(nrow(data), big.mark = ",")`** rows and **`r format(ncol(data), big.mark = ",")`** columns (features). Of all **`r format(ncol(data), big.mark = ",")`** columns, **`r I(num_discrete)`** are discrete, **`r I(num_continuous)`** are continuous, and **`r I(num_all_missing)`** are all missing. There are **`r format(sum(is.na(data)), big.mark = ",")`** missing values out of **`r format(nrow(data)*ncol(data), big.mark = ",")`** data points.
 
 Below is the structure of the data.
 ```{r data_structure}
@@ -35,31 +57,31 @@ PlotMissing(data)
 #### Continuous Features
 
 ###### Histogram
-The following graph shows the frequency distribution of all continuous features.
 ```{r histogram_continuous}
-HistogramContinuous(data)
+tryCatch(HistogramContinuous(data), error = continuous_error)
 ```
 
 ###### Density Estimates
-The following graph shows the density estimates of all continuous features.
 ```{r density_continuous}
-DensityContinuous(data)
-```
-
-###### Correlation Heatmap
-```{r correlation_continuous}
-CorrelationContinuous(data, use = "na.or.complete")
+tryCatch(DensityContinuous(data), error = continuous_error)
 ```
 
 #### Discrete Features
 ###### Bar Charts
-The following graph shows the frequency distribution of all discrete features.
 ```{r bar_discrete}
-BarDiscrete(data)
+tryCatch(BarDiscrete(data), error = discrete_error)
 ```
 
-###### Correlation Heatmap
-```{r correlation_discrete}
-CorrelationDiscrete(data, use = "pairwise.complete.obs")
+### Correlation Analysis
+
+#### Continuous Features
+```{r correlation_continuous}
+tryCatch(CorrelationContinuous(data, use = "na.or.complete"), error = continuous_error)
 ```
+
+#### Discrete Features
+```{r correlation_discrete}
+tryCatch(CorrelationDiscrete(data, use = "pairwise.complete.obs"), error = discrete_error)
+```
+
 

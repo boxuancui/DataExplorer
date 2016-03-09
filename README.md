@@ -1,14 +1,14 @@
-# DataExplorer [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/DataExplorer)](http://cran.r-project.org/package=DataExplorer)
+# DataExplorer [![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/web/packages/DataExplorer) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](http://cran.r-project.org/web/packages/DataExplorer)
 
-Master:
+[![Master Version](https://img.shields.io/badge/master-0.2.4-orange.svg)](https://github.com/boxuancui/DataExplorer/tree/master)
 [![Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer)
 [![codecov.io](https://codecov.io/github/boxuancui/DataExplorer/coverage.svg?branch=master)](https://codecov.io/github/boxuancui/DataExplorer?branch=master)
 
-Develop:
+[![Develop Version](https://img.shields.io/badge/develop-0.2.4.9000-orange.svg)](https://github.com/boxuancui/DataExplorer/tree/develop)
 [![Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop)](https://travis-ci.org/boxuancui/DataExplorer)
 [![codecov.io](https://codecov.io/github/boxuancui/DataExplorer/coverage.svg?branch=develop)](https://codecov.io/github/boxuancui/DataExplorer?branch=develo[)
 
------
+---
 
 ## Background
 [Exploratory Data Analysis (EDA)](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is the initial and an important phase of data analysis. Through this phase, analysts/modelers will have a first look of the data, and thus generate relevant hypothesis and decide next steps. However, the EDA process could be a hassle at times. This `R` package aims to automate most of data handling and visualization, so that users could focus on studying the data and extracting insights.

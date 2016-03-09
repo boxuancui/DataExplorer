@@ -19,7 +19,7 @@ CorrelationContinuous <- function(data, ...) {
   # set data to data.table
   if (!is.data.table(data)) {data <- data.table(data)}
   # stop if no continuous features
-  if (SplitColType(data)$num_continuous == 0) stop("No Continuous Features")
+  if (SplitColType(data)$num_continuous <= 1) stop("Not Enough Continuous Features")
   # get continuous features
   continuous <- SplitColType(data)$continuous
   # calculate correlation and melt into tidy data format
