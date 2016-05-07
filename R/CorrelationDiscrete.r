@@ -53,4 +53,3 @@ CorrelationDiscrete <- function(data, maxcat = 20, ...) {
   # print plot object
   print(plot)
 }
-

@@ -83,5 +83,3 @@ tryCatch(CorrelationContinuous(data, use = "na.or.complete"), error = continuous
 ```{r correlation_discrete}
 tryCatch(CorrelationDiscrete(data, use = "pairwise.complete.obs"), error = discrete_error)
 ```
-
-

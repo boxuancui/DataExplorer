@@ -42,4 +42,3 @@ CorrelationContinuous <- function(data, ...) {
   # print plot object
   print(plot)
 }
-
