@@ -1,5 +1,7 @@
 # Changelog
 
+### DataExplorer 0.2.6.9000
+
 ---
 
 ### DataExplorer 0.2.6
