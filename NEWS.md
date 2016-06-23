@@ -1,6 +1,8 @@
 # Changelog
 
 ### DataExplorer 0.2.6.9000
+#### Enhancement
+* [#23](https://github.com/boxuancui/DataExplorer/issues/23): additional measures to `CollapseCategory`.
 
 ---
 

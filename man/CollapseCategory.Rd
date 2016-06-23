@@ -4,7 +4,7 @@
 \alias{CollapseCategory}
 \title{Collapse categories for discrete features}
 \usage{
-CollapseCategory(data, feature, threshold, update = FALSE)
+CollapseCategory(data, feature, threshold, update = FALSE, measure)
 }
 \arguments{
 \item{data}{input data, in either \link{data.frame} or \link{data.table} format.}
@@ -14,6 +14,8 @@ CollapseCategory(data, feature, threshold, update = FALSE)
 \item{threshold}{the bottom x\% categories to be collapsed, e.g., if set to 20\%, categories with cumulative frequency of the bottom 20\% will be collapsed.}
 
 \item{update}{logical, indicating if the data should be modified. Setting to \code{TRUE} will modify the input data without returning anything. The default is \code{FALSE}.}
+
+\item{measure}{name of variable to be treated as additional measure to frequency.}
 }
 \value{
 if update is set to \code{FALSE}, returns a \link{data.table} object containing categories with cumulative frequency less than the input threshold.
@@ -29,12 +31,15 @@ If a continuous feature is passed to the argument \code{feature}, it will be for
 library(data.table)
 
 # generate data
-data <- data.table("a" = as.factor(round(rnorm(500, 10, 5))))
+data <- data.table("a" = as.factor(round(rnorm(500, 10, 5))), "b" = rexp(500, 1:500))
 
 # view cumulative frequency without collpasing categories
 CollapseCategory(data, "a", 0.2)
 
-# collapse bottom 20\\\% categories based on cumulative frequency
+# collapse bottom 20\% categories based on another measure
+CollapseCategory(data, "a", 0.2, measure = "b")
+
+# collapse bottom 20\% categories based on cumulative frequency
 CollapseCategory(data, "a", 0.2, update = TRUE)
 BarDiscrete(data)
 }
