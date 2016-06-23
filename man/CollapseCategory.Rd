@@ -36,7 +36,7 @@ data <- data.table("a" = as.factor(round(rnorm(500, 10, 5))), "b" = rexp(500, 1:
 # view cumulative frequency without collpasing categories
 CollapseCategory(data, "a", 0.2)
 
-# collapse bottom 20\% categories based on another measure
+# view cumulative frequency based on another measure
 CollapseCategory(data, "a", 0.2, measure = "b")
 
 # collapse bottom 20\% categories based on cumulative frequency

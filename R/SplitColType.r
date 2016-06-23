@@ -8,6 +8,7 @@
 #' @return \code{continous} all continuous features in \link{data.table} format
 #' @return \code{num_discrete} number of discrete features
 #' @return \code{num_continuous} number of continuous features
+#' @return \code{num_all_missing} number of features with no observations (all values are missing)
 #' @import data.table
 #' @export
 #' @examples

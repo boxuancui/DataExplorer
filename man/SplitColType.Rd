@@ -17,6 +17,8 @@ SplitColType(data)
 \code{num_discrete} number of discrete features
 
 \code{num_continuous} number of continuous features
+
+\code{num_all_missing} number of features with no observations (all values are missing)
 }
 \description{
 This function splits the input data into two \link{data.table} objects: discrete and continuous. A feature is continuous if \code{is.numeric} returns \code{TRUE}.
