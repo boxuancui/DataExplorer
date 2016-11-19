@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^codecov\.yml$
+^cran-comments\.md$
+^CONDUCT\.md$
+^revdep$
