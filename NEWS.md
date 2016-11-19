@@ -2,12 +2,32 @@
 
 ---
 
+### DataExplorer 0.3.0
+#### New Features
+* [#25](https://github.com/boxuancui/DataExplorer/issues/25): Added `SetNaTo` to quickly reset missing numerical values.
+* [#29](https://github.com/boxuancui/DataExplorer/issues/29): Added `DropVar` to quickly drop variables by either name or column position.
+
+#### Bug Fixes
+* [#24](https://github.com/boxuancui/DataExplorer/issues/24): `CorrelationDiscrete` now displays all factor levels instead of contrasts from `model.matrix`.
+
+#### Enhancements
+* [#11](https://github.com/boxuancui/DataExplorer/issues/11): Functions with return values will now match the input class and set it back.
+* [#22](https://github.com/boxuancui/DataExplorer/issues/22): Added documentation for **num_all_missing** in `SplitColType`.
+* [#23](https://github.com/boxuancui/DataExplorer/issues/23): Added additional measures (in addition to frequency) to `CollapseCategory`.
+* [#26](https://github.com/boxuancui/DataExplorer/issues/26): Removed density estimation section from report template.
+* [#31](https://github.com/boxuancui/DataExplorer/issues/31): Added flexibility to name the new category in `CollapseCategory`.
+
+#### Other notes
+* [#30](https://github.com/boxuancui/DataExplorer/issues/30): In `CollapseCategory`, `update = TRUE` will only work with input data as `data.table`. However, it is still possible to view the frequency distribution with any input data class, as long as `update = FALSE`.
+
+---
+
 ### DataExplorer 0.2.6
 #### Bug Fixes
-* [#20](https://github.com/boxuancui/DataExplorer/issues/20): fixed permission denied bug due to intermediates_dir argument in `knitr::render`.
+* [#20](https://github.com/boxuancui/DataExplorer/issues/20): Fixed permission denied bug due to intermediates_dir argument in `knitr::render`.
 
-#### Enhancement
-* [#16](https://github.com/boxuancui/DataExplorer/issues/16): improved handling of missing values.
+#### Enhancements
+* [#16](https://github.com/boxuancui/DataExplorer/issues/16): Improved handling of missing values.
 
 ---
 
@@ -15,36 +35,35 @@
 #### Bug Fixes
 * [#18](https://github.com/boxuancui/DataExplorer/issues/18): `GenerateReport` now handles data without discrete or continuous features.
 
-#### Enhancement
-* [#14](https://github.com/boxuancui/DataExplorer/issues/14): updated rmarkdown template for `GenerateReport`.
-* [#1](https://github.com/boxuancui/DataExplorer/issues/1): features with all `NA` values will be ignored in `BarDiscrete`.
+#### Enhancements
+* [#14](https://github.com/boxuancui/DataExplorer/issues/14): Updated rmarkdown template for `GenerateReport`.
+* [#1](https://github.com/boxuancui/DataExplorer/issues/1): Features with all `NA` values will be ignored in `BarDiscrete`.
 
 ---
 
 ### DataExplorer 0.2.4
 #### Bug Fixes
-* fixed a major bug in `GenerateReport` function due to package renaming.
+* Fixed a major bug in `GenerateReport` function due to package renaming.
 
-#### Enhancement
+#### Enhancements
 * `GenerateReport` will now print the directory of the report to console.
 
 ---
 
 ### DataExplorer 0.2.3
 #### New Features
-* added function `CollapseCategory` to collapse sparse categories for discrete features.
-* added correlation heatmap for both continuous and discrete features.
-* added density plot for continuous features.
+* Added function `CollapseCategory` to collapse sparse categories for discrete features.
+* Added correlation heatmap for both continuous and discrete features.
+* Added density plot for continuous features.
 
 #### Bug Fixes
-* minor changes for CRAN re-submission.
-* generate `eda-package.Rd` from `roxygen2` instead of creating it manually.
-* fixed a bug in `BarDiscrete` and `CorrelationDiscrete` for not plotting non-factor class.
+* Fixed a bug in `BarDiscrete` and `CorrelationDiscrete` for not plotting non-factor class.
+* Minor changes for CRAN re-submission.
 
-#### Enhancement
-* changed grid layout for `BarDiscrete` and `HistogramContinuous`.
-* features with all missing values will be ignored.
-* switched position between continuous and discrete features in report template.
-* renamed package name to **DataExplorer**.
-* added `NEWS.md`.
-* removed `BoxplotContinuous`.
+#### Enhancements
+* Changed grid layout for `BarDiscrete` and `HistogramContinuous`.
+* Features with all missing values will be ignored.
+* Switched position between continuous and discrete features in report template.
+* Renamed package name to **DataExplorer**.
+* Added `NEWS.md`.
+* Removed `BoxplotContinuous`.

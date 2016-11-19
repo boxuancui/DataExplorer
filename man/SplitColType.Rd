@@ -10,19 +10,23 @@ SplitColType(data)
 \item{data}{input data to be split, in either \link{data.frame} or \link{data.table} format.}
 }
 \value{
-\code{discrete} all discrete features in \link{data.table} format
+\code{discrete} all discrete features
 
-\code{continous} all continuous features in \link{data.table} format
+\code{continous} all continuous features
 
 \code{num_discrete} number of discrete features
 
 \code{num_continuous} number of continuous features
+
+\code{num_all_missing} number of features with no observations (all values are missing)
 }
 \description{
 This function splits the input data into two \link{data.table} objects: discrete and continuous. A feature is continuous if \code{is.numeric} returns \code{TRUE}.
 }
 \details{
 Features with all missing values will be dropped from the output data, but will be counted towards the column count.
+
+The elements in the output list will have the same class as the input data.
 }
 \examples{
 output <- SplitColType(iris)

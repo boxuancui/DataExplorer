@@ -14,31 +14,23 @@
 #' CorrelationContinuous(mtcars)
 
 CorrelationContinuous <- function(data, ...) {
-  # declare variable first to pass R CMD check
+  ## Declare variable first to pass R CMD check
   Var1 <- Var2 <- value <- NULL
-  # set data to data.table
+  ## Set data to data.table
   if (!is.data.table(data)) {data <- data.table(data)}
-  # stop if no continuous features
+  ## Stop if no continuous features
   if (SplitColType(data)$num_continuous <= 1) stop("Not Enough Continuous Features")
-  # get continuous features
+  ## Get continuous features
   continuous <- SplitColType(data)$continuous
-  # calculate correlation and melt into tidy data format
+  ## Calculate correlation and melt into tidy data format
   plot_data <- reshape2::melt(cor(continuous, ...))
-  # create ggplot object
-  if (ncol(continuous) >= 20) {
-    plot <- ggplot(plot_data, aes(x = Var1, y = Var2, fill = value)) +
-      geom_tile() +
-      scale_fill_gradient2("Correlation Meter", low = "#0571b0", high = "#ca0020", space = "Lab") +
-      xlab("Features") + ylab("Features") +
-      theme(legend.position = "bottom", axis.text.x = element_text(angle = 90))
-  } else {
-    plot <- ggplot(plot_data, aes(x = Var1, y = Var2, fill = value)) +
-      geom_tile() +
-      geom_text(aes(label = round(value, 2))) +
-      scale_fill_gradient2("Correlation Meter", low = "#0571b0", high = "#ca0020", space = "Lab") +
-      xlab("Features") + ylab("Features") +
-      theme(legend.position = "bottom", axis.text.x = element_text(angle = 90))
-  }
-  # print plot object
+  ## Create ggplot object
+  plot <- ggplot(plot_data, aes(x = Var1, y = Var2, fill = value)) +
+    geom_tile() +
+    scale_fill_gradient2("Correlation Meter", low = "#0571b0", high = "#ca0020", space = "Lab") +
+    xlab("Features") + ylab("Features") +
+    theme(legend.position = "bottom", axis.text.x = element_text(angle = 90))
+  if (ncol(continuous) <= 20) {plot <- plot + geom_text(aes(label = round(value, 2)))}
+  ## Print plot object
   print(plot)
 }

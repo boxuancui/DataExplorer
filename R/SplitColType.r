@@ -4,10 +4,12 @@
 #' @param data input data to be split, in either \link{data.frame} or \link{data.table} format.
 #' @keywords splitcoltype
 #' @details Features with all missing values will be dropped from the output data, but will be counted towards the column count.
-#' @return \code{discrete} all discrete features in \link{data.table} format
-#' @return \code{continous} all continuous features in \link{data.table} format
+#' @details The elements in the output list will have the same class as the input data.
+#' @return \code{discrete} all discrete features
+#' @return \code{continous} all continuous features
 #' @return \code{num_discrete} number of discrete features
 #' @return \code{num_continuous} number of continuous features
+#' @return \code{num_all_missing} number of features with no observations (all values are missing)
 #' @import data.table
 #' @export
 #' @examples
@@ -19,17 +21,33 @@
 #' output$num_all_missing
 
 SplitColType <- function(data) {
-  if (!is.data.table(data)) {data <- data.table(data)}
-  # find indicies for continuous features
+  ## Check if input is data.table
+  is_data_table <- is.data.table(data)
+  ## Detect input data class
+  data_class <- class(data)
+  ## Set data to data.table
+  if (!is_data_table) {data <- data.table(data)}
+  ## Find indicies for continuous features
   ind <- sapply(data, is.numeric)
   all_missing_ind <- sapply(data, function(x) {sum(is.na(x)) == length(x)})
-  # number of discrete, continuous and all-missing features
+  ## Count number of discrete, continuous and all-missing features
   n_all_missing <- sum(all_missing_ind)
   n_continuous <- sum(ind)
   n_discrete <- ncol(data) - n_continuous - n_all_missing
-  # create object for continuous features
+  ## Create object for continuous features
   continuous <- data[, which(ind), with = FALSE]
-  # create object for discrete features
+  ## Create object for discrete features
   discrete <- data[, which(!(ind | all_missing_ind)), with = FALSE]
-  return(list("discrete" = discrete, "continuous" = continuous, "num_discrete" = n_discrete, "num_continuous" = n_continuous, "num_all_missing" = n_all_missing))
+  ## Set data class back to original
+  if (!is_data_table) {class(discrete) <- class(continuous) <- data_class}
+  ## Set return object
+  return(
+    list(
+      "discrete" = discrete,
+      "continuous" = continuous,
+      "num_discrete" = n_discrete,
+      "num_continuous" = n_continuous,
+      "num_all_missing" = n_all_missing
+    )
+  )
 }

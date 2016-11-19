@@ -17,7 +17,7 @@ CorrelationDiscrete(data, maxcat = 20, ...)
 This function creates a correlation heatmap for all discrete categories.
 }
 \details{
-The function first transposes all discrete categories into columns with binary outcomes (see \link{model.matrix}), then calculates the correlation matrix (see \link{cor}) and plots it.
+The function first transposes all discrete categories into columns with binary outcomes, then calculates the correlation matrix (see \link{cor}) and plots it.
 }
 \examples{
 # correlation of discrete categories from diamonds dataset
