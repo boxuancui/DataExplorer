@@ -26,19 +26,19 @@
 
 DensityContinuous <- function(data, ...) {
   if (!is.data.table(data)) {data <- data.table(data)}
-  # stop if no continuous features
+  ## Stop if no continuous features
   if (SplitColType(data)$num_continuous == 0) stop("No Continuous Features")
-  # get continuous features
+  ## Get continuous features
   continuous <- SplitColType(data)$continuous
-  # get dimension
+  ## Get dimension
   n <- nrow(continuous)
   p <- ncol(continuous)
-  # calculate number of pages if showing 16 features on each page
+  ## Calculate number of pages if showing 16 features on each page
   pages <- ceiling(p/16)
   for (pg in 1:pages) {
-    # subset data by column
+    ## Subset data by column
     subset_data <- continuous[, (16 * pg - 15):min(p, 16 * pg), with = FALSE]
-    # create ggplot object
+    ## Create ggplot object
     plot <- lapply(seq_along(subset_data),
                    function(j) {
                      x <- na.omit(subset_data[, j, with = FALSE])
@@ -48,7 +48,7 @@ DensityContinuous <- function(data, ...) {
                        scale_y_continuous(labels = percent) +
                        ylab("Density")
                    })
-    # print plot object
+    ## Print plot object
     if (pages > 1) {
       suppressWarnings(do.call(grid.arrange, c(plot, ncol = 4, nrow = 4)))
     } else {

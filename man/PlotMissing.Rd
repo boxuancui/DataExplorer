@@ -10,10 +10,13 @@ PlotMissing(data)
 \item{data}{input data to be profiled, in either \link{data.frame} or \link{data.table} format.}
 }
 \value{
-a \link{data.table} object containing frequency, percentage and group of all missing values.
+missing value information, such as frequency, percentage and suggested action.
 }
 \description{
 This function returns and plots frequency of missing values for each feature.
+}
+\details{
+The returned object is suppressed by \link{invisible} to prevent unwanted text in \link{GenerateReport}.
 }
 \examples{
 # load packages
@@ -23,7 +26,7 @@ library(data.table)
 data <- data.table(iris)
 for (j in 1:4) set(data, i=sample(150, j * 30), j, value = NA_integer_)
 
-# plot and store missing values
+# plot and assign missing value information
 plot_data <- PlotMissing(data)
 plot_data
 }

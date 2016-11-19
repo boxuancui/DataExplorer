@@ -4,10 +4,11 @@
 #' @param data input data, in either \link{data.frame} or \link{data.table} format.
 #' @param feature name of the discrete feature to be collapsed.
 #' @param threshold the bottom x\% categories to be collapsed, e.g., if set to 20\%, categories with cumulative frequency of the bottom 20\% will be collapsed.
-#' @param update logical, indicating if the data should be modified. Setting to \code{TRUE} will modify the input data without returning anything. The default is \code{FALSE}.
+#' @param update logical, indicating if the data should be modified. Setting to \code{TRUE} will modify the input data directly, and \bold{will only work with \link{data.table}}. The default is \code{FALSE}.
 #' @param measure name of variable to be treated as additional measure to frequency.
+#' @param category_name name of the bucket to group selected categories if update is set to \code{TRUE}. The default is "OTHER".
 #' @keywords collapsecategory
-#' @return if update is set to \code{FALSE}, returns a \link{data.table} object containing categories with cumulative frequency less than the input threshold.
+#' @return If update is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
 #' @details If a continuous feature is passed to the argument \code{feature}, it will be force set to \link{character-class}.
 #' @import data.table
 #' @export
@@ -28,27 +29,34 @@
 #' CollapseCategory(data, "a", 0.2, update = TRUE)
 #' BarDiscrete(data)
 
-CollapseCategory <- function(data, feature, threshold, update = FALSE, measure) {
-  # declare variable first to pass R CMD check
+CollapseCategory <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER") {
+  ## Declare variable first to pass R CMD check
   cnt <- pct <- cum_pct <- NULL
-  # set data to data.table
-  if (!is.data.table(data)) {data <- data.table(data)}
-  # set feature to discrete
+  ## Check if input is data.table
+  is_data_table <- is.data.table(data)
+  ## Detect input data class
+  data_class <- class(data)
+  ## Set data to data.table
+  if (!is_data_table) {data <- data.table(data)}
+  ## Set feature to discrete
   set(data, j = feature, value = as.character(data[[feature]]))
   if (missing(measure)) {
-    # count frequency of each category and order in descending order
+    ## Count frequency of each category and order in descending order
     var <- data[, list(cnt = .N), by = feature][order(-cnt)]
   } else {
     var <- data[, list(cnt = sum(get(measure))), by = feature][order(-cnt)]
   }
-  # calcualte cumulative frequency for each category
+  ## Calcualte cumulative frequency for each category
   var[, pct := cnt / sum(cnt)][, cum_pct := cumsum(pct)]
-  # identify categories not to be collapased based on input threshold
+  ## Identify categories not to be collapased based on input threshold
   top_cat <- var[cum_pct <= (1 - threshold), get(feature)]
-  # collapse categories if update is true
+  ## Collapse categories if update is true, else return distribution for analysis
   if (update) {
-    data[!(get(feature) %in% top_cat), c(feature) := "OTHER"]
+    if (!is_data_table) stop("Please change your input data class to data.table to update!")
+    data[!(get(feature) %in% top_cat), c(feature) := category_name]
   } else {
-    return(var[cum_pct <= (1 - threshold)])
+    output <- var[cum_pct <= (1 - threshold)]
+    class(output) <- data_class
+    return(output)
   }
 }

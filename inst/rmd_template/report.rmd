@@ -61,11 +61,6 @@ PlotMissing(data)
 tryCatch(HistogramContinuous(data), error = continuous_error)
 ```
 
-###### Density Estimates
-```{r density_continuous}
-tryCatch(DensityContinuous(data), error = continuous_error)
-```
-
 #### Discrete Features
 ###### Bar Charts
 ```{r bar_discrete}
