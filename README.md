@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer)
 [![Coverage Status](https://img.shields.io/codecov/c/github/boxuancui/DataExplorer/master.svg)](https://codecov.io/github/boxuancui/DataExplorer?branch=master)
 
-[![Develop Version](https://img.shields.io/badge/develop-0.3.0-orange.svg)](https://github.com/boxuancui/DataExplorer/tree/develop)
+[![Develop Version](https://img.shields.io/badge/develop-0.3.1-orange.svg)](https://github.com/boxuancui/DataExplorer/tree/develop)
 [![Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop)](https://travis-ci.org/boxuancui/DataExplorer)
 [![Coverage Status](https://img.shields.io/codecov/c/github/boxuancui/DataExplorer/develop.svg)](https://codecov.io/github/boxuancui/DataExplorer?branch=develop)
 

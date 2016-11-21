@@ -2,6 +2,12 @@
 
 ---
 
+### DataExplorer 0.3.1
+#### Bug Fixes
+* [#32](https://github.com/boxuancui/DataExplorer/issues/32): Fixed pandoc requirement error in unit test on cran.
+
+---
+
 ### DataExplorer 0.3.0
 #### New Features
 * [#25](https://github.com/boxuancui/DataExplorer/issues/25): Added `SetNaTo` to quickly reset missing numerical values.

@@ -1,7 +1,7 @@
 context("generate report")
 
 test_that("test if report is generated", {
-  # dir_name <- dirname(system.file("tests/testthat/test-generate-report.r", package = "DataExplorer"))
+  skip_on_cran()
   dir_name <- getwd()
   file_name <- "testthat-report.html"
   file_dir <- file.path(dir_name, file_name)
