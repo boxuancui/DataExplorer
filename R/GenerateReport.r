@@ -50,5 +50,6 @@ GenerateReport <- function(input_data, output_file = "report.html", output_dir =
   report_path <- file.path(output_dir, output_file)
   browseURL(report_path)
   ## Print report directory
-  if (!args[["quiet"]]) {cat(paste0("\n\nReport is generated at \"", report_path, "\"."))}
+  if (ifelse(is.null(args[["quiet"]]), TRUE, !args[["quiet"]])) message(paste0("\n\nReport is generated at \"", report_path, "\"."))
 }
+

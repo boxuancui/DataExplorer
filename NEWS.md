@@ -2,6 +2,15 @@
 
 ---
 
+### DataExplorer 0.3.1.9000
+#### Bug Fixes
+* [#34](https://github.com/boxuancui/DataExplorer/issues/34): Fixed error message when `quiet` is not supplied. In addition, report directory are printed through `message()` instead of `cat()`. 
+
+#### Enhancements
+* [#36](https://github.com/boxuancui/DataExplorer/issues/36): Fixed warnings from data.table in `DropVar`.
+
+---
+
 ### DataExplorer 0.3.1
 #### Bug Fixes
 * [#32](https://github.com/boxuancui/DataExplorer/issues/32): Fixed pandoc requirement error in unit test on cran.
