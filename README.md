@@ -1,11 +1,13 @@
 # DataExplorer [![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer) [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer) [![CRAN Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 
 [![Master Version](https://img.shields.io/badge/master-0.3.0-orange.svg)](https://github.com/boxuancui/DataExplorer/tree/master)
-[![Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer)
+[![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=master&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
 [![Coverage Status](https://img.shields.io/codecov/c/github/boxuancui/DataExplorer/master.svg)](https://codecov.io/github/boxuancui/DataExplorer?branch=master)
 
 [![Develop Version](https://img.shields.io/badge/develop-0.3.1-orange.svg)](https://github.com/boxuancui/DataExplorer/tree/develop)
-[![Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop)](https://travis-ci.org/boxuancui/DataExplorer)
+[![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop)](https://travis-ci.org/boxuancui/DataExplorer)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=develop&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
 [![Coverage Status](https://img.shields.io/codecov/c/github/boxuancui/DataExplorer/develop.svg)](https://codecov.io/github/boxuancui/DataExplorer?branch=develop)
 
 ---

@@ -5,3 +5,4 @@
 ^cran-comments\.md$
 ^CONDUCT\.md$
 ^revdep$
+^appveyor\.yml$
