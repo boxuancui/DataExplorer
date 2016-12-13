@@ -5,3 +5,4 @@
 .Rproj.user
 *.html
 .idea
+inst/doc
