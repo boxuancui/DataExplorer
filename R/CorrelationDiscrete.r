@@ -30,7 +30,7 @@ CorrelationDiscrete <- function(data, maxcat = 20, ...) {
   ign_ind <- which(n_cat > maxcat)
   if (length(ign_ind) > 0) {
     set(discrete, j = ign_ind, value = NULL)
-    cat(length(ign_ind), "columns ignored with more than", maxcat, "categories.\n", paste0(names(ign_ind), ": ", n_cat[ign_ind], " categories\n"))
+    message(length(ign_ind), " columns ignored with more than ", maxcat, " categories.\n", paste0(names(ign_ind), ": ", n_cat[ign_ind], " categories\n"))
   }
   ## Calculate categorical correlation and melt into tidy data format
   discrete[, discrete_id := seq(nrow(discrete))]

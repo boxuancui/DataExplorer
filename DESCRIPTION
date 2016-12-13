@@ -21,7 +21,8 @@ Imports:
 Suggests: testthat,
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    rprojroot
 SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: GPL-2
 LazyData: true
