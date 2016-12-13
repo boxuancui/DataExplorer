@@ -6,13 +6,12 @@
 #' @param output_dir output directory for report. The default is user's current directory.
 #' @param \dots other arguments to be passed to \link{render}.
 #' @keywords generatereport
-#' @import rmarkdown
 #' @importFrom utils browseURL
+#' @importFrom rmarkdown render
 #' @export
 #' @examples
 #' \dontrun{
 #' # load library
-#' library(rmarkdown)
 #' library(ggplot2)
 #' library(data.table)
 #'
@@ -40,12 +39,14 @@ GenerateReport <- function(input_data, output_file = "report.html", output_dir =
   ## Get directory of report markdown template
   report_dir <- system.file("rmd_template/report.rmd", package = "DataExplorer")
   ## Render report into html
-  render(input = report_dir,
-         output_file = output_file,
-         output_dir = output_dir,
-         intermediates_dir = output_dir,
-         params=list(data = input_data, fun_options = list()),
-         ...)
+  render(
+    input = report_dir,
+    output_file = output_file,
+    output_dir = output_dir,
+    intermediates_dir = output_dir,
+    params=list(data = input_data, fun_options = list()),
+    ...
+  )
   ## Open report
   report_path <- file.path(output_dir, output_file)
   browseURL(report_path)

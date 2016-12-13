@@ -22,7 +22,6 @@ This function generates the report of data profiling.
 \examples{
 \dontrun{
 # load library
-library(rmarkdown)
 library(ggplot2)
 library(data.table)
 

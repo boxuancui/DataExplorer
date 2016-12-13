@@ -10,19 +10,17 @@ Description: Data exploration process for data analysis and model building, so
 Depends:
     R (>= 3.3.0)
 Imports:
-    data.table (>= 1.9.4),
-    reshape2 (>= 1.4.1),
-    ggplot2 (>= 1.0.1),
-    scales (>= 0.3.0),
-    gridExtra (>= 0.9.1),
-    rmarkdown (>= 0.9.5),
+    data.table (>= 1.10.0),
+    reshape2 (>= 1.4.2),
+    ggplot2 (>= 2.2.0),
+    scales (>= 0.4.1),
+    gridExtra (>= 2.2.1),
+    rmarkdown (>= 1.2),
     stats,
     utils
 Suggests: testthat,
     covr,
-    knitr,
-    rmarkdown,
-    rprojroot
+    knitr
 SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: GPL-2
 LazyData: true
