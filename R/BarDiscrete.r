@@ -5,7 +5,7 @@
 #' @param na.rm logical, indicating if missing values should be removed for each feature. The default is \code{TRUE}.
 #' @param maxcat maximum categories allowed for each feature. The default is 50. More information in 'Details' section.
 #' @keywords bardiscrete
-#' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function. Instead, it will be passed to \code{cat} with number of categories.
+#' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma

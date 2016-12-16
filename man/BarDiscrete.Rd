@@ -17,7 +17,7 @@ BarDiscrete(data, na.rm = TRUE, maxcat = 50)
 This function creates frequency bar charts for each discrete feature.
 }
 \details{
-If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function. Instead, it will be passed to \code{cat} with number of categories.
+If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 }
 \examples{
 # load packages
