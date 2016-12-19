@@ -8,6 +8,7 @@
 #' @keywords plotstr
 #' @import data.table
 #' @import networkD3
+#' @importFrom utils capture.output str
 #' @export
 #' @examples
 #' ## Visualize structure of iris dataset
@@ -26,6 +27,8 @@
 #' PlotStr(obj, type = "r", max_level = 2)
 
 PlotStr <- function(data, type = c("diagonal", "radial"), max_level, ...) {
+  ## Declare variable first to pass R CMD check
+  i <- idx <- parent <- NULL
   ## Capture str output
   str_output <- capture.output(str(data, vec.len = 0, give.attr = FALSE, give.length = FALSE))
   n <- length(str_output)

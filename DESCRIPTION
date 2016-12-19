@@ -16,6 +16,7 @@ Imports:
     scales (>= 0.4.1),
     gridExtra (>= 2.2.1),
     rmarkdown (>= 1.2),
+    networkD3 (>= 0.2.13),
     stats,
     utils
 Suggests: testthat,
