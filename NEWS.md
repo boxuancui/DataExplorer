@@ -3,6 +3,9 @@
 ---
 
 ### DataExplorer 0.3.0.9000
+#### New Features
+* [#33](https://github.com/boxuancui/DataExplorer/issues/33): Added `PlotStr` to visualize data structure.
+
 #### Bug Fixes
 * [#32](https://github.com/boxuancui/DataExplorer/issues/32): Fixed pandoc requirement error in unit test on cran.
 * [#34](https://github.com/boxuancui/DataExplorer/issues/34): Fixed error message when `quiet` is not supplied. In addition, report directory are printed through `message()` instead of `cat()`.
