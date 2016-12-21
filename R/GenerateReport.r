@@ -44,7 +44,7 @@ GenerateReport <- function(input_data, output_file = "report.html", output_dir =
     output_file = output_file,
     output_dir = output_dir,
     intermediates_dir = output_dir,
-    params=list(data = input_data, fun_options = list()),
+    params = list(data = input_data, fun_options = list()),
     ...
   )
   ## Open report

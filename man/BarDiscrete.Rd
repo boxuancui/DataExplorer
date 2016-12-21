@@ -4,7 +4,7 @@
 \alias{BarDiscrete}
 \title{Create bar charts for discrete features}
 \usage{
-BarDiscrete(data, na.rm = TRUE, maxcat = 50)
+BarDiscrete(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE)
 }
 \arguments{
 \item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
@@ -12,6 +12,8 @@ BarDiscrete(data, na.rm = TRUE, maxcat = 50)
 \item{na.rm}{logical, indicating if missing values should be removed for each feature. The default is \code{TRUE}.}
 
 \item{maxcat}{maximum categories allowed for each feature. The default is 50. More information in 'Details' section.}
+
+\item{order_bar}{logical, indicating if bars should be ordered.}
 }
 \description{
 This function creates frequency bar charts for each discrete feature.

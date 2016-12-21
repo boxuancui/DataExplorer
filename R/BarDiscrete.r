@@ -4,12 +4,13 @@
 #' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
 #' @param na.rm logical, indicating if missing values should be removed for each feature. The default is \code{TRUE}.
 #' @param maxcat maximum categories allowed for each feature. The default is 50. More information in 'Details' section.
+#' @param order_bar logical, indicating if bars should be ordered.
 #' @keywords bardiscrete
 #' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma
-#' @importFrom stats na.omit
+#' @importFrom stats na.omit reorder
 #' @import gridExtra
 #' @export
 #' @examples
@@ -24,7 +25,10 @@
 #' BarDiscrete(diamonds)
 #' BarDiscrete(diamonds, maxcat = 5)
 
-BarDiscrete <- function(data, na.rm = TRUE, maxcat = 50) {
+BarDiscrete <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE) {
+  ## Declare variable first to pass R CMD check
+  frequency <- NULL
+  ## Check if input is data.table
   if (!is.data.table(data)) {data <- data.table(data)}
   ## Stop if no discrete features
   if (SplitColType(data)$num_discrete == 0) stop("No Discrete Features")
@@ -51,16 +55,20 @@ BarDiscrete <- function(data, na.rm = TRUE, maxcat = 50) {
                      x <- subset_data[, j, with = FALSE]
                      agg_x <- x[, list(frequency = .N), by = names(x)]
                      if (na.rm) {agg_x <- na.omit(agg_x)}
-                     ggplot(agg_x, aes_string(x = names(agg_x)[1], y = "frequency")) +
+                     if (order_bar) {
+                       base_plot <- ggplot(agg_x, aes(x = reorder(get(names(agg_x)[1]), frequency), y = frequency))
+                     } else {
+                       base_plot <- ggplot(agg_x, aes_string(x = names(agg_x)[1], y = "frequency"))
+                     }
+                     base_plot +
                        geom_bar(stat = "identity", alpha = 0.4, colour = "black") +
                        scale_y_continuous(labels = comma) +
-                       coord_flip() + ylab("Frequency")
+                       coord_flip() + xlab(names(agg_x)[1]) + ylab("Frequency")
                    })
     ## Print plot object
     if (pages > 1) {
       suppressWarnings(do.call(grid.arrange, c(plot, ncol = 3, nrow = 3)))
-    }
-    else {
+    } else {
       suppressWarnings(do.call(grid.arrange, plot))
     }
   }
