@@ -4,7 +4,8 @@
 \alias{PlotStr}
 \title{Visualize data structure}
 \usage{
-PlotStr(data, type = c("diagonal", "radial"), max_level, ...)
+PlotStr(data, type = c("diagonal", "radial"), max_level,
+  print_network = TRUE, ...)
 }
 \arguments{
 \item{data}{input data}
@@ -13,7 +14,12 @@ PlotStr(data, type = c("diagonal", "radial"), max_level, ...)
 
 \item{max_level}{integer threshold of nested level to be visualized. Minimum 1 nested level and defaults to all.}
 
+\item{print_network}{logical indicating if network graph should be plotted. Defaults to \code{TRUE}.}
+
 \item{\dots}{other arguments to be passed to plotting functions. See \link{diagonalNetwork} and \link{radialNetwork}.}
+}
+\value{
+input data structure in nested list. Could be transformed to json format with most JSON packages.
 }
 \description{
 Visualize data structures in D3 network graph

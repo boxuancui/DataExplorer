@@ -21,7 +21,8 @@ Imports:
     utils
 Suggests: testthat,
     covr,
-    knitr
+    knitr,
+    jsonlite
 SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: GPL-2
 LazyData: true

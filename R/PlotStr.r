@@ -4,8 +4,10 @@
 #' @param data input data
 #' @param type type of network diagram. Defaults to \link{diagonalNetwork}.
 #' @param max_level integer threshold of nested level to be visualized. Minimum 1 nested level and defaults to all.
+#' @param print_network logical indicating if network graph should be plotted. Defaults to \code{TRUE}.
 #' @param \dots other arguments to be passed to plotting functions. See \link{diagonalNetwork} and \link{radialNetwork}.
 #' @keywords plotstr
+#' @return input data structure in nested list. Could be transformed to json format with most JSON packages.
 #' @import data.table
 #' @import networkD3
 #' @importFrom utils capture.output str
@@ -26,7 +28,7 @@
 #' ## Visualize only top 2 nested levels
 #' PlotStr(obj, type = "r", max_level = 2)
 
-PlotStr <- function(data, type = c("diagonal", "radial"), max_level, ...) {
+PlotStr <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
   ## Declare variable first to pass R CMD check
   i <- idx <- parent <- NULL
   ## Capture str output
@@ -67,8 +69,12 @@ PlotStr <- function(data, type = c("diagonal", "radial"), max_level, ...) {
   }
   ## Transform table to list
   str_list <- StrToList(str_dt)
-  ## Detect network type and plot
-  type <- match.arg(type)
-  if (type == "diagonal") print(diagonalNetwork(str_list, ...))
-  if (type == "radial") print(radialNetwork(str_list, ...))
+  ## Plot if print_network is TRUE
+  if (print_network) {
+    type <- match.arg(type)
+    if (type == "diagonal") print(diagonalNetwork(str_list, ...))
+    if (type == "radial") print(radialNetwork(str_list, ...))
+  }
+  ## Set return object in invisible mode
+  return(invisible(str_list))
 }
