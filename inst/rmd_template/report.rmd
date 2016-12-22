@@ -11,6 +11,8 @@ params:
 ---
 
 ```{r global_options, include = FALSE}
+library(rmarkdown)
+
 data <- params$data
 num_discrete <- SplitColType(params$data)$num_discrete
 num_continuous <- SplitColType(params$data)$num_continuous
