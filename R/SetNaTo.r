@@ -42,7 +42,7 @@ SetNaTo <- function(data, value) {
     for (j in col_ind) {
       num_missing <- sum(is.na(data[[j]]))
       set(data, i = which(is.na(data[[j]])), j = j, value = value)
-      message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", value))
+      if (num_missing > 0) message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", value))
     }
   } else {
     if (!is.list(value)) stop("Value must be a list of two!")
@@ -55,12 +55,12 @@ SetNaTo <- function(data, value) {
     for (j in col_c) {
       num_missing <- sum(is.na(data[[j]]))
       set(data, i = which(is.na(data[[j]])), j = j, value = val_c)
-      message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", val_c))
+      if (num_missing > 0) message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", val_c))
     }
     for (j in col_d) {
       num_missing <- sum(is.na(data[[j]]))
       set(data, i = which(is.na(data[[j]])), j = j, value = val_d)
-      message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", val_d))
+      if (num_missing > 0) message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", val_d))
     }
   }
 }
