@@ -16,6 +16,7 @@
 * [#36](https://github.com/boxuancui/DataExplorer/issues/36): Fixed warnings from data.table in `DropVar`.
 * [#37](https://github.com/boxuancui/DataExplorer/issues/37): Changed all `cat()` to `message()`.
 * [#38](https://github.com/boxuancui/DataExplorer/issues/38): Added option to order bars in `BarDiscrete`.
+* [#39](https://github.com/boxuancui/DataExplorer/issues/39): Extended `SetNaTo` to discrete features.
 * Added more examples in README file.
 
 ---

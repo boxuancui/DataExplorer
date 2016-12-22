@@ -2,31 +2,43 @@
 % Please edit documentation in R/SetNaTo.r
 \name{SetNaTo}
 \alias{SetNaTo}
-\title{Set missing numerical values to an indicated value}
+\title{Set all missing values to indicated value}
 \usage{
 SetNaTo(data, value)
 }
 \arguments{
 \item{data}{input data, in \link{data.table} format only.}
 
-\item{value}{the value to be set to.}
+\item{value}{a single value or a list of two values to be set to. See 'Details'.}
 }
 \description{
-Quickly set all missing numerical values to an indicated value.
+Quickly set all missing values to indicated value.
 }
 \details{
 \bold{This function will only work with \link{data.table} object as input.} Consider setting your input to \link{data.table} first then assign the original class back after applying the function.
+
+The class of \code{value} will determine what type of columns to be set, e.g., if \code{value} is 0, then missing values for continuous features will be set. When supplying a list of two values, only one numeric and one non-numeric is allowed.
 }
 \examples{
-# load packages
+# Load packages
 library(data.table)
 
-# generate missing values in iris data
+# Generate missing values in iris data
 dt <- data.table(iris)
 for (j in 1:4) set(dt, i = sample.int(150, j * 30), j, value = NA_integer_)
+set(dt, i = sample.int(150, 25), 5L, value = NA_character_)
 
-# set all missing values to 0
-SetNaTo(dt, 0)
+# Set all missing values to 0L and unknown
+dt2 <- copy(dt)
+SetNaTo(dt2, list(0L, "unknown"))
+
+# Set missing numerical values to 0L
+dt3 <- copy(dt)
+SetNaTo(dt3, 0L)
+
+# Set missing discrete values to unknown
+dt4 <- copy(dt)
+SetNaTo(dt4, "unknown")
 }
 \keyword{setnato}
 

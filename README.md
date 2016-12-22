@@ -105,6 +105,7 @@ Note: this function works with [data.table](https://cran.r-project.org/package=d
     class(USArrests) <- "data.frame"
 
 #### Other miscellaneous functions
+* `PlotStr`: Plot data structure in network graph.
 * `DropVar`: Quickly drop variables with either column index or column names. (**data.table only**)
-* `SetNaTo`: Quickly set all missing continuous observations to a value. (**data.table only**)
+* `SetNaTo`: Quickly set all missing observations to a value. (**data.table only**)
 * `SplitColType`: Split data into two objects: discrete and continous.
