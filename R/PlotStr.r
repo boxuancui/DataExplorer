@@ -16,6 +16,9 @@
 #' ## Visualize structure of iris dataset
 #' PlotStr(iris)
 #'
+#' ## Visualize object with radial network
+#' PlotStr(rep(list(rep(list(mtcars), 6)), 4), type = "r")
+#'
 #' ## Generate complicated data object
 #' obj <- list(
 #'   "a" = list(iris, airquality, list(mtcars = mtcars, USArrests = USArrests)),
@@ -23,10 +26,10 @@
 #'   "c" = lm(rnorm(5) ~ seq(5)),
 #'   "d" = lapply(1:5, function(x) return(as.function(function(y) y + 1)))
 #' )
-#' ## Visualize data object with radial network
-#' PlotStr(obj, type = "r")
+#' ## Visualize data object with diagnal network
+#' PlotStr(obj, type = "d")
 #' ## Visualize only top 2 nested levels
-#' PlotStr(obj, type = "r", max_level = 2)
+#' PlotStr(obj, type = "d", max_level = 2)
 
 PlotStr <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
   ## Declare variable first to pass R CMD check
