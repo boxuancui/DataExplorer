@@ -8,6 +8,7 @@ SetNaTo(data, value)
 }
 \arguments{
 \item{data}{input data, in \link{data.table} format only.}
+
 \item{value}{a single value or a list of two values to be set to. See 'Details'.}
 }
 \description{

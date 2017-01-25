@@ -9,10 +9,7 @@ export(DropVar)
 export(GenerateReport)
 export(HistogramContinuous)
 export(PlotMissing)
-<<<<<<< HEAD
-=======
 export(PlotStr)
->>>>>>> develop
 export(SetNaTo)
 export(SplitColType)
 import(data.table)
