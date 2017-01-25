@@ -11,6 +11,8 @@ params:
 ---
 
 ```{r global_options, include = FALSE}
+library(rmarkdown)
+
 data <- params$data
 num_discrete <- SplitColType(params$data)$num_discrete
 num_continuous <- SplitColType(params$data)$num_continuous
@@ -38,12 +40,29 @@ opts <- params$fun_options
 knitr::opts_chunk$set(fig.width = 14, fig.height = 10, echo = FALSE)
 ```
 
+<script src="d3.min.js"></script>
+
 ### Basic Statistics
 The data is **`r format(object.size(data), units = "auto")`** in size. There are **`r format(nrow(data), big.mark = ",")`** rows and **`r format(ncol(data), big.mark = ",")`** columns (features). Of all **`r format(ncol(data), big.mark = ",")`** columns, **`r I(num_discrete)`** are discrete, **`r I(num_continuous)`** are continuous, and **`r I(num_all_missing)`** are all missing. There are **`r format(sum(is.na(data)), big.mark = ",")`** missing values out of **`r format(nrow(data)*ncol(data), big.mark = ",")`** data points.
 
-Below is the structure of the data.
+#### Data Structure (Text)
+
 ```{r data_structure}
 str(data)
+```
+
+#### Data Structure (Network Graph)
+
+```{r plot_data_structure}
+diagonalNetwork(
+  PlotStr(data, print_network = FALSE),
+  fontSize = 12,
+  width = 1000,
+  margin = list(
+    "left" = 350,
+    "right" = 250
+  )
+)
 ```
 
 ### Missing Values

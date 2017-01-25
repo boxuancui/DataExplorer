@@ -32,9 +32,5 @@
 
 DropVar <- function(data, ind) {
   if (!is.data.table(data)) stop("Please change your input data class to data.table!")
-  if (is.character(ind)) {
-    data[, ind := NULL, with = FALSE]
-  } else {
-    data[, names(data)[ind] := NULL, with = FALSE]
-  }
+  data[, (ind) := NULL]
 }

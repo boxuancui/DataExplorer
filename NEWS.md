@@ -2,6 +2,26 @@
 
 ---
 
+### DataExplorer 0.4.0
+#### New Features
+* [#33](https://github.com/boxuancui/DataExplorer/issues/33): Added `PlotStr` to visualize data structure.
+* [#40](https://github.com/boxuancui/DataExplorer/issues/40): Added network graph to `GenerateReport`.
+
+#### Bug Fixes
+* [#32](https://github.com/boxuancui/DataExplorer/issues/32): Fixed pandoc requirement error in unit test on cran.
+* [#34](https://github.com/boxuancui/DataExplorer/issues/34): Fixed error message when `quiet` is not supplied. In addition, report directory are printed through `message()` instead of `cat()`.
+* [#35](https://github.com/boxuancui/DataExplorer/issues/35): Fixed **rprojroot** not found error.
+
+#### Enhancements
+* [#12](https://github.com/boxuancui/DataExplorer/issues/12): Added vignette: **dataexplorer-intro**.
+* [#36](https://github.com/boxuancui/DataExplorer/issues/36): Fixed warnings from data.table in `DropVar`.
+* [#37](https://github.com/boxuancui/DataExplorer/issues/37): Changed all `cat()` to `message()`.
+* [#38](https://github.com/boxuancui/DataExplorer/issues/38): Added option to order bars in `BarDiscrete`.
+* [#39](https://github.com/boxuancui/DataExplorer/issues/39): Extended `SetNaTo` to discrete features.
+* Added more examples in README file.
+
+---
+
 ### DataExplorer 0.3.0
 #### New Features
 * [#25](https://github.com/boxuancui/DataExplorer/issues/25): Added `SetNaTo` to quickly reset missing numerical values.

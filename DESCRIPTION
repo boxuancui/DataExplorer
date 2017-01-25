@@ -1,6 +1,6 @@
 Package: DataExplorer
 Title: Data Explorer
-Version: 0.3.0
+Version: 0.4.0
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: Data exploration process for data analysis and model building, so
     that users could focus on understanding data and extracting insights. The
@@ -8,20 +8,26 @@ Description: Data exploration process for data analysis and model building, so
     Typical graphical techniques will be performed for both discrete and
     continuous features.
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.3.0)
 Imports:
-    data.table (>= 1.9.4),
-    reshape2 (>= 1.4.1),
-    ggplot2 (>= 1.0.1),
-    scales (>= 0.3.0),
-    gridExtra (>= 0.9.1),
-    rmarkdown (>= 0.9.5),
+    data.table (>= 1.10.0),
+    reshape2 (>= 1.4.2),
+    ggplot2 (>= 2.2.0),
+    scales (>= 0.4.1),
+    gridExtra (>= 2.2.1),
+    rmarkdown (>= 1.2),
+    networkD3 (>= 0.2.13),
     stats,
     utils
+Suggests: testthat,
+    covr,
+    knitr,
+    jsonlite,
+    nycflights13
+SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: GPL-2
 LazyData: true
 URL: https://github.com/boxuancui/DataExplorer
 BugReports: https://github.com/boxuancui/DataExplorer/issues
 RoxygenNote: 5.0.1
-Suggests: testthat,
-    covr
+VignetteBuilder: knitr

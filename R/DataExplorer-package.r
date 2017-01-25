@@ -9,9 +9,11 @@
 #' Typical graphical techniques will be performed for both discrete and
 #' continuous features.
 #' @seealso
+#' \link{GenerateReport},
 #' \link{PlotMissing},
 #' \link{BarDiscrete},
 #' \link{HistogramContinuous},
-#' \link{DensityContinuous},
-#' \link{GenerateReport}
+#' \link{PlotStr},
+#' \link{CollapseCategory},
+#' \link{SetNaTo}
 NULL

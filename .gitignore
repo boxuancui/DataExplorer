@@ -3,5 +3,6 @@
 *.Rproj
 .DS_Store
 .Rproj.user
-*.html
+report.html
 .idea
+inst/doc
