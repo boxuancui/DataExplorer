@@ -2,7 +2,7 @@
 
 ---
 
-### DataExplorer 0.3.0.9000
+### DataExplorer 0.4.0
 #### New Features
 * [#33](https://github.com/boxuancui/DataExplorer/issues/33): Added `PlotStr` to visualize data structure.
 * [#40](https://github.com/boxuancui/DataExplorer/issues/40): Added network graph to `GenerateReport`.
@@ -13,6 +13,7 @@
 * [#35](https://github.com/boxuancui/DataExplorer/issues/35): Fixed **rprojroot** not found error.
 
 #### Enhancements
+* [#12](https://github.com/boxuancui/DataExplorer/issues/12): Added vignette: **dataexplorer-intro**.
 * [#36](https://github.com/boxuancui/DataExplorer/issues/36): Fixed warnings from data.table in `DropVar`.
 * [#37](https://github.com/boxuancui/DataExplorer/issues/37): Changed all `cat()` to `message()`.
 * [#38](https://github.com/boxuancui/DataExplorer/issues/38): Added option to order bars in `BarDiscrete`.
