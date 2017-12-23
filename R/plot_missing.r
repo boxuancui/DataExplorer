@@ -1,27 +1,29 @@
-#' Plot missing values
+#' Plot missing value profile
 #'
 #' This function returns and plots frequency of missing values for each feature.
 #' @param data input data to be profiled, in either \link{data.frame} or \link{data.table} format.
-#' @keywords plotmissing
+#' @param title plot title
+#' @keywords plot_missing
+#' @aliases PlotMissing
 #' @details The returned object is suppressed by \link{invisible} to prevent unwanted text in \link{GenerateReport}.
 #' @return missing value information, such as frequency, percentage and suggested action.
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma
-#' @export
+#' @export plot_missing PlotMissing
 #' @examples
 #' # load packages
 #' library(data.table)
 #'
 #' # manipulate data
 #' data <- data.table(iris)
-#' for (j in 1:4) set(data, i=sample(150, j * 30), j, value = NA_integer_)
+#' for (j in 1:4) set(data, i = sample(150, j * 30), j, value = NA_integer_)
 #'
 #' # plot and assign missing value information
-#' plot_data <- PlotMissing(data)
-#' plot_data
+#' na_profile <- plot_missing(data)
+#' na_profile
 
-PlotMissing <- function(data) {
+plot_missing <- function(data, title = NULL) {
   ## Declare variable first to pass R CMD check
   feature <- num_missing <- pct_missing <- group <- NULL
   ## Check if input is data.table
@@ -47,9 +49,14 @@ PlotMissing <- function(data) {
     scale_fill_manual("Group", values = c("Good" = "#1a9641", "OK" = "#a6d96a", "Bad" = "#fdae61", "Remove" = "#d7191c"), breaks = c("Good", "OK", "Bad", "Remove")) +
     scale_y_continuous(labels = comma) +
     theme(legend.position = c("bottom")) + coord_flip() +
-    xlab("Features") + ylab("Number of missing rows")
+    xlab("Features") + ylab("Number of missing rows") + ggtitle(title)
   ## Print plot
   print(output)
   ## Set return object
   return(invisible(missing_value))
+}
+
+PlotMissing <- function(data, title = NULL) {
+  .Deprecated("plot_missing")
+  plot_missing(data = data, title = title)
 }

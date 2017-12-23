@@ -1,14 +1,15 @@
-#' GenerateReport Function
+#' create_report Function
 #'
 #' This function generates the report of data profiling.
-#' @param input_data data source to be profiled, in either \link{data.frame} or \link{data.table} format.
+#' @param data data source to be profiled, in either \link{data.frame} or \link{data.table} format.
 #' @param output_file output file name. The default is "report.html".
 #' @param output_dir output directory for report. The default is user's current directory.
 #' @param \dots other arguments to be passed to \link{render}.
-#' @keywords generatereport
+#' @keywords create_report
+#' @aliases GenerateReport
 #' @importFrom utils browseURL
 #' @importFrom rmarkdown render
-#' @export
+#' @export create_report GenerateReport
 #' @examples
 #' \dontrun{
 #' # load library
@@ -27,26 +28,26 @@
 #'       value = NA_integer_)}
 #'
 #' # generate report for diamonds dataset
-#' GenerateReport(diamonds2,
+#' create_report(diamonds2,
 #'                output_file = "report.html",
 #'                output_dir = getwd(),
 #'                html_document(toc = TRUE, toc_depth = 6, theme = "flatly"))
 #' }
 
-GenerateReport <- function(input_data, output_file = "report.html", output_dir = getwd(), ...) {
+create_report <- function(data, output_file = "report.html", output_dir = getwd(), ...) {
   ## Get argument list
   args <- as.list(match.call())
   ## Get directory of report markdown template
   report_dir <- system.file("rmd_template/report.rmd", package = "DataExplorer")
   ## Render report into html
-  render(
+  suppressWarnings(render(
     input = report_dir,
     output_file = output_file,
     output_dir = output_dir,
     intermediates_dir = output_dir,
-    params = list(data = input_data, fun_options = list()),
+    params = list(data = data, fun_options = list()),
     ...
-  )
+  ))
   ## Open report
   report_path <- file.path(output_dir, output_file)
   browseURL(report_path)
@@ -54,3 +55,7 @@ GenerateReport <- function(input_data, output_file = "report.html", output_dir =
   if (ifelse(is.null(args[["quiet"]]), TRUE, !args[["quiet"]])) message(paste0("\n\nReport is generated at \"", report_path, "\"."))
 }
 
+GenerateReport <- function(data, output_file = "report.html", output_dir = getwd(), ...) {
+  .Deprecated("create_report")
+  create_report(data = data, output_file = output_file, output_dir = output_dir, ...)
+}

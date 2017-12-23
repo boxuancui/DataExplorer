@@ -14,16 +14,15 @@ params:
 library(rmarkdown)
 
 data <- params$data
-num_discrete <- SplitColType(params$data)$num_discrete
-num_continuous <- SplitColType(params$data)$num_continuous
-num_all_missing <- SplitColType(params$data)$num_all_missing
+num_discrete <- split_columns(params$data)$num_discrete
+num_continuous <- split_columns(params$data)$num_continuous
+num_all_missing <- split_columns(params$data)$num_all_missing
 
 continuous_error <- function(e) {
   if (num_continuous == 0) {
     cat("No continuous features found.")
   } else {
-    cat("Continuous features contain too many missing values.\n")
-    cat("Try using PlotMissing() to determine which features to drop.")
+    cat("Continuous features contain too many missing values.\nTry using plot_missing() to determine which features to drop.")
   }
 }
 
@@ -31,8 +30,7 @@ discrete_error <- function(e) {
   if (num_discrete == 0) {
     cat("No discrete features found.")
   } else {
-    cat("Discrete features contain too many categories.\n")
-    cat("Try using CollapseCategory() to reduce categories.")
+    cat("Discrete features contain too many categories.\nTry using group_category() to reduce categories.")
   }
 }
 
@@ -55,7 +53,7 @@ str(data)
 
 ```{r plot_data_structure}
 diagonalNetwork(
-  PlotStr(data, print_network = FALSE),
+  plot_str(data, print_network = FALSE),
   fontSize = 12,
   width = 1000,
   margin = list(
@@ -67,33 +65,22 @@ diagonalNetwork(
 
 ### Missing Values
 The following graph shows the distribution of missing values.
-```{r plot_missing}
-PlotMissing(data)
+```{r missing_values}
+plot_missing(data)
 ```
 
 ### Data Distribution
-
-#### Continuous Features
-
-###### Histogram
-```{r histogram_continuous}
-tryCatch(HistogramContinuous(data), error = continuous_error)
+#### Continuous Features (Histogram)
+```{r histogram}
+tryCatch(plot_histogram(data), error = continuous_error)
 ```
 
-#### Discrete Features
-###### Bar Charts
-```{r bar_discrete}
-tryCatch(BarDiscrete(data), error = discrete_error)
+#### Discrete Features (Bar Chart)
+```{r bar}
+tryCatch(plot_bar(data), error = discrete_error)
 ```
 
 ### Correlation Analysis
-
-#### Continuous Features
-```{r correlation_continuous}
-tryCatch(CorrelationContinuous(data, use = "na.or.complete"), error = continuous_error)
-```
-
-#### Discrete Features
-```{r correlation_discrete}
-tryCatch(CorrelationDiscrete(data, use = "pairwise.complete.obs"), error = discrete_error)
+```{r correlation}
+tryCatch(plot_correlation(data, use = "pairwise.complete.obs"))
 ```

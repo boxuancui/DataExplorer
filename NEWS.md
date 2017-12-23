@@ -1,5 +1,14 @@
 # Changelog
 
+### DataExplorer 0.4.0.9000
+#### Enhancements
+* [#45](https://github.com/boxuancui/DataExplorer/issues/45): Added option for plot title.
+* [#49](https://github.com/boxuancui/DataExplorer/issues/49) **[Breaking Change]**: Switched package to tidyverse style. All old functions are in `.Deprecated` mode.
+* [#52](https://github.com/boxuancui/DataExplorer/issues/52): Combined `CorrelationContinuous` and `CorrelationDiscrete` into one function.
+
+#### Bug Fixes
+* [#47](https://github.com/boxuancui/DataExplorer/issues/47): Fixed color scale for correlation heatmap.
+
 ---
 
 ### DataExplorer 0.4.0

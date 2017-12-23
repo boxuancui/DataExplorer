@@ -6,18 +6,20 @@
 #' @param max_level integer threshold of nested level to be visualized. Minimum 1 nested level and defaults to all.
 #' @param print_network logical indicating if network graph should be plotted. Defaults to \code{TRUE}.
 #' @param \dots other arguments to be passed to plotting functions. See \link{diagonalNetwork} and \link{radialNetwork}.
-#' @keywords plotstr
+#' @keywords plot_str
+#' @aliases PlotStr
 #' @return input data structure in nested list. Could be transformed to json format with most JSON packages.
 #' @import data.table
 #' @import networkD3
 #' @importFrom utils capture.output str
-#' @export
+#' @export plot_str PlotStr
+#' @seealso \link{str}
 #' @examples
 #' ## Visualize structure of iris dataset
-#' PlotStr(iris)
+#' plot_str(iris)
 #'
 #' ## Visualize object with radial network
-#' PlotStr(rep(list(rep(list(mtcars), 6)), 4), type = "r")
+#' plot_str(rep(list(rep(list(mtcars), 6)), 4), type = "r")
 #'
 #' ## Generate complicated data object
 #' obj <- list(
@@ -27,11 +29,11 @@
 #'   "d" = lapply(1:5, function(x) return(as.function(function(y) y + 1)))
 #' )
 #' ## Visualize data object with diagnal network
-#' PlotStr(obj, type = "d")
+#' plot_str(obj, type = "d")
 #' ## Visualize only top 2 nested levels
-#' PlotStr(obj, type = "d", max_level = 2)
+#' plot_str(obj, type = "d", max_level = 2)
 
-PlotStr <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
+plot_str <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
   ## Declare variable first to pass R CMD check
   i <- idx <- parent <- NULL
   ## Capture str output
@@ -59,19 +61,19 @@ PlotStr <- function(data, type = c("diagonal", "radial"), max_level, print_netwo
   ## Reference: http://stackoverflow.com/q/41157332/2158269
   str_dt <- data.table(idx = seq_along(nest_level), nest_level, parent = comp_output)[nest_level <= max_level]
   str_dt <- str_dt[str_dt[, list(i = idx, nest_level = nest_level - 1, child = parent)], on = list(nest_level, idx < i), mult = "last"]
-  DropVar(str_dt[is.na(parent), parent := paste0("root (", str_output[1], ")")], c("idx", "nest_level"))
+  drop_columns(str_dt[is.na(parent), parent := paste0("root (", str_output[1], ")")], c("idx", "nest_level"))
   ## Create recursive function to transform the table to nested list
   ## Reference: http://stackoverflow.com/a/23839564/2158269
-  StrToList <- function(str_dt, root_name = as.character(str_dt[["parent"]][1])) {
+  str_to_list <- function(str_dt, root_name = as.character(str_dt[["parent"]][1])) {
     str_list <- list(name = root_name)
     children <- str_dt[parent == root_name][["child"]]
     if(length(children) > 0) {
-      str_list[["children"]] <- lapply(children, StrToList, str_dt = str_dt)
+      str_list[["children"]] <- lapply(children, str_to_list, str_dt = str_dt)
     }
     str_list
   }
   ## Transform table to list
-  str_list <- StrToList(str_dt)
+  str_list <- str_to_list(str_dt)
   ## Plot if print_network is TRUE
   if (print_network) {
     type <- match.arg(type)
@@ -80,4 +82,9 @@ PlotStr <- function(data, type = c("diagonal", "radial"), max_level, print_netwo
   }
   ## Set return object in invisible mode
   return(invisible(str_list))
+}
+
+PlotStr <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
+  .Deprecated("plot_str")
+  plot_str(data = data, type = type, max_level = max_level, print_network = print_network, ...)
 }

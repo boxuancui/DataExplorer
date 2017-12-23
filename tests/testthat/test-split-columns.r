@@ -3,7 +3,7 @@ data("diamonds", package = "ggplot2")
 
 test_that("test data.table return object", {
   dt <- data.table(diamonds)
-  dt_output <- SplitColType(dt)
+  dt_output <- split_columns(dt)
   expect_equal(
     names(dt_output)[order(names(dt_output))],
     c("continuous", "discrete", "num_all_missing", "num_continuous", "num_discrete")
@@ -18,7 +18,7 @@ test_that("test data.table return object", {
 
 test_that("test data.frame return object", {
   df <- data.frame(diamonds)
-  df_output <- SplitColType(df)
+  df_output <- split_columns(df)
   expect_equal(
     names(df_output)[order(names(df_output))],
     c("continuous", "discrete", "num_all_missing", "num_continuous", "num_discrete")

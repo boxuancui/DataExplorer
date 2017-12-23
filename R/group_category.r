@@ -7,11 +7,12 @@
 #' @param update logical, indicating if the data should be modified. Setting to \code{TRUE} will modify the input data directly, and \bold{will only work with \link{data.table}}. The default is \code{FALSE}.
 #' @param measure name of variable to be treated as additional measure to frequency.
 #' @param category_name name of the bucket to group selected categories if update is set to \code{TRUE}. The default is "OTHER".
-#' @keywords collapsecategory
+#' @keywords group_category
+#' @aliases CollapseCategory
 #' @return If update is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
 #' @details If a continuous feature is passed to the argument \code{feature}, it will be force set to \link{character-class}.
 #' @import data.table
-#' @export
+#' @export group_category CollapseCategory
 #' @examples
 #' # load packages
 #' library(data.table)
@@ -20,16 +21,16 @@
 #' data <- data.table("a" = as.factor(round(rnorm(500, 10, 5))), "b" = rexp(500, 1:500))
 #'
 #' # view cumulative frequency without collpasing categories
-#' CollapseCategory(data, "a", 0.2)
+#' group_category(data, "a", 0.2)
 #'
 #' # view cumulative frequency based on another measure
-#' CollapseCategory(data, "a", 0.2, measure = "b")
+#' group_category(data, "a", 0.2, measure = "b")
 #'
 #' # collapse bottom 20% categories based on cumulative frequency
-#' CollapseCategory(data, "a", 0.2, update = TRUE)
-#' BarDiscrete(data)
+#' group_category(data, "a", 0.2, update = TRUE)
+#' plot_bar(data)
 
-CollapseCategory <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER") {
+group_category <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER") {
   ## Declare variable first to pass R CMD check
   cnt <- pct <- cum_pct <- NULL
   ## Check if input is data.table
@@ -59,4 +60,9 @@ CollapseCategory <- function(data, feature, threshold, measure, update = FALSE, 
     class(output) <- data_class
     return(output)
   }
+}
+
+CollapseCategory <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER") {
+  .Deprecated("group_category")
+  group_category(data = data, feature = feature, threshold = threshold, measure = measure, update = update, category_name = category_name)
 }

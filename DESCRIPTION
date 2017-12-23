@@ -25,9 +25,9 @@ Suggests: testthat,
     jsonlite,
     nycflights13
 SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
-License: GPL-2
+License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/boxuancui/DataExplorer
 BugReports: https://github.com/boxuancui/DataExplorer/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr

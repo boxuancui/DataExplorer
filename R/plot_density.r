@@ -2,34 +2,37 @@
 #'
 #' This function visualizes density estimates for each continuous feature.
 #' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
+#' @param title plot title
 #' @param \dots other arguments to be passed to \link{geom_density}.
-#' @keywords densitycontinuous
+#' @keywords plot_density
+#' @aliases DensityContinuous
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma percent
 #' @importFrom stats na.omit
 #' @import gridExtra
-#' @export
+#' @export plot_density DensityContinuous
+#' @seealso \link{geom_density} \link{plot_histogram}
 #' @examples
 #' # load library
 #' library(data.table)
 #'
 #' # plot using iris data
-#' DensityContinuous(iris)
+#' plot_density(iris)
 #'
 #' # plot using random data
 #' set.seed(1)
 #' data <- cbind(sapply(1:9, function(x) {
 #'           runif(500, min = sample(100, 1), max = sample(1000, 1))
 #'         }))
-#' DensityContinuous(data)
+#' plot_density(data)
 
-DensityContinuous <- function(data, ...) {
+plot_density <- function(data, title = NULL, ...) {
   if (!is.data.table(data)) {data <- data.table(data)}
   ## Stop if no continuous features
-  if (SplitColType(data)$num_continuous == 0) stop("No Continuous Features")
+  if (split_columns(data)$num_continuous == 0) stop("No Continuous Features")
   ## Get continuous features
-  continuous <- SplitColType(data)$continuous
+  continuous <- split_columns(data)$continuous
   ## Get dimension
   n <- nrow(continuous)
   p <- ncol(continuous)
@@ -50,9 +53,14 @@ DensityContinuous <- function(data, ...) {
                    })
     ## Print plot object
     if (pages > 1) {
-      suppressWarnings(do.call(grid.arrange, c(plot, ncol = 4, nrow = 4)))
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol = 4, nrow = 4, top = title)))
     } else {
-      suppressWarnings(do.call(grid.arrange, plot))
+      suppressWarnings(do.call(grid.arrange, c(plot, top = title)))
     }
   }
+}
+
+DensityContinuous <- function(data, title = NULL, ...) {
+  .Deprecated("plot_density")
+  plot_density(data = data, title = title, ...)
 }

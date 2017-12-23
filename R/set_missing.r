@@ -3,11 +3,12 @@
 #' Quickly set all missing values to indicated value.
 #' @param data input data, in \link{data.table} format only.
 #' @param value a single value or a list of two values to be set to. See 'Details'.
-#' @keywords setnato
+#' @keywords set_missing
+#' @aliases SetNaTo
 #' @details \bold{This function will only work with \link{data.table} object as input.} Consider setting your input to \link{data.table} first then assign the original class back after applying the function.
 #' @details The class of \code{value} will determine what type of columns to be set, e.g., if \code{value} is 0, then missing values for continuous features will be set. When supplying a list of two values, only one numeric and one non-numeric is allowed.
 #' @import data.table
-#' @export
+#' @export set_missing SetNaTo
 #' @examples
 #' # Load packages
 #' library(data.table)
@@ -19,17 +20,17 @@
 #'
 #' # Set all missing values to 0L and unknown
 #' dt2 <- copy(dt)
-#' SetNaTo(dt2, list(0L, "unknown"))
+#' set_missing(dt2, list(0L, "unknown"))
 #'
 #' # Set missing numerical values to 0L
 #' dt3 <- copy(dt)
-#' SetNaTo(dt3, 0L)
+#' set_missing(dt3, 0L)
 #'
 #' # Set missing discrete values to unknown
 #' dt4 <- copy(dt)
-#' SetNaTo(dt4, "unknown")
+#' set_missing(dt4, "unknown")
 
-SetNaTo <- function(data, value) {
+set_missing <- function(data, value) {
   if (!is.data.table(data)) stop("Please change your input data class to data.table!")
   if (!(length(value) %in% seq(2))) stop("Please specify one single value or a list of two values!")
 
@@ -63,4 +64,9 @@ SetNaTo <- function(data, value) {
       if (num_missing > 0) message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", val_d))
     }
   }
+}
+
+SetNaTo <- function(data, value) {
+  .Deprecated("set_missing")
+  set_missing(data = data, value = value)
 }

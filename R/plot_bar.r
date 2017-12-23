@@ -5,14 +5,16 @@
 #' @param na.rm logical, indicating if missing values should be removed for each feature. The default is \code{TRUE}.
 #' @param maxcat maximum categories allowed for each feature. The default is 50. More information in 'Details' section.
 #' @param order_bar logical, indicating if bars should be ordered.
-#' @keywords bardiscrete
+#' @param title plot title
+#' @keywords plot_bar
+#' @aliases BarDiscrete
 #' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma
 #' @importFrom stats na.omit reorder
 #' @import gridExtra
-#' @export
+#' @export plot_bar BarDiscrete
 #' @examples
 #' # load packages
 #' library(ggplot2)
@@ -22,18 +24,18 @@
 #' data("diamonds")
 #'
 #' # plot bar charts for diamonds dataset
-#' BarDiscrete(diamonds)
-#' BarDiscrete(diamonds, maxcat = 5)
+#' plot_bar(diamonds)
+#' plot_bar(diamonds, maxcat = 5)
 
-BarDiscrete <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE) {
+plot_bar <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE, title = NULL) {
   ## Declare variable first to pass R CMD check
   frequency <- NULL
   ## Check if input is data.table
   if (!is.data.table(data)) {data <- data.table(data)}
   ## Stop if no discrete features
-  if (SplitColType(data)$num_discrete == 0) stop("No Discrete Features")
+  if (split_columns(data)$num_discrete == 0) stop("No Discrete Features")
   ## Get discrete features
-  discrete <- SplitColType(data)$discrete
+  discrete <- split_columns(data)$discrete
   ## Get number of categories for each feature
   n_cat <- sapply(discrete, function(x) {length(unique(x))})
   ign_ind <- which(n_cat > maxcat)
@@ -67,9 +69,14 @@ BarDiscrete <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE) {
                    })
     ## Print plot object
     if (pages > 1) {
-      suppressWarnings(do.call(grid.arrange, c(plot, ncol = 3, nrow = 3)))
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol = 3, nrow = 3, top = title)))
     } else {
-      suppressWarnings(do.call(grid.arrange, plot))
+      suppressWarnings(do.call(grid.arrange, c(plot, top = title)))
     }
   }
+}
+
+BarDiscrete <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE, title = NULL) {
+  .Deprecated("plot_bar")
+  plot_bar(data = data, na.rm = na.rm, maxcat = maxcat, order_bar = order_bar, title = title)
 }
