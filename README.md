@@ -23,30 +23,30 @@ The package can be installed directly from CRAN.
 
     install.packages("DataExplorer")
 
-However, the latest stable version (if any) could be found on [GitHub](https://github.com/boxuancui/DataExplorer), and installed using `devtools` package.
+However, the latest stable version (if any) could be found on [GitHub](https://github.com/boxuancui/DataExplorer), and installed using `remotes` package.
 
-    if (!require(devtools)) install.packages("devtools")
-    devtools::install_github("boxuancui/DataExplorer")
+    if (!require(remotes)) install.packages("remotes")
+    remotes::install_github("boxuancui/DataExplorer")
 
 If you would like to install the latest [development version](https://github.com/boxuancui/DataExplorer/tree/develop), you may install the dev branch.
 
-    if (!require(devtools)) install.packages("devtools")
-    devtools::install_github("boxuancui/DataExplorer", ref = "develop")
+    if (!require(remotes)) install.packages("remotes")
+    remotes::install_github("boxuancui/DataExplorer", ref = "develop")
 
 ## Examples
-The package is extremely easy to use. Almost everything could be done in one line of code. Please refer to the package manuals for more information.
+The package is extremely easy to use. Almost everything could be done in one line of code. Please refer to the package manuals for more information. You may also find the package vignettes [here](https://cran.r-project.org/web/packages/DataExplorer/vignettes/dataexplorer-intro.html).
 
 #### Create data profiling report
 To get a report for the [airquality](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/airquality.html) dataset:
 
     library(DataExplorer)
-    GenerateReport(airquality)
+    create_report(airquality)
 
 To get a report for the [diamonds](http://docs.ggplot2.org/0.9.3.1/diamonds.html) dataset from `ggplot2` package:
 
     library(DataExplorer)
     library(ggplot2)
-    GenerateReport(diamonds)
+    create_report(diamonds)
 
 #### Visualize various distribution
 You may also run all the plotting functions individually for your analysis, e.g.,
@@ -55,24 +55,27 @@ You may also run all the plotting functions individually for your analysis, e.g.
     library(ggplot2)
     
     ## View distribution of all discrete variables
-    BarDiscrete(diamonds)
+    plot_bar(diamonds)
     ## View distribution of cut only
-    BarDiscrete(diamonds$cut)
+    plot_bar(diamonds$cut)
     ## View correlation of all discrete varaibles
-    CorrelationDiscrete(diamonds)
+    plot_correlation(diamonds, type = "discrete")
     
     ## View distribution of all continuous variables
-    HistogramContinuous(diamonds)
+    plot_histogram(diamonds)
     ## View distribution of carat only
-    HistogramContinuous(diamonds$carat)
+    plot_histogram(diamonds$carat)
     ## View correlation of all continuous varaibles
-    CorrelationContinuous(diamonds)
+    plot_correlation(diamonds, type = "continuous")
+    
+    ## View overall correlation heatmap
+    plot_correlation(diamonds)
     
     ## View distribution of missing values for airquality data
-    missing_data <- PlotMissing(airquality) # missing data profile will be returned
+    missing_data <- plot_missing(airquality) # missing data profile will be returned
     missing_data
 
-#### Collapse categorical variables
+#### Group categories for discrete features
 Sometimes, discrete variables are messy, e.g., too many imbalanced categories, extremely skewed categorical distribution. You may use `CollapseCategory` function to help you group the long tails.
 
     library(DataExplorer)
@@ -84,16 +87,16 @@ Sometimes, discrete variables are messy, e.g., too many imbalanced categories, e
     table(diamonds$clarity)
     
     ## Trial and error without updating: Group bottom 20% clarity based on frequency
-    CollapseCategory(diamonds, "clarity", 0.2)
+    group_category(diamonds, "clarity", 0.2)
     ## Group bottom 30% clarity and update original dataset
-    CollapseCategory(diamonds, "clarity", 0.3, update = TRUE)
+    group_category(diamonds, "clarity", 0.3, update = TRUE)
     
     ## View distribution after updating
     table(diamonds$clarity)
     
     ## Group bottom 20% cut using value of carat
     table(diamonds$cut)
-    CollapseCategory(diamonds, "cut", 0.2, measure = "carat", update = TRUE)
+    group_category(diamonds, "cut", 0.2, measure = "carat", update = TRUE)
     table(diamonds$cut)
 
 Note: this function works with [data.table](https://cran.r-project.org/package=data.table) objects only. If you are working with `data.frame`, please add `data.table` class to your object and then remove it later. See example below.
@@ -103,12 +106,12 @@ Note: this function works with [data.table](https://cran.r-project.org/package=d
     ## Set data.frame object to data.table
     USArrests <- data.table(USArrests)
     ## Collapse bottom 10% UrbanPop based on frequency
-    CollapseCategory(USArrests, "UrbanPop", 0.1, update = TRUE)
+    group_category(USArrests, "UrbanPop", 0.1, update = TRUE)
     ## Set object back to data.frame
     class(USArrests) <- "data.frame"
 
 #### Other miscellaneous functions
-* `PlotStr`: Plot data structure in network graph.
-* `DropVar`: Quickly drop variables with either column index or column names. (**data.table only**)
-* `SetNaTo`: Quickly set all missing observations to a value. (**data.table only**)
-* `SplitColType`: Split data into two objects: discrete and continous.
+* `plot_str`: Plot data structure in network graph.
+* `drop_columns`: Quickly drop variables with either column index or column names. (**data.table only**)
+* `set_missing`: Quickly set all missing observations to a value. (**data.table only**)
+* `split_columns`: Split data into two objects: discrete and continous.
