@@ -3,6 +3,7 @@
 ### DataExplorer 0.4.0.9000
 #### Enhancements
 * [#45](https://github.com/boxuancui/DataExplorer/issues/45): Added option for plot title.
+* [#46](https://github.com/boxuancui/DataExplorer/issues/46): Added option to exclude columns in `set_missing`.
 * [#49](https://github.com/boxuancui/DataExplorer/issues/49) **[Breaking Change]**: Switched package to tidyverse style. All old functions are in `.Deprecated` mode.
 * [#52](https://github.com/boxuancui/DataExplorer/issues/52): Combined `CorrelationContinuous` and `CorrelationDiscrete` into one function.
 

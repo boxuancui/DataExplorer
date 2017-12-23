@@ -3,6 +3,7 @@
 #' Quickly set all missing values to indicated value.
 #' @param data input data, in \link{data.table} format only.
 #' @param value a single value or a list of two values to be set to. See 'Details'.
+#' @param exclude column index or name to be excluded.
 #' @keywords set_missing
 #' @aliases SetNaTo
 #' @details \bold{This function will only work with \link{data.table} object as input.} Consider setting your input to \link{data.table} first then assign the original class back after applying the function.
@@ -29,10 +30,21 @@
 #' # Set missing discrete values to unknown
 #' dt4 <- copy(dt)
 #' set_missing(dt4, "unknown")
+#'
+#' # Set missing values excluding some columns
+#' dt5 <- copy(dt)
+#' set_missing(dt4, 0L, 1:2)
+#' set_missing(dt4, 0L, names(dt5)[3:4])
 
-set_missing <- function(data, value) {
+set_missing <- function(data, value, exclude = NULL) {
   if (!is.data.table(data)) stop("Please change your input data class to data.table!")
   if (!(length(value) %in% seq(2))) stop("Please specify one single value or a list of two values!")
+
+  if (!is.numeric(exclude)) {
+    exclude_ind <- which(names(data) %in% exclude)
+  } else {
+    exclude_ind <- exclude
+  }
 
   if (length(value) == 1) {
     if (is.numeric(value)) {
@@ -40,7 +52,7 @@ set_missing <- function(data, value) {
     } else {
       col_ind <- which(!sapply(data, is.numeric))
     }
-    for (j in col_ind) {
+    for (j in setdiff(col_ind, exclude_ind)) {
       num_missing <- sum(is.na(data[[j]]))
       set(data, i = which(is.na(data[[j]])), j = j, value = value)
       if (num_missing > 0) message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", value))
@@ -53,12 +65,12 @@ set_missing <- function(data, value) {
     val_d <- value[[which(!val_ind)]]
     col_c <- which(sapply(data, is.numeric))
     col_d <- which(!sapply(data, is.numeric))
-    for (j in col_c) {
+    for (j in setdiff(col_c, exclude_ind)) {
       num_missing <- sum(is.na(data[[j]]))
       set(data, i = which(is.na(data[[j]])), j = j, value = val_c)
       if (num_missing > 0) message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", val_c))
     }
-    for (j in col_d) {
+    for (j in setdiff(col_d, exclude_ind)) {
       num_missing <- sum(is.na(data[[j]]))
       set(data, i = which(is.na(data[[j]])), j = j, value = val_d)
       if (num_missing > 0) message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", val_d))
@@ -66,7 +78,7 @@ set_missing <- function(data, value) {
   }
 }
 
-SetNaTo <- function(data, value) {
+SetNaTo <- function(data, value, exclude = NULL) {
   .Deprecated("set_missing")
-  set_missing(data = data, value = value)
+  set_missing(data = data, value = value, exclude = exclude)
 }

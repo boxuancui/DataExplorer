@@ -18,6 +18,14 @@ test_that("test single string value", {
   expect_equal(sum(dt == "unknown"), num_missing)
 })
 
+test_that("test single value excluding columns", {
+  dt <- data.table(iris)
+  set(dt, i = sample.int(150, 25), 5L, value = NA_character_)
+  num_missing <- sum(is.na(dt))
+  set_missing(dt, "unknown", names(dt)[5L])
+  expect_equal(sum(is.na(dt)), num_missing)
+})
+
 my_dt <- data.table(
   "a" = c(1, 4, NA, NA, 3, NA),
   "b" = c(1, NA, 5, 2, 3, NA),
@@ -25,12 +33,20 @@ my_dt <- data.table(
   "d" = c(1, "4", NA, "def", 3, 2),
   "e" = c(1, 4, 2, 3, 3, 1)
 )
+my_dt2 <- copy(my_dt)
 
 test_that("test list of both value", {
-  set_missing(my_dt, list(50, "unknown"))
-  expect_equal(sum(is.na(my_dt)), 0)
-  expect_equal(sum(my_dt == 50), 5)
-  expect_equal(sum(my_dt == "unknown"), 4)
+  set_missing(my_dt, list(50L, "unknown"))
+  expect_equal(sum(is.na(my_dt)), 0L)
+  expect_equal(sum(my_dt == 50L), 5L)
+  expect_equal(sum(my_dt == "unknown"), 4L)
+})
+
+test_that("test multiple values excluding columns", {
+  set_missing(my_dt2, list(50L, "unknown"), c("a", "e"))
+  expect_equal(sum(is.na(my_dt2$a)), 3L)
+  expect_equal(sum(my_dt2$b == 50L), 2L)
+  expect_equal(sum(is.na(my_dt2$e)), 0L)
 })
 
 test_that("test list of numerical values", {

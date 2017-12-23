@@ -5,12 +5,14 @@
 \alias{SetNaTo}
 \title{Set all missing values to indicated value}
 \usage{
-set_missing(data, value)
+set_missing(data, value, exclude = NULL)
 }
 \arguments{
 \item{data}{input data, in \link{data.table} format only.}
 
 \item{value}{a single value or a list of two values to be set to. See 'Details'.}
+
+\item{exclude}{column index or name to be excluded.}
 }
 \description{
 Quickly set all missing values to indicated value.
@@ -40,5 +42,10 @@ set_missing(dt3, 0L)
 # Set missing discrete values to unknown
 dt4 <- copy(dt)
 set_missing(dt4, "unknown")
+
+# Set missing values excluding some columns
+dt5 <- copy(dt)
+set_missing(dt4, 0L, 1:2)
+set_missing(dt4, 0L, names(dt5)[3:4])
 }
 \keyword{set_missing}
