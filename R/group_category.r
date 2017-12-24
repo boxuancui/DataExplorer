@@ -1,12 +1,13 @@
-#' Collapse categories for discrete features
+#' Group categories for discrete features
 #'
-#' Sometimes discrete features have sparse categories. This function will collapse the sparse categories for a discrete feature based on a given threshold.
+#' Sometimes discrete features have sparse categories. This function will group the sparse categories for a discrete feature based on a given threshold.
 #' @param data input data, in either \link{data.frame} or \link{data.table} format.
 #' @param feature name of the discrete feature to be collapsed.
-#' @param threshold the bottom x\% categories to be collapsed, e.g., if set to 20\%, categories with cumulative frequency of the bottom 20\% will be collapsed.
+#' @param threshold the bottom x\% categories to be grouped, e.g., if set to 20\%, categories with cumulative frequency of the bottom 20\% will be grouped
 #' @param update logical, indicating if the data should be modified. Setting to \code{TRUE} will modify the input data directly, and \bold{will only work with \link{data.table}}. The default is \code{FALSE}.
-#' @param measure name of variable to be treated as additional measure to frequency.
-#' @param category_name name of the bucket to group selected categories if update is set to \code{TRUE}. The default is "OTHER".
+#' @param measure name of feature to be used as an alternative measure.
+#' @param category_name name of the new category if update is set to \code{TRUE}. The default is "OTHER".
+#' @param exclude categories to be excluded from grouping when update is set to \code{TRUE}.
 #' @keywords group_category
 #' @aliases CollapseCategory
 #' @return If update is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
@@ -26,11 +27,16 @@
 #' # view cumulative frequency based on another measure
 #' group_category(data, "a", 0.2, measure = "b")
 #'
-#' # collapse bottom 20% categories based on cumulative frequency
+#' # group bottom 20% categories based on cumulative frequency
 #' group_category(data, "a", 0.2, update = TRUE)
 #' plot_bar(data)
+#'
+#' # exclude categories from being grouped
+#' dt <- data.table("a" = c(rep("c1", 25), rep("c2", 10), "c3", "c4"))
+#' group_category(dt, "a", 0.8, update = TRUE, exclude = c("c3", "c4"))
+#' plot_bar(dt)
 
-group_category <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER") {
+group_category <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER", exclude = NULL) {
   ## Declare variable first to pass R CMD check
   cnt <- pct <- cum_pct <- NULL
   ## Check if input is data.table
@@ -54,7 +60,7 @@ group_category <- function(data, feature, threshold, measure, update = FALSE, ca
   ## Collapse categories if update is true, else return distribution for analysis
   if (update) {
     if (!is_data_table) stop("Please change your input data class to data.table to update!")
-    data[!(get(feature) %in% top_cat), c(feature) := category_name]
+    data[!(get(feature) %in% c(top_cat, exclude)), c(feature) := category_name]
   } else {
     output <- var[cum_pct <= (1 - threshold)]
     class(output) <- data_class
@@ -62,7 +68,7 @@ group_category <- function(data, feature, threshold, measure, update = FALSE, ca
   }
 }
 
-CollapseCategory <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER") {
+CollapseCategory <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER", exclude = NULL) {
   .Deprecated("group_category")
-  group_category(data = data, feature = feature, threshold = threshold, measure = measure, update = update, category_name = category_name)
+  group_category(data = data, feature = feature, threshold = threshold, measure = measure, update = update, category_name = category_name, exclude = exclude)
 }

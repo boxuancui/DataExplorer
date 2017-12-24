@@ -3,29 +3,31 @@
 \name{group_category}
 \alias{group_category}
 \alias{CollapseCategory}
-\title{Collapse categories for discrete features}
+\title{Group categories for discrete features}
 \usage{
 group_category(data, feature, threshold, measure, update = FALSE,
-  category_name = "OTHER")
+  category_name = "OTHER", exclude = NULL)
 }
 \arguments{
 \item{data}{input data, in either \link{data.frame} or \link{data.table} format.}
 
 \item{feature}{name of the discrete feature to be collapsed.}
 
-\item{threshold}{the bottom x\% categories to be collapsed, e.g., if set to 20\%, categories with cumulative frequency of the bottom 20\% will be collapsed.}
+\item{threshold}{the bottom x\% categories to be grouped, e.g., if set to 20\%, categories with cumulative frequency of the bottom 20\% will be grouped}
 
-\item{measure}{name of variable to be treated as additional measure to frequency.}
+\item{measure}{name of feature to be used as an alternative measure.}
 
 \item{update}{logical, indicating if the data should be modified. Setting to \code{TRUE} will modify the input data directly, and \bold{will only work with \link{data.table}}. The default is \code{FALSE}.}
 
-\item{category_name}{name of the bucket to group selected categories if update is set to \code{TRUE}. The default is "OTHER".}
+\item{category_name}{name of the new category if update is set to \code{TRUE}. The default is "OTHER".}
+
+\item{exclude}{categories to be excluded from grouping when update is set to \code{TRUE}.}
 }
 \value{
 If update is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
 }
 \description{
-Sometimes discrete features have sparse categories. This function will collapse the sparse categories for a discrete feature based on a given threshold.
+Sometimes discrete features have sparse categories. This function will group the sparse categories for a discrete feature based on a given threshold.
 }
 \details{
 If a continuous feature is passed to the argument \code{feature}, it will be force set to \link{character-class}.
@@ -43,8 +45,13 @@ group_category(data, "a", 0.2)
 # view cumulative frequency based on another measure
 group_category(data, "a", 0.2, measure = "b")
 
-# collapse bottom 20\% categories based on cumulative frequency
+# group bottom 20\% categories based on cumulative frequency
 group_category(data, "a", 0.2, update = TRUE)
 plot_bar(data)
+
+# exclude categories from being grouped
+dt <- data.table("a" = c(rep("c1", 25), rep("c2", 10), "c3", "c4"))
+group_category(dt, "a", 0.8, update = TRUE, exclude = c("c3", "c4"))
+plot_bar(dt)
 }
 \keyword{group_category}

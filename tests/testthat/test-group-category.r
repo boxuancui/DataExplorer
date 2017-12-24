@@ -40,3 +40,9 @@ test_that("test update with different name", {
   group_category(dt, "cut", 0.2, update = TRUE, category_name = "New Name")
   expect_true("New Name" %in% unique(dt$cut))
 })
+
+test_that("test excluding columns", {
+  dt <- data.table("a" = c(rep("c1", 25), rep("c2", 10), "c3", "c4"))
+  group_category(dt, "a", 0.8, update = TRUE, exclude = c("c3", "c4"))
+  expect_identical(unique(dt$a), c("OTHER", "c3", "c4"))
+})
