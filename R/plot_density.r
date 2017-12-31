@@ -14,9 +14,6 @@
 #' @export plot_density DensityContinuous
 #' @seealso \link{geom_density} \link{plot_histogram}
 #' @examples
-#' # load library
-#' library(data.table)
-#'
 #' # plot using iris data
 #' plot_density(iris)
 #'
@@ -37,10 +34,11 @@ plot_density <- function(data, title = NULL, ...) {
   n <- nrow(continuous)
   p <- ncol(continuous)
   ## Calculate number of pages if showing 16 features on each page
-  pages <- ceiling(p/16)
-  for (pg in 1:pages) {
+  pages <- ceiling(p / 16L)
+  for (pg in seq.int(pages)) {
     ## Subset data by column
-    subset_data <- continuous[, (16 * pg - 15):min(p, 16 * pg), with = FALSE]
+    subset_data <- continuous[, seq.int(16L * pg - 15L, min(p, 16L * pg)), with = FALSE]
+    n_col <- ifelse(ncol(subset_data) %% 4L, ncol(subset_data) %/% 4L + 1L, ncol(subset_data) %/% 4L)
     ## Create ggplot object
     plot <- lapply(seq_along(subset_data),
                    function(j) {
@@ -53,7 +51,7 @@ plot_density <- function(data, title = NULL, ...) {
                    })
     ## Print plot object
     if (pages > 1) {
-      suppressWarnings(do.call(grid.arrange, c(plot, ncol = 4, nrow = 4, top = title)))
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 4L, top = title)))
     } else {
       suppressWarnings(do.call(grid.arrange, c(plot, top = title)))
     }

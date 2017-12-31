@@ -14,13 +14,10 @@
 #' @export plot_histogram HistogramContinuous
 #' @seealso \link{geom_histogram} \link{plot_density}
 #' @examples
-#' # load library
-#' library(data.table)
-#'
-#' # plot using iris data
+#' # plot iris data
 #' plot_histogram(iris)
 #'
-#' # plot using random data
+#' # plot random data with customized geom_histogram settings
 #' set.seed(1)
 #' data <- cbind(sapply(1:9, function(x) {rnorm(10000, sd = 30 * x)}))
 #' plot_histogram(data, breaks = seq(-400, 400, length = 10))
@@ -35,23 +32,24 @@ plot_histogram <- function(data, title = NULL, ...) {
   n <- nrow(continuous)
   p <- ncol(continuous)
   ## Calculate number of pages if showing 16 features on each page
-  pages <- ceiling(p/16)
-  for (pg in 1:pages) {
+  pages <- ceiling(p / 16L)
+  for (pg in seq.int(pages)) {
     ## Subset data by column
-    subset_data <- continuous[, (16 * pg - 15):min(p, 16 * pg), with = FALSE]
+    subset_data <- continuous[, seq.int(16L * pg - 15L, min(p, 16L * pg)), with = FALSE]
+    n_col <- ifelse(ncol(subset_data) %% 4L, ncol(subset_data) %/% 4L + 1L, ncol(subset_data) %/% 4L)
     ## Create ggplot object
     plot <- lapply(seq_along(subset_data),
                    function(j) {
                      x <- na.omit(subset_data[, j, with = FALSE])
                      ggplot(x, aes_string(x = names(x))) +
-                       geom_histogram(bins = 30, colour = "black", alpha = 0.4, ...) +
+                       geom_histogram(bins = 30L, colour = "black", alpha = 0.4, ...) +
                        scale_x_continuous(labels = comma) +
                        scale_y_continuous(labels = comma) +
                        ylab("Frequency")
                    })
     ## Print plot object
     if (pages > 1) {
-      suppressWarnings(do.call(grid.arrange, c(plot, ncol = 4, nrow = 4, top = title)))
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 4L, top = title)))
     } else {
       suppressWarnings(do.call(grid.arrange, c(plot, top = title)))
     }

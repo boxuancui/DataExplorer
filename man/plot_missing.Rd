@@ -26,11 +26,11 @@ The returned object is suppressed by \link{invisible} to prevent unwanted text i
 library(data.table)
 
 # manipulate data
-data <- data.table(iris)
-for (j in 1:4) set(data, i = sample(150, j * 30), j, value = NA_integer_)
+dt <- data.table(iris)
+for (j in 1:4) set(dt, i = sample(150, j * 30), j, value = NA_integer_)
 
 # plot and assign missing value information
-na_profile <- plot_missing(data)
+na_profile <- plot_missing(dt)
 na_profile
 }
 \keyword{plot_missing}

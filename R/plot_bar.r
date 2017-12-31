@@ -16,12 +16,8 @@
 #' @import gridExtra
 #' @export plot_bar BarDiscrete
 #' @examples
-#' # load packages
-#' library(ggplot2)
-#' library(data.table)
-#'
 #' # load diamonds dataset from ggplot2
-#' data("diamonds")
+#' data("diamonds", package = "ggplot2")
 #'
 #' # plot bar charts for diamonds dataset
 #' plot_bar(diamonds)
@@ -47,10 +43,11 @@ plot_bar <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE, title = 
   n <- nrow(discrete)
   p <- ncol(discrete)
   ## Calculate number of pages if showing 9 features on each page
-  pages <- ceiling(p / 9)
-  for (pg in 1:pages) {
+  pages <- ceiling(p / 9L)
+  for (pg in seq.int(pages)) {
     ## Subset data by column
-    subset_data <- discrete[, (9 * pg - 8):min(p, 9 * pg), with = FALSE]
+    subset_data <- discrete[, seq.int(9L * pg - 8L, min(p, 9L * pg)), with = FALSE]
+    n_col <- ifelse(ncol(subset_data) %% 3L, ncol(subset_data) %/% 3L + 1L, ncol(subset_data) %/% 3L)
     ## Create ggplot object
     plot <- lapply(seq_along(subset_data),
                    function(j) {
@@ -69,7 +66,7 @@ plot_bar <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE, title = 
                    })
     ## Print plot object
     if (pages > 1) {
-      suppressWarnings(do.call(grid.arrange, c(plot, ncol = 3, nrow = 3, top = title)))
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 3L, top = title)))
     } else {
       suppressWarnings(do.call(grid.arrange, c(plot, top = title)))
     }

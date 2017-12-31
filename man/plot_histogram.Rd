@@ -18,13 +18,10 @@ plot_histogram(data, title = NULL, ...)
 This function creates histogram for each continuous feature.
 }
 \examples{
-# load library
-library(data.table)
-
-# plot using iris data
+# plot iris data
 plot_histogram(iris)
 
-# plot using random data
+# plot random data with customized geom_histogram settings
 set.seed(1)
 data <- cbind(sapply(1:9, function(x) {rnorm(10000, sd = 30 * x)}))
 plot_histogram(data, breaks = seq(-400, 400, length = 10))

@@ -16,8 +16,8 @@
 #' library(ggplot2)
 #' library(data.table)
 #'
-#' # load data
-#' data(diamonds)
+#' # load diamonds dataset from ggplot2
+#' data("diamonds", package = "ggplot2")
 #' diamonds2 <- data.table(diamonds)
 #'
 #' # manually set some missing values
@@ -27,7 +27,7 @@
 #'       j,
 #'       value = NA_integer_)}
 #'
-#' # generate report for diamonds dataset
+#' # generate report for diamonds2 dataset
 #' create_report(diamonds2,
 #'                output_file = "report.html",
 #'                output_dir = getwd(),

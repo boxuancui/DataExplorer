@@ -1,6 +1,9 @@
 # Changelog
 
 ### DataExplorer 0.4.0.9000
+#### New Features
+* [#50](https://github.com/boxuancui/DataExplorer/issues/50): Added `plot_boxplot` to visualize continuous distributions broken down by another feature.
+
 #### Enhancements
 * [#44](https://github.com/boxuancui/DataExplorer/issues/44): Added option to exclude categories in `group_category`.
 * [#45](https://github.com/boxuancui/DataExplorer/issues/45): Added title option for all plots.
@@ -19,6 +22,7 @@
 	* `SetNaTo` -> `set_missing`
 	* `SplitColType` -> `split_columns`
 * [#52](https://github.com/boxuancui/DataExplorer/issues/52): Combined `CorrelationContinuous` and `CorrelationDiscrete` into one function, and added option to view correlation of all features at once.
+* Optimized layout for multiple plots.
 
 #### Bug Fixes
 * [#47](https://github.com/boxuancui/DataExplorer/issues/47): Fixed color scale for correlation heatmap.

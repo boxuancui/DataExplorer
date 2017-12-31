@@ -26,12 +26,8 @@ This function creates frequency bar charts for each discrete feature.
 If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 }
 \examples{
-# load packages
-library(ggplot2)
-library(data.table)
-
 # load diamonds dataset from ggplot2
-data("diamonds")
+data("diamonds", package = "ggplot2")
 
 # plot bar charts for diamonds dataset
 plot_bar(diamonds)

@@ -18,9 +18,6 @@ plot_density(data, title = NULL, ...)
 This function visualizes density estimates for each continuous feature.
 }
 \examples{
-# load library
-library(data.table)
-
 # plot using iris data
 plot_density(iris)
 
