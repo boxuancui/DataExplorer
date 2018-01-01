@@ -19,9 +19,13 @@ plot_scatterplot(data, by, title = NULL, ...)
 This function creates scatterplot for all features fixing on a selected feature.
 }
 \examples{
-# scatterplot mpg dataset by "hwy"
+# load mpg data from ggplot2
 data("mpg", package = "ggplot2")
-plot_scatterplot(mpg[, 1:10], "hwy", size = 1)
+
+# scatterplot mpg dataset by "hwy"
+plot_scatterplot(mpg, "hwy", size = 1)
+# scatterplot mpg dataset by "class"
+plot_scatterplot(mpg, "class", size = 1)
 }
 \seealso{
 \link{geom_point}
