@@ -32,11 +32,11 @@ plot_boxplot <- function(data, by, title = NULL, ...) {
   by_feature <- data[[by]]
   if (is.null(by_feature)) stop(paste0("Feature \"", by, "\" not found!"))
   if (is.numeric(by_feature)) {
-    dt <- suppressWarnings(reshape2::melt(data.table(continuous, "by_f" = cut_interval(by_feature, 5)), id.vars = "by_f"))
+    dt <- suppressWarnings(melt.data.table(data.table(continuous, "by_f" = cut_interval(by_feature, 5)), id.vars = "by_f"))
   } else {
-    dt <- suppressWarnings(reshape2::melt(data.table(continuous, "by_f" = by_feature), id.vars = "by_f"))
+    dt <- suppressWarnings(melt.data.table(data.table(continuous, "by_f" = by_feature), id.vars = "by_f"))
   }
-  ## Calculate number of pages if showing 16 features on each page
+  ## Calculate number of pages
   p <- ncol(continuous)
   pages <- ceiling(p / 12L)
   ## Create ggplot object

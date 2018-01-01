@@ -33,7 +33,7 @@ plot_density <- function(data, title = NULL, ...) {
   ## Get dimension
   n <- nrow(continuous)
   p <- ncol(continuous)
-  ## Calculate number of pages if showing 16 features on each page
+  ## Calculate number of pages
   pages <- ceiling(p / 16L)
   for (pg in seq.int(pages)) {
     ## Subset data by column

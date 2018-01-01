@@ -42,7 +42,7 @@ plot_bar <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE, title = 
   ## Get dimension
   n <- nrow(discrete)
   p <- ncol(discrete)
-  ## Calculate number of pages if showing 9 features on each page
+  ## Calculate number of pages
   pages <- ceiling(p / 9L)
   for (pg in seq.int(pages)) {
     ## Subset data by column
