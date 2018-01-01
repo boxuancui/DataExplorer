@@ -2,8 +2,8 @@
 % Please edit documentation in R/DataExplorer-package.r
 \docType{package}
 \name{DataExplorer-package}
-\alias{DataExplorer}
 \alias{DataExplorer-package}
+\alias{DataExplorer}
 \alias{dataexplorer}
 \title{Data Explorer}
 \description{
@@ -16,13 +16,3 @@ package automatically scans through each variable and does data profiling.
 Typical graphical techniques will be performed for both discrete and
 continuous features.
 }
-\seealso{
-\link{GenerateReport},
-\link{PlotMissing},
-\link{BarDiscrete},
-\link{HistogramContinuous},
-\link{PlotStr},
-\link{CollapseCategory},
-\link{SetNaTo}
-}
-

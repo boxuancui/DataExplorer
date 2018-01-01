@@ -8,7 +8,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
+  
 ```{r setup, include=FALSE}
 library(rmarkdown)
 library(DataExplorer)
@@ -18,7 +18,7 @@ library(networkD3)
 
 knitr::opts_chunk$set(fig.width = 6, fig.height = 6, fig.align = "center", warning = FALSE)
 ```
-
+  
 <script src="d3.min.js"></script>
 
 This document introduces the package *DataExplorer*, and shows how it can help you with different tasks throughout your data exploration process.
@@ -34,8 +34,8 @@ The remaining of this guide will be organized in accordance with the goals. As t
 ## Data
 We will be using the [nycflights13](https://cran.r-project.org/package=nycflights13) datasets for this document. If you have not installed the package, please do the following:
 
-    install.packages("nycflights13")
-    library(nycflights13)
+  install.packages("nycflights13")
+  library(nycflights13)
 
 There are 5 datasets in this package:
 
@@ -50,13 +50,13 @@ If you want to quickly visualize the structure of all, you may do the following:
 ```{r plot-str-template, eval=FALSE}
 library(DataExplorer)
 data_list <- list(airlines, airports, flights, planes, weather)
-PlotStr(data_list)
+plot_str(data_list)
 ```
 
 ```{r plot-str-run, echo=FALSE}
 data_list <- list(airlines, airports, flights, planes, weather)
 diagonalNetwork(
-  PlotStr(data_list, print_network = FALSE),
+  plot_str(data_list, print_network = FALSE),
   width = 700,
   height = 550,
   fontSize = 12,
@@ -67,7 +67,7 @@ diagonalNetwork(
 )
 ```
 
-You may also try `PlotStr(data_list, type = "r")` for a radial network.
+You may also try `plot_str(data_list, type = "r")` for a radial network.
 
 ---
 
@@ -92,43 +92,61 @@ object.size(final_data)
 ```
 
 ### Missing values
-Real-world data is messy. After running the basic descriptive statistics, you might be interested in the missing data profile. You can simple use `PlotMissing` function for this.
+Real-world data is messy. After running the basic descriptive statistics, you might be interested in the missing data profile. You can simple use `plot_missing` function for this.
 
 ```{r eda-plot-missing}
-PlotMissing(final_data)
+plot_missing(final_data)
 ```
 
-You may also store the missing data profile with `missing_data <- PlotMissing(final_data)` for additional analysis.
+You may also store the missing data profile with `missing_data <- plot_missing(final_data)` for additional analysis.
 
 ### Distributions
 To visualize distributions for all discrete features:
 
-```{r eda-bar-discrete, fig.width=10, fig.height=6}
-BarDiscrete(final_data)
+```{r eda-plot-bar, fig.width=10, fig.height=6}
+plot_bar(final_data)
 ```
 
 To visualize distributions for all continuous features:
 
-```{r eda-histogram-continuous, fig.width=10, fig.height=6}
-HistogramContinuous(final_data)
+```{r eda-plot-histogram, fig.width=10, fig.height=6}
+plot_histogram(final_data)
 ```
 
 You may also visualize just one feature using this function:
 
-```{r eda-bar-discrete-2}
-BarDiscrete(final_data$manufacturer)
+```{r eda-plot-bar-single}
+plot_bar(final_data$manufacturer)
 ```
 
-```{r eda-histogram-continuous-2}
-HistogramContinuous(final_data$seats)
+```{r eda-plot-histogram-single}
+plot_histogram(final_data$seats)
 ```
 
 ### Correlation
 To visualize correlation heatmap for discrete and continuous features:
 
-```{r eda-correlation, fig.width=8, fig.height=8}
-CorrelationDiscrete(final_data)
-CorrelationContinuous(final_data, use = "na.or.complete")
+```{r eda-plot-correlation, fig.width=8, fig.height=8}
+plot_correlation(final_data, use = "pairwise.complete.obs")
+```
+
+### Slicing & dicing
+Often, slicing and dicing data in different ways could be crucial to your analysis, and yields insights quickly. For example, suppose you would like to build a model to predict arrival delays, you may view the distribution of all continuous features based on arrival delays with the following code:
+
+```{r eda-plot-boxplot, fig.width=8, fig.height=8}
+## Reduce data size
+arr_delay_df <- final_data[, c("arr_delay", "month", "day", "hour", "minute", "dep_delay", "distance", "year_planes", "seats", "speed")]
+plot_boxplot(arr_delay_df, "arr_delay")
+```
+
+Among all the subtle changes in correlation with arrival delays, you could immediately spot that planes with 300+ seats tend to have much longer delays (16 ~ 21 hours). You may now drill down further to verify or generate more hypotheses.
+
+An alternative visualization is scatterplot. For example,
+
+```{r eda-plot-scatterplot, fig.width=8, fig.height=8}
+## Reduce data size
+arr_delay_df2 <- final_data[, c("arr_delay", "month", "distance", "seats", "origin", "carrier", "manufacturer")]
+plot_scatterplot(arr_delay_df2, "arr_delay", size = 0.8)
 ```
 
 ## Feature Engineering
@@ -139,55 +157,54 @@ For functions in this section, most data objects need to be set to  [data.table]
 ### Replace missing values
 Missing values may have meanings for a feature. Other than imputation methods, we may also set them to some logical values. For example, for discrete features, we may want to group missing values to a new category. For continuous features, we may want to set missing values to a known number based on existing knowledge.
 
-In *DataExplorer*, this can be done by `SetNaTo()`. The function automatically matches the argument for either discrete or continuous features, i.e., if you specify a number, all missing continuous values will be set to that number. If you specify a string, all missing discrete values will be set to that string. If you supply both, both types will be set.
+In *DataExplorer*, this can be done by `set_missing`. The function automatically matches the argument for either discrete or continuous features, i.e., if you specify a number, all missing continuous values will be set to that number. If you specify a string, all missing discrete values will be set to that string. If you supply both, both types will be set.
 
-```{r fe-set-na-to, collapse=TRUE}
+```{r fe-set-missing, collapse=TRUE}
 library(data.table)
 final_dt <- data.table(final_data)
-SetNaTo(final_dt, list(0L, "unknown"))
-
+set_missing(final_dt, list(0L, "unknown"))
 ```
 
 ### Group sparse categories
-From the bar charts above, we observed a number of discrete features with sparse categorical distributions. Sometimes, we want to group the low-frequency categories to a new bucket, or reduce the number of categories to a reasonable range. `CollapseCategory()` will do the work.
+From the bar charts above, we observed a number of discrete features with sparse categorical distributions. Sometimes, we want to group the low-frequency categories to a new bucket, or reduce the number of categories to a reasonable range. `group_category` will do the work.
 
 Take *manufacturer* feature for example, suppose we want to group the long tail to another category. We could try with bottom 20% (by count) first:
 
-```{r fe-collapse-category-count-trial}
-CollapseCategory(data = final_dt, feature = "manufacturer", threshold = 0.2)
+```{r fe-group-category-count-trial}
+group_category(data = final_dt, feature = "manufacturer", threshold = 0.2)
 ```
 
 As we can see, manufacturer will be shrinked down to 5 categories, i.e., BOEING, EMBRAER, unknown, AIRBUS and OTHER. If you like this threshold, you may specify `update = TRUE` to update the original dataset:
 
-```{r fe-collapse-category-count-update, results='hide'}
-CollapseCategory(data = final_dt, feature = "manufacturer", threshold = 0.2, update = TRUE)
-BarDiscrete(final_dt$manufacturer)
+```{r fe-group-category-count-update, results='hide'}
+group_category(data = final_dt, feature = "manufacturer", threshold = 0.2, update = TRUE)
+plot_bar(final_dt$manufacturer)
 ```
 
 Instead of shrinking categories by frequency, you may also group the categories by another continuous metric. For example, if you want to bucket the carrier with bottom 20% distance travelled, you may do the following:
 
-```{r fe-collapse-category-metric-trial}
-CollapseCategory(data = final_dt, feature = "name_carrier", threshold = 0.2, measure = "distance")
+```{r fe-group-category-metric-trial}
+group_category(data = final_dt, feature = "name_carrier", threshold = 0.2, measure = "distance")
 ```
 
 Similarly, if you like it, you may add `update = TRUE` to update the original dataset.
 
-```{r fe-collapse-category-metric-update, results='hide'}
-CollapseCategory(data = final_dt, feature = "name_carrier", threshold = 0.2, measure = "distance", update = TRUE)
-BarDiscrete(final_dt$name_carrier)
+```{r fe-group-category-metric-update, results='hide'}
+group_category(data = final_dt, feature = "name_carrier", threshold = 0.2, measure = "distance", update = TRUE)
+plot_bar(final_dt$name_carrier)
 ```
 
 ### Drop features
-After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like *dst_origin* has only one value, and it doesn't provide any valuable information. You can use `DropVar()` to quickly drop features. The function takes either names or column indices.
+After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like *dst_origin* has only one value, and it doesn't provide any valuable information. You can use `drop_columns` to quickly drop features. The function takes either names or column indices.
 
-```{r fe-drop-var, eval=FALSE, collapse=TRUE}
-DropVar(final_dt, c("dst_origin", "dst_dest", "tzone_dest"))
-DropVar(final_dt, c(34, 41, 42))
+```{r fe-drop-columns, eval=FALSE, collapse=TRUE}
+drop_columns(final_dt, c("dst_origin", "dst_dest", "tzone_dest"))
+drop_columns(final_dt, c(34, 41, 42))
 ```
 
 ## Data Reporting
-To organize all the data profiling statistics into a report, you may use the `GenerateReport()` function. It will run most of the EDA functions and output a html file.
+To organize all the data profiling statistics into a report, you may use the `create_report()` function. It will run most of the EDA functions and output a html file.
 
-```{r dr-generate-report, eval=FALSE}
-GenerateReport(final_data)
+```{r dr-create-report, eval=FALSE}
+create_report(final_data)
 ```

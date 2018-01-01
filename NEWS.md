@@ -1,5 +1,33 @@
 # Changelog
 
+### DataExplorer 0.4.0.9000
+#### New Features
+* [#48](https://github.com/boxuancui/DataExplorer/issues/48): Added `plot_scatterplot` to visualize relationship of one feature against all other.
+* [#50](https://github.com/boxuancui/DataExplorer/issues/50): Added `plot_boxplot` to visualize continuous distributions broken down by another feature.
+
+#### Enhancements
+* [#44](https://github.com/boxuancui/DataExplorer/issues/44): Added option to exclude categories in `group_category`.
+* [#45](https://github.com/boxuancui/DataExplorer/issues/45): Added title option for all plots.
+* [#46](https://github.com/boxuancui/DataExplorer/issues/46): Added option to exclude columns in `set_missing`.
+* [#49](https://github.com/boxuancui/DataExplorer/issues/49) **[Breaking Change]**: Switched package to [tidyverse style](http://style.tidyverse.org/). All old functions are in `.Deprecated` mode. List of name changes in alphabetical order:
+	* `BarDiscrete` -> `plot_bar`
+	* `CollapseCategory` -> `group_category`
+	* `CorrelationContinuous`-> `plot_correlation(..., type = "continuous")`
+	* `CorrelationDiscrete`-> `plot_correlation(..., type = "discrete")`
+	* `DensityContinuous` -> `plot_density`
+	* `DropVar` -> `drop_columns`
+	* `GenerateReport` -> `create_report`
+	* `HistogramContinuous` -> `plot_histogram`
+	* `PlotMissing` -> `plot_missing`
+	* `PlotStr` -> `plot_str`
+	* `SetNaTo` -> `set_missing`
+	* `SplitColType` -> `split_columns`
+* [#52](https://github.com/boxuancui/DataExplorer/issues/52): Combined `CorrelationContinuous` and `CorrelationDiscrete` into one function, and added option to view correlation of all features at once.
+* Optimized layout for multiple plots.
+
+#### Bug Fixes
+* [#47](https://github.com/boxuancui/DataExplorer/issues/47): Fixed color scale for correlation heatmap.
+
 ---
 
 ### DataExplorer 0.4.0

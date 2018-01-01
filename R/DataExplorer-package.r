@@ -8,12 +8,4 @@
 #' package automatically scans through each variable and does data profiling.
 #' Typical graphical techniques will be performed for both discrete and
 #' continuous features.
-#' @seealso
-#' \link{GenerateReport},
-#' \link{PlotMissing},
-#' \link{BarDiscrete},
-#' \link{HistogramContinuous},
-#' \link{PlotStr},
-#' \link{CollapseCategory},
-#' \link{SetNaTo}
 NULL
