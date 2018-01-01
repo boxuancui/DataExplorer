@@ -5,7 +5,7 @@
 #' @param title plot title
 #' @keywords plot_missing
 #' @aliases PlotMissing
-#' @details The returned object is suppressed by \link{invisible} to prevent unwanted text in \link{GenerateReport}.
+#' @details The returned object is suppressed by \link{invisible}.
 #' @return missing value information, such as frequency, percentage and suggested action.
 #' @import data.table
 #' @import ggplot2
