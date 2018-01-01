@@ -1,6 +1,6 @@
 # Changelog
 
-### DataExplorer 0.4.0.9000
+### DataExplorer 0.5.0
 #### New Features
 * [#48](https://github.com/boxuancui/DataExplorer/issues/48): Added `plot_scatterplot` to visualize relationship of one feature against all other.
 * [#50](https://github.com/boxuancui/DataExplorer/issues/50): Added `plot_boxplot` to visualize continuous distributions broken down by another feature.

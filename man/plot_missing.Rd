@@ -19,7 +19,7 @@ missing value information, such as frequency, percentage and suggested action.
 This function returns and plots frequency of missing values for each feature.
 }
 \details{
-The returned object is suppressed by \link{invisible} to prevent unwanted text in \link{GenerateReport}.
+The returned object is suppressed by \link{invisible}.
 }
 \examples{
 # load packages
