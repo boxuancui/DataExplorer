@@ -34,7 +34,7 @@ If you would like to install the latest [development version](https://github.com
     remotes::install_github("boxuancui/DataExplorer", ref = "develop")
 
 ## Examples
-The package is extremely easy to use. Almost everything could be done in one line of code. Please refer to the package manuals for more information. You may also find the package vignettes [here](https://cran.r-project.org/web/packages/DataExplorer/vignettes/dataexplorer-intro.html).
+The package is extremely easy to use. Almost everything could be done in one line of code. Please refer to the package manuals for more information. You may also find the package vignettes [here](https://CRAN.R-project.org/package=DataExplorer/vignettes/dataexplorer-intro.html).
 
 #### Create data profiling report
 To get a report for the [airquality](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/airquality.html) dataset:
