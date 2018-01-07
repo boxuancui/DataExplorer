@@ -10,10 +10,10 @@ Description: Data exploration process for data analysis and model building, so
 Depends:
     R (>= 3.4.0)
 Imports:
-    data.table (>= 1.10),
-    reshape2 (>= 1.4),
-    ggplot2 (>= 2.2),
-    scales (>= 0.5),
+    data.table (>= 1.10.4-3),
+    reshape2 (>= 1.4.3),
+    ggplot2 (>= 2.2.1),
+    scales (>= 0.5.0),
     gridExtra (>= 2.3),
     rmarkdown (>= 1.8),
     networkD3 (>= 0.4),
