@@ -96,7 +96,7 @@ To visualize distributions based on another variable, you may do the following:
 
 
 #### Group categories for discrete features
-Sometimes, discrete variables are messy, e.g., too many imbalanced categories, extremely skewed categorical distribution. You may use `CollapseCategory` function to help you group the long tails.
+Sometimes, discrete variables are messy, e.g., too many imbalanced categories, extremely skewed categorical distribution. You may use `group_category` function to help you group the long tails.
 
     library(DataExplorer)
     library(ggplot2)
