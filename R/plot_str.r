@@ -10,7 +10,7 @@
 #' @aliases PlotStr
 #' @return input data structure in nested list. Could be transformed to json format with most JSON packages.
 #' @import data.table
-#' @import networkD3
+#' @importFrom networkD3 diagonalNetwork radialNetwork
 #' @importFrom utils capture.output str
 #' @export plot_str PlotStr
 #' @seealso \link{str}
