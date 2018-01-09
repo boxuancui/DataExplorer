@@ -15,6 +15,7 @@
 #' @export plot_str PlotStr
 #' @seealso \link{str}
 #' @examples
+#' \dontrun{
 #' ## Visualize structure of iris dataset
 #' plot_str(iris)
 #'
@@ -32,6 +33,7 @@
 #' plot_str(obj, type = "d")
 #' ## Visualize only top 2 nested levels
 #' plot_str(obj, type = "d", max_level = 2)
+#' }
 
 plot_str <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
   ## Declare variable first to pass R CMD check

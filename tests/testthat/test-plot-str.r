@@ -2,6 +2,7 @@ context("plot data structure")
 library(jsonlite)
 
 test_that("test nested levels", {
+  skip_on_cran()
   iris_output <- plot_str(iris, print_network = FALSE)
   expect_equal(length(iris_output), 2)
   obj <- list(list(list(list("a" = 1L))))
@@ -10,6 +11,7 @@ test_that("test nested levels", {
 })
 
 test_that("test returned object is valid json", {
+  skip_on_cran()
   obj <- list(lm(rnorm(5) ~ letters[1:5]), list(iris), list(list(list("a" = 1L))))
   obj_output <- plot_str(obj, print_network = FALSE)
   expect_true(validate(toJSON(obj_output)))
