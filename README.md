@@ -1,17 +1,18 @@
-# DataExplorer
-[![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
+# DataExplorer [![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
+<!--
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 [![CRAN Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
+-->
 
-[![Master Version](https://img.shields.io/badge/master-0.5.0-orange.svg)](https://github.com/boxuancui/DataExplorer/tree/master)
+###### master v0.5.0
 [![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer/branches)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=master&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
-[![Coverage Status](https://img.shields.io/codecov/c/github/boxuancui/DataExplorer/master.svg)](https://codecov.io/gh/boxuancui/DataExplorer/branch/master)
+[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/master/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer)
 
-[![Develop Version](https://img.shields.io/badge/develop-0.5.0-orange.svg)](https://github.com/boxuancui/DataExplorer/tree/develop)
+###### develop v0.5.0
 [![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop)](https://travis-ci.org/boxuancui/DataExplorer/branches)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=develop&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
-[![Coverage Status](https://img.shields.io/codecov/c/github/boxuancui/DataExplorer/develop.svg)](https://codecov.io/gh/boxuancui/DataExplorer/branch/develop)
+[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/develop/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer)
 
 ---
 
@@ -75,8 +76,27 @@ You may also run all the plotting functions individually for your analysis, e.g.
     missing_data <- plot_missing(airquality) # missing data profile will be returned
     missing_data
 
+#### Slice and dice your data
+To visualize distributions based on another variable, you may do the following:
+
+	library(DataExplorer)
+	
+	## View iris continuous distribution based on each Species
+	plot_boxplot(iris, "Species")
+	
+	## View iris continuous distribution based on different buckets of Sepal.Length
+	plot_boxplot(iris, "Sepal.Length")
+	
+	## Scatterplot Ozone against all other airquality features
+	# Set some features to factor
+	for (i in c("Month", "Day")) airquality[[i]] <- as.factor(airquality[[i]])
+	# Plot scatterplot
+	# Note: discrete and continuous charts are plotted on separate pages!
+	plot_scatterplot(airquality, "Ozone")
+
+
 #### Group categories for discrete features
-Sometimes, discrete variables are messy, e.g., too many imbalanced categories, extremely skewed categorical distribution. You may use `CollapseCategory` function to help you group the long tails.
+Sometimes, discrete variables are messy, e.g., too many imbalanced categories, extremely skewed categorical distribution. You may use `group_category` function to help you group the long tails.
 
     library(DataExplorer)
     library(ggplot2)

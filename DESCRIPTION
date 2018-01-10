@@ -8,15 +8,15 @@ Description: Data exploration process for data analysis and model building, so
     Typical graphical techniques will be performed for both discrete and
     continuous features.
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.4.0)
 Imports:
-    data.table (>= 1.10.0),
-    reshape2 (>= 1.4.2),
-    ggplot2 (>= 2.2.0),
-    scales (>= 0.4.1),
-    gridExtra (>= 2.2.1),
-    rmarkdown (>= 1.2),
-    networkD3 (>= 0.2.13),
+    data.table (>= 1.10.4-3),
+    reshape2 (>= 1.4.3),
+    ggplot2 (>= 2.2.1),
+    scales (>= 0.5.0),
+    gridExtra (>= 2.3),
+    rmarkdown (>= 1.8),
+    networkD3 (>= 0.4),
     stats,
     utils
 Suggests: testthat,

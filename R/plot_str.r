@@ -10,11 +10,12 @@
 #' @aliases PlotStr
 #' @return input data structure in nested list. Could be transformed to json format with most JSON packages.
 #' @import data.table
-#' @import networkD3
+#' @importFrom networkD3 diagonalNetwork radialNetwork
 #' @importFrom utils capture.output str
 #' @export plot_str PlotStr
 #' @seealso \link{str}
 #' @examples
+#' \dontrun{
 #' ## Visualize structure of iris dataset
 #' plot_str(iris)
 #'
@@ -32,6 +33,7 @@
 #' plot_str(obj, type = "d")
 #' ## Visualize only top 2 nested levels
 #' plot_str(obj, type = "d", max_level = 2)
+#' }
 
 plot_str <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
   ## Declare variable first to pass R CMD check
