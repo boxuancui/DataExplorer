@@ -1,5 +1,13 @@
 # Changelog
 
+### DataExplorer 0.5.0.9000
+#### Enhancements
+* `plot_missing`:
+	* Percentage text labels from output plot now has 2 decimals to prevent small percentages from being truncated to 0%.
+	* Added example to quickly drop columns with too many missing values.
+
+---
+
 ### DataExplorer 0.5.0
 #### New Features
 * [#48](https://github.com/boxuancui/DataExplorer/issues/48): Added `plot_scatterplot` to visualize relationship of one feature against all other.

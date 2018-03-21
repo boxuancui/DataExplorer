@@ -12,16 +12,20 @@
 #' @importFrom scales comma
 #' @export plot_missing PlotMissing
 #' @examples
-#' # load packages
+#' # Load packages
 #' library(data.table)
 #'
-#' # manipulate data
+#' # Add missing values to iris data
 #' dt <- data.table(iris)
 #' for (j in 1:4) set(dt, i = sample(150, j * 30), j, value = NA_integer_)
 #'
-#' # plot and assign missing value information
+#' # Plot and assign missing value information
 #' na_profile <- plot_missing(dt)
 #' na_profile
+#'
+#' # Drop columns with more than 50% missing values
+#' drop_columns(dt, as.character(na_profile[pct_missing >= 0.5][["feature"]]))
+#' plot_missing(dt)
 
 plot_missing <- function(data, title = NULL) {
   ## Declare variable first to pass R CMD check
@@ -45,7 +49,7 @@ plot_missing <- function(data, title = NULL) {
   ## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "group")) +
     geom_bar(stat = "identity", colour = "black", alpha = 0.4) +
-    geom_text(aes(label = paste0(round(100 * pct_missing, 0), "%")), hjust = -0.15, size = 3.5) +
+    geom_text(aes(label = paste0(round(100 * pct_missing, 2), "%")), vjust = -0.5, size = 3.5, angle = -90) +
     scale_fill_manual("Group", values = c("Good" = "#1a9641", "OK" = "#a6d96a", "Bad" = "#fdae61", "Remove" = "#d7191c"), breaks = c("Good", "OK", "Bad", "Remove")) +
     scale_y_continuous(labels = comma) +
     theme(legend.position = c("bottom")) + coord_flip() +

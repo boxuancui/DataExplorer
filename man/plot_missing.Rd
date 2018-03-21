@@ -22,15 +22,19 @@ This function returns and plots frequency of missing values for each feature.
 The returned object is suppressed by \link{invisible}.
 }
 \examples{
-# load packages
+# Load packages
 library(data.table)
 
-# manipulate data
+# Add missing values to iris data
 dt <- data.table(iris)
 for (j in 1:4) set(dt, i = sample(150, j * 30), j, value = NA_integer_)
 
-# plot and assign missing value information
+# Plot and assign missing value information
 na_profile <- plot_missing(dt)
 na_profile
+
+# Drop columns with more than 50\% missing values
+drop_columns(dt, as.character(na_profile[pct_missing >= 0.5][["feature"]]))
+plot_missing(dt)
 }
 \keyword{plot_missing}
