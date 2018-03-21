@@ -17,16 +17,15 @@
 #' # load diamonds dataset from ggplot2
 #' data("diamonds", package = "ggplot2")
 #'
-#' # Plot correlation heatmap with all columns
+#' # Plot correlation heatmap
 #' plot_correlation(diamonds)
-#' # Plot correlation heatmap with discrete features only
-#' plot_correlation(diamonds, type = "d")
-#' # Plot correlation heatmap with continuous features only
+#' plot_correlation(diamonds, maxcat = 5)
 #' plot_correlation(diamonds, type = "c")
+#' plot_correlation(diamonds, type = "d")
 
 plot_correlation <- function(data, type = c("all", "discrete", "continuous"), maxcat = 20, title = NULL, ...) {
   ## Declare variable first to pass R CMD check
-  Var1 <- Var2 <- value <- discrete_id <- NULL
+  Var1 <- Var2 <- value <- NULL
   ## Set data to data.table
   if (!is.data.table(data)) {data <- data.table(data)}
   ## Split data
@@ -39,43 +38,27 @@ plot_correlation <- function(data, type = c("all", "discrete", "continuous"), ma
   }
   if (col_type %in% c("all", "discrete")) {
     if ((col_type == "discrete") & (split_data$num_discrete == 0)) stop("No discrete features found!")
-    discrete <- split_data$discrete
-    ## Get number of categories for each feature
-    n_cat <- sapply(discrete, function(x) {length(unique(x))})
-    ign_ind <- which(n_cat > maxcat)
-    n_true_discrete <- split_data$num_discrete - length(ign_ind)
-    if (all(split_data$num_discrete, length(ign_ind), !n_true_discrete)) warning("Ignored all discrete features since `maxcat` set to ", maxcat, " categories!")
-    if (n_true_discrete > 0) {
-      if (length(ign_ind) > 0) {
-        set(discrete, j = ign_ind, value = NULL)
-        message(length(ign_ind), " features with more than ", maxcat, " categories ignored!\n", paste0(names(ign_ind), ": ", n_cat[ign_ind], " categories\n"))
-      }
-      ## Calculate categorical correlation and melt into tidy data format
-      discrete[, discrete_id := seq(nrow(discrete))]
-      discrete_pivot <- Reduce(
-        function(x, y) {merge(x, y, by = "discrete_id")},
-        lapply(names(discrete)[names(discrete) != "discrete_id"], function(x) {
-          dcast.data.table(discrete, discrete_id ~ paste0(x, "_", get(x)), length, value.var = "discrete_id")
-        })
-      )
-      discrete_pivot[, discrete_id := NULL]
-    }
+    raw_discrete <- split_data$discrete
+    ind <- .ignoreCat(raw_discrete, maxcat)
+    n_true_discrete <- split_data$num_discrete - length(ind)
+    discrete <- dummify(raw_discrete, maxcat = maxcat)
+    if (length(ind)) drop_columns(discrete, names(ind))
   }
 
   if (col_type == "all") {
     if (all(nrow(continuous), n_true_discrete)) {
-      all_data <- cbind(continuous, discrete_pivot)
+      all_data <- cbind(continuous, discrete)
     } else if (nrow(continuous)) {
       all_data <- continuous
     } else if (n_true_discrete) {
-      all_data <- discrete_pivot
+      all_data <- discrete
     } else {
       stop("No data to plot!")
     }
   }
 
   ## Calculate correlation and melt into tidy data format
-  final_data <- switch(col_type, "all" = all_data, "discrete" = discrete_pivot, "continuous" = continuous)
+  final_data <- switch(col_type, "all" = all_data, "discrete" = discrete, "continuous" = continuous)
   plot_data <- reshape2::melt(cor(final_data, ...))
   ## Create ggplot object
   plot <- ggplot(plot_data, aes(x = Var1, y = Var2, fill = value)) +

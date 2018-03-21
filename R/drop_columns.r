@@ -33,7 +33,7 @@
 
 drop_columns <- function(data, ind) {
   if (!is.data.table(data)) stop("Please change your input data class to data.table!")
-  data[, (ind) := NULL]
+  data[, (ind) := NULL][]
 }
 
 DropVar <- function(data, ind) {

@@ -1,10 +1,14 @@
 # Changelog
 
 ### DataExplorer 0.5.0.9000
+#### New Features
+* [#54](https://github.com/boxuancui/DataExplorer/issues/54): Extracted `dummify` from `plot_correlation` as a new function.
+
 #### Enhancements
 * `plot_missing`:
 	* Percentage text labels from output plot now has 2 decimals to prevent small percentages from being truncated to 0%.
 	* Added example to quickly drop columns with too many missing values.
+* Added `.ignoreCat` to helper.
 
 ---
 
@@ -54,7 +58,7 @@
 * [#37](https://github.com/boxuancui/DataExplorer/issues/37): Changed all `cat()` to `message()`.
 * [#38](https://github.com/boxuancui/DataExplorer/issues/38): Added option to order bars in `BarDiscrete`.
 * [#39](https://github.com/boxuancui/DataExplorer/issues/39): Extended `SetNaTo` to discrete features.
-* Added more examples in README file.
+* Added more examples to **README.md**.
 
 ---
 
@@ -64,11 +68,11 @@
 * [#29](https://github.com/boxuancui/DataExplorer/issues/29): Added `DropVar` to quickly drop variables by either name or column position.
 
 #### Bug Fixes
-* [#24](https://github.com/boxuancui/DataExplorer/issues/24): `CorrelationDiscrete` now displays all factor levels instead of contrasts from `model.matrix`.
+* [#24](https://github.com/boxuancui/DataExplorer/issues/24): `CorrelationDiscrete` now displays all factor levels instead of full rank matrix from `model.matrix`.
 
 #### Enhancements
 * [#11](https://github.com/boxuancui/DataExplorer/issues/11): Functions with return values will now match the input class and set it back.
-* [#22](https://github.com/boxuancui/DataExplorer/issues/22): Added documentation for **num_all_missing** in `SplitColType`.
+* [#22](https://github.com/boxuancui/DataExplorer/issues/22): Added documentation for `num_all_missing` in `SplitColType`.
 * [#23](https://github.com/boxuancui/DataExplorer/issues/23): Added additional measures (in addition to frequency) to `CollapseCategory`.
 * [#26](https://github.com/boxuancui/DataExplorer/issues/26): Removed density estimation section from report template.
 * [#31](https://github.com/boxuancui/DataExplorer/issues/31): Added flexibility to name the new category in `CollapseCategory`.
@@ -121,5 +125,5 @@
 * Features with all missing values will be ignored.
 * Switched position between continuous and discrete features in report template.
 * Renamed package name to **DataExplorer**.
-* Added `NEWS.md`.
+* Added **NEWS.md**.
 * Removed `BoxplotContinuous`.

@@ -30,11 +30,10 @@ For discrete features, the function first dummifies all categories, then calcula
 # load diamonds dataset from ggplot2
 data("diamonds", package = "ggplot2")
 
-# Plot correlation heatmap with all columns
+# Plot correlation heatmap
 plot_correlation(diamonds)
-# Plot correlation heatmap with discrete features only
-plot_correlation(diamonds, type = "d")
-# Plot correlation heatmap with continuous features only
+plot_correlation(diamonds, maxcat = 5)
 plot_correlation(diamonds, type = "c")
+plot_correlation(diamonds, type = "d")
 }
 \keyword{plot_correlation}
