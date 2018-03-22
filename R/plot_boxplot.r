@@ -22,7 +22,9 @@ plot_boxplot <- function(data, by, title = NULL, ...) {
   ## Declare variable first to pass R CMD check
   variable <- by_f <- value <- NULL
   ## Check if input is data.table
-  if (!is.data.table(data)) {data <- data.table(data)}
+  if (!is.data.table(data)) {
+    data <- data.table(data)
+  }
   ## Stop if no continuous features
   split_obj <- split_columns(data)
   if (split_obj$num_continuous == 0) stop("No Continuous Features!")

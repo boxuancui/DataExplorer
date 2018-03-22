@@ -69,7 +69,7 @@ plot_str <- function(data, type = c("diagonal", "radial"), max_level, print_netw
   str_to_list <- function(str_dt, root_name = as.character(str_dt[["parent"]][1])) {
     str_list <- list(name = root_name)
     children <- str_dt[parent == root_name][["child"]]
-    if(length(children) > 0) {
+    if (length(children) > 0) {
       str_list[["children"]] <- lapply(children, str_to_list, str_dt = str_dt)
     }
     str_list

@@ -24,7 +24,9 @@ plot_scatterplot <- function(data, by, title = NULL, ...) {
   ## Declare variable first to pass R CMD check
   variable <- NULL
   ## Check if input is data.table
-  if (!is.data.table(data)) {data <- data.table(data)}
+  if (!is.data.table(data)) {
+    data <- data.table(data)
+  }
   ## Create plot function
   scatterplot <- function(input_data, ...) {
     dt <- suppressWarnings(melt.data.table(input_data, id.vars = by))

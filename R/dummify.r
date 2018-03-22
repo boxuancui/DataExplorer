@@ -24,7 +24,9 @@ dummify <- function(data, maxcat = 50L) {
   ## Detect input data class
   data_class <- class(data)
   ## Set data to data.table
-  if (!is.data.table(data)) {data <- data.table(data)}
+  if (!is.data.table(data)) {
+    data <- data.table(data)
+  }
   ## Split data
   split_data <- split_columns(data)
   continuous <- split_data$continuous
@@ -45,7 +47,9 @@ dummify <- function(data, maxcat = 50L) {
         ## Calculate categorical correlation and melt into tidy data format
         discrete[, discrete_id := .I]
         discrete_pivot <- Reduce(
-          function(x, y) {merge(x, y, by = "discrete_id")},
+          function(x, y) {
+            merge(x, y, by = "discrete_id")
+          },
           c(
             list(discrete[, c("discrete_id", names(ind)), with = FALSE]),
             lapply(names(discrete)[!(names(discrete) %in% c("discrete_id", names(ind)))], function(x) {
@@ -67,7 +71,9 @@ dummify <- function(data, maxcat = 50L) {
   }
 
   ## Set data class back to original
-  if (!is_data_table) {class(final_data) <- data_class}
+  if (!is_data_table) {
+    class(final_data) <- data_class
+  }
   ## Set return object
   return(final_data)
 }

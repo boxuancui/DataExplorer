@@ -1,7 +1,9 @@
 context("drop variables")
 
 test_that("test basic functionality", {
-  dt <- data.table(sapply(setNames(letters, letters), function(x) {assign(x, rnorm(100))}))
+  dt <- data.table(sapply(setNames(letters, letters), function(x) {
+    assign(x, rnorm(100))
+  }))
   dt2 <- copy(dt)
   n <- nrow(dt)
   drop_columns(dt, letters[2:25])

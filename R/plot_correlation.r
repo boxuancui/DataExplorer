@@ -27,7 +27,9 @@ plot_correlation <- function(data, type = c("all", "discrete", "continuous"), ma
   ## Declare variable first to pass R CMD check
   Var1 <- Var2 <- value <- NULL
   ## Set data to data.table
-  if (!is.data.table(data)) {data <- data.table(data)}
+  if (!is.data.table(data)) {
+    data <- data.table(data)
+  }
   ## Split data
   split_data <- split_columns(data)
   ## Match column type and raise appropriate alerts if necessary
@@ -67,7 +69,9 @@ plot_correlation <- function(data, type = c("all", "discrete", "continuous"), ma
     xlab("Features") + ylab("Features") +
     theme(legend.position = "bottom", axis.text.x = element_text(angle = 90)) +
     ggtitle(label = title)
-  if (ncol(final_data) <= 20) {plot <- plot + geom_text(aes(label = round(value, 2)))}
+  if (ncol(final_data) <= 20) {
+    plot <- plot + geom_text(aes(label = round(value, 2)))
+  }
   ## Print plot object
   print(plot)
 }

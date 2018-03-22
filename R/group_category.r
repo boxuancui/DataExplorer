@@ -44,7 +44,9 @@ group_category <- function(data, feature, threshold, measure, update = FALSE, ca
   ## Detect input data class
   data_class <- class(data)
   ## Set data to data.table
-  if (!is_data_table) {data <- data.table(data)}
+  if (!is_data_table) {
+    data <- data.table(data)
+  }
   ## Set feature to discrete
   set(data, j = feature, value = as.character(data[[feature]]))
   if (missing(measure)) {

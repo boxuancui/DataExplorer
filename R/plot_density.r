@@ -25,7 +25,9 @@
 #' plot_density(data)
 
 plot_density <- function(data, title = NULL, ...) {
-  if (!is.data.table(data)) {data <- data.table(data)}
+  if (!is.data.table(data)) {
+    data <- data.table(data)
+  }
   ## Stop if no continuous features
   if (split_columns(data)$num_continuous == 0) stop("No Continuous Features")
   ## Get continuous features
@@ -40,15 +42,17 @@ plot_density <- function(data, title = NULL, ...) {
     subset_data <- continuous[, seq.int(16L * pg - 15L, min(p, 16L * pg)), with = FALSE]
     n_col <- ifelse(ncol(subset_data) %% 4L, ncol(subset_data) %/% 4L + 1L, ncol(subset_data) %/% 4L)
     ## Create ggplot object
-    plot <- lapply(seq_along(subset_data),
-                   function(j) {
-                     x <- na.omit(subset_data[, j, with = FALSE])
-                     ggplot(x, aes_string(x = names(x))) +
-                       geom_density(fill = "black", alpha = 0.4, ...) +
-                       scale_x_continuous(labels = comma) +
-                       scale_y_continuous(labels = percent) +
-                       ylab("Density")
-                   })
+    plot <- lapply(
+      seq_along(subset_data),
+      function(j) {
+        x <- na.omit(subset_data[, j, with = FALSE])
+        ggplot(x, aes_string(x = names(x))) +
+          geom_density(fill = "black", alpha = 0.4, ...) +
+          scale_x_continuous(labels = comma) +
+          scale_y_continuous(labels = percent) +
+          ylab("Density")
+      }
+    )
     ## Print plot object
     if (pages > 1) {
       suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 4L, top = title)))

@@ -27,13 +27,17 @@ plot_bar <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE, title = 
   ## Declare variable first to pass R CMD check
   frequency <- NULL
   ## Check if input is data.table
-  if (!is.data.table(data)) {data <- data.table(data)}
+  if (!is.data.table(data)) {
+    data <- data.table(data)
+  }
   ## Stop if no discrete features
   if (split_columns(data)$num_discrete == 0) stop("No Discrete Features")
   ## Get discrete features
   discrete <- split_columns(data)$discrete
   ## Get number of categories for each feature
-  n_cat <- sapply(discrete, function(x) {length(unique(x))})
+  n_cat <- sapply(discrete, function(x) {
+    length(unique(x))
+  })
   ign_ind <- which(n_cat > maxcat)
   if (length(ign_ind) > 0) {
     set(discrete, j = ign_ind, value = NULL)
@@ -49,21 +53,25 @@ plot_bar <- function(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE, title = 
     subset_data <- discrete[, seq.int(9L * pg - 8L, min(p, 9L * pg)), with = FALSE]
     n_col <- ifelse(ncol(subset_data) %% 3L, ncol(subset_data) %/% 3L + 1L, ncol(subset_data) %/% 3L)
     ## Create ggplot object
-    plot <- lapply(seq_along(subset_data),
-                   function(j) {
-                     x <- subset_data[, j, with = FALSE]
-                     agg_x <- x[, list(frequency = .N), by = names(x)]
-                     if (na.rm) {agg_x <- na.omit(agg_x)}
-                     if (order_bar) {
-                       base_plot <- ggplot(agg_x, aes(x = reorder(get(names(agg_x)[1]), frequency), y = frequency))
-                     } else {
-                       base_plot <- ggplot(agg_x, aes_string(x = names(agg_x)[1], y = "frequency"))
-                     }
-                     base_plot +
-                       geom_bar(stat = "identity", alpha = 0.4, colour = "black") +
-                       scale_y_continuous(labels = comma) +
-                       coord_flip() + xlab(names(agg_x)[1]) + ylab("Frequency")
-                   })
+    plot <- lapply(
+      seq_along(subset_data),
+      function(j) {
+        x <- subset_data[, j, with = FALSE]
+        agg_x <- x[, list(frequency = .N), by = names(x)]
+        if (na.rm) {
+          agg_x <- na.omit(agg_x)
+        }
+        if (order_bar) {
+          base_plot <- ggplot(agg_x, aes(x = reorder(get(names(agg_x)[1]), frequency), y = frequency))
+        } else {
+          base_plot <- ggplot(agg_x, aes_string(x = names(agg_x)[1], y = "frequency"))
+        }
+        base_plot +
+          geom_bar(stat = "identity", alpha = 0.4, colour = "black") +
+          scale_y_continuous(labels = comma) +
+          coord_flip() + xlab(names(agg_x)[1]) + ylab("Frequency")
+      }
+    )
     ## Print plot object
     if (pages > 1) {
       suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 3L, top = title)))
