@@ -1,14 +1,15 @@
-# Sample .travis.yml for R projects
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: r
-warnings_are_errors: true
-sudo: required
-r_binary_packages:
- - data.table
- - ggplot2
- - gridExtra
- - rmarkdown
-r_github_packages:
-  - jimhester/covr
+language: R
+sudo: false
+cache: packages
+
+r:
+- 3.1
+- 3.2
+- oldrel
+- release
+- devel
+
 after_success:
   - Rscript -e 'covr::codecov()'

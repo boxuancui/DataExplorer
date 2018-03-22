@@ -6,3 +6,4 @@
 ^revdep$
 ^appveyor\.yml$
 ^CONDUCT\.md$
+^\.github$
