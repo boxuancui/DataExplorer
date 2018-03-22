@@ -7,7 +7,6 @@
 #' @note This is different from \link{model.matrix}, where the latter aims to create a full rank matrix for regression-like use cases. If your intention is to create a design matrix, use \link{model.matrix} instead.
 #' @return dummified dataset (discrete features only) preserving original features. However, column order might be different.
 #' @import data.table
-#' @import reshape2
 #' @export
 #' @examples
 #' ## Dummify iris dataset
