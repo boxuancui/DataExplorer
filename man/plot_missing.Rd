@@ -5,12 +5,17 @@
 \alias{PlotMissing}
 \title{Plot missing value profile}
 \usage{
-plot_missing(data, title = NULL)
+plot_missing(data, title = NULL, ggtheme = theme_gray(),
+  theme_config = list(legend.position = c("bottom")))
 }
 \arguments{
 \item{data}{input data to be profiled, in either \link{data.frame} or \link{data.table} format.}
 
 \item{title}{plot title}
+
+\item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
+
+\item{theme_config}{a list of configurations to be passed to \link{theme}.}
 }
 \value{
 missing value information, such as frequency, percentage and suggested action.
@@ -20,6 +25,10 @@ This function returns and plots frequency of missing values for each feature.
 }
 \details{
 The returned object is suppressed by \link{invisible}.
+
+To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
+
+\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 }
 \examples{
 # Load packages

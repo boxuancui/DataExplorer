@@ -5,6 +5,7 @@
 * [#54](https://github.com/boxuancui/DataExplorer/issues/54): Extracted `dummify` from `plot_correlation` as a new function.
 
 #### Enhancements
+* [#56](https://github.com/boxuancui/DataExplorer/issues/56): Added support for theme and customization for individual components.
 * `plot_missing`:
 	* Percentage text labels from output plot now has 2 decimals to prevent small percentages from being truncated to 0%.
 	* Added example to quickly drop columns with too many missing values.

@@ -5,28 +5,55 @@
 \alias{DensityContinuous}
 \title{Visualize density estimates for continuous features}
 \usage{
-plot_density(data, title = NULL, ...)
+plot_density(data, title = NULL, ggtheme = theme_gray(),
+  theme_config = list(), ...)
 }
 \arguments{
 \item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
 
 \item{title}{plot title}
 
+\item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
+
+\item{theme_config}{a list of configurations to be passed to \link{theme}.}
+
 \item{\dots}{other arguments to be passed to \link{geom_density}.}
 }
 \description{
 This function visualizes density estimates for each continuous feature.
 }
+\details{
+To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
+
+\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
+}
 \examples{
-# plot using iris data
+# Plot using iris data
 plot_density(iris)
 
-# plot using random data
+# Plot using random data
 set.seed(1)
 data <- cbind(sapply(1:9, function(x) {
           runif(500, min = sample(100, 1), max = sample(1000, 1))
         }))
 plot_density(data)
+
+# Add color to density area
+plot_density(data, fill = "black", alpha = 0.8)
+
+\dontrun{
+# Plot with preset ggplot2 themes
+library(ggplot2)
+plot_density(data, ggtheme = theme_light())
+plot_density(data, ggtheme = theme_minimal(base_size = 15))
+
+# Plot with customized theme components
+plot_density(data,
+theme_config = list(
+  "plot.background" = element_rect(fill = "yellow"),
+  "aspect.ratio" = 1
+))
+}
 }
 \seealso{
 \link{geom_density} \link{plot_histogram}

@@ -3,9 +3,13 @@
 #' This function returns and plots frequency of missing values for each feature.
 #' @param data input data to be profiled, in either \link{data.frame} or \link{data.table} format.
 #' @param title plot title
+#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @keywords plot_missing
 #' @aliases PlotMissing
 #' @details The returned object is suppressed by \link{invisible}.
+#' @details To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
+#' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 #' @return missing value information, such as frequency, percentage and suggested action.
 #' @import data.table
 #' @import ggplot2
@@ -27,7 +31,7 @@
 #' drop_columns(dt, as.character(na_profile[pct_missing >= 0.5][["feature"]]))
 #' plot_missing(dt)
 
-plot_missing <- function(data, title = NULL) {
+plot_missing <- function(data, title = NULL, ggtheme = theme_gray(), theme_config = list("legend.position" = c("bottom"))) {
   ## Declare variable first to pass R CMD check
   feature <- num_missing <- pct_missing <- group <- NULL
   ## Check if input is data.table
@@ -54,12 +58,15 @@ plot_missing <- function(data, title = NULL) {
   }
   ## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "group")) +
-    geom_bar(stat = "identity", colour = "black", alpha = 0.4) +
+    geom_bar(stat = "identity") +
     geom_text(aes(label = paste0(round(100 * pct_missing, 2), "%")), vjust = -0.5, size = 3.5, angle = -90) +
     scale_fill_manual("Group", values = c("Good" = "#1a9641", "OK" = "#a6d96a", "Bad" = "#fdae61", "Remove" = "#d7191c"), breaks = c("Good", "OK", "Bad", "Remove")) +
     scale_y_continuous(labels = comma) +
-    theme(legend.position = c("bottom")) + coord_flip() +
-    xlab("Features") + ylab("Number of missing rows") + ggtitle(title)
+    coord_flip() +
+    xlab("Features") + ylab("Number of missing rows") +
+    ggtitle(title) +
+    ggtheme +
+    do.call(theme, theme_config)
   ## Print plot
   print(output)
   ## Set return object

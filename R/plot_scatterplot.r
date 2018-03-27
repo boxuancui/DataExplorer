@@ -4,23 +4,35 @@
 #' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
 #' @param by feature name to be fixed.
 #' @param title plot title
+#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @param \dots other arguments to be passed to \link{geom_point}.
 #' @keywords plot_scatterplot
+#' @details To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
+#' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma
 #' @export plot_scatterplot
 #' @seealso \link{geom_point}
 #' @examples
-#' # load mpg data from ggplot2
+#' # Load mpg data from ggplot2
 #' data("mpg", package = "ggplot2")
 #'
-#' # scatterplot mpg dataset by "hwy"
+#' # Scatterplot mpg dataset by "hwy"
 #' plot_scatterplot(mpg, "hwy", size = 1)
-#' # scatterplot mpg dataset by "class"
+#'
+#' # Scatterplot mpg dataset by "class"
 #' plot_scatterplot(mpg, "class", size = 1)
+#'
+#' # Scatterplot with preset ggplot2 themes
+#' library(ggplot2)
+#' plot_scatterplot(mpg, "hwy", ggtheme = theme_light())
+#'
+#' # Scatterplot with customized theme components
+#' plot_scatterplot(mpg, "hwy", theme_config = list("axis.text.x" = element_text(angle = 90)))
 
-plot_scatterplot <- function(data, by, title = NULL, ...) {
+plot_scatterplot <- function(data, by, title = NULL, ggtheme = theme_gray(), theme_config = list("axis.text.x" = element_text(angle = 45, hjust = 1)), ...) {
   ## Declare variable first to pass R CMD check
   variable <- NULL
   ## Check if input is data.table
@@ -42,7 +54,8 @@ plot_scatterplot <- function(data, by, title = NULL, ...) {
         facet_wrap(~ variable, ncol = n_col, scales = "free_x", shrink = FALSE) +
         coord_flip() +
         xlab(by) + ggtitle(title) +
-        theme(axis.text.x = element_text(angle = 45, hjust = 1))
+        ggtheme +
+        do.call(theme, theme_config)
       print(plot)
     }
   }

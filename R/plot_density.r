@@ -3,9 +3,13 @@
 #' This function visualizes density estimates for each continuous feature.
 #' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
 #' @param title plot title
+#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @param \dots other arguments to be passed to \link{geom_density}.
 #' @keywords plot_density
 #' @aliases DensityContinuous
+#' @details To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
+#' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma percent
@@ -14,17 +18,34 @@
 #' @export plot_density DensityContinuous
 #' @seealso \link{geom_density} \link{plot_histogram}
 #' @examples
-#' # plot using iris data
+#' # Plot using iris data
 #' plot_density(iris)
 #'
-#' # plot using random data
+#' # Plot using random data
 #' set.seed(1)
 #' data <- cbind(sapply(1:9, function(x) {
 #'           runif(500, min = sample(100, 1), max = sample(1000, 1))
 #'         }))
 #' plot_density(data)
+#'
+#' # Add color to density area
+#' plot_density(data, fill = "black", alpha = 0.8)
+#'
+#' \dontrun{
+#' # Plot with preset ggplot2 themes
+#' library(ggplot2)
+#' plot_density(data, ggtheme = theme_light())
+#' plot_density(data, ggtheme = theme_minimal(base_size = 15))
+#'
+#' # Plot with customized theme components
+#' plot_density(data,
+#' theme_config = list(
+#'   "plot.background" = element_rect(fill = "yellow"),
+#'   "aspect.ratio" = 1
+#' ))
+#' }
 
-plot_density <- function(data, title = NULL, ...) {
+plot_density <- function(data, title = NULL, ggtheme = theme_gray(), theme_config = list(), ...) {
   if (!is.data.table(data)) {
     data <- data.table(data)
   }
@@ -47,10 +68,12 @@ plot_density <- function(data, title = NULL, ...) {
       function(j) {
         x <- na.omit(subset_data[, j, with = FALSE])
         ggplot(x, aes_string(x = names(x))) +
-          geom_density(fill = "black", alpha = 0.4, ...) +
+          geom_density(...) +
           scale_x_continuous(labels = comma) +
           scale_y_continuous(labels = percent) +
-          ylab("Density")
+          ylab("Density") +
+          ggtheme +
+          do.call(theme, theme_config)
       }
     )
     ## Print plot object
