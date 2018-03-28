@@ -33,10 +33,9 @@ plot_histogram(iris)
 
 # Plot random data with customized geom_histogram settings
 set.seed(1)
-data <- cbind(sapply(1:9, function(x) {rnorm(1000, sd = 30 * x)}))
+data <- cbind(sapply(seq.int(4L), function(x) {rnorm(1000, sd = 30 * x)}))
 plot_histogram(data, breaks = seq(-400, 400, length = 50))
 
-\dontrun{
 # Plot histogram with preset ggplot2 themes
 library(ggplot2)
 plot_histogram(data, ggtheme = theme_light())
@@ -48,7 +47,6 @@ theme_config = list(
   "plot.background" = element_rect(fill = "yellow"),
   "aspect.ratio" = 1
 ))
-}
 }
 \seealso{
 \link{geom_histogram} \link{plot_density}

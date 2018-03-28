@@ -40,7 +40,7 @@ plot_scatterplot <- function(data, by, title = NULL, ggtheme = theme_gray(), the
     data <- data.table(data)
   }
   ## Create plot function
-  scatterplot <- function(input_data, ...) {
+  scatterplot <- function(input_data, col_type, ...) {
     dt <- suppressWarnings(melt.data.table(input_data, id.vars = by))
     ## Calculate number of pages
     p <- ncol(input_data) - 1
@@ -53,7 +53,7 @@ plot_scatterplot <- function(data, by, title = NULL, ggtheme = theme_gray(), the
         geom_point(...) +
         facet_wrap(~ variable, ncol = n_col, scales = "free_x", shrink = FALSE) +
         coord_flip() +
-        xlab(by) + ggtitle(title) +
+        labs(x = by, title = title, caption = ifelse(pages > 1, paste0(col_type, ": Page ", pg), col_type)) +
         ggtheme +
         do.call(theme, theme_config)
       print(plot)
@@ -64,11 +64,11 @@ plot_scatterplot <- function(data, by, title = NULL, ggtheme = theme_gray(), the
   if (split_obj$num_continuous > 0) {
     plot_dt <- data.table(split_obj$continuous, "by_f" = data[[by]])
     setnames(plot_dt, "by_f", by)
-    scatterplot(plot_dt, ...)
+    scatterplot(plot_dt, col_type = "Continuous Features", ...)
   }
   if (split_obj$num_discrete > 0) {
     plot_dt <- data.table(split_obj$discrete, "by_f" = data[[by]])
     setnames(plot_dt, "by_f", by)
-    scatterplot(plot_dt, ...)
+    scatterplot(plot_dt, col_type = "Discrete Features", ...)
   }
 }

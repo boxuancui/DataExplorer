@@ -5,13 +5,13 @@
 \alias{BarDiscrete}
 \title{Create bar charts for discrete features}
 \usage{
-plot_bar(data, na.rm = TRUE, maxcat = 50, order_bar = TRUE,
-  title = NULL, ggtheme = theme_gray(), theme_config = list())
+plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE, title = NULL,
+  ggtheme = theme_gray(), theme_config = list())
 }
 \arguments{
 \item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
 
-\item{na.rm}{logical, indicating if missing values should be removed for each feature. The default is \code{TRUE}.}
+\item{with}{name of continuous feature to be summed. Default is \code{NULL}, i.e., frequency.}
 
 \item{maxcat}{maximum categories allowed for each feature. The default is 50. More information in 'Details' section.}
 
@@ -41,6 +41,9 @@ data("diamonds", package = "ggplot2")
 # Plot bar charts for diamonds dataset
 plot_bar(diamonds)
 plot_bar(diamonds, maxcat = 5)
+
+# Plot bar charts with `price` feature
+plot_bar(diamonds, with = "price")
 
 # Plot bar charts with preset ggplot2 themes
 plot_bar(diamonds, ggtheme = theme_light())

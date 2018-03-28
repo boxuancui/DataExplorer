@@ -67,7 +67,7 @@ plot_boxplot <- function(data, by, title = NULL, ggtheme = theme_gray(), theme_c
       facet_wrap(~ variable, ncol = n_col, scales = "free_x") +
       coord_flip() +
       scale_y_continuous(labels = comma) +
-      xlab(by) + ggtitle(title) +
+      labs(x = by, title = title, caption = ifelse(pages > 1, paste("Page", pg), "")) +
       ggtheme +
       do.call(theme, theme_config)
     print(plot)

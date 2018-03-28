@@ -23,10 +23,9 @@
 #'
 #' # Plot random data with customized geom_histogram settings
 #' set.seed(1)
-#' data <- cbind(sapply(1:9, function(x) {rnorm(1000, sd = 30 * x)}))
+#' data <- cbind(sapply(seq.int(4L), function(x) {rnorm(1000, sd = 30 * x)}))
 #' plot_histogram(data, breaks = seq(-400, 400, length = 50))
 #'
-#' \dontrun{
 #' # Plot histogram with preset ggplot2 themes
 #' library(ggplot2)
 #' plot_histogram(data, ggtheme = theme_light())
@@ -38,7 +37,6 @@
 #'   "plot.background" = element_rect(fill = "yellow"),
 #'   "aspect.ratio" = 1
 #' ))
-#' }
 
 plot_histogram <- function(data, title = NULL, ggtheme = theme_gray(), theme_config = list(), ...) {
   if (!is.data.table(data)) {
@@ -73,7 +71,7 @@ plot_histogram <- function(data, title = NULL, ggtheme = theme_gray(), theme_con
     )
     ## Print plot object
     if (pages > 1) {
-      suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 4L, top = title)))
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 4L, top = title, bottom = paste("Page", pg))))
     } else {
       suppressWarnings(do.call(grid.arrange, c(plot, top = title)))
     }

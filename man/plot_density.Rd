@@ -33,7 +33,7 @@ plot_density(iris)
 
 # Plot using random data
 set.seed(1)
-data <- cbind(sapply(1:9, function(x) {
+data <- cbind(sapply(seq.int(4L), function(x) {
           runif(500, min = sample(100, 1), max = sample(1000, 1))
         }))
 plot_density(data)
@@ -41,7 +41,6 @@ plot_density(data)
 # Add color to density area
 plot_density(data, fill = "black", alpha = 0.8)
 
-\dontrun{
 # Plot with preset ggplot2 themes
 library(ggplot2)
 plot_density(data, ggtheme = theme_light())
@@ -53,7 +52,6 @@ theme_config = list(
   "plot.background" = element_rect(fill = "yellow"),
   "aspect.ratio" = 1
 ))
-}
 }
 \seealso{
 \link{geom_density} \link{plot_histogram}

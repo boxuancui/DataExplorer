@@ -23,7 +23,7 @@
 #'
 #' # Plot using random data
 #' set.seed(1)
-#' data <- cbind(sapply(1:9, function(x) {
+#' data <- cbind(sapply(seq.int(4L), function(x) {
 #'           runif(500, min = sample(100, 1), max = sample(1000, 1))
 #'         }))
 #' plot_density(data)
@@ -31,7 +31,6 @@
 #' # Add color to density area
 #' plot_density(data, fill = "black", alpha = 0.8)
 #'
-#' \dontrun{
 #' # Plot with preset ggplot2 themes
 #' library(ggplot2)
 #' plot_density(data, ggtheme = theme_light())
@@ -43,7 +42,6 @@
 #'   "plot.background" = element_rect(fill = "yellow"),
 #'   "aspect.ratio" = 1
 #' ))
-#' }
 
 plot_density <- function(data, title = NULL, ggtheme = theme_gray(), theme_config = list(), ...) {
   if (!is.data.table(data)) {
@@ -78,7 +76,7 @@ plot_density <- function(data, title = NULL, ggtheme = theme_gray(), theme_confi
     )
     ## Print plot object
     if (pages > 1) {
-      suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 4L, top = title)))
+      suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 4L, top = title, bottom = paste("Page", pg))))
     } else {
       suppressWarnings(do.call(grid.arrange, c(plot, top = title)))
     }
