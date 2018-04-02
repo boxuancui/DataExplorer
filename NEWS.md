@@ -13,6 +13,9 @@
 	* Added example to quickly drop columns with too many missing values.
 * Added `.ignoreCat` to helper.
 
+#### Bug Fixes
+* [#63](https://github.com/boxuancui/DataExplorer/issues/63): Fixed `plot_histogram` and `plot_density` not working with column names containing spaces.
+
 ---
 
 ### DataExplorer 0.5.0

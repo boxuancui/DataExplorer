@@ -54,6 +54,7 @@ plot_histogram <- function(data, title = NULL, ggtheme = theme_gray(), theme_con
   for (pg in seq.int(pages)) {
     ## Subset data by column
     subset_data <- continuous[, seq.int(16L * pg - 15L, min(p, 16L * pg)), with = FALSE]
+    setnames(subset_data, make.names(names(subset_data)))
     n_col <- ifelse(ncol(subset_data) %% 4L, ncol(subset_data) %/% 4L + 1L, ncol(subset_data) %/% 4L)
     ## Create ggplot object
     plot <- lapply(
