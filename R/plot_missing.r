@@ -59,7 +59,7 @@ plot_missing <- function(data, title = NULL, ggtheme = theme_gray(), theme_confi
   ## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "group")) +
     geom_bar(stat = "identity") +
-    geom_text(aes(label = paste0(round(100 * pct_missing, 2), "%")), vjust = -0.5, size = 3.5, angle = -90) +
+    geom_text(aes(label = paste0(round(100 * pct_missing, 2), "%"))) +
     scale_fill_manual("Group", values = c("Good" = "#1a9641", "OK" = "#a6d96a", "Bad" = "#fdae61", "Remove" = "#d7191c"), breaks = c("Good", "OK", "Bad", "Remove")) +
     scale_y_continuous(labels = comma) +
     coord_flip() +
