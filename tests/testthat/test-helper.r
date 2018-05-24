@@ -17,3 +17,15 @@ test_that(".ignoreCat", {
   expect_equal(names(.ignoreCat(dt, 2)), letters[3L:4L])
   expect_equal(names(.ignoreCat(dt, 5)), letters[4L])
 })
+
+test_that(".ignoreCat", {
+  dt <- data.table(
+    "a" = seq.int(10L),
+    "b" = rep(NA_character_, 10L),
+    "c" = rep(NA_integer_, 10L),
+    "d" = rnorm(10L)
+  )
+  expect_equal(
+    .getAllMissing(dt),
+    c("a" = FALSE, "b" = TRUE, "c" = TRUE, "d" = FALSE))
+})
