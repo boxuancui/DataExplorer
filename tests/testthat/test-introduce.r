@@ -17,5 +17,5 @@ test_that("test introduce output", {
   expect_equal(output[["all_missing_columns"]], 2L)
   expect_equal(output[["total_missing_values"]], 54L)
   expect_equal(output[["total_observations"]], 156L)
-  expect_equal(output[["memory_usage"]], 6592L)
+  expect_is(output[["memory_usage"]], "numeric")
 })
