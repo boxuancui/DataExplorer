@@ -9,7 +9,7 @@ plot_missing(data, title = NULL, ggtheme = theme_gray(),
   theme_config = list(legend.position = c("bottom")))
 }
 \arguments{
-\item{data}{input data to be profiled, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{title}{plot title}
 

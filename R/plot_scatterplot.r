@@ -1,7 +1,7 @@
 #' Create scatterplot for all features
 #'
 #' This function creates scatterplot for all features fixing on a selected feature.
-#' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param by feature name to be fixed.
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
@@ -36,9 +36,7 @@ plot_scatterplot <- function(data, by, title = NULL, ggtheme = theme_gray(), the
   ## Declare variable first to pass R CMD check
   variable <- NULL
   ## Check if input is data.table
-  if (!is.data.table(data)) {
-    data <- data.table(data)
-  }
+  if (!is.data.table(data)) data <- data.table(data)
   ## Create plot function
   scatterplot <- function(input_data, col_type, ...) {
     dt <- suppressWarnings(melt.data.table(input_data, id.vars = by))

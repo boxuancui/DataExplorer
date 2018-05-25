@@ -8,7 +8,7 @@ plot_boxplot(data, by, title = NULL, ggtheme = theme_gray(),
   theme_config = list(), ...)
 }
 \arguments{
-\item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{by}{feature name to be broken down by. If selecting a continuous feature, boxplot will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature.}
 

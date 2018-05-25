@@ -7,7 +7,7 @@
 dummify(data, maxcat = 50L)
 }
 \arguments{
-\item{data}{input data, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{maxcat}{maximum categories allowed for each discrete feature. The default is 50.}
 }

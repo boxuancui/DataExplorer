@@ -1,7 +1,7 @@
 #' Create bar charts for discrete features
 #'
 #' This function creates frequency bar charts for each discrete feature.
-#' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param with name of continuous feature to be summed. Default is \code{NULL}, i.e., frequency.
 #' @param maxcat maximum categories allowed for each feature. The default is 50. More information in 'Details' section.
 #' @param order_bar logical, indicating if bars should be ordered.
@@ -47,9 +47,7 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, title = N
   ## Declare variable first to pass R CMD check
   frequency <- agg_by <- NULL
   ## Check if input is data.table
-  if (!is.data.table(data)) {
-    data <- data.table(data)
-  }
+  if (!is.data.table(data)) data <- data.table(data)
   ## Stop if no discrete features
   if (split_columns(data)$num_discrete == 0) stop("No Discrete Features!")
   ## Get discrete features

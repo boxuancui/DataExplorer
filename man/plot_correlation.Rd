@@ -12,7 +12,7 @@ plot_correlation(data, type = c("all", "discrete", "continuous"),
   element_text(angle = 90)), ...)
 }
 \arguments{
-\item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{type}{column type to be included in correlation calculation. "all" for all columns, "discrete" for discrete features, "continuous" for continuous features.}
 

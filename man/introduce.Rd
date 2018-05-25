@@ -7,7 +7,7 @@
 introduce(data)
 }
 \arguments{
-\item{data}{input data.}
+\item{data}{input data}
 }
 \value{
 Describe basic information in a \link{data.frame}:

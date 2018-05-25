@@ -1,7 +1,7 @@
 #' Create correlation heatmap for discrete features
 #'
 #' This function creates a correlation heatmap for all discrete categories.
-#' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param type column type to be included in correlation calculation. "all" for all columns, "discrete" for discrete features, "continuous" for continuous features.
 #' @param maxcat maximum categories allowed for each discrete feature. The default is 20.
 #' @param title plot title
@@ -31,9 +31,7 @@ plot_correlation <- function(data, type = c("all", "discrete", "continuous"), ma
   ## Declare variable first to pass R CMD check
   Var1 <- Var2 <- value <- NULL
   ## Set data to data.table
-  if (!is.data.table(data)) {
-    data <- data.table(data)
-  }
+  if (!is.data.table(data)) data <- data.table(data)
   ## Split data
   split_data <- split_columns(data)
   ## Match column type and raise appropriate alerts if necessary

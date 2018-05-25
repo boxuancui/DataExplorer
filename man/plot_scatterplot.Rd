@@ -8,7 +8,7 @@ plot_scatterplot(data, by, title = NULL, ggtheme = theme_gray(),
   theme_config = list(axis.text.x = element_text(angle = 45, hjust = 1)), ...)
 }
 \arguments{
-\item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{by}{feature name to be fixed.}
 

@@ -8,7 +8,7 @@
 create_report(data, output_file = "report.html", output_dir = getwd(), ...)
 }
 \arguments{
-\item{data}{data source to be profiled, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{output_file}{output file name. The default is "report.html".}
 

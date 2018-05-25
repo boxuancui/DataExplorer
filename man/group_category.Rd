@@ -9,7 +9,7 @@ group_category(data, feature, threshold, measure, update = FALSE,
   category_name = "OTHER", exclude = NULL)
 }
 \arguments{
-\item{data}{input data, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{feature}{name of the discrete feature to be collapsed.}
 

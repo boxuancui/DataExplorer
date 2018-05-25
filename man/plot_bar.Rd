@@ -9,7 +9,7 @@ plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE, title = NULL,
   ggtheme = theme_gray(), theme_config = list())
 }
 \arguments{
-\item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{with}{name of continuous feature to be summed. Default is \code{NULL}, i.e., frequency.}
 

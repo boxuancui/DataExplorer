@@ -1,7 +1,7 @@
 #' Create boxplot for continuous features
 #'
 #' This function creates boxplot for each continuous feature based on a selected feature.
-#' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param by feature name to be broken down by. If selecting a continuous feature, boxplot will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature.
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
@@ -39,9 +39,7 @@ plot_boxplot <- function(data, by, title = NULL, ggtheme = theme_gray(), theme_c
   ## Declare variable first to pass R CMD check
   variable <- by_f <- value <- NULL
   ## Check if input is data.table
-  if (!is.data.table(data)) {
-    data <- data.table(data)
-  }
+  if (!is.data.table(data)) data <- data.table(data)
   ## Stop if no continuous features
   split_obj <- split_columns(data)
   if (split_obj$num_continuous == 0) stop("No Continuous Features!")

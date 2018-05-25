@@ -1,7 +1,7 @@
 #' Describe basic information
 #'
 #' Describe basic information for input data.
-#' @param data input data.
+#' @param data input data
 #' @keywords introduce
 #' @return Describe basic information in a \link{data.frame}:
 #' \itemize{

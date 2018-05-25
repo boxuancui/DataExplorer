@@ -1,7 +1,7 @@
 #' Group categories for discrete features
 #'
 #' Sometimes discrete features have sparse categories. This function will group the sparse categories for a discrete feature based on a given threshold.
-#' @param data input data, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param feature name of the discrete feature to be collapsed.
 #' @param threshold the bottom x\% categories to be grouped, e.g., if set to 20\%, categories with cumulative frequency of the bottom 20\% will be grouped
 #' @param update logical, indicating if the data should be modified. Setting to \code{TRUE} will modify the input data directly, and \bold{will only work with \link{data.table}}. The default is \code{FALSE}.
@@ -44,9 +44,7 @@ group_category <- function(data, feature, threshold, measure, update = FALSE, ca
   ## Detect input data class
   data_class <- class(data)
   ## Set data to data.table
-  if (!is_data_table) {
-    data <- data.table(data)
-  }
+  if (!is_data_table) data <- data.table(data)
   ## Set feature to discrete
   set(data, j = feature, value = as.character(data[[feature]]))
   if (missing(measure)) {

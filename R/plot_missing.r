@@ -1,7 +1,7 @@
 #' Plot missing value profile
 #'
 #' This function returns and plots frequency of missing values for each feature.
-#' @param data input data to be profiled, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
@@ -39,13 +39,12 @@ plot_missing <- function(data, title = NULL, ggtheme = theme_gray(), theme_confi
   ## Detect input data class
   data_class <- class(data)
   ## Set data to data.table
-  if (!is_data_table) {
-    data <- data.table(data)
-  }
+  if (!is_data_table) data <- data.table(data)
   ## Extract missing value distribution
-  missing_value <- data.table("feature" = names(data), "num_missing" = sapply(data, function(x) {
-    sum(is.na(x))
-  }))
+  missing_value <- data.table(
+    "feature" = names(data),
+    "num_missing" = sapply(data, function(x) {sum(is.na(x))})
+  )
   missing_value[, feature := factor(feature, levels = feature[order(-rank(num_missing))])]
   missing_value[, pct_missing := num_missing / nrow(data)]
   missing_value[pct_missing < 0.05, group := "Good"]
@@ -53,9 +52,7 @@ plot_missing <- function(data, title = NULL, ggtheme = theme_gray(), theme_confi
   missing_value[pct_missing >= 0.4 & pct_missing < 0.8, group := "Bad"]
   missing_value[pct_missing >= 0.8, group := "Remove"][]
   ## Set data class back to original
-  if (!is_data_table) {
-    class(missing_value) <- data_class
-  }
+  if (!is_data_table) class(missing_value) <- data_class
   ## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "group")) +
     geom_bar(stat = "identity") +

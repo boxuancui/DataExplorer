@@ -9,7 +9,7 @@ plot_histogram(data, title = NULL, ggtheme = theme_gray(),
   theme_config = list(), ...)
 }
 \arguments{
-\item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{title}{plot title}
 

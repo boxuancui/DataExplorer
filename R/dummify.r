@@ -1,7 +1,7 @@
 #' Dummify discrete features to binary columns
 #'
 #' Data dummification is also known as one hot encoding or feature binarization. It turns each category to a distinct column with binary (numeric) values.
-#' @param data input data, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param maxcat maximum categories allowed for each discrete feature. The default is 50.
 #' @keywords dummify
 #' @note This is different from \link{model.matrix}, where the latter aims to create a full rank matrix for regression-like use cases. If your intention is to create a design matrix, use \link{model.matrix} instead.

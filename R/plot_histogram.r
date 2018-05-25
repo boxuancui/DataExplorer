@@ -1,7 +1,7 @@
 #' Create histogram for continuous features
 #'
 #' This function creates histogram for each continuous feature.
-#' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
@@ -39,9 +39,7 @@
 #' ))
 
 plot_histogram <- function(data, title = NULL, ggtheme = theme_gray(), theme_config = list(), ...) {
-  if (!is.data.table(data)) {
-    data <- data.table(data)
-  }
+  if (!is.data.table(data)) data <- data.table(data)
   ## Stop if no continuous features
   if (split_columns(data)$num_continuous == 0) stop("No Continuous Features")
   ## Get continuous features

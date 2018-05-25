@@ -1,7 +1,7 @@
 #' create_report Function
 #'
 #' This function generates the report of data profiling.
-#' @param data data source to be profiled, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param output_file output file name. The default is "report.html".
 #' @param output_dir output directory for report. The default is user's current directory.
 #' @param \dots other arguments to be passed to \link{render}.
