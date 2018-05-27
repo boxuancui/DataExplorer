@@ -21,3 +21,8 @@ test_that("test if report is generated", {
   expect_gte(file.info(file_dir)$size, 100000)
   if (file.exists(file_dir)) file.remove(file_dir)
 })
+
+test_that("test if non-existing y throws an error", {
+  skip_on_cran()
+  expect_error(create_report(iris, y = "abc"))
+})

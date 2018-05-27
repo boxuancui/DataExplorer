@@ -35,7 +35,7 @@
 #' plot_str(obj, type = "d", max_level = 2)
 #' }
 
-plot_str <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
+plot_str <- function(data, type = c("diagonal", "radial"), max_level = NULL, print_network = TRUE, ...) {
   ## Declare variable first to pass R CMD check
   i <- idx <- parent <- NULL
   ## Capture str output
@@ -45,7 +45,7 @@ plot_str <- function(data, type = c("diagonal", "radial"), max_level, print_netw
   base_split <- tstrsplit(str_output[2:n], "\\$")
   nest_level <- (nchar(base_split[[1]]) - nchar(gsub("\ \\.{2}", "", base_split[[1]]))) / 3 + 1
   ## Handle max_level if exists
-  if (missing(max_level)) {
+  if (is.null(max_level)) {
     max_level <- max(nest_level)
   } else if (max_level <= 0 | max_level > max(nest_level)) {
     stop(paste0("max_level should be between 1 and ", max(nest_level)))

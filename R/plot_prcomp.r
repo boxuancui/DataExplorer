@@ -2,7 +2,7 @@
 #'
 #' Visualize output of \link{prcomp}.
 #' @param data input data
-#' @param variance_cap Maximum cumulative explained variance allowed for all principle components. Default is 80\%.
+#' @param variance_cap maximum cumulative explained variance allowed for all principle components. Default is 80\%.
 #' @param maxcat maximum categories allowed for each discrete feature. The default is 50.
 #' @param title plot title starting from page 2.
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.

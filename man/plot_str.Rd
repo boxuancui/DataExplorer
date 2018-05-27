@@ -5,7 +5,7 @@
 \alias{PlotStr}
 \title{Visualize data structure}
 \usage{
-plot_str(data, type = c("diagonal", "radial"), max_level,
+plot_str(data, type = c("diagonal", "radial"), max_level = NULL,
   print_network = TRUE, ...)
 }
 \arguments{

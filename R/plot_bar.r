@@ -75,7 +75,7 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, title = N
         } else {
           if (!is.numeric(data[[with]])) stop("`with` should be continuous!")
           x <- data.table(subset_data[, j, with = FALSE], "agg_by" = data[[with]])
-          agg_x <- x[, list(frequency = sum(agg_by)), by = eval(names(x)[1])]
+          agg_x <- x[, list(frequency = sum(agg_by, na.rm = TRUE)), by = eval(names(x)[1])]
         }
         if (order_bar) {
           base_plot <- ggplot(agg_x, aes(x = reorder(get(names(agg_x)[1]), frequency), y = frequency))

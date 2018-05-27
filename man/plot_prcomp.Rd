@@ -10,7 +10,7 @@ plot_prcomp(data, variance_cap = 0.8, maxcat = 50L, title = NULL,
 \arguments{
 \item{data}{input data}
 
-\item{variance_cap}{Maximum cumulative explained variance allowed for all principle components. Default is 80\%.}
+\item{variance_cap}{maximum cumulative explained variance allowed for all principle components. Default is 80\%.}
 
 \item{maxcat}{maximum categories allowed for each discrete feature. The default is 50.}
 
