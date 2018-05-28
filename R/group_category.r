@@ -4,13 +4,14 @@
 #' @param data input data
 #' @param feature name of the discrete feature to be collapsed.
 #' @param threshold the bottom x\% categories to be grouped, e.g., if set to 20\%, categories with cumulative frequency of the bottom 20\% will be grouped
-#' @param update logical, indicating if the data should be modified. Setting to \code{TRUE} will modify the input data directly, and \bold{will only work with \link{data.table}}. The default is \code{FALSE}.
+#' @param update logical, indicating if the data should be modified. The default is \code{FALSE}. Setting to \code{TRUE} will modify the input \link{data.table} object directly. Otherwise, input class will be returned.
 #' @param measure name of feature to be used as an alternative measure.
 #' @param category_name name of the new category if update is set to \code{TRUE}. The default is "OTHER".
 #' @param exclude categories to be excluded from grouping when update is set to \code{TRUE}.
 #' @keywords group_category
 #' @aliases CollapseCategory
-#' @return If update is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
+#' @return If \code{update} is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
+#' If \code{update} is set to \code{TRUE}, updated data will be returned, and the output class will match the class of input data.
 #' @details If a continuous feature is passed to the argument \code{feature}, it will be force set to \link{character-class}.
 #' @import data.table
 #' @export group_category CollapseCategory
@@ -59,8 +60,11 @@ group_category <- function(data, feature, threshold, measure, update = FALSE, ca
   top_cat <- var[cum_pct <= (1 - threshold), get(feature)]
   ## Collapse categories if update is true, else return distribution for analysis
   if (update) {
-    if (!is_data_table) stop("Please change your input data class to data.table to update!")
     data[!(get(feature) %in% c(top_cat, exclude)), c(feature) := category_name]
+    if (!is_data_table) {
+      class(data) <- data_class
+      return(data)
+    }
   } else {
     output <- var[cum_pct <= (1 - threshold)]
     class(output) <- data_class

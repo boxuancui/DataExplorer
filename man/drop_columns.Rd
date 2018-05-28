@@ -8,7 +8,7 @@
 drop_columns(data, ind)
 }
 \arguments{
-\item{data}{input data, in \link{data.table} format only.}
+\item{data}{input data}
 
 \item{ind}{a vector of either names or column positions of the variables to be dropped.}
 }
@@ -16,7 +16,7 @@ drop_columns(data, ind)
 Quickly drop variables by either name or column position.
 }
 \details{
-\bold{This function will only work with \link{data.table} object as input.} Consider setting your input to \link{data.table} first then assign the original class back after applying the function.
+\bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 }
 \examples{
 # load packages

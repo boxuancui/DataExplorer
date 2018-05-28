@@ -1,11 +1,11 @@
 #' Drop selected variables
 #'
 #' Quickly drop variables by either name or column position.
-#' @param data input data, in \link{data.table} format only.
+#' @param data input data
 #' @param ind a vector of either names or column positions of the variables to be dropped.
 #' @keywords drop_columns
 #' @aliases DropVar
-#' @details \bold{This function will only work with \link{data.table} object as input.} Consider setting your input to \link{data.table} first then assign the original class back after applying the function.
+#' @details \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 #' @import data.table
 #' @export drop_columns DropVar
 #' @examples
@@ -32,8 +32,19 @@
 #' class(iris_df) <- "data.frame"
 
 drop_columns <- function(data, ind) {
-  if (!is.data.table(data)) stop("Please change your input data class to data.table!")
+  ## Check if input is data.table
+  is_data_table <- is.data.table(data)
+  ## Detect input data class
+  data_class <- class(data)
+  ## Set data to data.table
+  if (!is_data_table) data <- data.table(data)
+  ## Drop columns
   data[, (ind) := NULL]
+  ## Set data class back to original
+  if (!is_data_table) {
+    class(data) <- data_class
+    return(data)
+  }
 }
 
 DropVar <- function(data, ind) {

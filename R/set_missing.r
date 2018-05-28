@@ -6,8 +6,9 @@
 #' @param exclude column index or name to be excluded.
 #' @keywords set_missing
 #' @aliases SetNaTo
-#' @details \bold{This function will only work with \link{data.table} object as input.} Consider setting your input to \link{data.table} first then assign the original class back after applying the function.
-#' @details The class of \code{value} will determine what type of columns to be set, e.g., if \code{value} is 0, then missing values for continuous features will be set. When supplying a list of two values, only one numeric and one non-numeric is allowed.
+#' @details The class of \code{value} will determine what type of columns to be set, e.g., if \code{value} is 0, then missing values for continuous features will be set.
+#' When supplying a list of two values, only one numeric and one non-numeric is allowed.
+#' @details \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 #' @import data.table
 #' @export set_missing SetNaTo
 #' @examples
@@ -33,12 +34,17 @@
 #'
 #' # Set missing values excluding some columns
 #' dt5 <- copy(dt)
-#' set_missing(dt4, 0L, 1:2)
-#' set_missing(dt4, 0L, names(dt5)[3:4])
+#' set_missing(dt4, 0L, 1L:2L)
+#' set_missing(dt4, 0L, names(dt5)[3L:4L])
 
 set_missing <- function(data, value, exclude = NULL) {
-  if (!is.data.table(data)) stop("Please change your input data class to data.table!")
   if (!(length(value) %in% seq(2))) stop("Please specify one single value or a list of two values!")
+  ## Check if input is data.table
+  is_data_table <- is.data.table(data)
+  ## Detect input data class
+  data_class <- class(data)
+  ## Set data to data.table
+  if (!is_data_table) data <- data.table(data)
 
   if (!is.numeric(exclude)) {
     exclude_ind <- which(names(data) %in% exclude)
@@ -75,6 +81,11 @@ set_missing <- function(data, value, exclude = NULL) {
       set(data, i = which(is.na(data[[j]])), j = j, value = val_d)
       if (num_missing > 0) message(paste0("Column [", names(data)[j], "]: Set ", num_missing, " missing values to ", val_d))
     }
+  }
+  ## Set data class back to original
+  if (!is_data_table) {
+    class(data) <- data_class
+    return(data)
   }
 }
 
