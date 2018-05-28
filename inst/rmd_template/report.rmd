@@ -13,6 +13,7 @@ params:
 
 ```{r global_options, include=FALSE}
 ## Load library
+library(data.table)
 library(rmarkdown)
 library(knitr)
 
@@ -23,11 +24,8 @@ response <- params$response
 
 ## Create helper functions
 do_call <- function(fun_name, na_omit = FALSE) {
-  if (na_omit) {
-    do.call(fun_name, c(list("data" = na.omit(data)), report_config[[fun_name]]))
-  } else {
-    do.call(fun_name, c(list("data" = data), report_config[[fun_name]]))
-  }
+  if (na_omit) data <- na.omit(data)
+  do.call(fun_name, c(list("data" = data), report_config[[fun_name]]))
 }
 
 ## Set knitr options
@@ -155,7 +153,12 @@ if ("plot_correlation" %in% names(report_config)) {
 ```{r principle_component_analysis}
 if ("plot_prcomp" %in% names(report_config)) {
   cat("### Principle Component Analysis", fill = TRUE)
-  do_call("plot_prcomp", na_omit = TRUE)
+  if (!is.null(response)) {
+    dt <- na.omit(data[, -response, with = FALSE])
+    do.call(plot_prcomp, c(list("data" = dt), report_config[["plot_prcomp"]]))
+  } else {
+    do_call("plot_prcomp", na_omit = TRUE)
+  }
 }
 ```
 

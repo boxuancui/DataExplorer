@@ -36,6 +36,8 @@ In case you would like to customize the report, copy and edit the code and pass 
 All function arguments will be passed to \link{do.call} as a list.
 }
 \note{
+If both \code{y} and \code{plot_prcomp} are present, \code{y} will be removed from \code{plot_prcomp}.
+
 If there are multiple options for the same function, all of them will be plotted.
 For example, \code{create_report(..., y = "a", config = list("plot_bar" = list("with" = "b")))} will create 3 bar charts:
 \itemize{

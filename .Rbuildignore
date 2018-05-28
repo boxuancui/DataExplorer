@@ -7,3 +7,4 @@
 ^appveyor\.yml$
 ^CONDUCT\.md$
 ^\.github$
+report.html
