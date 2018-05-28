@@ -7,7 +7,7 @@
 \title{Create correlation heatmap for discrete features}
 \usage{
 plot_correlation(data, type = c("all", "discrete", "continuous"),
-  maxcat = 20, title = NULL, ggtheme = theme_gray(),
+  maxcat = 20L, title = NULL, ggtheme = theme_gray(),
   theme_config = list(legend.position = "bottom", axis.text.x =
   element_text(angle = 90)), ...)
 }

@@ -27,7 +27,7 @@
 #' plot_correlation(diamonds, type = "c")
 #' plot_correlation(diamonds, type = "d")
 
-plot_correlation <- function(data, type = c("all", "discrete", "continuous"), maxcat = 20, title = NULL, ggtheme = theme_gray(), theme_config = list("legend.position" = "bottom", "axis.text.x" = element_text(angle = 90)), ...) {
+plot_correlation <- function(data, type = c("all", "discrete", "continuous"), maxcat = 20L, title = NULL, ggtheme = theme_gray(), theme_config = list("legend.position" = "bottom", "axis.text.x" = element_text(angle = 90)), ...) {
   ## Declare variable first to pass R CMD check
   Var1 <- Var2 <- value <- NULL
   ## Set data to data.table
@@ -36,33 +36,25 @@ plot_correlation <- function(data, type = c("all", "discrete", "continuous"), ma
   split_data <- split_columns(data)
   ## Match column type and raise appropriate alerts if necessary
   col_type <- match.arg(type)
-  if (col_type %in% c("all", "continuous")) {
-    if ((col_type == "continuous") & (split_data$num_continuous <= 1)) stop("Not enough continuous features!")
-    continuous <- split_data$continuous
+  if (col_type == "continuous") {
+    if (split_data$num_continuous == 0) stop("Not enough continuous features!")
+    final_data <- split_data$continuous
   }
-  if (col_type %in% c("all", "discrete")) {
-    if ((col_type == "discrete") & (split_data$num_discrete == 0)) stop("No discrete features found!")
-    raw_discrete <- split_data$discrete
-    ind <- .ignoreCat(raw_discrete, maxcat)
-    n_true_discrete <- split_data$num_discrete - length(ind)
-    discrete <- dummify(raw_discrete, maxcat = maxcat)
-    if (length(ind)) drop_columns(discrete, names(ind))
+
+  if (col_type == "discrete") {
+    if (split_data$num_discrete == 0) stop("No discrete features found!")
+    final_data <- split_columns(dummify(split_data$discrete, maxcat = maxcat))$continuous
   }
 
   if (col_type == "all") {
-    if (all(nrow(continuous), n_true_discrete)) {
-      all_data <- cbind(continuous, discrete)
-    } else if (nrow(continuous)) {
-      all_data <- continuous
-    } else if (n_true_discrete) {
-      all_data <- discrete
+    if (split_data$num_discrete == 0) {
+      final_data <- data
     } else {
-      stop("No data to plot!")
+      final_data <- split_columns(dummify(data, maxcat = maxcat))$continuous
     }
   }
 
   ## Calculate correlation and melt into tidy data format
-  final_data <- switch(col_type, "all" = all_data, "discrete" = discrete, "continuous" = continuous)
   plot_data <- reshape2::melt(cor(final_data, ...))
   ## Create ggplot object
   plot <- ggplot(plot_data, aes(x = Var1, y = Var2, fill = value)) +

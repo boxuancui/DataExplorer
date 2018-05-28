@@ -24,9 +24,7 @@ dummify <- function(data, maxcat = 50L) {
   ## Detect input data class
   data_class <- class(data)
   ## Set data to data.table
-  if (!is.data.table(data)) {
-    data <- data.table(data)
-  }
+  if (!is.data.table(data)) data <- data.table(data)
   ## Split data
   split_data <- split_columns(data)
   continuous <- split_data$continuous
@@ -44,14 +42,15 @@ dummify <- function(data, maxcat = 50L) {
         if (length(ind) > 0) {
           message(length(ind), " features with more than ", maxcat, " categories ignored!\n", paste0(names(ind), ": ", as.numeric(ind), " categories\n"))
         }
-        ## Calculate categorical correlation and melt into tidy data format
+        ## Set key for discrete features
         discrete[, discrete_id := .I]
+        ## Join ignored and valid discrete features based on key
         discrete_pivot <- Reduce(
-          function(x, y) {
-            merge(x, y, by = "discrete_id")
-          },
+          function(x, y) {merge(x, y, by = "discrete_id")},
           c(
+            ## Get ignored discrete features
             list(discrete[, c("discrete_id", names(ind)), with = FALSE]),
+            ## Pivot valid discrete features
             lapply(names(discrete)[!(names(discrete) %in% c("discrete_id", names(ind)))], function(x) {
               dcast.data.table(discrete, discrete_id ~ make.names(paste0(x, "_", get(x))), length, value.var = "discrete_id")
             })
