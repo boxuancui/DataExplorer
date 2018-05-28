@@ -13,3 +13,12 @@ test_that("test basic functionality", {
   expect_equal(dim(dt2), c(n, 2))
   expect_equal(names(dt2), c("a", "z"))
 })
+
+test_that("test non-data.table objects", {
+  df <- data.frame(sapply(setNames(letters, letters), function(x) {
+    assign(x, rnorm(10))
+  }))
+  expect_equal(class(drop_columns(df, 2:25)), class(df))
+  expect_equal(names(drop_columns(df, 2:25)), c("a", "z"))
+  expect_equal(dim(drop_columns(df, 2:25)), c(nrow(df), 2))
+})

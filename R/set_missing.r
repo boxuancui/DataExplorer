@@ -36,6 +36,9 @@
 #' dt5 <- copy(dt)
 #' set_missing(dt4, 0L, 1L:2L)
 #' set_missing(dt4, 0L, names(dt5)[3L:4L])
+#'
+#' # Return from non-data.table input
+#' set_missing(airquality, 999999L)
 
 set_missing <- function(data, value, exclude = NULL) {
   if (!(length(value) %in% seq(2))) stop("Please specify one single value or a list of two values!")

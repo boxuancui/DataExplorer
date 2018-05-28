@@ -48,5 +48,8 @@ set_missing(dt4, "unknown")
 dt5 <- copy(dt)
 set_missing(dt4, 0L, 1L:2L)
 set_missing(dt4, 0L, names(dt5)[3L:4L])
+
+# Return from non-data.table input
+set_missing(airquality, 999999L)
 }
 \keyword{set_missing}

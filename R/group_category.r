@@ -16,26 +16,32 @@
 #' @import data.table
 #' @export group_category CollapseCategory
 #' @examples
-#' # load packages
+#' # Load packages
 #' library(data.table)
 #'
-#' # generate data
-#' data <- data.table("a" = as.factor(round(rnorm(500, 10, 5))), "b" = rexp(500, 1:500))
+#' # Generate data
+#' data <- data.table("a" = as.factor(round(rnorm(500, 10, 5))), "b" = rexp(500, 500))
 #'
-#' # view cumulative frequency without collpasing categories
+#' # View cumulative frequency without collpasing categories
 #' group_category(data, "a", 0.2)
 #'
-#' # view cumulative frequency based on another measure
+#' # View cumulative frequency based on another measure
 #' group_category(data, "a", 0.2, measure = "b")
 #'
-#' # group bottom 20% categories based on cumulative frequency
+#' # Group bottom 20% categories based on cumulative frequency
 #' group_category(data, "a", 0.2, update = TRUE)
 #' plot_bar(data)
 #'
-#' # exclude categories from being grouped
+#' # Exclude categories from being grouped
 #' dt <- data.table("a" = c(rep("c1", 25), rep("c2", 10), "c3", "c4"))
 #' group_category(dt, "a", 0.8, update = TRUE, exclude = c("c3", "c4"))
 #' plot_bar(dt)
+#'
+#' # Return from non-data.table input
+#' df <- data.frame("a" = as.factor(round(rnorm(50, 10, 5))), "b" = rexp(50, 10))
+#' group_category(df, "a", 0.2)
+#' group_category(df, "a", 0.2, measure = "b", update = TRUE)
+#' group_category(df, "a", 0.2, update = TRUE)
 
 group_category <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER", exclude = NULL) {
   ## Declare variable first to pass R CMD check

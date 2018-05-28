@@ -64,3 +64,9 @@ test_that("test non-list", {
 test_that("test more than two values", {
   expect_error(set_missing(my_dt, list(0, 3, 4)))
 })
+
+test_that("test non-data.table objects", {
+  expect_equal(class(set_missing(airquality, 0L)), class(airquality))
+  expect_equal(dim(set_missing(airquality, 0L)), dim(airquality))
+  expect_equal(introduce((set_missing(airquality, 0L)))[["total_missing_values"]], 0L)
+})

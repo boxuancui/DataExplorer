@@ -19,26 +19,25 @@ Quickly drop variables by either name or column position.
 \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 }
 \examples{
-# load packages
+# Load packages
 library(data.table)
 
-# generate data
-dt <- data.table(sapply(setNames(letters, letters), function(x) {assign(x, rnorm(100))}))
+# Generate data
+dt <- data.table(sapply(setNames(letters, letters), function(x) {assign(x, rnorm(10))}))
 dt2 <- copy(dt)
 
-# drop variables by name
+# Drop variables by name
 names(dt)
-drop_columns(dt, letters[2:25])
+drop_columns(dt, letters[2L:25L])
 names(dt)
 
-# drop variables by column position
+# Drop variables by column position
 names(dt2)
 drop_columns(dt2, seq(2, 25))
 names(dt2)
 
-# work with non-data.table objects
-iris_df <- data.table(iris)
-drop_columns(iris_df, "Species")
-class(iris_df) <- "data.frame"
+# Return from non-data.table input
+df <- data.frame(sapply(setNames(letters, letters), function(x) {assign(x, rnorm(10))}))
+drop_columns(df, letters[2L:25L])
 }
 \keyword{drop_columns}
