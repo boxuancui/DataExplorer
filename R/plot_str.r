@@ -39,11 +39,23 @@ plot_str <- function(data, type = c("diagonal", "radial"), max_level = NULL, pri
   ## Declare variable first to pass R CMD check
   i <- idx <- parent <- NULL
   ## Capture str output
-  str_output <- capture.output(str(data, vec.len = 0, give.attr = FALSE, give.length = FALSE))
+  str_output_raw <- capture.output(str(data, vec.len = 0, give.attr = FALSE, give.length = FALSE))
+  str_output <- unlist(lapply(str_output_raw, function(x) {gsub("\ \\.{2}\\@", "\\$\\@", x)}))
   n <- length(str_output)
   ## Split to calculate nested levels
   base_split <- tstrsplit(str_output[2:n], "\\$")
   nest_level <- (nchar(base_split[[1]]) - nchar(gsub("\ \\.{2}", "", base_split[[1]]))) / 3 + 1
+  ## Detect S4 objects
+  diff_nl <- diff(nest_level)
+  s4_start_index <- which(diff_nl > 1L) + 1L
+  if (length(s4_start_index) > 0) {
+    s4_end_index <- which(diff_nl == -2L)
+    s4_index_range <- unique(unlist(lapply(
+      s4_start_index,
+      function (i) {seq.int(i, s4_end_index[which.min(abs(s4_end_index - i))])}
+    )))
+    nest_level[s4_index_range] <- nest_level[s4_index_range] - 1L
+  }
   ## Handle max_level if exists
   if (is.null(max_level)) {
     max_level <- max(nest_level)
@@ -57,6 +69,7 @@ plot_str <- function(data, type = c("diagonal", "radial"), max_level = NULL, pri
   ## Make sure the root of each component has a unique name
   comp_root <- gsub(" ", "", comp_split[[1]])
   comp_root[which(comp_root == "")] <- make.names(comp_root[which(comp_root == "")], unique = TRUE)
+  if (anyDuplicated(comp_root)) comp_root[which(duplicated(comp_root))] <- paste0(comp_root[which(duplicated(comp_root))], "(name duplicated)")
   ## Combine component name with type
   comp_output <- paste0(comp_root, " (", trimws(gsub("NULL|\\.{3}|\\.{2}", "", comp_split[[2]])), ")")
   ## Transform data to table format
