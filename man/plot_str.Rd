@@ -26,7 +26,6 @@ input data structure in nested list. Could be transformed to json format with mo
 Visualize data structures in D3 network graph
 }
 \examples{
-\dontrun{
 ## Visualize structure of iris dataset
 plot_str(iris)
 
@@ -44,7 +43,6 @@ obj <- list(
 plot_str(obj, type = "d")
 ## Visualize only top 2 nested levels
 plot_str(obj, type = "d", max_level = 2)
-}
 }
 \seealso{
 \link{str}

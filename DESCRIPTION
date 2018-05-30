@@ -1,26 +1,27 @@
 Package: DataExplorer
 Title: Data Explorer
-Version: 0.5.0.9000
+Version: 0.6.0
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: Data exploration process for data analysis and model building, so
     that users could focus on understanding data and extracting insights. The
     package automatically scans through each variable and does data profiling.
     Typical graphical techniques will be performed for both discrete and
     continuous features.
-Depends: 
+Depends:
     R (>= 3.3)
 Imports:
-    data.table (>= 1.10),
+    data.table (>= 1.11),
     reshape2 (>= 1.4),
     ggplot2 (>= 2.2),
     scales (>= 0.5),
     gridExtra (>= 2.3),
-    rmarkdown (>= 1.8),
+    rmarkdown (>= 1.9),
     networkD3 (>= 0.4),
     stats,
     utils,
     tools
-Suggests: testthat,
+Suggests:
+    testthat,
     covr,
     knitr,
     jsonlite,
