@@ -8,17 +8,18 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-  
+
 ```{r setup, include=FALSE}
 library(rmarkdown)
+library(knitr)
 library(DataExplorer)
 library(data.table)
 library(nycflights13)
 library(networkD3)
 
-knitr::opts_chunk$set(fig.width = 6, fig.height = 6, fig.align = "center", warning = FALSE)
+opts_chunk$set(fig.width = 6, fig.height = 6, fig.align = "center", warning = FALSE)
 ```
-  
+
 <script src="d3.min.js"></script>
 
 This document introduces the package *DataExplorer*, and shows how it can help you with different tasks throughout your data exploration process.
@@ -34,8 +35,8 @@ The remaining of this guide will be organized in accordance with the goals. As t
 ## Data
 We will be using the [nycflights13](https://cran.r-project.org/package=nycflights13) datasets for this document. If you have not installed the package, please do the following:
 
-  install.packages("nycflights13")
-  library(nycflights13)
+install.packages("nycflights13")
+library(nycflights13)
 
 There are 5 datasets in this package:
 
@@ -83,12 +84,14 @@ final_data <- merge(merge_airports_origin, airports, by.x = "dest", by.y = "faa"
 ## Exploratory Data Analysis
 Exploratory data analysis is the process to get to know your data, so that you can generate and test your hypothesis. Visualization techniques are usually applied.
 
-You can easily check the basic statistics with base R, e.g.,
+To get introduced to your newly created dataset:
 
-```{r eda-base-r, eval=FALSE}
-dim(final_data)
-summary(final_data)
-object.size(final_data)
+```{r eda-introduce-template, eval=FALSE}
+introduce(final_data)
+```
+
+```{r eda-introduce-run, echo=FALSE}
+kable(introduce(final_data))
 ```
 
 ### Missing values
@@ -101,11 +104,33 @@ plot_missing(final_data)
 You may also store the missing data profile with `missing_data <- plot_missing(final_data)` for additional analysis.
 
 ### Distributions
-To visualize distributions for all discrete features:
+To visualize frequency distributions for all discrete features:
 
 ```{r eda-plot-bar, fig.width=10, fig.height=6}
 plot_bar(final_data)
 ```
+
+Upon closer inspection of **manufacturer** variable, it is not hard to identify the following anomalies:
+
+* *AIRBUS* and *AIRBUS INDUSTRIE*
+* *CANADAIR* and *CANADAIR LTD*
+* *MCDONNELL DOUGLAS*, *MCDONNELL DOUGLAS AIRCRAFT CO* and *MCDONNELL DOUGLAS CORPORATION*
+
+```{r eda-update-manufacturer}
+final_data[which(final_data$manufacturer == "AIRBUS INDUSTRIE"),]$manufacturer <- "AIRBUS"
+final_data[which(final_data$manufacturer == "CANADAIR LTD"),]$manufacturer <- "CANADAIR"
+final_data[which(final_data$manufacturer %in% c("MCDONNELL DOUGLAS AIRCRAFT CO", "MCDONNELL DOUGLAS CORPORATION")),]$manufacturer <- "MCDONNELL DOUGLAS"
+
+plot_bar(final_data$manufacturer)
+```
+
+Sometimes, it is also very informative to look at bivariate frequency distribution. For example, to look at discrete features by **arr_delay**:
+
+```{r eda-plot-bar-with, fig.width=10, fig.height=6}
+plot_bar(final_data, with = "arr_delay")
+```
+
+The resulting distribution looks quite different from the normal frequency distribution.
 
 To visualize distributions for all continuous features:
 
@@ -113,21 +138,25 @@ To visualize distributions for all continuous features:
 plot_histogram(final_data)
 ```
 
-You may also visualize just one feature using this function:
-
-```{r eda-plot-bar-single}
-plot_bar(final_data$manufacturer)
-```
-
-```{r eda-plot-histogram-single}
-plot_histogram(final_data$seats)
-```
-
 ### Correlation
-To visualize correlation heatmap for discrete and continuous features:
+To visualize correlation heatmap for all features:
 
 ```{r eda-plot-correlation, fig.width=8, fig.height=8}
 plot_correlation(final_data, use = "pairwise.complete.obs")
+```
+
+You may also choose to visualize discrete/continuous features only with:
+```{r eda-plot-correlation-type, fig.width=8, fig.height=8}
+plot_correlation(final_data, type = "c", use = "pairwise.complete.obs")
+plot_correlation(final_data, type = "d", use = "pairwise.complete.obs")
+```
+
+### Principle Component Analaysis
+To perform and visualize PCA:
+
+```{r eda-plot-prcomp}
+## Note: Arguments are set to optimize speed for demo purposes.
+plot_prcomp(na.omit(final_data), maxcat = 0L)
 ```
 
 ### Slicing & dicing
@@ -152,7 +181,7 @@ plot_scatterplot(arr_delay_df2, "arr_delay", size = 0.8)
 ## Feature Engineering
 Feature engineering is the process of creating new features from existing ones. Newly engineered features often generate valuable insights.
 
-For functions in this section, most data objects need to be set to  [data.table](https://cran.r-project.org/package=data.table). However, you don't need to know data.table package, simply set the object back to the original class after feature engineering.
+For functions in this section, input in [data.table](https://cran.r-project.org/package=data.table) format will be updated by reference, otherwise, output object will be returned matching the input class.
 
 ### Replace missing values
 Missing values may have meanings for a feature. Other than imputation methods, we may also set them to some logical values. For example, for discrete features, we may want to group missing values to a new category. For continuous features, we may want to set missing values to a known number based on existing knowledge.
@@ -160,9 +189,14 @@ Missing values may have meanings for a feature. Other than imputation methods, w
 In *DataExplorer*, this can be done by `set_missing`. The function automatically matches the argument for either discrete or continuous features, i.e., if you specify a number, all missing continuous values will be set to that number. If you specify a string, all missing discrete values will be set to that string. If you supply both, both types will be set.
 
 ```{r fe-set-missing, collapse=TRUE}
-library(data.table)
-final_dt <- data.table(final_data)
-set_missing(final_dt, list(0L, "unknown"))
+## Return data.frame
+final_df <- set_missing(final_data, list(0L, "unknown"))
+plot_missing(final_df)
+
+## Update data.table
+# library(data.table)
+# final_dt <- data.table(final_data)
+# set_missing(final_dt, list(0L, "unknown"))
 ```
 
 ### Group sparse categories
@@ -171,35 +205,44 @@ From the bar charts above, we observed a number of discrete features with sparse
 Take *manufacturer* feature for example, suppose we want to group the long tail to another category. We could try with bottom 20% (by count) first:
 
 ```{r fe-group-category-count-trial}
-group_category(data = final_dt, feature = "manufacturer", threshold = 0.2)
+group_category(data = final_data, feature = "manufacturer", threshold = 0.2)
 ```
 
-As we can see, manufacturer will be shrinked down to 5 categories, i.e., BOEING, EMBRAER, unknown, AIRBUS and OTHER. If you like this threshold, you may specify `update = TRUE` to update the original dataset:
+As we can see, manufacturer will be shrinked down to 3 categories, i.e., AIRBUS, BOEING, EMBRAER, and OTHER. If you like this threshold, you may specify `update = TRUE` to update the original dataset:
 
 ```{r fe-group-category-count-update, results='hide'}
-group_category(data = final_dt, feature = "manufacturer", threshold = 0.2, update = TRUE)
-plot_bar(final_dt$manufacturer)
+final_df <- group_category(data = final_data, feature = "manufacturer", threshold = 0.2, update = TRUE)
+plot_bar(final_df$manufacturer)
 ```
 
-Instead of shrinking categories by frequency, you may also group the categories by another continuous metric. For example, if you want to bucket the carrier with bottom 20% distance travelled, you may do the following:
+Instead of shrinking categories by frequency, you may also group the categories by another continuous metric. For example, if you want to bucket the carrier with bottom 20% distance traveled, you may do the following:
 
 ```{r fe-group-category-metric-trial}
-group_category(data = final_dt, feature = "name_carrier", threshold = 0.2, measure = "distance")
+group_category(data = final_data, feature = "name_carrier", threshold = 0.2, measure = "distance")
 ```
 
 Similarly, if you like it, you may add `update = TRUE` to update the original dataset.
 
 ```{r fe-group-category-metric-update, results='hide'}
-group_category(data = final_dt, feature = "name_carrier", threshold = 0.2, measure = "distance", update = TRUE)
-plot_bar(final_dt$name_carrier)
+final_df <- group_category(data = final_data, feature = "name_carrier", threshold = 0.2, measure = "distance", update = TRUE)
+plot_bar(final_df$name_carrier)
+```
+
+### Dummify data (one hot encoding)
+To transform the data into binary format (so that ML algorithm can pick it up), `dummify` will do the job. The function preserves original data structure, so that only eligible discrete features will be turned into binary format.
+
+```{r fe-dummify}
+plot_str(list("original" = final_data, "dummified" = dummify(final_data, maxcat = 5L)))
 ```
 
 ### Drop features
 After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like *dst_origin* has only one value, and it doesn't provide any valuable information. You can use `drop_columns` to quickly drop features. The function takes either names or column indices.
 
 ```{r fe-drop-columns, eval=FALSE, collapse=TRUE}
-drop_columns(final_dt, c("dst_origin", "dst_dest", "tzone_dest"))
-drop_columns(final_dt, c(34, 41, 42))
+identical(
+  drop_columns(final_data, c("dst_origin", "dst_dest", "tzone_dest")),
+  drop_columns(final_data, c(34, 41, 42))
+)
 ```
 
 ## Data Reporting
@@ -207,4 +250,32 @@ To organize all the data profiling statistics into a report, you may use the `cr
 
 ```{r dr-create-report, eval=FALSE}
 create_report(final_data)
+```
+
+To maximize the usage of this function, always supply a response variable to automate various bivariate analyses.
+
+```{r dr-create-report-with-y, eval=FALSE}
+create_report(final_data, y = "arr_delay")
+```
+
+You may also customize each individual section by passing arguments as a list. They will later be passed to `do.call` to be invoked. The default config file is listed below. Simply copy and edit as necessary.
+
+```{r dr-create-report-customize, eval=FALSE}
+config <- list(
+  "introduce" = list(),
+  "plot_str" = list(
+    "type" = "diagonal",
+    "fontSize" = 35,
+    "width" = 1000,
+    "margin" = list("left" = 350, "right" = 250)
+  ),
+  "plot_missing" = list(),
+  "plot_histogram" = list(),
+  "plot_bar" = list(),
+  "plot_correlation" = list("use" = "pairwise.complete.obs"),
+  "plot_prcomp" = list(),
+  "plot_boxplot" = list(),
+  "plot_scatterplot" = list()
+)
+create_report(final_data, y = "arr_delay", config = config)
 ```

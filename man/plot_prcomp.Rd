@@ -39,6 +39,6 @@ Discrete features will be \link{dummify}-ed first before passing to \link{prcomp
 }
 \examples{
 data("diamonds", package = "ggplot2")
-plot_prcomp(diamonds, maxcat = 5)
+plot_prcomp(diamonds, maxcat = 5, scale. = TRUE)
 }
 \keyword{plot_prcomp}

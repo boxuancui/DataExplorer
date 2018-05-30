@@ -21,7 +21,7 @@
 #' @export
 #' @examples
 #' data("diamonds", package = "ggplot2")
-#' plot_prcomp(diamonds, maxcat = 5)
+#' plot_prcomp(diamonds, maxcat = 5, scale. = TRUE)
 
 plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, title = NULL, ggtheme = theme_gray(), theme_config = list(), ...) {
   ## Declare variable first to pass R CMD check
@@ -31,7 +31,7 @@ plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, title = NULL, gg
   ## Dummify data
   dt <- split_columns(dummify(data, maxcat = maxcat))$continuous
   ## Analyze principle components
-  pca <- prcomp(dt, retx = FALSE, center = TRUE, scale. = TRUE, ...)
+  pca <- prcomp(dt, retx = FALSE, ...)
   ## Calcualte principle components standard deviation
   pcsd <- data.table(
     "pc" = paste0("PC", seq.int(length(pca$sdev))),
