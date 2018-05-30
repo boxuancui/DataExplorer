@@ -1,28 +1,45 @@
 #' Create boxplot for continuous features
 #'
 #' This function creates boxplot for each continuous feature based on a selected feature.
-#' @param data input data to be plotted, in either \link{data.frame} or \link{data.table} format.
+#' @param data input data
 #' @param by feature name to be broken down by. If selecting a continuous feature, boxplot will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature.
 #' @param title plot title
+#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @param \dots other arguments to be passed to \link{geom_boxplot}.
 #' @keywords plot_boxplot
+#' @details To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
+#' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales comma
 #' @export plot_boxplot
 #' @seealso \link{geom_boxplot}
 #' @examples
-#' # plot iris dataset by "Species" (discrete)
+#' # Plot iris dataset by "Species" (discrete)
 #' plot_boxplot(iris, by = "Species")
 #'
-#' # plot mtcars dataset by "mpg" (continuous)
+#' # Plot mtcars dataset by "mpg" (continuous)
 #' plot_boxplot(mtcars, "mpg")
+#'
+#' # Plot with preset ggplot2 themes
+#' library(ggplot2)
+#' plot_boxplot(iris, by = "Species", ggtheme = theme_light())
+#' plot_boxplot(iris, by = "Species", ggtheme = theme_minimal(base_size = 20))
+#'
+#' # Plot bar charts with customized theme components
+#' plot_boxplot(iris,
+#' by = "Species",
+#' theme_config = list(
+#'   "plot.background" = element_rect(fill = "yellow"),
+#'   "aspect.ratio" = 1
+#' ))
 
-plot_boxplot <- function(data, by, title = NULL, ...) {
+plot_boxplot <- function(data, by, title = NULL, ggtheme = theme_gray(), theme_config = list(), ...) {
   ## Declare variable first to pass R CMD check
   variable <- by_f <- value <- NULL
   ## Check if input is data.table
-  if (!is.data.table(data)) {data <- data.table(data)}
+  if (!is.data.table(data)) data <- data.table(data)
   ## Stop if no continuous features
   split_obj <- split_columns(data)
   if (split_obj$num_continuous == 0) stop("No Continuous Features!")
@@ -48,7 +65,9 @@ plot_boxplot <- function(data, by, title = NULL, ...) {
       facet_wrap(~ variable, ncol = n_col, scales = "free_x") +
       coord_flip() +
       scale_y_continuous(labels = comma) +
-      xlab(by) + ggtitle(title)
+      labs(x = by, title = title, caption = ifelse(pages > 1, paste("Page", pg), "")) +
+      ggtheme +
+      do.call(theme, theme_config)
     print(plot)
   }
 }

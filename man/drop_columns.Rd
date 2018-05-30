@@ -8,7 +8,7 @@
 drop_columns(data, ind)
 }
 \arguments{
-\item{data}{input data, in \link{data.table} format only.}
+\item{data}{input data}
 
 \item{ind}{a vector of either names or column positions of the variables to be dropped.}
 }
@@ -16,29 +16,28 @@ drop_columns(data, ind)
 Quickly drop variables by either name or column position.
 }
 \details{
-\bold{This function will only work with \link{data.table} object as input.} Consider setting your input to \link{data.table} first then assign the original class back after applying the function.
+\bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 }
 \examples{
-# load packages
+# Load packages
 library(data.table)
 
-# generate data
-dt <- data.table(sapply(setNames(letters, letters), function(x) {assign(x, rnorm(100))}))
+# Generate data
+dt <- data.table(sapply(setNames(letters, letters), function(x) {assign(x, rnorm(10))}))
 dt2 <- copy(dt)
 
-# drop variables by name
+# Drop variables by name
 names(dt)
-drop_columns(dt, letters[2:25])
+drop_columns(dt, letters[2L:25L])
 names(dt)
 
-# drop variables by column position
+# Drop variables by column position
 names(dt2)
 drop_columns(dt2, seq(2, 25))
 names(dt2)
 
-# work with non-data.table objects
-iris_df <- data.table(iris)
-drop_columns(iris_df, "Species")
-class(iris_df) <- "data.frame"
+# Return from non-data.table input
+df <- data.frame(sapply(setNames(letters, letters), function(x) {assign(x, rnorm(10))}))
+drop_columns(df, letters[2L:25L])
 }
 \keyword{drop_columns}

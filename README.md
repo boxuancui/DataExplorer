@@ -4,15 +4,15 @@
 [![CRAN Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 -->
 
-###### master v0.5.0
+###### master v0.6.0
 [![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer/branches)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=master&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
-[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/master/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer)
+[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/master/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer/branch/master)
 
-###### develop v0.5.0
+###### develop v0.6.0.9000
 [![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop)](https://travis-ci.org/boxuancui/DataExplorer/branches)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=develop&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
-[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/develop/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer)
+[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/develop/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer/branch/develop)
 
 ---
 
@@ -37,101 +37,72 @@ If you would like to install the latest [development version](https://github.com
 ## Examples
 The package is extremely easy to use. Almost everything could be done in one line of code. Please refer to the package manuals for more information. You may also find the package vignettes [here](https://CRAN.R-project.org/package=DataExplorer/vignettes/dataexplorer-intro.html).
 
-#### Create data profiling report
+#### Report
 To get a report for the [airquality](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/airquality.html) dataset:
 
     library(DataExplorer)
     create_report(airquality)
 
-To get a report for the [diamonds](http://docs.ggplot2.org/0.9.3.1/diamonds.html) dataset from `ggplot2` package:
+To get a report for the [diamonds](http://docs.ggplot2.org/0.9.3.1/diamonds.html) dataset with response variable **price**:
 
     library(DataExplorer)
     library(ggplot2)
-    create_report(diamonds)
+    create_report(diamonds, y = "price")
 
-#### Visualize various distribution
+#### Visualization
 You may also run all the plotting functions individually for your analysis, e.g.,
 
     library(DataExplorer)
     library(ggplot2)
+        
+    ## View missing value distribution for airquality data
+    plot_missing(airquality)
     
     ## View distribution of all discrete variables
     plot_bar(diamonds)
-    ## View distribution of cut only
-    plot_bar(diamonds$cut)
-    ## View correlation of all discrete varaibles
-    plot_correlation(diamonds, type = "discrete")
+    
+    ## View `price` distribution of all discrete variables
+    plot_bar(diamonds, with = "price")
     
     ## View distribution of all continuous variables
     plot_histogram(diamonds)
-    ## View distribution of carat only
-    plot_histogram(diamonds$carat)
-    ## View correlation of all continuous varaibles
-    plot_correlation(diamonds, type = "continuous")
     
     ## View overall correlation heatmap
     plot_correlation(diamonds)
     
-    ## View distribution of missing values for airquality data
-    missing_data <- plot_missing(airquality) # missing data profile will be returned
-    missing_data
-
-#### Slice and dice your data
-To visualize distributions based on another variable, you may do the following:
-
-	library(DataExplorer)
+	## View bivariate continuous distribution based on `price`
+	plot_boxplot(diamonds, by = "price")
+		
+	## Scatterplot `price` with all other features
+	plot_scatterplot(diamonds, by = "price")
 	
-	## View iris continuous distribution based on each Species
-	plot_boxplot(iris, "Species")
-	
-	## View iris continuous distribution based on different buckets of Sepal.Length
-	plot_boxplot(iris, "Sepal.Length")
-	
-	## Scatterplot Ozone against all other airquality features
-	# Set some features to factor
-	for (i in c("Month", "Day")) airquality[[i]] <- as.factor(airquality[[i]])
-	# Plot scatterplot
-	# Note: discrete and continuous charts are plotted on separate pages!
-	plot_scatterplot(airquality, "Ozone")
+	## Visualize principle component analysis
+	plot_prcomp(iris)
 
-
-#### Group categories for discrete features
-Sometimes, discrete variables are messy, e.g., too many imbalanced categories, extremely skewed categorical distribution. You may use `group_category` function to help you group the long tails.
+#### Feature Engineering
+To make quick updates to your data:
 
     library(DataExplorer)
     library(ggplot2)
-    data(diamonds)
     
-    ## View original distribution of variable clarity
-    diamonds <- data.table(diamonds)
-    table(diamonds$clarity)
+    ## Group bottom 20% `clarity` by frequency
+    group_category(diamonds, feature = "clarity", threshold = 0.2, update = TRUE)
     
-    ## Trial and error without updating: Group bottom 20% clarity based on frequency
-    group_category(diamonds, "clarity", 0.2)
-    ## Group bottom 30% clarity and update original dataset
-    group_category(diamonds, "clarity", 0.3, update = TRUE)
+    ## Group bottom 20% `clarity` by `price`
+    group_category(diamonds, feature = "clarity", threshold = 0.2, measure = "price", update = TRUE)
     
-    ## View distribution after updating
-    table(diamonds$clarity)
+    ## Set values for missing observations
+    df <- data.frame("a" = rnorm(260), "b" = rep(letters, 10))
+    df[sample.int(260, 50), ] <- NA
+    set_missing(df, list(0L, "unknown"))
     
-    ## Group bottom 20% cut using value of carat
-    table(diamonds$cut)
-    group_category(diamonds, "cut", 0.2, measure = "carat", update = TRUE)
-    table(diamonds$cut)
+    ## Drop columns
+    drop_columns(diamonds, 8:10)
+    drop_columns(diamonds, "clarity")
 
-Note: this function works with [data.table](https://cran.r-project.org/package=data.table) objects only. If you are working with `data.frame`, please add `data.table` class to your object and then remove it later. See example below.
+## Articles
 
-    library(DataExplorer)
-    
-    ## Set data.frame object to data.table
-    USArrests <- data.table(USArrests)
-    ## Collapse bottom 10% UrbanPop based on frequency
-    group_category(USArrests, "UrbanPop", 0.1, update = TRUE)
-    ## Set object back to data.frame
-    class(USArrests) <- "data.frame"
-
-#### Other miscellaneous functions
-* `plot_str`: Plot data structure in network graph.
-* `drop_columns`: Quickly drop variables with either column index or column names. (**data.table only**)
-* `set_missing`: Quickly set all missing observations to a value. (**data.table only**)
-* `split_columns`: Split data into two objects: discrete and continous.
+* [DataExplorer: Fast Data Exploration With Minimum Code](http://blog.revolutionanalytics.com/2018/02/dataexplorer.html)
+* [Blazing Fast EDA in R with DataExplorer](https://datascienceplus.com/blazing-fast-eda-in-r-with-dataexplorer/)
+* [Simple Fast Exploratory Data Analysis in R with DataExplorer Package](https://towardsdatascience.com/simple-fast-exploratory-data-analysis-in-r-with-dataexplorer-package-e055348d9619)
+* [EDA made very easy in R with DataExplorer](https://www.kaggle.com/nulldata/eda-made-very-easy-in-r-with-dataexplorer/notebook)

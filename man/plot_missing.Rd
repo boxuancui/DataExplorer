@@ -5,12 +5,17 @@
 \alias{PlotMissing}
 \title{Plot missing value profile}
 \usage{
-plot_missing(data, title = NULL)
+plot_missing(data, title = NULL, ggtheme = theme_gray(),
+  theme_config = list(legend.position = c("bottom")))
 }
 \arguments{
-\item{data}{input data to be profiled, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{title}{plot title}
+
+\item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
+
+\item{theme_config}{a list of configurations to be passed to \link{theme}.}
 }
 \value{
 missing value information, such as frequency, percentage and suggested action.
@@ -20,17 +25,25 @@ This function returns and plots frequency of missing values for each feature.
 }
 \details{
 The returned object is suppressed by \link{invisible}.
+
+To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
+
+\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 }
 \examples{
-# load packages
+# Load packages
 library(data.table)
 
-# manipulate data
+# Add missing values to iris data
 dt <- data.table(iris)
 for (j in 1:4) set(dt, i = sample(150, j * 30), j, value = NA_integer_)
 
-# plot and assign missing value information
+# Plot and assign missing value information
 na_profile <- plot_missing(dt)
 na_profile
+
+# Drop columns with more than 50\% missing values
+drop_columns(dt, as.character(na_profile[pct_missing >= 0.5][["feature"]]))
+plot_missing(dt)
 }
 \keyword{plot_missing}

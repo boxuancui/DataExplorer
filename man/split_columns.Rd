@@ -8,7 +8,7 @@
 split_columns(data)
 }
 \arguments{
-\item{data}{input data to be split, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 }
 \value{
 \code{discrete} all discrete features

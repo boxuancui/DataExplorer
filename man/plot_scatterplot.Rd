@@ -4,28 +4,46 @@
 \alias{plot_scatterplot}
 \title{Create scatterplot for all features}
 \usage{
-plot_scatterplot(data, by, title = NULL, ...)
+plot_scatterplot(data, by, title = NULL, ggtheme = theme_gray(),
+  theme_config = list(axis.text.x = element_text(angle = 45, hjust = 1)), ...)
 }
 \arguments{
-\item{data}{input data to be plotted, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{by}{feature name to be fixed.}
 
 \item{title}{plot title}
+
+\item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
+
+\item{theme_config}{a list of configurations to be passed to \link{theme}.}
 
 \item{\dots}{other arguments to be passed to \link{geom_point}.}
 }
 \description{
 This function creates scatterplot for all features fixing on a selected feature.
 }
+\details{
+To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
+
+\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
+}
 \examples{
-# load mpg data from ggplot2
+# Load mpg data from ggplot2
 data("mpg", package = "ggplot2")
 
-# scatterplot mpg dataset by "hwy"
+# Scatterplot mpg dataset by "hwy"
 plot_scatterplot(mpg, "hwy", size = 1)
-# scatterplot mpg dataset by "class"
+
+# Scatterplot mpg dataset by "class"
 plot_scatterplot(mpg, "class", size = 1)
+
+# Scatterplot with preset ggplot2 themes
+library(ggplot2)
+plot_scatterplot(mpg, "hwy", ggtheme = theme_light())
+
+# Scatterplot with customized theme components
+plot_scatterplot(mpg, "hwy", theme_config = list("axis.text.x" = element_text(angle = 90)))
 }
 \seealso{
 \link{geom_point}

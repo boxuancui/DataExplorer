@@ -9,7 +9,7 @@ group_category(data, feature, threshold, measure, update = FALSE,
   category_name = "OTHER", exclude = NULL)
 }
 \arguments{
-\item{data}{input data, in either \link{data.frame} or \link{data.table} format.}
+\item{data}{input data}
 
 \item{feature}{name of the discrete feature to be collapsed.}
 
@@ -17,14 +17,15 @@ group_category(data, feature, threshold, measure, update = FALSE,
 
 \item{measure}{name of feature to be used as an alternative measure.}
 
-\item{update}{logical, indicating if the data should be modified. Setting to \code{TRUE} will modify the input data directly, and \bold{will only work with \link{data.table}}. The default is \code{FALSE}.}
+\item{update}{logical, indicating if the data should be modified. The default is \code{FALSE}. Setting to \code{TRUE} will modify the input \link{data.table} object directly. Otherwise, input class will be returned.}
 
 \item{category_name}{name of the new category if update is set to \code{TRUE}. The default is "OTHER".}
 
 \item{exclude}{categories to be excluded from grouping when update is set to \code{TRUE}.}
 }
 \value{
-If update is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
+If \code{update} is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
+If \code{update} is set to \code{TRUE}, updated data will be returned, and the output class will match the class of input data.
 }
 \description{
 Sometimes discrete features have sparse categories. This function will group the sparse categories for a discrete feature based on a given threshold.
@@ -33,25 +34,31 @@ Sometimes discrete features have sparse categories. This function will group the
 If a continuous feature is passed to the argument \code{feature}, it will be force set to \link{character-class}.
 }
 \examples{
-# load packages
+# Load packages
 library(data.table)
 
-# generate data
-data <- data.table("a" = as.factor(round(rnorm(500, 10, 5))), "b" = rexp(500, 1:500))
+# Generate data
+data <- data.table("a" = as.factor(round(rnorm(500, 10, 5))), "b" = rexp(500, 500))
 
-# view cumulative frequency without collpasing categories
+# View cumulative frequency without collpasing categories
 group_category(data, "a", 0.2)
 
-# view cumulative frequency based on another measure
+# View cumulative frequency based on another measure
 group_category(data, "a", 0.2, measure = "b")
 
-# group bottom 20\% categories based on cumulative frequency
+# Group bottom 20\% categories based on cumulative frequency
 group_category(data, "a", 0.2, update = TRUE)
 plot_bar(data)
 
-# exclude categories from being grouped
+# Exclude categories from being grouped
 dt <- data.table("a" = c(rep("c1", 25), rep("c2", 10), "c3", "c4"))
 group_category(dt, "a", 0.8, update = TRUE, exclude = c("c3", "c4"))
 plot_bar(dt)
+
+# Return from non-data.table input
+df <- data.frame("a" = as.factor(round(rnorm(50, 10, 5))), "b" = rexp(50, 10))
+group_category(df, "a", 0.2)
+group_category(df, "a", 0.2, measure = "b", update = TRUE)
+group_category(df, "a", 0.2, update = TRUE)
 }
 \keyword{group_category}

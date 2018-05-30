@@ -1,8 +1,7 @@
 context("group category")
 data("diamonds", package = "ggplot2")
 
-test_that("test non-data.table objects", {
-  expect_error(group_category(iris, "Species", 0.2, update = TRUE))
+test_that("test non-data.table objects without update", {
   expect_is(group_category(iris, "Species", 0.2), "data.frame")
   expect_lt(sum(group_category(iris, "Species", 0.2)[["cnt"]]), nrow(iris))
   expect_lt(sum(group_category(iris, "Species", 0.2, "Sepal.Length")[["cnt"]]), sum(iris$Sepal.Length))
@@ -45,4 +44,10 @@ test_that("test excluding columns", {
   dt <- data.table("a" = c(rep("c1", 25), rep("c2", 10), "c3", "c4"))
   group_category(dt, "a", 0.8, update = TRUE, exclude = c("c3", "c4"))
   expect_identical(unique(dt$a), c("OTHER", "c3", "c4"))
+})
+
+test_that("test non-data.table objects with update", {
+  expect_is(group_category(iris, "Species", 0.2, update = TRUE), "data.frame")
+  expect_equal(class(group_category(diamonds, "cut", 0.2, update = TRUE)), class(diamonds))
+  expect_equal(dim(group_category(iris, "Species", 0.2, update = TRUE)), dim(iris))
 })

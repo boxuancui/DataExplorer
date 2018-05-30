@@ -18,9 +18,10 @@ set_missing(data, value, exclude = NULL)
 Quickly set all missing values to indicated value.
 }
 \details{
-\bold{This function will only work with \link{data.table} object as input.} Consider setting your input to \link{data.table} first then assign the original class back after applying the function.
+The class of \code{value} will determine what type of columns to be set, e.g., if \code{value} is 0, then missing values for continuous features will be set.
+When supplying a list of two values, only one numeric and one non-numeric is allowed.
 
-The class of \code{value} will determine what type of columns to be set, e.g., if \code{value} is 0, then missing values for continuous features will be set. When supplying a list of two values, only one numeric and one non-numeric is allowed.
+\bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 }
 \examples{
 # Load packages
@@ -45,7 +46,10 @@ set_missing(dt4, "unknown")
 
 # Set missing values excluding some columns
 dt5 <- copy(dt)
-set_missing(dt4, 0L, 1:2)
-set_missing(dt4, 0L, names(dt5)[3:4])
+set_missing(dt4, 0L, 1L:2L)
+set_missing(dt4, 0L, names(dt5)[3L:4L])
+
+# Return from non-data.table input
+set_missing(airquality, 999999L)
 }
 \keyword{set_missing}

@@ -1,5 +1,30 @@
 # Changelog
 
+### DataExplorer 0.6.0
+#### New Features
+* [#15](https://github.com/boxuancui/DataExplorer/issues/15): Added `plot_prcomp` to visualize principle component analysis.
+* [#54](https://github.com/boxuancui/DataExplorer/issues/54): Extracted `dummify` from `plot_correlation` as a new function.
+* [#59](https://github.com/boxuancui/DataExplorer/issues/59): Added `introduce` for basic metadata.
+
+#### Enhancements
+* [#41](https://github.com/boxuancui/DataExplorer/issues/41): `create_report` can now be customized.
+* [#53](https://github.com/boxuancui/DataExplorer/issues/53): Added page number for plots that span multiple pages.
+* [#56](https://github.com/boxuancui/DataExplorer/issues/56): Added support for theme and customization for individual components.
+* [#62](https://github.com/boxuancui/DataExplorer/issues/62): `plot_bar` now supports optional measures (in addition to categorical frequency) using argument `with`.
+* `plot_missing`:
+	* Percentage text labels from output plot now has 2 decimals to prevent small percentages from being truncated to 0%.
+	* Added example to quickly drop columns with too many missing values.
+* [#66](https://github.com/boxuancui/DataExplorer/issues/66): Feature engineering functions works on other classes in addition to just **data.table**.
+* Added `.ignoreCat` to helper.
+
+#### Bug Fixes
+* [#55](https://github.com/boxuancui/DataExplorer/issues/55): Fixed bugs and updated vignette with latest functions.
+* [#57](https://github.com/boxuancui/DataExplorer/issues/57): Fixed `plot_str` bug for not supporting S4 objects.
+* [#63](https://github.com/boxuancui/DataExplorer/issues/63): Fixed `plot_histogram` and `plot_density` not working with column names containing spaces.
+
+
+---
+
 ### DataExplorer 0.5.0
 #### New Features
 * [#48](https://github.com/boxuancui/DataExplorer/issues/48): Added `plot_scatterplot` to visualize relationship of one feature against all other.
@@ -46,7 +71,7 @@
 * [#37](https://github.com/boxuancui/DataExplorer/issues/37): Changed all `cat()` to `message()`.
 * [#38](https://github.com/boxuancui/DataExplorer/issues/38): Added option to order bars in `BarDiscrete`.
 * [#39](https://github.com/boxuancui/DataExplorer/issues/39): Extended `SetNaTo` to discrete features.
-* Added more examples in README file.
+* Added more examples to **README.md**.
 
 ---
 
@@ -56,11 +81,11 @@
 * [#29](https://github.com/boxuancui/DataExplorer/issues/29): Added `DropVar` to quickly drop variables by either name or column position.
 
 #### Bug Fixes
-* [#24](https://github.com/boxuancui/DataExplorer/issues/24): `CorrelationDiscrete` now displays all factor levels instead of contrasts from `model.matrix`.
+* [#24](https://github.com/boxuancui/DataExplorer/issues/24): `CorrelationDiscrete` now displays all factor levels instead of full rank matrix from `model.matrix`.
 
 #### Enhancements
 * [#11](https://github.com/boxuancui/DataExplorer/issues/11): Functions with return values will now match the input class and set it back.
-* [#22](https://github.com/boxuancui/DataExplorer/issues/22): Added documentation for **num_all_missing** in `SplitColType`.
+* [#22](https://github.com/boxuancui/DataExplorer/issues/22): Added documentation for `num_all_missing` in `SplitColType`.
 * [#23](https://github.com/boxuancui/DataExplorer/issues/23): Added additional measures (in addition to frequency) to `CollapseCategory`.
 * [#26](https://github.com/boxuancui/DataExplorer/issues/26): Removed density estimation section from report template.
 * [#31](https://github.com/boxuancui/DataExplorer/issues/31): Added flexibility to name the new category in `CollapseCategory`.
@@ -113,5 +138,5 @@
 * Features with all missing values will be ignored.
 * Switched position between continuous and discrete features in report template.
 * Renamed package name to **DataExplorer**.
-* Added `NEWS.md`.
+* Added **NEWS.md**.
 * Removed `BoxplotContinuous`.
