@@ -36,9 +36,13 @@ To change default font family and size, you may pass \code{base_size} and \code{
 }
 \note{
 Discrete features will be \link{dummify}-ed first before passing to \link{prcomp}.
+
+Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your input data first.
 }
 \examples{
 data("diamonds", package = "ggplot2")
 plot_prcomp(diamonds, maxcat = 5, scale. = TRUE)
+
+plot_prcomp(na.omit(airquality), scale. = TRUE)
 }
 \keyword{plot_prcomp}

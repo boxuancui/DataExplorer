@@ -1,5 +1,14 @@
 # Changelog
 
+### DataExplorer 0.6.1
+#### Enhancements
+* Updated vignette for better clarity.
+* Added better error handler for `plot_prcomp`.
+
+#### Bug Fixes
+* [#69](https://github.com/boxuancui/DataExplorer/issues/69): Fixed bug causing `create_report` failure (specifically from `plot_prcomp`) when `y` is specified.
+* Added more unit tests for `create_report` and `plot_prcomp`.
+
 ### DataExplorer 0.6.0
 #### New Features
 * [#15](https://github.com/boxuancui/DataExplorer/issues/15): Added `plot_prcomp` to visualize principle component analysis.

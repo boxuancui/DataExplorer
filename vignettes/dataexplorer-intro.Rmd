@@ -98,10 +98,16 @@ kable(introduce(final_data), format.args = list(big.mark = ","))
 ```
 
 ### Missing values
-Real-world data is messy. After running the basic descriptive statistics, you might be interested in the missing data profile. You can simple use `plot_missing` function for this.
+Real-world data is messy. After running the basic descriptive statistics, you might be interested in the missing data profile. You can simply use `plot_missing` function for this.
 
 ```{r eda-plot-missing}
 plot_missing(final_data)
+```
+
+Looks like **speed** variable is mostly missing, and probably not informative. Let's drop it:
+
+```{r eda-drop-speed}
+final_data <- drop_columns(final_data, "speed")
 ```
 
 You may also store the missing data profile with `missing_data <- plot_missing(final_data)` for additional analysis.
@@ -179,7 +185,7 @@ plot_correlation(final_data, type = "d", use = "pairwise.complete.obs")
 While you can always do `plot_prcomp(na.omit(final_data))` directly, but PCA works better with cleaner data. To perform and visualize PCA on some selected features:
 
 ```{r eda-plot-prcomp}
-pca_df <- na.omit(final_data[, c("origin", "name_carrier", "type", "engine", "dep_delay", "arr_delay", "air_time", "month", "hour", "year_planes", "seats", "speed")])
+pca_df <- na.omit(final_data[, c("origin", "name_carrier", "type", "engine", "dep_delay", "arr_delay", "air_time", "month", "hour", "year_planes", "seats")])
 
 plot_prcomp(pca_df)
 ```
@@ -192,7 +198,7 @@ Suppose you would like to build a model to predict arrival delays, you may visua
 
 ```{r eda-plot-boxplot, fig.width=8, fig.height=8}
 ## Reduce data size for demo purpose
-arr_delay_df <- final_data[, c("arr_delay", "month", "day", "hour", "minute", "dep_delay", "distance", "year_planes", "seats", "speed")]
+arr_delay_df <- final_data[, c("arr_delay", "month", "day", "hour", "minute", "dep_delay", "distance", "year_planes", "seats")]
 
 ## Call boxplot function
 plot_boxplot(arr_delay_df, by = "arr_delay")
@@ -205,7 +211,7 @@ An alternative visualization is scatterplot. For example:
 
 ```{r eda-plot-scatterplot, fig.width=8, fig.height=8}
 ## Reduce data size for demo purpose
-arr_delay_df2 <- final_data[sample.int(nrow(final_data), 1000), c("arr_delay", "dep_time", "dep_delay", "arr_time", "air_time", "distance", "year_planes", "seats", "speed")]
+arr_delay_df2 <- final_data[sample.int(nrow(final_data), 1000), c("arr_delay", "dep_time", "dep_delay", "arr_time", "air_time", "distance", "year_planes", "seats")]
 
 ## Call scatterplot function
 plot_scatterplot(arr_delay_df2, by = "arr_delay", size = 0.5)
@@ -276,7 +282,7 @@ plot_str(
 
 ```{r fe-dummify-run, echo=FALSE}
 diagonalNetwork(
-  plot_str(list("original" = final_data,"dummified" = dummify(final_data, maxcat = 5L)), print_network = FALSE),
+  plot_str(list("original" = final_data, "dummified" = dummify(final_data, maxcat = 5L)), print_network = FALSE),
   width = 800,
   height = 1500,
   fontSize = 20,
@@ -295,7 +301,7 @@ After viewing the feature distribution, you often want to drop features that are
 ```{r fe-drop-columns}
 identical(
   drop_columns(final_data, c("dst_origin", "dst_dest", "tzone_dest")),
-  drop_columns(final_data, c(34, 41, 42))
+  drop_columns(final_data, c(33, 40, 41))
 )
 ```
 

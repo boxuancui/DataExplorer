@@ -90,44 +90,46 @@
 #' }
 
 create_report <- function(data, output_file = "report.html", output_dir = getwd(), y = NULL, config = list(), ...) {
-  ## Check response variable
-  if (!is.null(y)) {
-    if (!(y %in% names(data))) stop("`", y, "` not found in data!")
-  }
-  ## Get directory of report markdown template
-  report_dir <- system.file("rmd_template/report.rmd", package = "DataExplorer")
-  ## Set report configuration if null
-  if (length(config) == 0) {
-    config <- list(
-      "introduce" = list(),
-      "plot_str" = list("type" = "diagonal", "fontSize" = 35, "width" = 1000, "margin" = list("left" = 350, "right" = 250)),
-      "plot_missing" = list(),
-      "plot_histogram" = list(),
-      "plot_bar" = list(),
-      "plot_correlation" = list("use" = "pairwise.complete.obs"),
-      "plot_prcomp" = list(),
-      "plot_boxplot" = list(),
-      "plot_scatterplot" = list()
-    )
-  }
-  ## Render report into html
-  suppressWarnings(render(
-    input = report_dir,
-    output_file = output_file,
-    output_dir = output_dir,
-    intermediates_dir = output_dir,
-    params = list(data = data, report_config = config, response = y),
-    ...
-  ))
-  ## Open report
-  report_path <- file.path(output_dir, output_file)
-  browseURL(report_path)
-  ## Print report directory
-  args <- as.list(match.call())
-  if (ifelse(is.null(args[["quiet"]]), TRUE, !args[["quiet"]])) message(paste0("\n\nReport is generated at \"", report_path, "\"."))
+	## Check if input is data.table
+	if (!is.data.table(data)) data <- data.table(data)
+	## Check response variable
+	if (!is.null(y)) {
+		if (!(y %in% names(data))) stop("`", y, "` not found in data!")
+	}
+	## Get directory of report markdown template
+	report_dir <- system.file("rmd_template/report.rmd", package = "DataExplorer")
+	## Set report configuration if null
+	if (length(config) == 0) {
+		config <- list(
+			"introduce" = list(),
+			"plot_str" = list("type" = "diagonal", "fontSize" = 35, "width" = 1000, "margin" = list("left" = 350, "right" = 250)),
+			"plot_missing" = list(),
+			"plot_histogram" = list(),
+			"plot_bar" = list(),
+			"plot_correlation" = list("use" = "pairwise.complete.obs"),
+			"plot_prcomp" = list(),
+			"plot_boxplot" = list(),
+			"plot_scatterplot" = list()
+		)
+	}
+	## Render report into html
+	suppressWarnings(render(
+		input = report_dir,
+		output_file = output_file,
+		output_dir = output_dir,
+		intermediates_dir = output_dir,
+		params = list(data = data, report_config = config, response = y),
+		...
+	))
+	## Open report
+	report_path <- file.path(output_dir, output_file)
+	browseURL(report_path)
+	## Print report directory
+	args <- as.list(match.call())
+	if (ifelse(is.null(args[["quiet"]]), TRUE, !args[["quiet"]])) message(paste0("\n\nReport is generated at \"", report_path, "\"."))
 }
 
 GenerateReport <- function(data, output_file = "report.html", output_dir = getwd(), ...) {
-  .Deprecated("create_report")
-  create_report(data = data, output_file = output_file, output_dir = output_dir, ...)
+	.Deprecated("create_report")
+	create_report(data = data, output_file = output_file, output_dir = output_dir, ...)
 }
