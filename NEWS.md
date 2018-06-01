@@ -20,11 +20,11 @@
 * [#53](https://github.com/boxuancui/DataExplorer/issues/53): Added page number for plots that span multiple pages.
 * [#56](https://github.com/boxuancui/DataExplorer/issues/56): Added support for theme and customization for individual components.
 * [#62](https://github.com/boxuancui/DataExplorer/issues/62): `plot_bar` now supports optional measures (in addition to categorical frequency) using argument `with`.
+* [#66](https://github.com/boxuancui/DataExplorer/issues/66): Feature engineering functions works on other classes in addition to just **data.table**.
 * `plot_missing`:
 	* Percentage text labels from output plot now has 2 decimals to prevent small percentages from being truncated to 0%.
 	* Added example to quickly drop columns with too many missing values.
-* [#66](https://github.com/boxuancui/DataExplorer/issues/66): Feature engineering functions works on other classes in addition to just **data.table**.
-* Added `.ignoreCat` to helper.
+* Added `.ignoreCat` and `.getAllMissing` to helper.
 
 #### Bug Fixes
 * [#55](https://github.com/boxuancui/DataExplorer/issues/55): Fixed bugs and updated vignette with latest functions.
