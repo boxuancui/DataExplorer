@@ -49,7 +49,8 @@ plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, title = NULL, gg
 		"pct" = pca$sdev / sum(pca$sdev),
 		"cum_pct" = cumsum(pca$sdev) / sum(pca$sdev)
 	)
-	pcsd2 <- pcsd[cum_pct <= variance_cap]
+	min_cum_pct <- min(pcsd$cum_pct)
+	pcsd2 <- pcsd[cum_pct <= max(variance_cap, min_cum_pct)]
 	## Create explained variance plot
 	varexp_plot <- ggplot(pcsd2, aes(x = reorder(pc, pct), y = pct)) +
 		geom_bar(stat = "identity") +
