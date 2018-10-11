@@ -2,7 +2,6 @@
 % Please edit documentation in R/plot_histogram.r
 \name{plot_histogram}
 \alias{plot_histogram}
-\alias{HistogramContinuous}
 \title{Create histogram for continuous features}
 \usage{
 plot_histogram(data, title = NULL, ggtheme = theme_gray(),

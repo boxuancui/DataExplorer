@@ -2,7 +2,6 @@
 % Please edit documentation in R/plot_missing.r
 \name{plot_missing}
 \alias{plot_missing}
-\alias{PlotMissing}
 \title{Plot missing value profile}
 \usage{
 plot_missing(data, title = NULL, ggtheme = theme_gray(),

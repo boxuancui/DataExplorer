@@ -2,11 +2,10 @@
 % Please edit documentation in R/plot_bar.r
 \name{plot_bar}
 \alias{plot_bar}
-\alias{BarDiscrete}
 \title{Create bar charts for discrete features}
 \usage{
-plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE, title = NULL,
-  ggtheme = theme_gray(), theme_config = list())
+plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE,
+  title = NULL, ggtheme = theme_gray(), theme_config = list())
 }
 \arguments{
 \item{data}{input data}

@@ -4,10 +4,9 @@
 #' @param data input data
 #' @param ind a vector of either names or column positions of the variables to be dropped.
 #' @keywords drop_columns
-#' @aliases DropVar
 #' @details \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 #' @import data.table
-#' @export drop_columns DropVar
+#' @export drop_columns
 #' @examples
 #' # Load packages
 #' library(data.table)
@@ -44,9 +43,4 @@ drop_columns <- function(data, ind) {
     class(data) <- data_class
     return(data)
   }
-}
-
-DropVar <- function(data, ind) {
-  .Deprecated("drop_columns")
-  drop_columns(data = data, ind = ind)
 }

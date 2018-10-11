@@ -5,7 +5,8 @@
 \title{Create scatterplot for all features}
 \usage{
 plot_scatterplot(data, by, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(axis.text.x = element_text(angle = 45, hjust = 1)), ...)
+  theme_config = list(axis.text.x = element_text(angle = 45, hjust = 1)),
+  ...)
 }
 \arguments{
 \item{data}{input data}

@@ -9,12 +9,11 @@
 #' @param category_name name of the new category if update is set to \code{TRUE}. The default is "OTHER".
 #' @param exclude categories to be excluded from grouping when update is set to \code{TRUE}.
 #' @keywords group_category
-#' @aliases CollapseCategory
 #' @return If \code{update} is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
 #' If \code{update} is set to \code{TRUE}, updated data will be returned, and the output class will match the class of input data.
 #' @details If a continuous feature is passed to the argument \code{feature}, it will be force set to \link{character-class}.
 #' @import data.table
-#' @export group_category CollapseCategory
+#' @export group_category
 #' @examples
 #' # Load packages
 #' library(data.table)
@@ -76,9 +75,4 @@ group_category <- function(data, feature, threshold, measure, update = FALSE, ca
     class(output) <- data_class
     return(output)
   }
-}
-
-CollapseCategory <- function(data, feature, threshold, measure, update = FALSE, category_name = "OTHER", exclude = NULL) {
-  .Deprecated("group_category")
-  group_category(data = data, feature = feature, threshold = threshold, measure = measure, update = update, category_name = category_name, exclude = exclude)
 }

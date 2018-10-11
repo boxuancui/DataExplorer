@@ -31,5 +31,6 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/boxuancui/DataExplorer
 BugReports: https://github.com/boxuancui/DataExplorer/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
+Encoding: UTF-8
 VignetteBuilder: knitr

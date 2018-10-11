@@ -2,7 +2,6 @@
 % Please edit documentation in R/plot_str.r
 \name{plot_str}
 \alias{plot_str}
-\alias{PlotStr}
 \title{Visualize data structure}
 \usage{
 plot_str(data, type = c("diagonal", "radial"), max_level = NULL,

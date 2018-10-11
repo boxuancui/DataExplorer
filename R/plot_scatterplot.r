@@ -12,7 +12,6 @@
 #' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 #' @import data.table
 #' @import ggplot2
-#' @importFrom scales comma
 #' @export plot_scatterplot
 #' @seealso \link{geom_point}
 #' @examples

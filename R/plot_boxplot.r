@@ -12,7 +12,6 @@
 #' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 #' @import data.table
 #' @import ggplot2
-#' @importFrom scales comma
 #' @export plot_boxplot
 #' @seealso \link{geom_boxplot}
 #' @examples
@@ -64,7 +63,6 @@ plot_boxplot <- function(data, by, title = NULL, ggtheme = theme_gray(), theme_c
       geom_boxplot(...) +
       facet_wrap(~ variable, ncol = n_col, scales = "free_x") +
       coord_flip() +
-      scale_y_continuous(labels = comma) +
       labs(x = by, title = title, caption = ifelse(pages > 1, paste("Page", pg), "")) +
       ggtheme +
       do.call(theme, theme_config)

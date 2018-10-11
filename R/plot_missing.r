@@ -6,15 +6,13 @@
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @keywords plot_missing
-#' @aliases PlotMissing
 #' @details The returned object is suppressed by \link{invisible}.
 #' @details To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
 #' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 #' @return missing value information, such as frequency, percentage and suggested action.
 #' @import data.table
 #' @import ggplot2
-#' @importFrom scales comma
-#' @export plot_missing PlotMissing
+#' @export plot_missing
 #' @examples
 #' # Load packages
 #' library(data.table)
@@ -58,7 +56,6 @@ plot_missing <- function(data, title = NULL, ggtheme = theme_gray(), theme_confi
     geom_bar(stat = "identity") +
     geom_text(aes(label = paste0(round(100 * pct_missing, 2), "%"))) +
     scale_fill_manual("Group", values = c("Good" = "#1a9641", "OK" = "#a6d96a", "Bad" = "#fdae61", "Remove" = "#d7191c"), breaks = c("Good", "OK", "Bad", "Remove")) +
-    scale_y_continuous(labels = comma) +
     coord_flip() +
     xlab("Features") + ylab("Number of missing rows") +
     ggtitle(title) +
@@ -68,9 +65,4 @@ plot_missing <- function(data, title = NULL, ggtheme = theme_gray(), theme_confi
   print(output)
   ## Set return object
   return(invisible(missing_value))
-}
-
-PlotMissing <- function(data, title = NULL) {
-  .Deprecated("plot_missing")
-  plot_missing(data = data, title = title)
 }

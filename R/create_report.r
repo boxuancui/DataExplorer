@@ -8,7 +8,6 @@
 #' @param config report configuration with function arguments as \link{list}. See details.
 #' @param \dots other arguments to be passed to \link{render}.
 #' @keywords create_report
-#' @aliases GenerateReport
 #' @details \code{config} is a named list to be evaluated by \code{create_report}.
 #' Each name should exactly match a function name.
 #' By doing so, that function and corresponding content will be added to the report.
@@ -26,7 +25,7 @@
 #' }
 #' @importFrom utils browseURL
 #' @importFrom rmarkdown render
-#' @export create_report GenerateReport
+#' @export create_report
 #' @examples
 #' \dontrun{
 #' #############################
@@ -127,9 +126,4 @@ create_report <- function(data, output_file = "report.html", output_dir = getwd(
 	## Print report directory
 	args <- as.list(match.call())
 	if (ifelse(is.null(args[["quiet"]]), TRUE, !args[["quiet"]])) message(paste0("\n\nReport is generated at \"", report_path, "\"."))
-}
-
-GenerateReport <- function(data, output_file = "report.html", output_dir = getwd(), ...) {
-	.Deprecated("create_report")
-	create_report(data = data, output_file = output_file, output_dir = output_dir, ...)
 }

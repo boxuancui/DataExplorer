@@ -2,7 +2,6 @@
 % Please edit documentation in R/drop_columns.r
 \name{drop_columns}
 \alias{drop_columns}
-\alias{DropVar}
 \title{Drop selected variables}
 \usage{
 drop_columns(data, ind)

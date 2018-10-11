@@ -2,7 +2,6 @@
 % Please edit documentation in R/plot_density.r
 \name{plot_density}
 \alias{plot_density}
-\alias{DensityContinuous}
 \title{Visualize density estimates for continuous features}
 \usage{
 plot_density(data, title = NULL, ggtheme = theme_gray(),

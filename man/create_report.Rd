@@ -2,7 +2,6 @@
 % Please edit documentation in R/create_report.r
 \name{create_report}
 \alias{create_report}
-\alias{GenerateReport}
 \title{create_report Function}
 \usage{
 create_report(data, output_file = "report.html", output_dir = getwd(),

@@ -7,15 +7,13 @@
 #' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @param \dots other arguments to be passed to \link{geom_density}.
 #' @keywords plot_density
-#' @aliases DensityContinuous
 #' @details To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
 #' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 #' @import data.table
 #' @import ggplot2
-#' @importFrom scales comma percent
 #' @importFrom stats na.omit
 #' @import gridExtra
-#' @export plot_density DensityContinuous
+#' @export plot_density
 #' @seealso \link{geom_density} \link{plot_histogram}
 #' @examples
 #' # Plot using iris data
@@ -66,8 +64,6 @@ plot_density <- function(data, title = NULL, ggtheme = theme_gray(), theme_confi
         x <- na.omit(subset_data[, j, with = FALSE])
         ggplot(x, aes_string(x = names(x))) +
           geom_density(...) +
-          scale_x_continuous(labels = comma) +
-          scale_y_continuous(labels = percent) +
           ylab("Density") +
           ggtheme +
           do.call(theme, theme_config)
@@ -80,9 +76,4 @@ plot_density <- function(data, title = NULL, ggtheme = theme_gray(), theme_confi
       suppressWarnings(do.call(grid.arrange, c(plot, top = title)))
     }
   }
-}
-
-DensityContinuous <- function(data, title = NULL, ...) {
-  .Deprecated("plot_density")
-  plot_density(data = data, title = title, ...)
 }

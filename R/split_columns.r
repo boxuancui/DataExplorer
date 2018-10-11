@@ -3,7 +3,6 @@
 #' This function splits the input data into two \link{data.table} objects: discrete and continuous. A feature is continuous if \code{is.numeric} returns \code{TRUE}.
 #' @param data input data
 #' @keywords split_columns
-#' @aliases SplitColType
 #' @details Features with all missing values will be dropped from the output data, but will be counted towards the column count.
 #' @details The elements in the output list will have the same class as the input data.
 #' @return \code{discrete} all discrete features
@@ -12,7 +11,7 @@
 #' @return \code{num_continuous} number of continuous features
 #' @return \code{num_all_missing} number of features with no observations (all values are missing)
 #' @import data.table
-#' @export split_columns SplitColType
+#' @export split_columns
 #' @examples
 #' output <- split_columns(iris)
 #' output$discrete
@@ -51,9 +50,4 @@ split_columns <- function(data) {
       "num_all_missing" = n_all_missing
     )
   )
-}
-
-SplitColType <- function(data) {
-  .Deprecated("split_columns")
-  split_columns(data)
 }

@@ -7,12 +7,11 @@
 #' @param print_network logical indicating if network graph should be plotted. Defaults to \code{TRUE}.
 #' @param \dots other arguments to be passed to plotting functions. See \link{diagonalNetwork} and \link{radialNetwork}.
 #' @keywords plot_str
-#' @aliases PlotStr
 #' @return input data structure in nested list. Could be transformed to json format with most JSON packages.
 #' @import data.table
 #' @importFrom networkD3 diagonalNetwork radialNetwork
 #' @importFrom utils capture.output str
-#' @export plot_str PlotStr
+#' @export plot_str
 #' @seealso \link{str}
 #' @examples
 #' ## Visualize structure of iris dataset
@@ -95,9 +94,4 @@ plot_str <- function(data, type = c("diagonal", "radial"), max_level = NULL, pri
   }
   ## Set return object in invisible mode
   return(invisible(str_list))
-}
-
-PlotStr <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
-  .Deprecated("plot_str")
-  plot_str(data = data, type = type, max_level = max_level, print_network = print_network, ...)
 }

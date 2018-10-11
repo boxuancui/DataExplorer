@@ -1,6 +1,7 @@
 #' Truncate category
 #'
 #' Output index and name for features that will be ignored
+#' @noRd
 #' @param dt input data object.
 #' @param maxcat maximum categories allowed for each discrete feature.
 #' @return a named vector containing indices of features to be ignored.
@@ -16,6 +17,7 @@
 #' Get all missing columns
 #'
 #' Get number of columns with all values missing
+#' @noRd
 #' @param dt input data object.
 #' @return a named logical vector indicating if a column has only missing values.
 #' @import data.table

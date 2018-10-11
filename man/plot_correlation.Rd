@@ -2,8 +2,6 @@
 % Please edit documentation in R/plot_correlation.r
 \name{plot_correlation}
 \alias{plot_correlation}
-\alias{CorrelationDiscrete}
-\alias{CorrelationContinuous}
 \title{Create correlation heatmap for discrete features}
 \usage{
 plot_correlation(data, type = c("all", "discrete", "continuous"),

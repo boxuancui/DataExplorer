@@ -2,7 +2,6 @@
 % Please edit documentation in R/set_missing.r
 \name{set_missing}
 \alias{set_missing}
-\alias{SetNaTo}
 \title{Set all missing values to indicated value}
 \usage{
 set_missing(data, value, exclude = NULL)

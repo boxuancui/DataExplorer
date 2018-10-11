@@ -2,7 +2,6 @@
 % Please edit documentation in R/split_columns.r
 \name{split_columns}
 \alias{split_columns}
-\alias{SplitColType}
 \title{Split data into discrete and continuous parts}
 \usage{
 split_columns(data)

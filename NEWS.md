@@ -1,12 +1,14 @@
 # Changelog
 
-### DataExplorer 0.6.1
+### DataExplorer 0.7.0
 #### Enhancements
+* [#83](https://github.com/boxuancui/DataExplorer/issues/83): Removed all deprecated functions.
 * Updated vignette for better clarity.
 * Added better error handler for `plot_prcomp`.
 
 #### Bug Fixes
 * [#69](https://github.com/boxuancui/DataExplorer/issues/69): Fixed bug causing `create_report` failure (specifically from `plot_prcomp`) when `y` is specified.
+* [#82](https://github.com/boxuancui/DataExplorer/issues/82): Removed hard-coded scales from `plot_histogram`.
 * Added more unit tests for `create_report` and `plot_prcomp`.
 
 ### DataExplorer 0.6.0
