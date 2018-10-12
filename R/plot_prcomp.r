@@ -7,7 +7,10 @@
 #' @param title plot title starting from page 2.
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
+#' @param nrow number of rows per page
+#' @param ncol number of columns per page
 #' @param \dots other arguments to be passed to \link{prcomp}.
+#' @return invisibly return the named list of ggplot objects
 #' @keywords plot_prcomp
 #' @details When cumulative explained variance exceeds \code{variance_cap}, remaining principle components will be ignored. Set \code{variance_cap} to 1 for all principle components.
 #' @details Discrete features containing more categories than \code{maxcat} specifies will be ignored.
@@ -17,16 +20,17 @@
 #' @note Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your input data first.
 #' @import data.table
 #' @import ggplot2
-#' @import scales
+#' @importFrom scales percent
 #' @importFrom stats prcomp
+#' @importFrom parallel mclapply
 #' @export
 #' @examples
-#' data("diamonds", package = "ggplot2")
-#' plot_prcomp(diamonds, maxcat = 5, scale. = TRUE)
+#' plot_prcomp(na.omit(airquality), nrow = 2L, ncol = 2L, scale. = TRUE)
 #'
-#' plot_prcomp(na.omit(airquality), scale. = TRUE)
+#' data("diamonds", package = "ggplot2")
+#' plot_prcomp(diamonds, maxcat = 7L, scale. = TRUE)
 
-plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, title = NULL, ggtheme = theme_gray(), theme_config = list(), ...) {
+plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, ...) {
 	## Declare variable first to pass R CMD check
 	pc <- pct <- cum_pct <- Feature <- variable <- value <- NULL
 	## Check if input is data.table
@@ -43,16 +47,17 @@ plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, title = NULL, gg
 	)
 
 	## Calcualte principle components standard deviation
-	pcsd <- data.table(
-		"pc" = paste0("PC", seq.int(length(pca$sdev))),
-		"sd" = pca$sdev,
-		"pct" = pca$sdev / sum(pca$sdev),
-		"cum_pct" = cumsum(pca$sdev) / sum(pca$sdev)
+	var_exp <- pca$sdev ^ 2
+	pc_var <- data.table(
+		"pc" = paste0("PC", seq_along(pca$sdev)),
+		"var" = var_exp,
+		"pct" = var_exp / sum(var_exp),
+		"cum_pct" = cumsum(var_exp) / sum(var_exp)
 	)
-	min_cum_pct <- min(pcsd$cum_pct)
-	pcsd2 <- pcsd[cum_pct <= max(variance_cap, min_cum_pct)]
+	min_cum_pct <- min(pc_var$cum_pct)
+	pc_var2 <- pc_var[cum_pct <= max(variance_cap, min_cum_pct)]
 	## Create explained variance plot
-	varexp_plot <- ggplot(pcsd2, aes(x = reorder(pc, pct), y = pct)) +
+	varexp_plot <- ggplot(pc_var2, aes(x = reorder(pc, pct), y = pct)) +
 		geom_bar(stat = "identity") +
 		geom_text(aes(label = percent(cum_pct)), color = "white", hjust = 1.1) +
 		scale_y_continuous(labels = percent) +
@@ -61,25 +66,41 @@ plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, title = NULL, gg
 			label = "% Variance Explained By Principle Components",
 			subtitle = "Note: White texts indicate cumulative % explained variance"
 		) +
-		labs(x = "Principle Components", y = "% Variance Explained", caption = "Page 1")
+		labs(x = "Principle Components", y = "% Variance Explained")
 	print(varexp_plot)
 	## Format rotation data
-	rotation_dt <- data.table("Feature" = rownames(pca$rotation), pca$rotation[, seq.int(nrow(pcsd2))])
+	rotation_dt <- data.table(
+		"Feature" = rownames(pca$rotation),
+		data.table(pca$rotation)[, seq.int(nrow(pc_var2)), with = FALSE]
+	)
 	melt_rotation_dt <- melt.data.table(rotation_dt, id.vars = "Feature")
+	feature_names <- rotation_dt[["Feature"]]
 	## Calculate number of pages
-	p <- ncol(rotation_dt) - 1L
-	pages <- ceiling(p / 9L)
-	## Plot rotation matrix
-	for (pg in seq.int(pages)) {
-		col_names <- names(rotation_dt)[seq.int(9L * pg - 8L, min(p, 9L * pg)) + 1L]
-		n_col <- ifelse(length(col_names) %% 3L, length(col_names) %/% 3L + 1L, length(col_names) %/% 3L)
-		plot <- ggplot(melt_rotation_dt[variable %in% col_names], aes(x = Feature, y = value)) +
-			geom_bar(stat = "identity") +
-			facet_wrap(~ variable, ncol = n_col, scales = "free_x") +
-			coord_flip() +
-			labs(y = "Relative Importance", title = title, caption = paste("Page", pg + 1L)) +
-			ggtheme +
-			do.call(theme, theme_config)
-		print(plot)
-	}
+	layout <- .getPageLayout(nrow, ncol, ncol(rotation_dt) - 1L)
+	## Create list of ggplot objects
+	plot_list <- mclapply(
+		layout,
+		function(x) {
+			ggplot(melt_rotation_dt[variable %in% paste0("PC", x)], aes(x = Feature, y = value)) +
+				geom_bar(stat = "identity") +
+				coord_flip() +
+				ylab("Relative Importance")
+		},
+		mc.preschedule = TRUE,
+		mc.silent = TRUE,
+		mc.cores = .getCores()
+	)
+	## Plot objects
+	class(plot_list) <- c("multiple", class(plot_list))
+	plotDataExplorer(
+		obj_list = plot_list,
+		page_layout = layout,
+		title = title,
+		ggtheme = ggtheme,
+		theme_config = theme_config,
+		facet = ~ variable,
+		nrow = nrow,
+		ncol = ncol,
+		scales = "free_x"
+	)
 }

@@ -24,6 +24,9 @@ plot_correlation(data, type = c("all", "discrete", "continuous"),
 
 \item{\dots}{other arguments to be passed to \link{cor}.}
 }
+\value{
+invisibly return the ggplot object
+}
 \description{
 This function creates a correlation heatmap for all discrete categories.
 }
@@ -40,7 +43,6 @@ data("diamonds", package = "ggplot2")
 
 # Plot correlation heatmap
 plot_correlation(diamonds)
-plot_correlation(diamonds, maxcat = 5)
 plot_correlation(diamonds, type = "c")
 plot_correlation(diamonds, type = "d")
 }

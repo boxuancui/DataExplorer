@@ -93,5 +93,5 @@ plot_str <- function(data, type = c("diagonal", "radial"), max_level = NULL, pri
     if (type == "radial") print(radialNetwork(str_list, ...))
   }
   ## Set return object in invisible mode
-  return(invisible(str_list))
+  invisible(str_list)
 }

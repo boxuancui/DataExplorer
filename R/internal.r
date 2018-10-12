@@ -21,9 +21,7 @@
 #' @import data.table
 .getAllMissing <- function(dt) {
 	if (!is.data.table(dt)) dt <- data.table(dt)
-	sapply(dt, function(x) {
-		sum(is.na(x)) == length(x)
-	})
+	vapply(dt, function(x) sum(is.na(x)) == length(x), TRUE)
 }
 
 #' Calculate page layout index
@@ -33,10 +31,29 @@
 #' @param ncol number of columns per page
 #' @param n number of features
 #' @return a list containing column indices for each page
+#' @importFrom stats setNames
 .getPageLayout <- function(nrow, ncol, n) {
 	pp <- nrow * ncol
 	pages <- ceiling(n / pp)
 	lapply(setNames(seq.int(pages), paste("Page", seq.int(pages))), function(pg) {
 		seq.int(from = pp * (pg - 1L) + 1L, to = min(n, pp * pg))
 	})
+}
+
+#' Get cores
+#'
+#' Get different number of cores under various environment
+#' @return number of cores to use
+#' @importFrom parallel detectCores
+.getCores <- function() {
+	if (.Platform$OS.type == "windows") {
+		1L
+	} else {
+		chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
+		if (nzchar(chk) && chk == "TRUE") {
+			2L
+		} else {
+			detectCores() - 1L
+		}
+	}
 }

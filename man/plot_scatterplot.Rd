@@ -5,19 +5,22 @@
 \title{Create scatterplot for all features}
 \usage{
 plot_scatterplot(data, by, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(axis.text.x = element_text(angle = 45, hjust = 1)),
-  ...)
+  theme_config = list(), nrow = 3L, ncol = 3L, ...)
 }
 \arguments{
 \item{data}{input data}
 
-\item{by}{feature name to be fixed.}
+\item{by}{feature name to be fixed at.}
 
 \item{title}{plot title}
 
 \item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
+
+\item{nrow}{number of rows per page}
+
+\item{ncol}{number of columns per page}
 
 \item{\dots}{other arguments to be passed to \link{geom_point}.}
 }
@@ -30,21 +33,20 @@ To change default font family and size, you may pass \code{base_size} and \code{
 \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 }
 \examples{
-# Load mpg data from ggplot2
-data("mpg", package = "ggplot2")
+# Scatterplot iris dataset by "Species"
+plot_scatterplot(iris, by = "Species")
 
-# Scatterplot mpg dataset by "hwy"
-plot_scatterplot(mpg, "hwy", size = 1)
-
-# Scatterplot mpg dataset by "class"
-plot_scatterplot(mpg, "class", size = 1)
-
-# Scatterplot with preset ggplot2 themes
+# Customize plot
 library(ggplot2)
-plot_scatterplot(mpg, "hwy", ggtheme = theme_light())
-
-# Scatterplot with customized theme components
-plot_scatterplot(mpg, "hwy", theme_config = list("axis.text.x" = element_text(angle = 90)))
+plot_scatterplot(
+	mpg, "hwy", size = 1,
+	theme_config = list("axis.text.x" = element_text(angle = 45, hjust = 1)),
+	nrow = 3L, ncol = 4L
+)
+plot_scatterplot(
+	iris, by = "Species",
+	ggtheme = theme_light(), nrow = 2L, ncol = 2L
+)
 }
 \seealso{
 \link{geom_point}

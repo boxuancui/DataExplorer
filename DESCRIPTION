@@ -12,6 +12,7 @@ Depends:
 Imports:
     data.table (>= 1.11),
     reshape2 (>= 1.4),
+    scales (>= 1.0),
     ggplot2 (>= 2.2),
     gridExtra (>= 2.3),
     rmarkdown (>= 1.9),

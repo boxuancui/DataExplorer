@@ -28,16 +28,19 @@ split_columns <- function(data) {
   ## Set data to data.table
   if (!is_data_table) data <- data.table(data)
   ## Find indicies for continuous features
-  all_missing_ind <- .getAllMissing(data)
-  ind <- sapply(data[, which(!all_missing_ind), with = FALSE], is.numeric)
+  all_missing_ind <- which(.getAllMissing(data))
+  numeric_ind <- setdiff(which(vapply(data, is.numeric, TRUE)), all_missing_ind)
+  discrete_ind <- setdiff(which(vapply(data, function(x) !is.numeric(x), TRUE)), all_missing_ind)
   ## Count number of discrete, continuous and all-missing features
-  n_all_missing <- sum(all_missing_ind)
-  n_continuous <- sum(ind)
-  n_discrete <- ncol(data) - n_continuous - n_all_missing
+  n_all_missing <- length(all_missing_ind)
+  n_continuous <- length(numeric_ind)
+  n_discrete <- length(discrete_ind)
   ## Create object for continuous features
-  continuous <- data[, which(ind), with = FALSE]
+  continuous <- data[, numeric_ind, with = FALSE]
+  setnames(continuous, make.names(names(continuous)))
   ## Create object for discrete features
-  discrete <- data[, which(!ind), with = FALSE]
+  discrete <- data[, discrete_ind, with = FALSE]
+  setnames(discrete, make.names(names(discrete)))
   ## Set data class back to original
   if (!is_data_table) class(discrete) <- class(continuous) <- data_class
   ## Set return object

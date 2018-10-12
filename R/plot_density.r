@@ -15,9 +15,8 @@
 #' @import data.table
 #' @import ggplot2
 #' @import gridExtra
-#' @importFrom stats na.omit
+#' @importFrom stats setNames
 #' @importFrom parallel mclapply
-#' @importFrom parallel detectCores
 #' @export plot_density
 #' @seealso \link{geom_density} \link{plot_histogram}
 #' @examples
@@ -59,20 +58,20 @@ plot_density <- function(data, title = NULL, ggtheme = theme_gray(), theme_confi
 	plot_list <- mclapply(
 		setNames(seq_along(continuous), names(continuous)),
 		function(j) {
-			x <- na.omit(continuous[, j, with = FALSE])
+			x <- continuous[, j, with = FALSE]
 			ggplot(x, aes_string(x = names(x))) +
-				geom_density(...) +
+				geom_density(na.rm = TRUE, ...) +
 				ylab("Density") +
 				ggtheme +
 				do.call(theme, theme_config)
 		},
 		mc.preschedule = TRUE,
 		mc.silent = TRUE,
-		mc.cores = detectCores() - 1L
+		mc.cores = .getCores()
 	)
 	## Plot objects
-	class(plot_list) <- c(class(plot_list), "DataExplorerGrid")
-	plot.DataExplorerGrid(
+	class(plot_list) <- c("grid", class(plot_list))
+	plotDataExplorer(
 		obj_list = plot_list,
 		page_layout = layout,
 		nrow = nrow,

@@ -17,7 +17,7 @@ plot_missing(data, title = NULL, ggtheme = theme_gray(),
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
 }
 \value{
-missing value information, such as frequency, percentage and suggested action.
+invisibly return the ggplot object
 }
 \description{
 This function returns and plots frequency of missing values for each feature.
@@ -30,19 +30,17 @@ To change default font family and size, you may pass \code{base_size} and \code{
 \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 }
 \examples{
-# Load packages
-library(data.table)
+plot_missing(airquality)
 
-# Add missing values to iris data
-dt <- data.table(iris)
-for (j in 1:4) set(dt, i = sample(150, j * 30), j, value = NA_integer_)
+# Plot with preset ggplot2 themes
+library(ggplot2)
+plot_missing(airquality, ggtheme = theme_light())
+plot_missing(airquality, ggtheme = theme_minimal(base_size = 20))
 
-# Plot and assign missing value information
-na_profile <- plot_missing(dt)
-na_profile
-
-# Drop columns with more than 50\% missing values
-drop_columns(dt, as.character(na_profile[pct_missing >= 0.5][["feature"]]))
-plot_missing(dt)
+# Plot with customized theme components
+plot_missing(airquality, theme_config = list("legend.position" = c("top")))
+}
+\seealso{
+\link{profile_missing}
 }
 \keyword{plot_missing}

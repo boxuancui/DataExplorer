@@ -5,7 +5,7 @@
 \title{Create boxplot for continuous features}
 \usage{
 plot_boxplot(data, by, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), ...)
+  theme_config = list(), nrow = 3L, ncol = 4L, ...)
 }
 \arguments{
 \item{data}{input data}
@@ -18,7 +18,14 @@ plot_boxplot(data, by, title = NULL, ggtheme = theme_gray(),
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
 
+\item{nrow}{number of rows per page}
+
+\item{ncol}{number of columns per page}
+
 \item{\dots}{other arguments to be passed to \link{geom_boxplot}.}
+}
+\value{
+invisibly return the named list of ggplot objects
 }
 \description{
 This function creates boxplot for each continuous feature based on a selected feature.
@@ -30,23 +37,15 @@ To change default font family and size, you may pass \code{base_size} and \code{
 }
 \examples{
 # Plot iris dataset by "Species" (discrete)
-plot_boxplot(iris, by = "Species")
+plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
 
-# Plot mtcars dataset by "mpg" (continuous)
-plot_boxplot(mtcars, "mpg")
+# Plot iris dataset by "Sepal.Length" (continuous)
+plot_boxplot(iris, by = "Sepal.Length", nrow = 2L, ncol = 2L)
 
 # Plot with preset ggplot2 themes
 library(ggplot2)
 plot_boxplot(iris, by = "Species", ggtheme = theme_light())
 plot_boxplot(iris, by = "Species", ggtheme = theme_minimal(base_size = 20))
-
-# Plot bar charts with customized theme components
-plot_boxplot(iris,
-by = "Species",
-theme_config = list(
-  "plot.background" = element_rect(fill = "yellow"),
-  "aspect.ratio" = 1
-))
 }
 \seealso{
 \link{geom_boxplot}

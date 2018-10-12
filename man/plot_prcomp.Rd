@@ -5,7 +5,8 @@
 \title{Visualize principle component analysis}
 \usage{
 plot_prcomp(data, variance_cap = 0.8, maxcat = 50L, title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), ...)
+  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
+  ncol = 3L, ...)
 }
 \arguments{
 \item{data}{input data}
@@ -20,7 +21,14 @@ plot_prcomp(data, variance_cap = 0.8, maxcat = 50L, title = NULL,
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
 
+\item{nrow}{number of rows per page}
+
+\item{ncol}{number of columns per page}
+
 \item{\dots}{other arguments to be passed to \link{prcomp}.}
+}
+\value{
+invisibly return the named list of ggplot objects
 }
 \description{
 Visualize output of \link{prcomp}.
@@ -40,9 +48,9 @@ Discrete features will be \link{dummify}-ed first before passing to \link{prcomp
 Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your input data first.
 }
 \examples{
-data("diamonds", package = "ggplot2")
-plot_prcomp(diamonds, maxcat = 5, scale. = TRUE)
+plot_prcomp(na.omit(airquality), nrow = 2L, ncol = 2L, scale. = TRUE)
 
-plot_prcomp(na.omit(airquality), scale. = TRUE)
+data("diamonds", package = "ggplot2")
+plot_prcomp(diamonds, maxcat = 7L, scale. = TRUE)
 }
 \keyword{plot_prcomp}

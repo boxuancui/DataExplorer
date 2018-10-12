@@ -60,14 +60,14 @@ plot_str(data_list)
 ```{r plot-str-run, echo=FALSE}
 data_list <- list(airlines, airports, flights, planes, weather)
 diagonalNetwork(
-  plot_str(data_list, print_network = FALSE),
-  width = 800,
-  height = 800,
-  fontSize = 20,
-  margin = list(
-    "left" = 50,
-    "right" = 50
-  )
+	plot_str(data_list, print_network = FALSE),
+	width = 800,
+	height = 800,
+	fontSize = 20,
+	margin = list(
+		"left" = 50,
+		"right" = 50
+	)
 )
 ```
 
@@ -110,7 +110,7 @@ Looks like **speed** variable is mostly missing, and probably not informative. L
 final_data <- drop_columns(final_data, "speed")
 ```
 
-You may also store the missing data profile with `missing_data <- plot_missing(final_data)` for additional analysis.
+You may also store the missing data profile with `profile_missing(final_data)` for additional analysis.
 
 ### Distributions
 #### Bar Charts
@@ -140,6 +140,13 @@ final_data[which(final_data$manufacturer %in% c("MCDONNELL DOUGLAS AIRCRAFT CO",
 plot_bar(final_data$manufacturer)
 ```
 
+Feature **dst_origin** and **tzone_origin** contains only 1 value, so we should drop them:
+
+```{r eda-drop-bar-features}
+final_data <- drop_columns(final_data, c("dst_origin", "tzone_origin"))
+```
+
+
 Frequently, it is very beneficial to look at bivariate frequency distribution. For example, to look at discrete features by **arr_delay**:
 
 ```{r eda-plot-bar-with-template, eval=FALSE}
@@ -156,29 +163,35 @@ The resulting distribution looks quite different from the regular frequency dist
 To visualize distributions for all continuous features:
 
 ```{r eda-plot-histogram, fig.width=10, fig.height=6}
-plot_histogram(final_data)
+suppressWarnings(plot_histogram(final_data))
 ```
 
 Immediately, you could observe that there are datetime features to be further treated, e.g., concatenating year, month and day to form date, and/or adding hour and minute to form datetime.
 
-For the purpose of this vignette, I will not go deep into the analytical tasks. However, we should set **flight** to categorical, since that is the flight number with no mathematical meaning:
+For the purpose of this vignette, I will not go deep into the analytical tasks. However, we should treat the following features based on the output of the histograms.
 
+* Set **flight** to categorical, since that is the flight number with no mathematical meaning:
 ```{r eda-update-flight}
 final_data$flight <- as.factor(final_data$flight)
 ```
 
+* Remove **year_flights** and **tz_origin** since there is only one value:
+```{r eda-drop-histogram-features}
+final_data <- drop_columns(final_data, c("year_flights", "tz_origin"))
+```
+
 ### Correlation Analysis
-To visualize correlation heatmap for all features:
+To visualize correlation heatmap for all non-missing features:
 
 ```{r eda-plot-correlation, fig.width=8, fig.height=8}
-plot_correlation(final_data, maxcat = 5L, use = "pairwise.complete.obs")
+plot_correlation(na.omit(final_data), maxcat = 5L)
 ```
 
 You may also choose to visualize only discrete/continuous features with:
 
 ```{r eda-plot-correlation-type, eval=FALSE}
-plot_correlation(final_data, type = "c", use = "pairwise.complete.obs")
-plot_correlation(final_data, type = "d", use = "pairwise.complete.obs")
+plot_correlation(na.omit(final_data), type = "c")
+plot_correlation(na.omit(final_data), type = "d")
 ```
 
 ### Principle Component Analysis
@@ -282,26 +295,26 @@ plot_str(
 
 ```{r fe-dummify-run, echo=FALSE}
 diagonalNetwork(
-  plot_str(list("original" = final_data, "dummified" = dummify(final_data, maxcat = 5L)), print_network = FALSE),
-  width = 800,
-  height = 1500,
-  fontSize = 20,
-  margin = list(
-    "left" = 50,
-    "right" = 50
-  )
+	plot_str(list("original" = final_data, "dummified" = dummify(final_data, maxcat = 5L)), print_network = FALSE),
+	width = 800,
+	height = 1500,
+	fontSize = 20,
+	margin = list(
+		"left" = 50,
+		"right" = 50
+	)
 )
 ```
 
 Note the `maxcat` argument. If a discrete feature has more categories than `maxcat`, it will not be dummified. As a result, it will be returned touched.
 
 ### Drop features
-After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like **dst_origin** has only one value, and it doesn't provide any valuable information. You can use `drop_columns` to quickly drop features. The function takes either names or column indices.
+After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like **dst_dest** has mostly one value, and it doesn't provide any valuable information. You can use `drop_columns` to quickly drop features. The function takes either names or column indices.
 
 ```{r fe-drop-columns}
 identical(
-  drop_columns(final_data, c("dst_origin", "dst_dest", "tzone_dest")),
-  drop_columns(final_data, c(33, 40, 41))
+	drop_columns(final_data, c("dst_dest", "tzone_dest")),
+	drop_columns(final_data, c(36, 37))
 )
 ```
 
@@ -323,20 +336,20 @@ You may also customize each individual section by passing their corresponding ar
 ```{r dr-create-report-customize, eval=FALSE}
 ## Customize report configuration
 config <- list(
-  "introduce" = list(),
-  "plot_str" = list(
-    "type" = "diagonal",
-    "fontSize" = 35,
-    "width" = 1000,
-    "margin" = list("left" = 350, "right" = 250)
-  ),
-  "plot_missing" = list(),
-  "plot_histogram" = list(),
-  "plot_bar" = list(),
-  "plot_correlation" = list("use" = "pairwise.complete.obs"),
-  "plot_prcomp" = list(),
-  "plot_boxplot" = list(),
-  "plot_scatterplot" = list()
+	"introduce" = list(),
+	"plot_str" = list(
+		"type" = "diagonal",
+		"fontSize" = 35,
+		"width" = 1000,
+		"margin" = list("left" = 350, "right" = 250)
+	),
+	"plot_missing" = list(),
+	"plot_histogram" = list(),
+	"plot_bar" = list(),
+	"plot_correlation" = list("use" = "pairwise.complete.obs"),
+	"plot_prcomp" = list(),
+	"plot_boxplot" = list(),
+	"plot_scatterplot" = list()
 )
 ## Create final report
 create_report(final_data, y = "arr_delay", config = config)

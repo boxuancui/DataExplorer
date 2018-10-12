@@ -18,8 +18,8 @@
 #' @import data.table
 #' @import ggplot2
 #' @importFrom parallel mclapply
-#' @importFrom parallel detectCores
 #' @importFrom stats reorder
+#' @importFrom stats setNames
 #' @importFrom tools toTitleCase
 #' @export plot_bar
 #' @examples
@@ -86,11 +86,11 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, title = N
 		},
 		mc.preschedule = TRUE,
 		mc.silent = TRUE,
-		mc.cores = detectCores() - 1L
+		mc.cores = .getCores()
 	)
 	## Plot objects
-	class(plot_list) <- c(class(plot_list), "DataExplorerGrid")
-	plot.DataExplorerGrid(
+	class(plot_list) <- c("grid", class(plot_list))
+	plotDataExplorer(
 		obj_list = plot_list,
 		page_layout = layout,
 		nrow = nrow,
