@@ -2,10 +2,10 @@
 % Please edit documentation in R/plot_histogram.r
 \name{plot_histogram}
 \alias{plot_histogram}
-\title{Create histogram for continuous features}
+\title{Plot histogram}
 \usage{
 plot_histogram(data, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), ...)
+  theme_config = list(), nrow = 4L, ncol = 4L, ...)
 }
 \arguments{
 \item{data}{input data}
@@ -16,10 +16,17 @@ plot_histogram(data, title = NULL, ggtheme = theme_gray(),
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
 
+\item{nrow}{number of rows per page. Default is 4.}
+
+\item{ncol}{number of columns per page. Default is 4.}
+
 \item{\dots}{other arguments to be passed to \link{geom_histogram}.}
 }
+\value{
+invisibly return the named list of ggplot objects
+}
 \description{
-This function creates histogram for each continuous feature.
+Plot histogram for each continuous feature
 }
 \details{
 To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}

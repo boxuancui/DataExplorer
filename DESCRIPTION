@@ -13,13 +13,13 @@ Imports:
     data.table (>= 1.11),
     reshape2 (>= 1.4),
     ggplot2 (>= 2.2),
-    scales (>= 0.5),
     gridExtra (>= 2.3),
     rmarkdown (>= 1.9),
     networkD3 (>= 0.4),
     stats,
     utils,
-    tools
+    tools,
+    parallel
 Suggests:
     testthat,
     covr,

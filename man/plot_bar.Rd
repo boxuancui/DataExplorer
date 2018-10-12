@@ -2,28 +2,36 @@
 % Please edit documentation in R/plot_bar.r
 \name{plot_bar}
 \alias{plot_bar}
-\title{Create bar charts for discrete features}
+\title{Plot bar chart}
 \usage{
 plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE,
-  title = NULL, ggtheme = theme_gray(), theme_config = list())
+  title = NULL, ggtheme = theme_gray(), theme_config = list(),
+  nrow = 3L, ncol = 3L)
 }
 \arguments{
 \item{data}{input data}
 
 \item{with}{name of continuous feature to be summed. Default is \code{NULL}, i.e., frequency.}
 
-\item{maxcat}{maximum categories allowed for each feature. The default is 50. More information in 'Details' section.}
+\item{maxcat}{maximum categories allowed for each feature. Default is 50.}
 
-\item{order_bar}{logical, indicating if bars should be ordered.}
+\item{order_bar}{logical, indicating if bars should be ordered. Default is \code{TRUE}.}
 
 \item{title}{plot title}
 
-\item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
+\item{ggtheme}{complete ggplot2 themes. Default is \link{theme_gray}.}
 
-\item{theme_config}{a list of configurations to be passed to \link{theme}.}
+\item{theme_config}{a list of configurations to be passed to \link{theme}}
+
+\item{nrow}{number of rows per page. Default is 3.}
+
+\item{ncol}{number of columns per page. Default is 3.}
+}
+\value{
+invisibly return the named list of ggplot objects
 }
 \description{
-This function creates frequency bar charts for each discrete feature.
+Plot bar chart for each discrete feature, based on either frequency or another continuous feature.
 }
 \details{
 If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.

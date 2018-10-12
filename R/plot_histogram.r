@@ -1,18 +1,23 @@
-#' Create histogram for continuous features
+#' Plot histogram
 #'
-#' This function creates histogram for each continuous feature.
+#' Plot histogram for each continuous feature
 #' @param data input data
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
+#' @param nrow number of rows per page. Default is 4.
+#' @param ncol number of columns per page. Default is 4.
 #' @param \dots other arguments to be passed to \link{geom_histogram}.
+#' @return invisibly return the named list of ggplot objects
 #' @keywords plot_histogram
 #' @details To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
 #' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 #' @import data.table
 #' @import ggplot2
-#' @importFrom stats na.omit
 #' @import gridExtra
+#' @importFrom stats na.omit
+#' @importFrom parallel mclapply
+#' @importFrom parallel detectCores
 #' @export plot_histogram
 #' @seealso \link{geom_histogram} \link{plot_density}
 #' @examples
@@ -36,39 +41,38 @@
 #'   "aspect.ratio" = 1
 #' ))
 
-plot_histogram <- function(data, title = NULL, ggtheme = theme_gray(), theme_config = list(), ...) {
+plot_histogram <- function(data, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, ...) {
 	if (!is.data.table(data)) data <- data.table(data)
 	## Stop if no continuous features
 	if (split_columns(data)$num_continuous == 0) stop("No Continuous Features")
 	## Get continuous features
 	continuous <- split_columns(data)$continuous
-	## Get dimension
-	n <- nrow(continuous)
-	p <- ncol(continuous)
 	## Calculate number of pages
-	pages <- ceiling(p / 16L)
-	for (pg in seq.int(pages)) {
-		## Subset data by column
-		subset_data <- continuous[, seq.int(16L * pg - 15L, min(p, 16L * pg)), with = FALSE]
-		setnames(subset_data, make.names(names(subset_data)))
-		n_col <- ifelse(ncol(subset_data) %% 4L, ncol(subset_data) %/% 4L + 1L, ncol(subset_data) %/% 4L)
-		## Create ggplot object
-		plot <- lapply(
-			seq_along(subset_data),
-			function(j) {
-				x <- na.omit(subset_data[, j, with = FALSE])
-				ggplot(x, aes_string(x = names(x))) +
-					geom_histogram(bins = 30L, ...) +
-					ylab("Frequency") +
-					ggtheme +
-					do.call(theme, theme_config)
-			}
-		)
-		## Print plot object
-		if (pages > 1) {
-			suppressWarnings(do.call(grid.arrange, c(plot, ncol = n_col, nrow = 4L, top = title, bottom = paste("Page", pg))))
-		} else {
-			suppressWarnings(do.call(grid.arrange, c(plot, top = title)))
-		}
-	}
+	layout <- .getPageLayout(nrow, ncol, ncol(continuous))
+	## Create ggplot object
+	plot_list <- mclapply(
+		setNames(seq_along(continuous), names(continuous)),
+		function(j) {
+			x <- na.omit(continuous[, j, with = FALSE])
+			ggplot(x, aes_string(x = names(x))) +
+				geom_histogram(bins = 30L, ...) +
+				ylab("Frequency") +
+				ggtheme +
+				do.call(theme, theme_config)
+		},
+		mc.preschedule = TRUE,
+		mc.silent = TRUE,
+		mc.cores = detectCores() - 1L
+	)
+	## Plot objects
+	class(plot_list) <- c(class(plot_list), "DataExplorerGrid")
+	plot.DataExplorerGrid(
+		obj_list = plot_list,
+		page_layout = layout,
+		nrow = nrow,
+		ncol = ncol,
+		title = title,
+		ggtheme = ggtheme,
+		theme_config = theme_config
+	)
 }

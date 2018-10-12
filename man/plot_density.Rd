@@ -2,10 +2,10 @@
 % Please edit documentation in R/plot_density.r
 \name{plot_density}
 \alias{plot_density}
-\title{Visualize density estimates for continuous features}
+\title{Plot density estimates}
 \usage{
 plot_density(data, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), ...)
+  theme_config = list(), nrow = 4L, ncol = 4L, ...)
 }
 \arguments{
 \item{data}{input data}
@@ -16,10 +16,17 @@ plot_density(data, title = NULL, ggtheme = theme_gray(),
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
 
+\item{nrow}{number of rows per page. Default is 4.}
+
+\item{ncol}{number of columns per page. Default is 4.}
+
 \item{\dots}{other arguments to be passed to \link{geom_density}.}
 }
+\value{
+invisibly return the named list of ggplot objects
+}
 \description{
-This function visualizes density estimates for each continuous feature.
+Plot density estimates for each continuous feature
 }
 \details{
 To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
