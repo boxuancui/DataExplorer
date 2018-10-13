@@ -16,3 +16,8 @@ test_that("test error messages", {
   expect_error(plot_correlation(split_columns(iris)$continuous, type = "d"))
   expect_error(plot_correlation(split_columns(iris)$discrete, type = "c"))
 })
+
+test_that("test return object", {
+	plot_obj <- plot_correlation(iris)
+	expect_true(is.ggplot(plot_obj))
+})

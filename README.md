@@ -102,7 +102,4 @@ To make quick updates to your data:
 
 ## Articles
 
-* [DataExplorer: Fast Data Exploration With Minimum Code](http://blog.revolutionanalytics.com/2018/02/dataexplorer.html)
-* [Blazing Fast EDA in R with DataExplorer](https://datascienceplus.com/blazing-fast-eda-in-r-with-dataexplorer/)
-* [Simple Fast Exploratory Data Analysis in R with DataExplorer Package](https://towardsdatascience.com/simple-fast-exploratory-data-analysis-in-r-with-dataexplorer-package-e055348d9619)
-* [EDA made very easy in R with DataExplorer](https://www.kaggle.com/nulldata/eda-made-very-easy-in-r-with-dataexplorer/notebook)
+See [article wiki page](https://github.com/boxuancui/DataExplorer/wiki/Articles).

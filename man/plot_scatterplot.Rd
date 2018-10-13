@@ -24,6 +24,9 @@ plot_scatterplot(data, by, title = NULL, ggtheme = theme_gray(),
 
 \item{\dots}{other arguments to be passed to \link{geom_point}.}
 }
+\value{
+invisibly return the named list of ggplot objects
+}
 \description{
 This function creates scatterplot for all features fixing on a selected feature.
 }

@@ -1,4 +1,4 @@
-context("helper")
+context("internal")
 
 test_that(".ignoreCat", {
   set.seed(1)
@@ -18,7 +18,7 @@ test_that(".ignoreCat", {
   expect_equal(names(.ignoreCat(dt, 5)), letters[4L])
 })
 
-test_that(".ignoreCat", {
+test_that(".getAllMissing", {
   dt <- data.table(
     "a" = seq.int(10L),
     "b" = rep(NA_character_, 10L),
@@ -28,4 +28,9 @@ test_that(".ignoreCat", {
   expect_equal(
     .getAllMissing(dt),
     c("a" = FALSE, "b" = TRUE, "c" = TRUE, "d" = FALSE))
+})
+
+test_that(".getPageLayout", {
+	expect_equal(.getPageLayout(2, 2, 6), list("Page 1" = seq.int(4L), "Page 2" = c(5L, 6L)))
+	expect_equal(.getPageLayout(3, 3, 6), list("Page 1" = seq.int(6L)))
 })

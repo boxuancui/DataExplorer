@@ -9,6 +9,7 @@
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
 #' @param \dots other arguments to be passed to \link{geom_point}.
+#' @return invisibly return the named list of ggplot objects
 #' @keywords plot_scatterplot
 #' @details To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
 #' @details \code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
