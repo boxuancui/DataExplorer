@@ -10,7 +10,7 @@ introduce(data)
 \item{data}{input data}
 }
 \value{
-Describe basic information in a \link{data.frame}:
+Describe basic information in input data class:
 \itemize{
   \item{rows: number of rows}
   \item{columns: number of columns}

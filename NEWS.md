@@ -3,6 +3,7 @@
 ### DataExplorer 0.6.1.9000
 #### Enhancements
 * [#42](https://github.com/boxuancui/DataExplorer/issues/42): Applied S3 methods for plotting functions.
+* [#77](https://github.com/boxuancui/DataExplorer/issues/77): `dummify` now works on selected columns.
 * [#78](https://github.com/boxuancui/DataExplorer/issues/78): All ggplot objects from `plot_*` are now invisibly returned. As a result, extracted `profile_missing` from `plot_missing` for missing value profiles.
 * [#83](https://github.com/boxuancui/DataExplorer/issues/83): Removed all deprecated functions.
 * [#85](https://github.com/boxuancui/DataExplorer/issues/85): Users can now specify number of rows/columns for plot page layout.

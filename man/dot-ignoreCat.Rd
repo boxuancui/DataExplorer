@@ -12,7 +12,7 @@
 \item{maxcat}{maximum categories allowed for each discrete feature.}
 }
 \value{
-a named vector containing indices of features to be ignored.
+a named vector containing number of categories for to-be-ignored features.
 }
 \description{
 Output index and name for features that will be ignored

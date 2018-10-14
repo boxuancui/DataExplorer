@@ -6,7 +6,7 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to DataExplorer}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  \usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include=FALSE}
@@ -18,7 +18,14 @@ library(ggplot2)
 library(nycflights13)
 library(networkD3)
 
-opts_chunk$set(fig.width = 6, fig.height = 6, fig.align = "center", warning = FALSE)
+opts_chunk$set(
+	collapse = TRUE,
+	comment = "#>",
+	fig.width = 6,
+	fig.height = 6,
+	fig.align = "center",
+	warning = FALSE
+)
 ```
 
 <script src="d3.min.js"></script>
