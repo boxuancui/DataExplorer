@@ -1,6 +1,9 @@
 # Changelog
 
 ### DataExplorer 0.6.1.9000
+#### New Features
+* [#76](https://github.com/boxuancui/DataExplorer/issues/76): Added `plot_intro` to visualize results of `introduce`.
+
 #### Enhancements
 * [#42](https://github.com/boxuancui/DataExplorer/issues/42): Applied S3 methods for plotting functions.
 * [#77](https://github.com/boxuancui/DataExplorer/issues/77): `dummify` now works on selected columns.
@@ -17,7 +20,7 @@
 ### DataExplorer 0.6.1
 #### Enhancements
 * Updated vignette for better clarity.
-* Added better error handler for `plot_prcomp`.
+* [#71](https://github.com/boxuancui/DataExplorer/issues/71): Added better error handler for `plot_prcomp`.
 
 #### Bug Fixes
 * [#69](https://github.com/boxuancui/DataExplorer/issues/69): Fixed bug causing `create_report` failure (specifically from `plot_prcomp`) when `y` is specified.

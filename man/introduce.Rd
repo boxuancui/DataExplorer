@@ -18,8 +18,9 @@ Describe basic information in input data class:
   \item{continuous_columns: number of continuous columns}
   \item{all_missing_columns: number of columns with everything missing}
   \item{total_missing_values: number of missing observations}
+  \item{complete_rows: number of rows without missing values. See \link{complete.cases}.}
   \item{total_observations: total number of observations}
-  \item{memory_usage: estimated memory allocation in bytes. See \link{object.size}}
+  \item{memory_usage: estimated memory allocation in bytes. See \link{object.size}.}
 }
 }
 \description{

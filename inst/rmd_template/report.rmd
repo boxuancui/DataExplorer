@@ -54,10 +54,11 @@ if ("introduce" %in% names(report_config)) {
       format(memory_usage, unit = "auto")
     )
   )
-  
   ## Render content
   cat("### Basic Statistics", fill = TRUE)
   kable(intro_df)
+  ## Plot introduction
+  do_call("plot_intro")
 }
 ```
 

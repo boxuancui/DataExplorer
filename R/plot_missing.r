@@ -23,6 +23,7 @@
 #'
 #' # Plot with customized theme components
 #' plot_missing(airquality, theme_config = list("legend.position" = c("top")))
+
 plot_missing <- function(data, title = NULL, ggtheme = theme_gray(), theme_config = list("legend.position" = c("bottom"))) {
 	## Declare variable first to pass R CMD check
 	pct_missing <- NULL

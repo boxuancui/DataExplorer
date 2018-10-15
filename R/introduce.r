@@ -11,10 +11,12 @@
 #'   \item{continuous_columns: number of continuous columns}
 #'   \item{all_missing_columns: number of columns with everything missing}
 #'   \item{total_missing_values: number of missing observations}
+#'   \item{complete_rows: number of rows without missing values. See \link{complete.cases}.}
 #'   \item{total_observations: total number of observations}
-#'   \item{memory_usage: estimated memory allocation in bytes. See \link{object.size}}
+#'   \item{memory_usage: estimated memory allocation in bytes. See \link{object.size}.}
 #' }
 #' @import data.table
+#' @importFrom stats complete.cases
 #' @importFrom utils object.size
 #' @export introduce
 #' @examples
@@ -35,6 +37,7 @@ introduce <- function(data) {
 		"continuous_columns" = split_data[["num_continuous"]],
 		"all_missing_columns" = split_data[["num_all_missing"]],
 		"total_missing_values" = sum(is.na(data)),
+		"complete_rows" = sum(complete.cases(data)),
 		"total_observations" = nrow(data) * ncol(data),
 		"memory_usage" = as.numeric(object.size(data))
 	)

@@ -104,6 +104,12 @@ introduce(final_data)
 kable(introduce(final_data), format.args = list(big.mark = ","))
 ```
 
+To visualize the table above (with some light analysis):
+
+```{r eda-plot-intro}
+plot_intro(final_data)
+```
+
 ### Missing values
 Real-world data is messy. After running the basic descriptive statistics, you might be interested in the missing data profile. You can simply use `plot_missing` function for this.
 
