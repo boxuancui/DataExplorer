@@ -12,7 +12,7 @@
 #' @import ggplot2
 #' @importFrom stats reorder
 #' @importFrom scales comma percent
-#' @export plot_intro
+#' @export
 #' @seealso \link{introduce}
 #' @examples
 #' plot_intro(airquality)

@@ -110,20 +110,27 @@ To visualize the table above (with some light analysis):
 plot_intro(final_data)
 ```
 
+You should immediately notice some surprises:
+
+1. 0.3% complete rows: This means only 0.3% of all rows are not completely missing!
+1. 5.7% missing observations: Given the 0.3% complete rows, there are only 5.7% total missing observations.
+
+Missing values are definitely creating problems. Let's take a look at the missing profiles.
+
 ### Missing values
-Real-world data is messy. After running the basic descriptive statistics, you might be interested in the missing data profile. You can simply use `plot_missing` function for this.
+Real-world data is messy, and you can simply use `plot_missing` function to visualize missing profile for each feature.
 
 ```{r eda-plot-missing}
 plot_missing(final_data)
 ```
 
-Looks like **speed** variable is mostly missing, and probably not informative. Let's drop it:
+From the chart, **speed** variable is mostly missing, and probably not informative. Looks like we have found the culprit for the 0.3% complete rows. Let's drop it:
 
 ```{r eda-drop-speed}
 final_data <- drop_columns(final_data, "speed")
 ```
 
-You may also store the missing data profile with `profile_missing(final_data)` for additional analysis.
+Note: You may store the missing data profile with `profile_missing(final_data)` for additional analysis.
 
 ### Distributions
 #### Bar Charts
@@ -211,9 +218,9 @@ plot_correlation(na.omit(final_data), type = "d")
 While you can always do `plot_prcomp(na.omit(final_data))` directly, but PCA works better with cleaner data. To perform and visualize PCA on some selected features:
 
 ```{r eda-plot-prcomp}
-pca_df <- na.omit(final_data[, c("origin", "name_carrier", "type", "engine", "dep_delay", "arr_delay", "air_time", "month", "hour", "year_planes", "seats")])
+pca_df <- na.omit(final_data[, c("origin", "dep_delay", "arr_delay", "air_time", "year_planes", "seats")])
 
-plot_prcomp(pca_df)
+plot_prcomp(pca_df, variance_cap = 1)
 ```
 
 ### Slicing & dicing
