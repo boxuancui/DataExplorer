@@ -6,7 +6,7 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to DataExplorer}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include=FALSE}
@@ -101,7 +101,7 @@ introduce(final_data)
 ```
 
 ```{r eda-introduce-run, echo=FALSE}
-kable(introduce(final_data), format.args = list(big.mark = ","))
+kable(t(introduce(final_data)), row.names = TRUE, col.names = "", format.args = list(big.mark = ","))
 ```
 
 To visualize the table above (with some light analysis):
