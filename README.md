@@ -1,4 +1,4 @@
-# DataExplorer
+# DataExplorer <img src="man/figures/logo.png" align="right" style="width:120px;height:120px;/>
 
 [![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 [![Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
@@ -67,6 +67,10 @@ You may also run all the plotting functions individually for your analysis, e.g.
 ```R
 library(DataExplorer)
 library(ggplot2)
+
+## View basic description for airquality data
+introduce(airquality)
+plot_intro(airquality)
 
 ## View missing value distribution for airquality data
 plot_missing(airquality)
