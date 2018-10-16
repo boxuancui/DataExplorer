@@ -32,3 +32,11 @@ test_that("test if non-existing y throws an error", {
 	skip_on_cran()
 	expect_error(create_report(iris, y = "abc"))
 })
+
+test_that("test if 0 complete rows are detected", {
+	skip_on_cran()
+	create_report(
+		data.frame("a" = seq.int(5L), "b" = rep(NA, 5L)),
+		config = list("plot_correlation" = list(), "plot_prcomp" = list())
+	)
+})

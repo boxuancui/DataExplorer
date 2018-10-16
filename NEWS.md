@@ -13,6 +13,7 @@
 * Plot objects are now constructed with `parallel::mclapply`.
 
 #### Bug Fixes
+* [#74](https://github.com/boxuancui/DataExplorer/issues/74): Fixed a bug causing `create_report` failure due to zero complete rows.
 * [#75](https://github.com/boxuancui/DataExplorer/issues/75): Fixed a bug in `plot_str` when plotting data.frame with more than 100 columns.
 * [#82](https://github.com/boxuancui/DataExplorer/issues/82): Removed hard-coded scales from all plot functions.
 * Fixed a bug causing wrong column indices in `split_columns`.

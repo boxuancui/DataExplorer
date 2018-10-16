@@ -17,32 +17,39 @@ library(data.table)
 library(rmarkdown)
 library(knitr)
 
+## Create helper functions
+do_call <- function(fun_name, na_omit = FALSE) {
+	if (na_omit) data <- na.omit(data)
+	do.call(fun_name, c(list("data" = data), report_config[[fun_name]]))
+}
+
 ## Get user data
 data <- params$data
 report_config <- params$report_config
 response <- params$response
-
-## Create helper functions
-do_call <- function(fun_name, na_omit = FALSE) {
-  if (na_omit) data <- na.omit(data)
-  do.call(fun_name, c(list("data" = data), report_config[[fun_name]]))
-}
+intro <- do_call("introduce")
 
 ## Set knitr options
-opts_chunk$set(fig.width = 14, fig.height = 10, echo = FALSE, results = "asis")
+opts_chunk$set(
+	fig.width = 14,
+	fig.height = 10,
+	echo = FALSE,
+	results = "asis",
+	warning = TRUE
+)
 ```
 
 <script src="d3.min.js"></script>
 
-```{r basic_statistics}
+```{r introduce}
 if ("introduce" %in% names(report_config)) {
-  intro <- do_call("introduce")
   memory_usage <- intro[["memory_usage"]]
   class(memory_usage) <- "object_size"
   intro_df <- data.frame(
     "Name" = c("Rows", "Columns",
                "Discrete columns", "Continuous columns", "All missing columns",
-               "Missing observations", "Total observations", "Memory allocation"),
+               "Missing observations", "Complete Rows",
+    					 "Total observations", "Memory allocation"),
     "Value" = c(
       format(intro[["rows"]], big.mark = ","),
       format(intro[["columns"]], big.mark = ","),
@@ -50,14 +57,21 @@ if ("introduce" %in% names(report_config)) {
       format(intro[["continuous_columns"]], big.mark = ","),
       format(intro[["all_missing_columns"]], big.mark = ","),
       format(intro[["total_missing_values"]], big.mark = ","),
+      format(intro[["complete_rows"]], big.mark = ","),
       format(intro[["total_observations"]], big.mark = ","),
       format(memory_usage, unit = "auto")
     )
   )
   ## Render content
   cat("### Basic Statistics", fill = TRUE)
+  cat("#### Raw Counts", fill = TRUE)
   kable(intro_df)
-  ## Plot introduction
+}
+```
+
+```{r plot_intro}
+if ("introduce" %in% names(report_config)) {
+	cat("#### Percentages", fill = TRUE)
   do_call("plot_intro")
 }
 ```
@@ -146,20 +160,28 @@ if ("plot_bar" %in% names(report_config)) {
 
 ```{r correlation_analysis}
 if ("plot_correlation" %in% names(report_config)) {
-  cat("### Correlation Analysis", fill = TRUE)
-  do_call("plot_correlation", na_omit = TRUE)
+	cat("### Correlation Analysis", fill = TRUE)
+	if (intro[["complete_rows"]] > 0) {
+		do_call("plot_correlation", na_omit = TRUE)
+	} else {
+		message("Insufficient complete rows! Skipping correlation analysis.")
+	}
 }
 ```
 
 ```{r principle_component_analysis}
 if ("plot_prcomp" %in% names(report_config)) {
-  cat("### Principle Component Analysis", fill = TRUE)
-  if (!is.null(response)) {
-    dt <- na.omit(data[, -response, with = FALSE])
-    do.call(plot_prcomp, c(list("data" = dt), report_config[["plot_prcomp"]]))
-  } else {
-    do_call("plot_prcomp", na_omit = TRUE)
-  }
+	cat("### Principle Component Analysis", fill = TRUE)
+	if (intro[["complete_rows"]] > 0) {
+		if (!is.null(response)) {
+			dt <- na.omit(data[, -response, with = FALSE])
+			do.call(plot_prcomp, c(list("data" = dt), report_config[["plot_prcomp"]]))
+		} else {
+			do_call("plot_prcomp", na_omit = TRUE)
+		}
+	} else {
+		message("Insufficient complete rows! Skipping principle component analysis.")
+	}
 }
 ```
 
