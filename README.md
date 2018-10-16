@@ -1,4 +1,4 @@
-# DataExplorer <img src="man/figures/logo.png" align="right" style="width:120px;height:120px;"/>
+# DataExplorer <img src="man/figures/logo.png" align="right" width="200" height="200"/>
 
 [![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 [![Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
