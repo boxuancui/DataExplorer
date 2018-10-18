@@ -45,11 +45,7 @@ Discrete features will be \link{dummify}-ed first before passing to \link{prcomp
 Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your input data first.
 }
 \examples{
-plot_prcomp(
-  data = na.omit(airquality)
-  nrow = 2L,
-  ncol = 2L
-)
+plot_prcomp(na.omit(airquality), nrow = 2L, ncol = 2L)
 
 data("diamonds", package = "ggplot2")
 plot_prcomp(diamonds, maxcat = 7L)
