@@ -1,6 +1,6 @@
 Package: DataExplorer
 Title: Data Explorer
-Version: 0.6.1
+Version: 0.7.0
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: Data exploration process for data analysis and model building, so
     that users could focus on understanding data and extracting insights. The
@@ -8,18 +8,19 @@ Description: Data exploration process for data analysis and model building, so
     Typical graphical techniques will be performed for both discrete and
     continuous features.
 Depends:
-    R (>= 3.3)
+    R (>= 3.4)
 Imports:
     data.table (>= 1.11),
     reshape2 (>= 1.4),
+    scales (>= 1.0),
     ggplot2 (>= 2.2),
-    scales (>= 0.5),
     gridExtra (>= 2.3),
-    rmarkdown (>= 1.9),
+    rmarkdown (>= 1.10),
     networkD3 (>= 0.4),
     stats,
     utils,
-    tools
+    tools,
+    parallel
 Suggests:
     testthat,
     covr,
@@ -31,5 +32,6 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/boxuancui/DataExplorer
 BugReports: https://github.com/boxuancui/DataExplorer/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
+Encoding: UTF-8
 VignetteBuilder: knitr

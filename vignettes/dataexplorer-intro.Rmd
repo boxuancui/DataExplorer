@@ -6,19 +6,26 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to DataExplorer}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  %\usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include=FALSE}
 library(rmarkdown)
 library(knitr)
+library(parallel)
 library(DataExplorer)
 library(data.table)
 library(ggplot2)
 library(nycflights13)
 library(networkD3)
 
-opts_chunk$set(fig.width = 6, fig.height = 6, fig.align = "center", warning = FALSE)
+opts_chunk$set(
+	collapse = TRUE,
+	fig.width = 6,
+	fig.height = 6,
+	fig.align = "center",
+	warning = FALSE
+)
 ```
 
 <script src="d3.min.js"></script>
@@ -60,14 +67,14 @@ plot_str(data_list)
 ```{r plot-str-run, echo=FALSE}
 data_list <- list(airlines, airports, flights, planes, weather)
 diagonalNetwork(
-  plot_str(data_list, print_network = FALSE),
-  width = 800,
-  height = 800,
-  fontSize = 20,
-  margin = list(
-    "left" = 50,
-    "right" = 50
-  )
+	plot_str(data_list, print_network = FALSE),
+	width = 800,
+	height = 800,
+	fontSize = 20,
+	margin = list(
+		"left" = 50,
+		"right" = 50
+	)
 )
 ```
 
@@ -94,23 +101,36 @@ introduce(final_data)
 ```
 
 ```{r eda-introduce-run, echo=FALSE}
-kable(introduce(final_data), format.args = list(big.mark = ","))
+kable(t(introduce(final_data)), row.names = TRUE, col.names = "", format.args = list(big.mark = ","))
 ```
 
+To visualize the table above (with some light analysis):
+
+```{r eda-plot-intro}
+plot_intro(final_data)
+```
+
+You should immediately notice some surprises:
+
+1. 0.3% complete rows: This means only 0.3% of all rows are not completely missing!
+1. 5.7% missing observations: Given the 0.3% complete rows, there are only 5.7% total missing observations.
+
+Missing values are definitely creating problems. Let's take a look at the missing profiles.
+
 ### Missing values
-Real-world data is messy. After running the basic descriptive statistics, you might be interested in the missing data profile. You can simply use `plot_missing` function for this.
+Real-world data is messy, and you can simply use `plot_missing` function to visualize missing profile for each feature.
 
 ```{r eda-plot-missing}
 plot_missing(final_data)
 ```
 
-Looks like **speed** variable is mostly missing, and probably not informative. Let's drop it:
+From the chart, **speed** variable is mostly missing, and probably not informative. Looks like we have found the culprit for the 0.3% complete rows. Let's drop it:
 
 ```{r eda-drop-speed}
 final_data <- drop_columns(final_data, "speed")
 ```
 
-You may also store the missing data profile with `missing_data <- plot_missing(final_data)` for additional analysis.
+Note: You may store the missing data profile with `profile_missing(final_data)` for additional analysis.
 
 ### Distributions
 #### Bar Charts
@@ -120,8 +140,8 @@ To visualize frequency distributions for all discrete features:
 plot_bar(final_data)
 ```
 
-```{r eda-plot-bar-run, echo=FALSE, fig.width=10, fig.height=6}
-plot_bar(final_data, theme_config = list("text" = element_text(size = 4)))
+```{r eda-plot-bar-run, echo=FALSE, fig.width=8, fig.height=12}
+plot_bar(final_data, theme_config = list("text" = element_text(size = 6)), nrow = 4L, ncol = 3L)
 ```
 
 Upon closer inspection of **manufacturer** variable, it is not hard to identify the following duplications:
@@ -140,14 +160,20 @@ final_data[which(final_data$manufacturer %in% c("MCDONNELL DOUGLAS AIRCRAFT CO",
 plot_bar(final_data$manufacturer)
 ```
 
+Feature **dst_origin** and **tzone_origin** contains only 1 value, so we should drop them:
+
+```{r eda-drop-bar-features}
+final_data <- drop_columns(final_data, c("dst_origin", "tzone_origin"))
+```
+
 Frequently, it is very beneficial to look at bivariate frequency distribution. For example, to look at discrete features by **arr_delay**:
 
 ```{r eda-plot-bar-with-template, eval=FALSE}
 plot_bar(final_data, with = "arr_delay")
 ```
 
-```{r eda-plot-bar-with-run, echo=FALSE, fig.width=10, fig.height=6}
-plot_bar(final_data, with = "arr_delay", theme_config = list("text" = element_text(size = 4)))
+```{r eda-plot-bar-with-run, echo=FALSE, fig.width=8, fig.height=10}
+plot_bar(final_data, with = "arr_delay", theme_config = list("text" = element_text(size = 6)))
 ```
 
 The resulting distribution looks quite different from the regular frequency distribution.
@@ -155,39 +181,95 @@ The resulting distribution looks quite different from the regular frequency dist
 #### Histograms
 To visualize distributions for all continuous features:
 
-```{r eda-plot-histogram, fig.width=10, fig.height=6}
+```{r eda-plot-histogram-template, eval=FALSE}
 plot_histogram(final_data)
+```
+
+```{r eda-plot-histogram, echo=FALSE, fig.width=8}
+suppressWarnings(plot_histogram(final_data, nrow = 3L, ncol = 3L))
 ```
 
 Immediately, you could observe that there are datetime features to be further treated, e.g., concatenating year, month and day to form date, and/or adding hour and minute to form datetime.
 
-For the purpose of this vignette, I will not go deep into the analytical tasks. However, we should set **flight** to categorical, since that is the flight number with no mathematical meaning:
+For the purpose of this vignette, I will not go deep into the analytical tasks. However, we should treat the following features based on the output of the histograms.
 
+* Set **flight** to categorical, since that is the flight number with no mathematical meaning:
 ```{r eda-update-flight}
 final_data$flight <- as.factor(final_data$flight)
 ```
 
+* Remove **year_flights** and **tz_origin** since there is only one value:
+```{r eda-drop-histogram-features}
+final_data <- drop_columns(final_data, c("year_flights", "tz_origin"))
+```
+
+#### QQ Plot
+Quantile-Quantile plot is a way to visualize the deviation from a specific probability distribution. After analyzing these plots, it is often beneficial to apply mathematical transformation (such as log) for models like linear regression. To do so, we can use `plot_qq` function. By default, it compares with normal distribution.
+
+Note: The function will take a long time with many observations, so you may choose to specify an appropriate `sampled_rows`:
+
+```{r eda-plot-qq-template, eval=FALSE}
+qq_data <- final_data[, c("arr_delay", "air_time", "distance", "seats")]
+
+plot_qq(qq_data, sampled_rows = 1000L)
+```
+
+```{r eda-plot-qq, echo=FALSE}
+qq_data <- final_data[, c("arr_delay", "air_time", "distance", "seats")]
+
+plot_qq(
+	qq_data,
+	sampled_rows = 1000L,
+	geom_qq_args = list("na.rm" = TRUE),
+	geom_qq_line_args = list("na.rm" = TRUE),
+	nrow = 2L,
+	ncol = 2L
+)
+```
+
+You may also view the QQ plot by another feature:
+
+```{r eda-plot-qq-by-template, eval=FALSE}
+qq_data <- final_data[, c("name_origin", "arr_delay", "air_time", "distance", "seats")]
+
+plot_qq(qq_data, by = "name_origin", sampled_rows = 1000L)
+```
+
+```{r eda-plot-qq-by, echo=FALSE, fig.width=8, fig.height=8}
+qq_data <- final_data[, c("name_origin", "arr_delay", "air_time", "distance", "seats")]
+
+plot_qq(
+	qq_data,
+	by = "name_origin",
+	geom_qq_args = list("na.rm" = TRUE),
+	geom_qq_line_args = list("na.rm" = TRUE),
+	sampled_rows = 1000L,
+	nrow = 2L,
+	ncol = 2L
+)
+```
+
 ### Correlation Analysis
-To visualize correlation heatmap for all features:
+To visualize correlation heatmap for all non-missing features:
 
 ```{r eda-plot-correlation, fig.width=8, fig.height=8}
-plot_correlation(final_data, maxcat = 5L, use = "pairwise.complete.obs")
+plot_correlation(na.omit(final_data), maxcat = 5L)
 ```
 
 You may also choose to visualize only discrete/continuous features with:
 
 ```{r eda-plot-correlation-type, eval=FALSE}
-plot_correlation(final_data, type = "c", use = "pairwise.complete.obs")
-plot_correlation(final_data, type = "d", use = "pairwise.complete.obs")
+plot_correlation(na.omit(final_data), type = "c")
+plot_correlation(na.omit(final_data), type = "d")
 ```
 
 ### Principle Component Analysis
 While you can always do `plot_prcomp(na.omit(final_data))` directly, but PCA works better with cleaner data. To perform and visualize PCA on some selected features:
 
-```{r eda-plot-prcomp}
-pca_df <- na.omit(final_data[, c("origin", "name_carrier", "type", "engine", "dep_delay", "arr_delay", "air_time", "month", "hour", "year_planes", "seats")])
+```{r eda-plot-prcomp, fig.width=8, fig.height=8}
+pca_df <- na.omit(final_data[, c("origin", "dep_delay", "arr_delay", "air_time", "year_planes", "seats")])
 
-plot_prcomp(pca_df)
+plot_prcomp(pca_df, variance_cap = 1)
 ```
 
 ### Slicing & dicing
@@ -196,7 +278,7 @@ Often, slicing and dicing data in different ways could be crucial to your analys
 #### Boxplots
 Suppose you would like to build a model to predict arrival delays, you may visualize the distribution of all continuous features based on arrival delays with a boxplot:
 
-```{r eda-plot-boxplot, fig.width=8, fig.height=8}
+```{r eda-plot-boxplot-template, eval=FALSE}
 ## Reduce data size for demo purpose
 arr_delay_df <- final_data[, c("arr_delay", "month", "day", "hour", "minute", "dep_delay", "distance", "year_planes", "seats")]
 
@@ -204,17 +286,27 @@ arr_delay_df <- final_data[, c("arr_delay", "month", "day", "hour", "minute", "d
 plot_boxplot(arr_delay_df, by = "arr_delay")
 ```
 
+```{r eda-plot-boxplot, echo=FALSE, fig.width=8, fig.height=8}
+arr_delay_df <- final_data[, c("arr_delay", "month", "day", "hour", "minute", "dep_delay", "distance", "year_planes", "seats")]
+plot_boxplot(arr_delay_df, by = "arr_delay", geom_boxplot_args = list("na.rm" = TRUE), nrow = 3L, ncol = 3L)
+```
+
 Among all the subtle changes in correlation with arrival delays, you could immediately spot that planes with 300+ seats tend to have much longer delays (16 ~ 21 hours). You may now drill down further to verify or generate more hypotheses.
 
 #### Scatterplots
 An alternative visualization is scatterplot. For example:
 
-```{r eda-plot-scatterplot, fig.width=8, fig.height=8}
+```{r eda-plot-scatterplot-template, eval=FALSE}
 ## Reduce data size for demo purpose
 arr_delay_df2 <- final_data[sample.int(nrow(final_data), 1000), c("arr_delay", "dep_time", "dep_delay", "arr_time", "air_time", "distance", "year_planes", "seats")]
 
 ## Call scatterplot function
-plot_scatterplot(arr_delay_df2, by = "arr_delay", size = 0.5)
+plot_scatterplot(arr_delay_df2, by = "arr_delay")
+```
+
+```{r eda-plot-scatterplot, echo=FALSE, fig.width=8, fig.height=8}
+arr_delay_df2 <- final_data[sample.int(nrow(final_data), 1000), c("arr_delay", "dep_time", "dep_delay", "arr_time", "air_time", "distance", "year_planes", "seats")]
+plot_scatterplot(arr_delay_df2, by = "arr_delay", geom_point_args = list("size" = 0.5, "na.rm" = TRUE))
 ```
 
 ## Feature Engineering
@@ -282,26 +374,26 @@ plot_str(
 
 ```{r fe-dummify-run, echo=FALSE}
 diagonalNetwork(
-  plot_str(list("original" = final_data, "dummified" = dummify(final_data, maxcat = 5L)), print_network = FALSE),
-  width = 800,
-  height = 1500,
-  fontSize = 20,
-  margin = list(
-    "left" = 50,
-    "right" = 50
-  )
+	plot_str(list("original" = final_data, "dummified" = dummify(final_data, maxcat = 5L)), print_network = FALSE),
+	width = 800,
+	height = 1500,
+	fontSize = 20,
+	margin = list(
+		"left" = 50,
+		"right" = 50
+	)
 )
 ```
 
 Note the `maxcat` argument. If a discrete feature has more categories than `maxcat`, it will not be dummified. As a result, it will be returned touched.
 
 ### Drop features
-After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like **dst_origin** has only one value, and it doesn't provide any valuable information. You can use `drop_columns` to quickly drop features. The function takes either names or column indices.
+After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like **dst_dest** has mostly one value, and it doesn't provide any valuable information. You can use `drop_columns` to quickly drop features. The function takes either names or column indices.
 
 ```{r fe-drop-columns}
 identical(
-  drop_columns(final_data, c("dst_origin", "dst_dest", "tzone_dest")),
-  drop_columns(final_data, c(33, 40, 41))
+	drop_columns(final_data, c("dst_dest", "tzone_dest")),
+	drop_columns(final_data, c(36, 37))
 )
 ```
 
@@ -323,20 +415,21 @@ You may also customize each individual section by passing their corresponding ar
 ```{r dr-create-report-customize, eval=FALSE}
 ## Customize report configuration
 config <- list(
-  "introduce" = list(),
-  "plot_str" = list(
-    "type" = "diagonal",
-    "fontSize" = 35,
-    "width" = 1000,
-    "margin" = list("left" = 350, "right" = 250)
-  ),
-  "plot_missing" = list(),
-  "plot_histogram" = list(),
-  "plot_bar" = list(),
-  "plot_correlation" = list("use" = "pairwise.complete.obs"),
-  "plot_prcomp" = list(),
-  "plot_boxplot" = list(),
-  "plot_scatterplot" = list()
+	"introduce" = list(),
+	"plot_str" = list(
+		"type" = "diagonal",
+		"fontSize" = 35,
+		"width" = 1000,
+		"margin" = list("left" = 350, "right" = 250)
+	),
+	"plot_missing" = list(),
+	"plot_histogram" = list(),
+	"plot_qq" = list(sampled_rows = 1000L),
+	"plot_bar" = list(),
+	"plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
+	"plot_prcomp" = list(),
+	"plot_boxplot" = list(),
+	"plot_scatterplot" = list()
 )
 ## Create final report
 create_report(final_data, y = "arr_delay", config = config)

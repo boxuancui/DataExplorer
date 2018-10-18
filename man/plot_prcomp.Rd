@@ -4,8 +4,10 @@
 \alias{plot_prcomp}
 \title{Visualize principle component analysis}
 \usage{
-plot_prcomp(data, variance_cap = 0.8, maxcat = 50L, title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), ...)
+plot_prcomp(data, variance_cap = 0.8, maxcat = 50L,
+  prcomp_args = list(scale. = TRUE), title = NULL,
+  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
+  ncol = 3L)
 }
 \arguments{
 \item{data}{input data}
@@ -14,13 +16,20 @@ plot_prcomp(data, variance_cap = 0.8, maxcat = 50L, title = NULL,
 
 \item{maxcat}{maximum categories allowed for each discrete feature. The default is 50.}
 
+\item{prcomp_args}{a list of other arguments to \link{prcomp}}
+
 \item{title}{plot title starting from page 2.}
 
 \item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
 
-\item{\dots}{other arguments to be passed to \link{prcomp}.}
+\item{nrow}{number of rows per page}
+
+\item{ncol}{number of columns per page}
+}
+\value{
+invisibly return the named list of ggplot objects
 }
 \description{
 Visualize output of \link{prcomp}.
@@ -29,10 +38,6 @@ Visualize output of \link{prcomp}.
 When cumulative explained variance exceeds \code{variance_cap}, remaining principle components will be ignored. Set \code{variance_cap} to 1 for all principle components.
 
 Discrete features containing more categories than \code{maxcat} specifies will be ignored.
-
-To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
-
-\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 }
 \note{
 Discrete features will be \link{dummify}-ed first before passing to \link{prcomp}.
@@ -40,9 +45,13 @@ Discrete features will be \link{dummify}-ed first before passing to \link{prcomp
 Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your input data first.
 }
 \examples{
-data("diamonds", package = "ggplot2")
-plot_prcomp(diamonds, maxcat = 5, scale. = TRUE)
+plot_prcomp(
+  data = na.omit(airquality)
+  nrow = 2L,
+  ncol = 2L
+)
 
-plot_prcomp(na.omit(airquality), scale. = TRUE)
+data("diamonds", package = "ggplot2")
+plot_prcomp(diamonds, maxcat = 7L)
 }
 \keyword{plot_prcomp}

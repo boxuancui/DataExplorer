@@ -2,14 +2,12 @@
 % Please edit documentation in R/plot_correlation.r
 \name{plot_correlation}
 \alias{plot_correlation}
-\alias{CorrelationDiscrete}
-\alias{CorrelationContinuous}
 \title{Create correlation heatmap for discrete features}
 \usage{
 plot_correlation(data, type = c("all", "discrete", "continuous"),
-  maxcat = 20L, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(legend.position = "bottom", axis.text.x =
-  element_text(angle = 90)), ...)
+  maxcat = 20L, cor_args = list(), title = NULL,
+  ggtheme = theme_gray(), theme_config = list(legend.position =
+  "bottom", axis.text.x = element_text(angle = 90)))
 }
 \arguments{
 \item{data}{input data}
@@ -18,32 +16,26 @@ plot_correlation(data, type = c("all", "discrete", "continuous"),
 
 \item{maxcat}{maximum categories allowed for each discrete feature. The default is 20.}
 
+\item{cor_args}{a list of other arguments to \link{cor}}
+
 \item{title}{plot title}
 
 \item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
-
-\item{\dots}{other arguments to be passed to \link{cor}.}
+}
+\value{
+invisibly return the ggplot object
 }
 \description{
 This function creates a correlation heatmap for all discrete categories.
 }
 \details{
 For discrete features, the function first dummifies all categories, then calculates the correlation matrix (see \link{cor}) and plots it.
-
-To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
-
-\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 }
 \examples{
-# Load diamonds dataset from ggplot2
-data("diamonds", package = "ggplot2")
-
-# Plot correlation heatmap
-plot_correlation(diamonds)
-plot_correlation(diamonds, maxcat = 5)
-plot_correlation(diamonds, type = "c")
-plot_correlation(diamonds, type = "d")
+plot_correlation(iris)
+plot_correlation(iris, type = "c")
+plot_correlation(airquality, cor_args = list("use" = "pairwise.complete.obs"))
 }
 \keyword{plot_correlation}

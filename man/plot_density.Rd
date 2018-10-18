@@ -2,14 +2,16 @@
 % Please edit documentation in R/plot_density.r
 \name{plot_density}
 \alias{plot_density}
-\alias{DensityContinuous}
-\title{Visualize density estimates for continuous features}
+\title{Plot density estimates}
 \usage{
-plot_density(data, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), ...)
+plot_density(data, geom_density_args = list(), title = NULL,
+  ggtheme = theme_gray(), theme_config = list(), nrow = 4L,
+  ncol = 4L)
 }
 \arguments{
 \item{data}{input data}
+
+\item{geom_density_args}{a list of other arguments to \link{geom_density}}
 
 \item{title}{plot title}
 
@@ -17,15 +19,15 @@ plot_density(data, title = NULL, ggtheme = theme_gray(),
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
 
-\item{\dots}{other arguments to be passed to \link{geom_density}.}
+\item{nrow}{number of rows per page. Default is 4.}
+
+\item{ncol}{number of columns per page. Default is 4.}
+}
+\value{
+invisibly return the named list of ggplot objects
 }
 \description{
-This function visualizes density estimates for each continuous feature.
-}
-\details{
-To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
-
-\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
+Plot density estimates for each continuous feature
 }
 \examples{
 # Plot using iris data
@@ -39,19 +41,7 @@ data <- cbind(sapply(seq.int(4L), function(x) {
 plot_density(data)
 
 # Add color to density area
-plot_density(data, fill = "black", alpha = 0.8)
-
-# Plot with preset ggplot2 themes
-library(ggplot2)
-plot_density(data, ggtheme = theme_light())
-plot_density(data, ggtheme = theme_minimal(base_size = 15))
-
-# Plot with customized theme components
-plot_density(data,
-theme_config = list(
-  "plot.background" = element_rect(fill = "yellow"),
-  "aspect.ratio" = 1
-))
+plot_density(data, geom_density_args = list("fill" = "black", "alpha" = 0.6))
 }
 \seealso{
 \link{geom_density} \link{plot_histogram}

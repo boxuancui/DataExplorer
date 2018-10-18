@@ -2,7 +2,6 @@
 % Please edit documentation in R/create_report.r
 \name{create_report}
 \alias{create_report}
-\alias{GenerateReport}
 \title{create_report Function}
 \usage{
 create_report(data, output_file = "report.html", output_dir = getwd(),
@@ -62,8 +61,9 @@ config <- list(
   ),
   "plot_missing" = list(),
   "plot_histogram" = list(),
+  "plot_qq" = list(sampled_rows = 1000L),
   "plot_bar" = list(),
-  "plot_correlation" = list("use" = "pairwise.complete.obs"),
+  "plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
   "plot_prcomp" = list(),
   "plot_boxplot" = list(),
   "plot_scatterplot" = list()
@@ -97,9 +97,9 @@ create_report(
     "introduce" = list(),
     "plot_missing" = list(),
     "plot_histogram" = list(),
-    "plot_density" = list(),
+    "plot_qq" = list(sampled_rows = 1000L),
     "plot_bar" = list("with" = "carat"),
-    "plot_correlation" = list("use" = "pairwise.complete.obs"),
+    "plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
     "plot_prcomp" = list(),
     "plot_boxplot" = list("by" = "carat"),
     "plot_scatterplot" = list("by" = "carat")

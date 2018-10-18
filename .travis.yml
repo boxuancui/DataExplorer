@@ -1,13 +1,21 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
 cache: packages
+sudo: false
+warnings_are_errors: true
 
 r:
 - oldrel
 - release
 - devel
+
+# Work around temporary travis + R 3.5 bug
+r_packages: devtools
+
+global:
+  # don't treat missing suggested packages as error
+  - _R_CHECK_FORCE_SUGGESTS_=false
 
 after_success:
   - Rscript -e 'covr::codecov()'

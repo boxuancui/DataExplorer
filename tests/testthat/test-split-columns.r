@@ -30,3 +30,22 @@ test_that("test data.frame return object", {
     ncol(df)
   )
 })
+
+test_that("test data.frame with all missing columns", {
+	df <- data.frame(
+		"a" = letters,
+		"b" = rnorm(26L),
+		"c" = rep(NA_character_, 26L),
+		"d" = rnorm(26L),
+		"e" = rep(NA_integer_, 26L),
+		"f" = LETTERS,
+		"g" = rep(NA, 26L)
+	)
+	df_output <- split_columns(df)
+	expect_equal(names(df_output$discrete), c("a", "f"))
+	expect_equal(names(df_output$continuous), c("b", "d"))
+	expect_equal(df_output$num_discrete, 2L)
+	expect_equal(df_output$num_continuous, 2L)
+	expect_equal(df_output$num_all_missing, 3L)
+	expect_equal(sum(df_output$num_discrete, df_output$num_continuous, df_output$num_all_missing), ncol(df))
+})

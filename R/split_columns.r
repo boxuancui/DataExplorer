@@ -3,7 +3,6 @@
 #' This function splits the input data into two \link{data.table} objects: discrete and continuous. A feature is continuous if \code{is.numeric} returns \code{TRUE}.
 #' @param data input data
 #' @keywords split_columns
-#' @aliases SplitColType
 #' @details Features with all missing values will be dropped from the output data, but will be counted towards the column count.
 #' @details The elements in the output list will have the same class as the input data.
 #' @return \code{discrete} all discrete features
@@ -12,7 +11,7 @@
 #' @return \code{num_continuous} number of continuous features
 #' @return \code{num_all_missing} number of features with no observations (all values are missing)
 #' @import data.table
-#' @export split_columns SplitColType
+#' @export split_columns
 #' @examples
 #' output <- split_columns(iris)
 #' output$discrete
@@ -29,16 +28,19 @@ split_columns <- function(data) {
   ## Set data to data.table
   if (!is_data_table) data <- data.table(data)
   ## Find indicies for continuous features
-  all_missing_ind <- .getAllMissing(data)
-  ind <- sapply(data[, which(!all_missing_ind), with = FALSE], is.numeric)
+  all_missing_ind <- which(.getAllMissing(data))
+  numeric_ind <- setdiff(which(vapply(data, is.numeric, TRUE)), all_missing_ind)
+  discrete_ind <- setdiff(which(vapply(data, function(x) !is.numeric(x), TRUE)), all_missing_ind)
   ## Count number of discrete, continuous and all-missing features
-  n_all_missing <- sum(all_missing_ind)
-  n_continuous <- sum(ind)
-  n_discrete <- ncol(data) - n_continuous - n_all_missing
+  n_all_missing <- length(all_missing_ind)
+  n_continuous <- length(numeric_ind)
+  n_discrete <- length(discrete_ind)
   ## Create object for continuous features
-  continuous <- data[, which(ind), with = FALSE]
+  continuous <- data[, numeric_ind, with = FALSE]
+  setnames(continuous, make.names(names(continuous)))
   ## Create object for discrete features
-  discrete <- data[, which(!ind), with = FALSE]
+  discrete <- data[, discrete_ind, with = FALSE]
+  setnames(discrete, make.names(names(discrete)))
   ## Set data class back to original
   if (!is_data_table) class(discrete) <- class(continuous) <- data_class
   ## Set return object
@@ -51,9 +53,4 @@ split_columns <- function(data) {
       "num_all_missing" = n_all_missing
     )
   )
-}
-
-SplitColType <- function(data) {
-  .Deprecated("split_columns")
-  split_columns(data)
 }

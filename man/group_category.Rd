@@ -2,7 +2,6 @@
 % Please edit documentation in R/group_category.r
 \name{group_category}
 \alias{group_category}
-\alias{CollapseCategory}
 \title{Group categories for discrete features}
 \usage{
 group_category(data, feature, threshold, measure, update = FALSE,

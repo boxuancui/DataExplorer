@@ -4,13 +4,16 @@
 \alias{plot_scatterplot}
 \title{Create scatterplot for all features}
 \usage{
-plot_scatterplot(data, by, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(axis.text.x = element_text(angle = 45, hjust = 1)), ...)
+plot_scatterplot(data, by, geom_point_args = list(), title = NULL,
+  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
+  ncol = 3L)
 }
 \arguments{
 \item{data}{input data}
 
-\item{by}{feature name to be fixed.}
+\item{by}{feature name to be fixed at}
+
+\item{geom_point_args}{a list of other arguments to \link{geom_point}}
 
 \item{title}{plot title}
 
@@ -18,32 +21,27 @@ plot_scatterplot(data, by, title = NULL, ggtheme = theme_gray(),
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
 
-\item{\dots}{other arguments to be passed to \link{geom_point}.}
+\item{nrow}{number of rows per page}
+
+\item{ncol}{number of columns per page}
+}
+\value{
+invisibly return the named list of ggplot objects
 }
 \description{
 This function creates scatterplot for all features fixing on a selected feature.
 }
-\details{
-To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
-
-\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
-}
 \examples{
-# Load mpg data from ggplot2
-data("mpg", package = "ggplot2")
+plot_scatterplot(iris, by = "Species")
 
-# Scatterplot mpg dataset by "hwy"
-plot_scatterplot(mpg, "hwy", size = 1)
-
-# Scatterplot mpg dataset by "class"
-plot_scatterplot(mpg, "class", size = 1)
-
-# Scatterplot with preset ggplot2 themes
 library(ggplot2)
-plot_scatterplot(mpg, "hwy", ggtheme = theme_light())
-
-# Scatterplot with customized theme components
-plot_scatterplot(mpg, "hwy", theme_config = list("axis.text.x" = element_text(angle = 90)))
+plot_scatterplot(
+  data = mpg,
+  by = "hwy",
+  geom_point_args = list(size = 1L),
+  theme_config = list("axis.text.x" = element_text(angle = 90)),
+  ncol = 4L
+)
 }
 \seealso{
 \link{geom_point}

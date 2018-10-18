@@ -8,7 +8,6 @@
 #' @param config report configuration with function arguments as \link{list}. See details.
 #' @param \dots other arguments to be passed to \link{render}.
 #' @keywords create_report
-#' @aliases GenerateReport
 #' @details \code{config} is a named list to be evaluated by \code{create_report}.
 #' Each name should exactly match a function name.
 #' By doing so, that function and corresponding content will be added to the report.
@@ -26,7 +25,7 @@
 #' }
 #' @importFrom utils browseURL
 #' @importFrom rmarkdown render
-#' @export create_report GenerateReport
+#' @export
 #' @examples
 #' \dontrun{
 #' #############################
@@ -43,8 +42,9 @@
 #'   ),
 #'   "plot_missing" = list(),
 #'   "plot_histogram" = list(),
+#'   "plot_qq" = list(sampled_rows = 1000L),
 #'   "plot_bar" = list(),
-#'   "plot_correlation" = list("use" = "pairwise.complete.obs"),
+#'   "plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
 #'   "plot_prcomp" = list(),
 #'   "plot_boxplot" = list(),
 #'   "plot_scatterplot" = list()
@@ -78,9 +78,9 @@
 #'     "introduce" = list(),
 #'     "plot_missing" = list(),
 #'     "plot_histogram" = list(),
-#'     "plot_density" = list(),
+#'     "plot_qq" = list(sampled_rows = 1000L),
 #'     "plot_bar" = list("with" = "carat"),
-#'     "plot_correlation" = list("use" = "pairwise.complete.obs"),
+#'     "plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
 #'     "plot_prcomp" = list(),
 #'     "plot_boxplot" = list("by" = "carat"),
 #'     "plot_scatterplot" = list("by" = "carat")
@@ -102,11 +102,17 @@ create_report <- function(data, output_file = "report.html", output_dir = getwd(
 	if (length(config) == 0) {
 		config <- list(
 			"introduce" = list(),
-			"plot_str" = list("type" = "diagonal", "fontSize" = 35, "width" = 1000, "margin" = list("left" = 350, "right" = 250)),
+			"plot_str" = list(
+				"type" = "diagonal",
+				"fontSize" = 35,
+				"width" = 1000,
+				"margin" = list("left" = 350, "right" = 250)
+			),
 			"plot_missing" = list(),
 			"plot_histogram" = list(),
+			"plot_qq" = list(sampled_rows = 1000L),
 			"plot_bar" = list(),
-			"plot_correlation" = list("use" = "pairwise.complete.obs"),
+			"plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
 			"plot_prcomp" = list(),
 			"plot_boxplot" = list(),
 			"plot_scatterplot" = list()
@@ -127,9 +133,4 @@ create_report <- function(data, output_file = "report.html", output_dir = getwd(
 	## Print report directory
 	args <- as.list(match.call())
 	if (ifelse(is.null(args[["quiet"]]), TRUE, !args[["quiet"]])) message(paste0("\n\nReport is generated at \"", report_path, "\"."))
-}
-
-GenerateReport <- function(data, output_file = "report.html", output_dir = getwd(), ...) {
-	.Deprecated("create_report")
-	create_report(data = data, output_file = output_file, output_dir = output_dir, ...)
 }

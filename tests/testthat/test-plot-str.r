@@ -24,5 +24,12 @@ test_that("test S4 objects", {
   test2 <- new("DataExplorerPlotStrTest", "b" = 456, "c" = FALSE)
   str_output <- plot_str(list(test1, test2), print_network = FALSE)
   expect_equal(str_output$children[[1]]$children[[1]]$name, "@a (chr)")
-  expect_equal(str_output$children[[2]]$children[[3]]$name, "@c(name duplicated) (logi)")
+  expect_equal(str_output$children[[2]]$children[[3]]$name, "X.c (logi)")
+})
+
+test_that("test object with 1000 columns", {
+	df1 <- data.frame(replicate(1000L, sample.int(10)))
+	str_df1 <- plot_str(df1, print_network = FALSE)
+	expect_equal(length(str_df1), 2L)
+	expect_equal(length(str_df1[[2]]), 1000L)
 })

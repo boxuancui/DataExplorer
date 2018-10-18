@@ -2,36 +2,39 @@
 % Please edit documentation in R/plot_bar.r
 \name{plot_bar}
 \alias{plot_bar}
-\alias{BarDiscrete}
-\title{Create bar charts for discrete features}
+\title{Plot bar chart}
 \usage{
-plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE, title = NULL,
-  ggtheme = theme_gray(), theme_config = list())
+plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE,
+  title = NULL, ggtheme = theme_gray(), theme_config = list(),
+  nrow = 3L, ncol = 3L)
 }
 \arguments{
 \item{data}{input data}
 
 \item{with}{name of continuous feature to be summed. Default is \code{NULL}, i.e., frequency.}
 
-\item{maxcat}{maximum categories allowed for each feature. The default is 50. More information in 'Details' section.}
+\item{maxcat}{maximum categories allowed for each feature. Default is 50.}
 
-\item{order_bar}{logical, indicating if bars should be ordered.}
+\item{order_bar}{logical, indicating if bars should be ordered. Default is \code{TRUE}.}
 
 \item{title}{plot title}
 
-\item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
+\item{ggtheme}{complete ggplot2 themes. Default is \link{theme_gray}.}
 
-\item{theme_config}{a list of configurations to be passed to \link{theme}.}
+\item{theme_config}{a list of configurations to be passed to \link{theme}}
+
+\item{nrow}{number of rows per page. Default is 3.}
+
+\item{ncol}{number of columns per page. Default is 3.}
+}
+\value{
+invisibly return the named list of ggplot objects
 }
 \description{
-This function creates frequency bar charts for each discrete feature.
+Plot bar chart for each discrete feature, based on either frequency or another continuous feature.
 }
 \details{
 If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
-
-To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
-
-\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
 }
 \examples{
 # Load diamonds dataset from ggplot2
@@ -44,16 +47,5 @@ plot_bar(diamonds, maxcat = 5)
 
 # Plot bar charts with `price` feature
 plot_bar(diamonds, with = "price")
-
-# Plot bar charts with preset ggplot2 themes
-plot_bar(diamonds, ggtheme = theme_light())
-plot_bar(diamonds, ggtheme = theme_minimal(base_size = 20))
-
-# Plot bar charts with customized theme components
-plot_bar(diamonds,
-theme_config = list(
-  "plot.background" = element_rect(fill = "yellow"),
-  "aspect.ratio" = 1
-))
 }
 \keyword{plot_bar}

@@ -4,13 +4,16 @@
 \alias{plot_boxplot}
 \title{Create boxplot for continuous features}
 \usage{
-plot_boxplot(data, by, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), ...)
+plot_boxplot(data, by, geom_boxplot_args = list(), title = NULL,
+  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
+  ncol = 4L)
 }
 \arguments{
 \item{data}{input data}
 
 \item{by}{feature name to be broken down by. If selecting a continuous feature, boxplot will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature.}
+
+\item{geom_boxplot_args}{a list of other arguments to \link{geom_boxplot}}
 
 \item{title}{plot title}
 
@@ -18,35 +21,19 @@ plot_boxplot(data, by, title = NULL, ggtheme = theme_gray(),
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
 
-\item{\dots}{other arguments to be passed to \link{geom_boxplot}.}
+\item{nrow}{number of rows per page}
+
+\item{ncol}{number of columns per page}
+}
+\value{
+invisibly return the named list of ggplot objects
 }
 \description{
 This function creates boxplot for each continuous feature based on a selected feature.
 }
-\details{
-To change default font family and size, you may pass \code{base_size} and \code{base_family} to \code{ggtheme} options, e.g., \code{ggtheme = theme_gray(base_size = 15, base_family = "serif")}
-
-\code{theme_config} argument expects all inputs to be wrapped in a list object, e.g., to change the text color: \code{theme_config = list("text" = element_text(color = "blue"))}
-}
 \examples{
-# Plot iris dataset by "Species" (discrete)
-plot_boxplot(iris, by = "Species")
-
-# Plot mtcars dataset by "mpg" (continuous)
-plot_boxplot(mtcars, "mpg")
-
-# Plot with preset ggplot2 themes
-library(ggplot2)
-plot_boxplot(iris, by = "Species", ggtheme = theme_light())
-plot_boxplot(iris, by = "Species", ggtheme = theme_minimal(base_size = 20))
-
-# Plot bar charts with customized theme components
-plot_boxplot(iris,
-by = "Species",
-theme_config = list(
-  "plot.background" = element_rect(fill = "yellow"),
-  "aspect.ratio" = 1
-))
+plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
+plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))
 }
 \seealso{
 \link{geom_boxplot}

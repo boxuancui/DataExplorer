@@ -5,12 +5,11 @@
 #' @param value a single value or a list of two values to be set to. See 'Details'.
 #' @param exclude column index or name to be excluded.
 #' @keywords set_missing
-#' @aliases SetNaTo
 #' @details The class of \code{value} will determine what type of columns to be set, e.g., if \code{value} is 0, then missing values for continuous features will be set.
 #' When supplying a list of two values, only one numeric and one non-numeric is allowed.
 #' @details \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 #' @import data.table
-#' @export set_missing SetNaTo
+#' @export set_missing
 #' @examples
 #' # Load packages
 #' library(data.table)
@@ -90,9 +89,4 @@ set_missing <- function(data, value, exclude = NULL) {
     class(data) <- data_class
     return(data)
   }
-}
-
-SetNaTo <- function(data, value, exclude = NULL) {
-  .Deprecated("set_missing")
-  set_missing(data = data, value = value, exclude = exclude)
 }

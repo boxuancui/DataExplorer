@@ -7,12 +7,11 @@
 #' @param print_network logical indicating if network graph should be plotted. Defaults to \code{TRUE}.
 #' @param \dots other arguments to be passed to plotting functions. See \link{diagonalNetwork} and \link{radialNetwork}.
 #' @keywords plot_str
-#' @aliases PlotStr
 #' @return input data structure in nested list. Could be transformed to json format with most JSON packages.
 #' @import data.table
 #' @importFrom networkD3 diagonalNetwork radialNetwork
 #' @importFrom utils capture.output str
-#' @export plot_str PlotStr
+#' @export plot_str
 #' @seealso \link{str}
 #' @examples
 #' ## Visualize structure of iris dataset
@@ -37,7 +36,7 @@ plot_str <- function(data, type = c("diagonal", "radial"), max_level = NULL, pri
   ## Declare variable first to pass R CMD check
   i <- idx <- parent <- NULL
   ## Capture str output
-  str_output_raw <- capture.output(str(data, vec.len = 0, give.attr = FALSE, give.length = FALSE))
+  str_output_raw <- capture.output(str(data, vec.len = 0, give.attr = FALSE, give.length = FALSE, list.len = 2e9L))
   str_output <- unlist(lapply(str_output_raw, function(x) {gsub("\ \\.{2}\\@", "\\$\\@", x)}))
   n <- length(str_output)
   ## Split to calculate nested levels
@@ -67,7 +66,8 @@ plot_str <- function(data, type = c("diagonal", "radial"), max_level = NULL, pri
   ## Make sure the root of each component has a unique name
   comp_root <- gsub(" ", "", comp_split[[1]])
   comp_root[which(comp_root == "")] <- make.names(comp_root[which(comp_root == "")], unique = TRUE)
-  if (anyDuplicated(comp_root)) comp_root[which(duplicated(comp_root))] <- paste0(comp_root[which(duplicated(comp_root))], "(name duplicated)")
+  # if (anyDuplicated(comp_root)) comp_root[which(duplicated(comp_root))] <- paste0(comp_root[which(duplicated(comp_root))], ".2")
+  if (anyDuplicated(comp_root)) comp_root[which(duplicated(comp_root))] <- make.names(comp_root[which(duplicated(comp_root))], unique = TRUE)
   ## Combine component name with type
   comp_output <- paste0(comp_root, " (", trimws(gsub("NULL|\\.{3}|\\.{2}", "", comp_split[[2]])), ")")
   ## Transform data to table format
@@ -94,10 +94,5 @@ plot_str <- function(data, type = c("diagonal", "radial"), max_level = NULL, pri
     if (type == "radial") print(radialNetwork(str_list, ...))
   }
   ## Set return object in invisible mode
-  return(invisible(str_list))
-}
-
-PlotStr <- function(data, type = c("diagonal", "radial"), max_level, print_network = TRUE, ...) {
-  .Deprecated("plot_str")
-  plot_str(data = data, type = type, max_level = max_level, print_network = print_network, ...)
+  invisible(str_list)
 }
