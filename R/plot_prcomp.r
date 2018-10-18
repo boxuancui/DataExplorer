@@ -23,11 +23,7 @@
 #' @importFrom parallel mclapply
 #' @export
 #' @examples
-#' plot_prcomp(
-#'   data = na.omit(airquality)
-#'   nrow = 2L,
-#'   ncol = 2L
-#' )
+#' plot_prcomp(na.omit(airquality), nrow = 2L, ncol = 2L)
 #'
 #' data("diamonds", package = "ggplot2")
 #' plot_prcomp(diamonds, maxcat = 7L)

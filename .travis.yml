@@ -2,13 +2,12 @@
 
 language: R
 cache: packages
-sudo: false
-warnings_are_errors: true
+sudo: required
 
 r:
-- oldrel
-- release
-- devel
+  - oldrel
+  - release
+  - devel
 
 # Work around temporary travis + R 3.5 bug
 r_packages: devtools
