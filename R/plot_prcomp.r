@@ -24,7 +24,7 @@
 #' @export
 #' @examples
 #' plot_prcomp(
-#'   data = na.omit(airquality)
+#'   data = na.omit(airquality),
 #'   nrow = 2L,
 #'   ncol = 2L
 #' )
