@@ -4,14 +4,16 @@
 \alias{plot_scatterplot}
 \title{Create scatterplot for all features}
 \usage{
-plot_scatterplot(data, by, geom_point_args = list(), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
-  ncol = 3L)
+plot_scatterplot(data, by, sampled_rows = nrow(data),
+  geom_point_args = list(), title = NULL, ggtheme = theme_gray(),
+  theme_config = list(), nrow = 3L, ncol = 3L)
 }
 \arguments{
 \item{data}{input data}
 
 \item{by}{feature name to be fixed at}
+
+\item{sampled_rows}{number of rows to sample if data has too many rows. Default is all rows, which means do not sample.}
 
 \item{geom_point_args}{a list of other arguments to \link{geom_point}}
 

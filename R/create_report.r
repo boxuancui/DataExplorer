@@ -47,7 +47,7 @@
 #'   "plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
 #'   "plot_prcomp" = list(),
 #'   "plot_boxplot" = list(),
-#'   "plot_scatterplot" = list()
+#'   "plot_scatterplot" = list(sampled_rows = 1000L)
 #' )
 #'
 #' # Create report
@@ -57,7 +57,6 @@
 #' # Load library
 #' library(ggplot2)
 #' library(data.table)
-#' data("diamonds", package = "ggplot2")
 #'
 #' # Set some missing values
 #' diamonds2 <- data.table(diamonds)
@@ -78,12 +77,11 @@
 #'     "introduce" = list(),
 #'     "plot_missing" = list(),
 #'     "plot_histogram" = list(),
-#'     "plot_qq" = list(sampled_rows = 1000L),
+#'     "plot_qq" = list("by" = "cut", sampled_rows = 1000L),
 #'     "plot_bar" = list("with" = "carat"),
 #'     "plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
 #'     "plot_prcomp" = list(),
-#'     "plot_boxplot" = list("by" = "carat"),
-#'     "plot_scatterplot" = list("by" = "carat")
+#'     "plot_boxplot" = list("by" = "cut")
 #'   ),
 #'   html_document(toc = TRUE, toc_depth = 6, theme = "flatly")
 #' )
@@ -115,7 +113,7 @@ create_report <- function(data, output_file = "report.html", output_dir = getwd(
 			"plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
 			"plot_prcomp" = list(),
 			"plot_boxplot" = list(),
-			"plot_scatterplot" = list()
+			"plot_scatterplot" = list(sampled_rows = 1000L)
 		)
 	}
 	## Render report into html

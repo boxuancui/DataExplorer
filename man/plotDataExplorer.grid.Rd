@@ -30,4 +30,7 @@ invisibly return the named list of ggplot objects
 \description{
 Plot multiple DataExplorer objects using grid.arrange
 }
+\seealso{
+\link{plotDataExplorer} \link{plotDataExplorer.single} \link{plotDataExplorer.multiple}
+}
 \keyword{internal}

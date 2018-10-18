@@ -28,4 +28,7 @@ invisibly return the named list of ggplot objects
 \description{
 Plot multiple DataExplorer objects with the defined layout
 }
+\seealso{
+\link{plotDataExplorer} \link{plotDataExplorer.grid} \link{plotDataExplorer.single}
+}
 \keyword{internal}
