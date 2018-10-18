@@ -1,0 +1,1396 @@
+
+R version 3.5.1 (2018-07-02) -- "Feather Spray"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "DataExplorer"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> base::assign(".ExTimings", "DataExplorer-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('DataExplorer')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("create_report")
+> ### * create_report
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: create_report
+> ### Title: create_report Function
+> ### Aliases: create_report
+> ### Keywords: create_report
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D #############################
+> ##D ## Default config file     ##
+> ##D ## Copy and edit if needed ##
+> ##D #############################
+> ##D config <- list(
+> ##D   "introduce" = list(),
+> ##D   "plot_str" = list(
+> ##D     "type" = "diagonal",
+> ##D     "fontSize" = 35,
+> ##D     "width" = 1000,
+> ##D     "margin" = list("left" = 350, "right" = 250)
+> ##D   ),
+> ##D   "plot_missing" = list(),
+> ##D   "plot_histogram" = list(),
+> ##D   "plot_qq" = list(sampled_rows = 1000L),
+> ##D   "plot_bar" = list(),
+> ##D   "plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
+> ##D   "plot_prcomp" = list(),
+> ##D   "plot_boxplot" = list(),
+> ##D   "plot_scatterplot" = list()
+> ##D )
+> ##D 
+> ##D # Create report
+> ##D create_report(iris)
+> ##D create_report(airquality, y = "Ozone")
+> ##D 
+> ##D # Load library
+> ##D library(ggplot2)
+> ##D library(data.table)
+> ##D data("diamonds", package = "ggplot2")
+> ##D 
+> ##D # Set some missing values
+> ##D diamonds2 <- data.table(diamonds)
+> ##D for (j in 5:ncol(diamonds2)) {
+> ##D   set(diamonds2,
+> ##D       i = sample.int(nrow(diamonds2), sample.int(nrow(diamonds2), 1)),
+> ##D       j,
+> ##D       value = NA_integer_)
+> ##D }
+> ##D 
+> ##D # Create customized report for diamonds2 dataset
+> ##D create_report(
+> ##D   data = diamonds2,
+> ##D   output_file = "report.html",
+> ##D   output_dir = getwd(),
+> ##D   y = "price",
+> ##D   config = list(
+> ##D     "introduce" = list(),
+> ##D     "plot_missing" = list(),
+> ##D     "plot_histogram" = list(),
+> ##D     "plot_qq" = list(sampled_rows = 1000L),
+> ##D     "plot_bar" = list("with" = "carat"),
+> ##D     "plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
+> ##D     "plot_prcomp" = list(),
+> ##D     "plot_boxplot" = list("by" = "carat"),
+> ##D     "plot_scatterplot" = list("by" = "carat")
+> ##D   ),
+> ##D   html_document(toc = TRUE, toc_depth = 6, theme = "flatly")
+> ##D )
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("create_report", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("drop_columns")
+> ### * drop_columns
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: drop_columns
+> ### Title: Drop selected variables
+> ### Aliases: drop_columns
+> ### Keywords: drop_columns
+> 
+> ### ** Examples
+> 
+> # Load packages
+> library(data.table)
+> 
+> # Generate data
+> dt <- data.table(sapply(setNames(letters, letters), function(x) {assign(x, rnorm(10))}))
+> dt2 <- copy(dt)
+> 
+> # Drop variables by name
+> names(dt)
+ [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+[20] "t" "u" "v" "w" "x" "y" "z"
+> drop_columns(dt, letters[2L:25L])
+> names(dt)
+[1] "a" "z"
+> 
+> # Drop variables by column position
+> names(dt2)
+ [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+[20] "t" "u" "v" "w" "x" "y" "z"
+> drop_columns(dt2, seq(2, 25))
+> names(dt2)
+[1] "a" "z"
+> 
+> # Return from non-data.table input
+> df <- data.frame(sapply(setNames(letters, letters), function(x) {assign(x, rnorm(10))}))
+> drop_columns(df, letters[2L:25L])
+            a           z
+1   0.9510128 -2.52850069
+2  -0.3892372 -0.93590256
+3  -0.2843307 -0.96723946
+4   0.8574098  0.04748859
+5   1.7196273 -0.40373679
+6   0.2700549  0.23149613
+7  -0.4221840 -0.42237241
+8  -1.1891133  0.37411839
+9  -0.3310330 -0.36600577
+10 -0.9398293  1.19010145
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("drop_columns", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:data.table’
+
+> nameEx("dummify")
+> ### * dummify
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: dummify
+> ### Title: Dummify discrete features to binary columns
+> ### Aliases: dummify
+> ### Keywords: dummify
+> 
+> ### ** Examples
+> 
+> ## Dummify iris dataset
+> str(dummify(iris))
+'data.frame':	150 obs. of  7 variables:
+ $ Sepal.Length      : num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ Sepal.Width       : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ Petal.Length      : num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ Petal.Width       : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ Species_setosa    : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Species_versicolor: int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Species_virginica : int  0 0 0 0 0 0 0 0 0 0 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+> 
+> ## Dummify diamonds dataset ignoring features with more than 5 categories
+> data("diamonds", package = "ggplot2")
+> str(dummify(diamonds, maxcat = 5))
+2 features with more than 5 categories ignored!
+color: 7 categories
+clarity: 8 categories
+
+Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	53940 obs. of  14 variables:
+ $ carat        : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
+ $ depth        : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
+ $ table        : num  55 61 65 58 58 57 57 55 61 61 ...
+ $ price        : int  326 326 327 334 335 336 336 337 337 338 ...
+ $ x            : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
+ $ y            : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
+ $ z            : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...
+ $ color        : Ord.factor w/ 7 levels "D"<"E"<"F"<"G"<..: 2 2 2 6 7 7 6 5 2 5 ...
+ $ clarity      : Ord.factor w/ 8 levels "I1"<"SI2"<"SI1"<..: 2 3 5 4 2 6 7 3 4 5 ...
+ $ cut_Fair     : int  0 0 0 0 0 0 0 0 1 0 ...
+ $ cut_Good     : int  0 0 1 0 1 0 0 0 0 0 ...
+ $ cut_Ideal    : int  1 0 0 0 0 0 0 0 0 0 ...
+ $ cut_Premium  : int  0 1 0 1 0 0 0 0 0 0 ...
+ $ cut_Very.Good: int  0 0 0 0 0 1 1 1 0 1 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+> str(dummify(diamonds, select = c("cut", "color")))
+Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	53940 obs. of  20 variables:
+ $ carat        : num  0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
+ $ depth        : num  61.5 59.8 56.9 62.4 63.3 62.8 62.3 61.9 65.1 59.4 ...
+ $ table        : num  55 61 65 58 58 57 57 55 61 61 ...
+ $ price        : int  326 326 327 334 335 336 336 337 337 338 ...
+ $ x            : num  3.95 3.89 4.05 4.2 4.34 3.94 3.95 4.07 3.87 4 ...
+ $ y            : num  3.98 3.84 4.07 4.23 4.35 3.96 3.98 4.11 3.78 4.05 ...
+ $ z            : num  2.43 2.31 2.31 2.63 2.75 2.48 2.47 2.53 2.49 2.39 ...
+ $ clarity      : Ord.factor w/ 8 levels "I1"<"SI2"<"SI1"<..: 2 3 5 4 2 6 7 3 4 5 ...
+ $ cut_Fair     : int  0 0 0 0 0 0 0 0 1 0 ...
+ $ cut_Good     : int  0 0 1 0 1 0 0 0 0 0 ...
+ $ cut_Ideal    : int  1 0 0 0 0 0 0 0 0 0 ...
+ $ cut_Premium  : int  0 1 0 1 0 0 0 0 0 0 ...
+ $ cut_Very.Good: int  0 0 0 0 0 1 1 1 0 1 ...
+ $ color_D      : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ color_E      : int  1 1 1 0 0 0 0 0 1 0 ...
+ $ color_F      : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ color_G      : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ color_H      : int  0 0 0 0 0 0 0 1 0 1 ...
+ $ color_I      : int  0 0 0 1 0 0 1 0 0 0 ...
+ $ color_J      : int  0 0 0 0 1 1 0 0 0 0 ...
+ - attr(*, ".internal.selfref")=<externalptr> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("dummify", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("group_category")
+> ### * group_category
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: group_category
+> ### Title: Group categories for discrete features
+> ### Aliases: group_category
+> ### Keywords: group_category
+> 
+> ### ** Examples
+> 
+> # Load packages
+> library(data.table)
+> 
+> # Generate data
+> data <- data.table("a" = as.factor(round(rnorm(500, 10, 5))), "b" = rexp(500, 500))
+> 
+> # View cumulative frequency without collpasing categories
+> group_category(data, "a", 0.2)
+     a cnt   pct cum_pct
+ 1:  8  50 0.100   0.100
+ 2: 10  42 0.084   0.184
+ 3: 13  39 0.078   0.262
+ 4:  9  39 0.078   0.340
+ 5: 12  38 0.076   0.416
+ 6:  7  36 0.072   0.488
+ 7: 11  27 0.054   0.542
+ 8: 15  26 0.052   0.594
+ 9: 14  25 0.050   0.644
+10:  6  23 0.046   0.690
+11:  5  19 0.038   0.728
+12: 17  18 0.036   0.764
+13:  4  18 0.036   0.800
+> 
+> # View cumulative frequency based on another measure
+> group_category(data, "a", 0.2, measure = "b")
+     a        cnt        pct   cum_pct
+ 1:  8 0.12979789 0.12434415 0.1243441
+ 2: 10 0.08243878 0.07897493 0.2033191
+ 3: 13 0.07852916 0.07522958 0.2785487
+ 4: 12 0.07091194 0.06793242 0.3464811
+ 5:  9 0.07066678 0.06769756 0.4141786
+ 6:  7 0.06956617 0.06664319 0.4808218
+ 7: 14 0.06283625 0.06019605 0.5410179
+ 8:  5 0.05679929 0.05441275 0.5954306
+ 9: 15 0.05633609 0.05396901 0.6493996
+10: 11 0.05603160 0.05367731 0.7030769
+11: 16 0.05440210 0.05211628 0.7551932
+12:  3 0.03908786 0.03744550 0.7926387
+> 
+> # Group bottom 20% categories based on cumulative frequency
+> group_category(data, "a", 0.2, update = TRUE)
+> plot_bar(data)
+> 
+> # Exclude categories from being grouped
+> dt <- data.table("a" = c(rep("c1", 25), rep("c2", 10), "c3", "c4"))
+> group_category(dt, "a", 0.8, update = TRUE, exclude = c("c3", "c4"))
+> plot_bar(dt)
+> 
+> # Return from non-data.table input
+> df <- data.frame("a" = as.factor(round(rnorm(50, 10, 5))), "b" = rexp(50, 10))
+> group_category(df, "a", 0.2)
+    a cnt  pct cum_pct
+1   5   6 0.12    0.12
+2  14   6 0.12    0.24
+3   9   5 0.10    0.34
+4  13   4 0.08    0.42
+5  11   4 0.08    0.50
+6  10   4 0.08    0.58
+7  12   4 0.08    0.66
+8   8   3 0.06    0.72
+9   3   2 0.04    0.76
+10 15   2 0.04    0.80
+> group_category(df, "a", 0.2, measure = "b", update = TRUE)
+       a            b
+1      5 0.0133817217
+2     13 0.1356207107
+3  OTHER 0.0665321330
+4     14 0.1615955066
+5      5 0.0317298086
+6     10 0.6289787275
+7  OTHER 0.0974950895
+8  OTHER 0.0008700737
+9  OTHER 0.1727350214
+10 OTHER 0.0255268236
+11     7 0.5378132032
+12     9 0.0836563176
+13    13 0.0047324617
+14    10 0.2363575298
+15    20 0.4692651836
+16    14 0.2358680153
+17 OTHER 0.1154826574
+18    12 0.1161548799
+19 OTHER 0.0620116115
+20    12 0.2338281600
+21     5 0.1737609889
+22     5 0.2948038131
+23     9 0.1387239453
+24 OTHER 0.1490101826
+25    12 0.0296194322
+26    14 0.0893930748
+27 OTHER 0.0845652498
+28     9 0.0051529042
+29 OTHER 0.2324597856
+30    14 0.0357107671
+31 OTHER 0.1841892093
+32    10 0.0059608910
+33 OTHER 0.0603357658
+34 OTHER 0.0945895964
+35     5 0.0382546823
+36    10 0.0546089045
+37    13 0.0740321711
+38    14 0.0357520306
+39 OTHER 0.0143761737
+40     5 0.1705876380
+41    14 0.0565442714
+42    17 0.7171056728
+43 OTHER 0.0501246760
+44 OTHER 0.0661464875
+45    12 0.0951832126
+46 OTHER 0.0424066320
+47     9 0.0699993378
+48    13 0.0930537173
+49 OTHER 0.0391909694
+50     9 0.1385529769
+> group_category(df, "a", 0.2, update = TRUE)
+       a            b
+1      5 0.0133817217
+2     13 0.1356207107
+3     11 0.0665321330
+4     14 0.1615955066
+5      5 0.0317298086
+6     10 0.6289787275
+7      8 0.0974950895
+8      3 0.0008700737
+9     11 0.1727350214
+10 OTHER 0.0255268236
+11 OTHER 0.5378132032
+12     9 0.0836563176
+13    13 0.0047324617
+14    10 0.2363575298
+15 OTHER 0.4692651836
+16    14 0.2358680153
+17 OTHER 0.1154826574
+18    12 0.1161548799
+19 OTHER 0.0620116115
+20    12 0.2338281600
+21     5 0.1737609889
+22     5 0.2948038131
+23     9 0.1387239453
+24    15 0.1490101826
+25    12 0.0296194322
+26    14 0.0893930748
+27    15 0.0845652498
+28     9 0.0051529042
+29 OTHER 0.2324597856
+30    14 0.0357107671
+31 OTHER 0.1841892093
+32    10 0.0059608910
+33     3 0.0603357658
+34     8 0.0945895964
+35     5 0.0382546823
+36    10 0.0546089045
+37    13 0.0740321711
+38    14 0.0357520306
+39    11 0.0143761737
+40     5 0.1705876380
+41    14 0.0565442714
+42 OTHER 0.7171056728
+43 OTHER 0.0501246760
+44     8 0.0661464875
+45    12 0.0951832126
+46 OTHER 0.0424066320
+47     9 0.0699993378
+48    13 0.0930537173
+49    11 0.0391909694
+50     9 0.1385529769
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("group_category", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:data.table’
+
+> nameEx("introduce")
+> ### * introduce
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: introduce
+> ### Title: Describe basic information
+> ### Aliases: introduce
+> ### Keywords: introduce
+> 
+> ### ** Examples
+> 
+> introduce(mtcars)
+  rows columns discrete_columns continuous_columns all_missing_columns
+1   32      11                0                 11                   0
+  total_missing_values complete_rows total_observations memory_usage
+1                    0            32                352         5928
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("introduce", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plotDataExplorer")
+> ### * plotDataExplorer
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plotDataExplorer
+> ### Title: Default DataExplorer plotting function
+> ### Aliases: plotDataExplorer
+> ### Keywords: internal
+> 
+> ### ** Examples
+> 
+> library(ggplot2)
+> # Update theme of any plot objects
+> plot_missing(airquality, ggtheme = theme_light())
+> plot_missing(airquality, ggtheme = theme_minimal(base_size = 20))
+> 
+> # Customized theme components
+> plot_bar(
++   data = diamonds,
++   theme_config = list(
++   "plot.background" = element_rect(fill = "yellow"),
++   "aspect.ratio" = 1
++   )
++ )
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plotDataExplorer", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:ggplot2’
+
+> nameEx("plot_bar")
+> ### * plot_bar
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_bar
+> ### Title: Plot bar chart
+> ### Aliases: plot_bar
+> ### Keywords: plot_bar
+> 
+> ### ** Examples
+> 
+> # Load diamonds dataset from ggplot2
+> library(ggplot2)
+> data("diamonds", package = "ggplot2")
+> 
+> # Plot bar charts for diamonds dataset
+> plot_bar(diamonds)
+> plot_bar(diamonds, maxcat = 5)
+2 columns ignored with more than 5 categories.
+color: 7 categories
+clarity: 8 categories
+
+> 
+> # Plot bar charts with `price` feature
+> plot_bar(diamonds, with = "price")
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_bar", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:ggplot2’
+
+> nameEx("plot_boxplot")
+> ### * plot_boxplot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_boxplot
+> ### Title: Create boxplot for continuous features
+> ### Aliases: plot_boxplot
+> ### Keywords: plot_boxplot
+> 
+> ### ** Examples
+> 
+> plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
+> plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_boxplot", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_correlation")
+> ### * plot_correlation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_correlation
+> ### Title: Create correlation heatmap for discrete features
+> ### Aliases: plot_correlation
+> ### Keywords: plot_correlation
+> 
+> ### ** Examples
+> 
+> plot_correlation(iris)
+> plot_correlation(iris, type = "c")
+> plot_correlation(airquality, cor_args = list("use" = "pairwise.complete.obs"))
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_correlation", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_density")
+> ### * plot_density
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_density
+> ### Title: Plot density estimates
+> ### Aliases: plot_density
+> ### Keywords: plot_density
+> 
+> ### ** Examples
+> 
+> # Plot using iris data
+> plot_density(iris)
+> 
+> # Plot using random data
+> set.seed(1)
+> data <- cbind(sapply(seq.int(4L), function(x) {
++           runif(500, min = sample(100, 1), max = sample(1000, 1))
++         }))
+> plot_density(data)
+> 
+> # Add color to density area
+> plot_density(data, geom_density_args = list("fill" = "black", "alpha" = 0.6))
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_density", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_histogram")
+> ### * plot_histogram
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_histogram
+> ### Title: Plot histogram
+> ### Aliases: plot_histogram
+> ### Keywords: plot_histogram
+> 
+> ### ** Examples
+> 
+> # Plot iris data
+> plot_histogram(iris)
+> 
+> # Plot random data with customized geom_histogram settings
+> set.seed(1)
+> data <- cbind(sapply(seq.int(4L), function(x) {rnorm(1000, sd = 30 * x)}))
+> plot_histogram(data, geom_histogram_args = list("breaks" = seq(-400, 400, length = 50)))
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_histogram", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_intro")
+> ### * plot_intro
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_intro
+> ### Title: Plot introduction
+> ### Aliases: plot_intro
+> ### Keywords: plot_intro
+> 
+> ### ** Examples
+> 
+> plot_intro(airquality)
+> plot_intro(iris)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_intro", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_missing")
+> ### * plot_missing
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_missing
+> ### Title: Plot missing value profile
+> ### Aliases: plot_missing
+> ### Keywords: plot_missing
+> 
+> ### ** Examples
+> 
+> plot_missing(airquality)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_missing", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_prcomp")
+> ### * plot_prcomp
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_prcomp
+> ### Title: Visualize principle component analysis
+> ### Aliases: plot_prcomp
+> ### Keywords: plot_prcomp
+> 
+> ### ** Examples
+> 
+> plot_prcomp(
++   data = na.omit(airquality),
++   prcomp_args = list(scale. = TRUE),
++   nrow = 2L,
++   ncol = 2L
++ )
+> 
+> data("diamonds", package = "ggplot2")
+> plot_prcomp(diamonds, maxcat = 7L, prcomp_args = list(scale. = TRUE))
+1 features with more than 7 categories ignored!
+clarity: 8 categories
+
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_prcomp", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_qq")
+> ### * plot_qq
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_qq
+> ### Title: Plot QQ plot
+> ### Aliases: plot_qq
+> ### Keywords: plot_qq
+> 
+> ### ** Examples
+> 
+> plot_qq(iris)
+> plot_qq(iris, by = "Sepal.Width")
+> plot_qq(iris, by = "Species", nrow = 2L, ncol = 2L)
+> 
+> plot_qq(
++   data = airquality,
++   geom_qq_args = list(na.rm = TRUE),
++   geom_qq_line_args = list(na.rm = TRUE)
++ )
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_qq", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_scatterplot")
+> ### * plot_scatterplot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_scatterplot
+> ### Title: Create scatterplot for all features
+> ### Aliases: plot_scatterplot
+> ### Keywords: plot_scatterplot
+> 
+> ### ** Examples
+> 
+> plot_scatterplot(iris, by = "Species")
+> 
+> library(ggplot2)
+> plot_scatterplot(
++   data = mpg,
++   by = "hwy",
++   geom_point_args = list(size = 1L),
++   theme_config = list("axis.text.x" = element_text(angle = 90)),
++   ncol = 4L
++ )
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_scatterplot", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:ggplot2’
+
+> nameEx("plot_str")
+> ### * plot_str
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_str
+> ### Title: Visualize data structure
+> ### Aliases: plot_str
+> ### Keywords: plot_str
+> 
+> ### ** Examples
+> 
+> ## Visualize structure of iris dataset
+> plot_str(iris)
+> 
+> ## Visualize object with radial network
+> plot_str(rep(list(rep(list(mtcars), 6)), 4), type = "r")
+> 
+> ## Generate complicated data object
+> obj <- list(
++   "a" = list(iris, airquality, list(mtcars = mtcars, USArrests = USArrests)),
++   "b" = list(list(ts(1:10, frequency = 4))),
++   "c" = lm(rnorm(5) ~ seq(5)),
++   "d" = lapply(1:5, function(x) return(as.function(function(y) y + 1)))
++ )
+> ## Visualize data object with diagnal network
+> plot_str(obj, type = "d")
+> ## Visualize only top 2 nested levels
+> plot_str(obj, type = "d", max_level = 2)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_str", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("profile_missing")
+> ### * profile_missing
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: profile_missing
+> ### Title: Profile missing values
+> ### Aliases: profile_missing
+> ### Keywords: profile_missing
+> 
+> ### ** Examples
+> 
+> profile_missing(airquality)
+  feature num_missing pct_missing group
+1   Ozone          37  0.24183007    OK
+2 Solar.R           7  0.04575163  Good
+3    Wind           0  0.00000000  Good
+4    Temp           0  0.00000000  Good
+5   Month           0  0.00000000  Good
+6     Day           0  0.00000000  Good
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("profile_missing", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("set_missing")
+> ### * set_missing
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: set_missing
+> ### Title: Set all missing values to indicated value
+> ### Aliases: set_missing
+> ### Keywords: set_missing
+> 
+> ### ** Examples
+> 
+> # Load packages
+> library(data.table)
+> 
+> # Generate missing values in iris data
+> dt <- data.table(iris)
+> for (j in 1:4) set(dt, i = sample.int(150, j * 30), j, value = NA_integer_)
+> set(dt, i = sample.int(150, 25), 5L, value = NA_character_)
+> 
+> # Set all missing values to 0L and unknown
+> dt2 <- copy(dt)
+> set_missing(dt2, list(0L, "unknown"))
+Column [Sepal.Length]: Set 30 missing values to 0
+Column [Sepal.Width]: Set 60 missing values to 0
+Column [Petal.Length]: Set 90 missing values to 0
+Column [Petal.Width]: Set 120 missing values to 0
+Column [Species]: Set 25 missing values to unknown
+> 
+> # Set missing numerical values to 0L
+> dt3 <- copy(dt)
+> set_missing(dt3, 0L)
+Column [Sepal.Length]: Set 30 missing values to 0
+Column [Sepal.Width]: Set 60 missing values to 0
+Column [Petal.Length]: Set 90 missing values to 0
+Column [Petal.Width]: Set 120 missing values to 0
+> 
+> # Set missing discrete values to unknown
+> dt4 <- copy(dt)
+> set_missing(dt4, "unknown")
+Column [Species]: Set 25 missing values to unknown
+> 
+> # Set missing values excluding some columns
+> dt5 <- copy(dt)
+> set_missing(dt4, 0L, 1L:2L)
+Column [Petal.Length]: Set 90 missing values to 0
+Column [Petal.Width]: Set 120 missing values to 0
+> set_missing(dt4, 0L, names(dt5)[3L:4L])
+Column [Sepal.Length]: Set 30 missing values to 0
+Column [Sepal.Width]: Set 60 missing values to 0
+> 
+> # Return from non-data.table input
+> set_missing(airquality, 999999L)
+Column [Ozone]: Set 37 missing values to 999999
+Column [Solar.R]: Set 7 missing values to 999999
+     Ozone Solar.R Wind Temp Month Day
+1       41     190  7.4   67     5   1
+2       36     118  8.0   72     5   2
+3       12     149 12.6   74     5   3
+4       18     313 11.5   62     5   4
+5   999999  999999 14.3   56     5   5
+6       28  999999 14.9   66     5   6
+7       23     299  8.6   65     5   7
+8       19      99 13.8   59     5   8
+9        8      19 20.1   61     5   9
+10  999999     194  8.6   69     5  10
+11       7  999999  6.9   74     5  11
+12      16     256  9.7   69     5  12
+13      11     290  9.2   66     5  13
+14      14     274 10.9   68     5  14
+15      18      65 13.2   58     5  15
+16      14     334 11.5   64     5  16
+17      34     307 12.0   66     5  17
+18       6      78 18.4   57     5  18
+19      30     322 11.5   68     5  19
+20      11      44  9.7   62     5  20
+21       1       8  9.7   59     5  21
+22      11     320 16.6   73     5  22
+23       4      25  9.7   61     5  23
+24      32      92 12.0   61     5  24
+25  999999      66 16.6   57     5  25
+26  999999     266 14.9   58     5  26
+27  999999  999999  8.0   57     5  27
+28      23      13 12.0   67     5  28
+29      45     252 14.9   81     5  29
+30     115     223  5.7   79     5  30
+31      37     279  7.4   76     5  31
+32  999999     286  8.6   78     6   1
+33  999999     287  9.7   74     6   2
+34  999999     242 16.1   67     6   3
+35  999999     186  9.2   84     6   4
+36  999999     220  8.6   85     6   5
+37  999999     264 14.3   79     6   6
+38      29     127  9.7   82     6   7
+39  999999     273  6.9   87     6   8
+40      71     291 13.8   90     6   9
+41      39     323 11.5   87     6  10
+42  999999     259 10.9   93     6  11
+43  999999     250  9.2   92     6  12
+44      23     148  8.0   82     6  13
+45  999999     332 13.8   80     6  14
+46  999999     322 11.5   79     6  15
+47      21     191 14.9   77     6  16
+48      37     284 20.7   72     6  17
+49      20      37  9.2   65     6  18
+50      12     120 11.5   73     6  19
+51      13     137 10.3   76     6  20
+52  999999     150  6.3   77     6  21
+53  999999      59  1.7   76     6  22
+54  999999      91  4.6   76     6  23
+55  999999     250  6.3   76     6  24
+56  999999     135  8.0   75     6  25
+57  999999     127  8.0   78     6  26
+58  999999      47 10.3   73     6  27
+59  999999      98 11.5   80     6  28
+60  999999      31 14.9   77     6  29
+61  999999     138  8.0   83     6  30
+62     135     269  4.1   84     7   1
+63      49     248  9.2   85     7   2
+64      32     236  9.2   81     7   3
+65  999999     101 10.9   84     7   4
+66      64     175  4.6   83     7   5
+67      40     314 10.9   83     7   6
+68      77     276  5.1   88     7   7
+69      97     267  6.3   92     7   8
+70      97     272  5.7   92     7   9
+71      85     175  7.4   89     7  10
+72  999999     139  8.6   82     7  11
+73      10     264 14.3   73     7  12
+74      27     175 14.9   81     7  13
+75  999999     291 14.9   91     7  14
+76       7      48 14.3   80     7  15
+77      48     260  6.9   81     7  16
+78      35     274 10.3   82     7  17
+79      61     285  6.3   84     7  18
+80      79     187  5.1   87     7  19
+81      63     220 11.5   85     7  20
+82      16       7  6.9   74     7  21
+83  999999     258  9.7   81     7  22
+84  999999     295 11.5   82     7  23
+85      80     294  8.6   86     7  24
+86     108     223  8.0   85     7  25
+87      20      81  8.6   82     7  26
+88      52      82 12.0   86     7  27
+89      82     213  7.4   88     7  28
+90      50     275  7.4   86     7  29
+91      64     253  7.4   83     7  30
+92      59     254  9.2   81     7  31
+93      39      83  6.9   81     8   1
+94       9      24 13.8   81     8   2
+95      16      77  7.4   82     8   3
+96      78  999999  6.9   86     8   4
+97      35  999999  7.4   85     8   5
+98      66  999999  4.6   87     8   6
+99     122     255  4.0   89     8   7
+100     89     229 10.3   90     8   8
+101    110     207  8.0   90     8   9
+102 999999     222  8.6   92     8  10
+103 999999     137 11.5   86     8  11
+104     44     192 11.5   86     8  12
+105     28     273 11.5   82     8  13
+106     65     157  9.7   80     8  14
+107 999999      64 11.5   79     8  15
+108     22      71 10.3   77     8  16
+109     59      51  6.3   79     8  17
+110     23     115  7.4   76     8  18
+111     31     244 10.9   78     8  19
+112     44     190 10.3   78     8  20
+113     21     259 15.5   77     8  21
+114      9      36 14.3   72     8  22
+115 999999     255 12.6   75     8  23
+116     45     212  9.7   79     8  24
+117    168     238  3.4   81     8  25
+118     73     215  8.0   86     8  26
+119 999999     153  5.7   88     8  27
+120     76     203  9.7   97     8  28
+121    118     225  2.3   94     8  29
+122     84     237  6.3   96     8  30
+123     85     188  6.3   94     8  31
+124     96     167  6.9   91     9   1
+125     78     197  5.1   92     9   2
+126     73     183  2.8   93     9   3
+127     91     189  4.6   93     9   4
+128     47      95  7.4   87     9   5
+129     32      92 15.5   84     9   6
+130     20     252 10.9   80     9   7
+131     23     220 10.3   78     9   8
+132     21     230 10.9   75     9   9
+133     24     259  9.7   73     9  10
+134     44     236 14.9   81     9  11
+135     21     259 15.5   76     9  12
+136     28     238  6.3   77     9  13
+137      9      24 10.9   71     9  14
+138     13     112 11.5   71     9  15
+139     46     237  6.9   78     9  16
+140     18     224 13.8   67     9  17
+141     13      27 10.3   76     9  18
+142     24     238 10.3   68     9  19
+143     16     201  8.0   82     9  20
+144     13     238 12.6   64     9  21
+145     23      14  9.2   71     9  22
+146     36     139 10.3   81     9  23
+147      7      49 10.3   69     9  24
+148     14      20 16.6   63     9  25
+149     30     193  6.9   70     9  26
+150 999999     145 13.2   77     9  27
+151     14     191 14.3   75     9  28
+152     18     131  8.0   76     9  29
+153     20     223 11.5   68     9  30
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("set_missing", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:data.table’
+
+> nameEx("split_columns")
+> ### * split_columns
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: split_columns
+> ### Title: Split data into discrete and continuous parts
+> ### Aliases: split_columns
+> ### Keywords: split_columns
+> 
+> ### ** Examples
+> 
+> output <- split_columns(iris)
+> output$discrete
+       Species
+1       setosa
+2       setosa
+3       setosa
+4       setosa
+5       setosa
+6       setosa
+7       setosa
+8       setosa
+9       setosa
+10      setosa
+11      setosa
+12      setosa
+13      setosa
+14      setosa
+15      setosa
+16      setosa
+17      setosa
+18      setosa
+19      setosa
+20      setosa
+21      setosa
+22      setosa
+23      setosa
+24      setosa
+25      setosa
+26      setosa
+27      setosa
+28      setosa
+29      setosa
+30      setosa
+31      setosa
+32      setosa
+33      setosa
+34      setosa
+35      setosa
+36      setosa
+37      setosa
+38      setosa
+39      setosa
+40      setosa
+41      setosa
+42      setosa
+43      setosa
+44      setosa
+45      setosa
+46      setosa
+47      setosa
+48      setosa
+49      setosa
+50      setosa
+51  versicolor
+52  versicolor
+53  versicolor
+54  versicolor
+55  versicolor
+56  versicolor
+57  versicolor
+58  versicolor
+59  versicolor
+60  versicolor
+61  versicolor
+62  versicolor
+63  versicolor
+64  versicolor
+65  versicolor
+66  versicolor
+67  versicolor
+68  versicolor
+69  versicolor
+70  versicolor
+71  versicolor
+72  versicolor
+73  versicolor
+74  versicolor
+75  versicolor
+76  versicolor
+77  versicolor
+78  versicolor
+79  versicolor
+80  versicolor
+81  versicolor
+82  versicolor
+83  versicolor
+84  versicolor
+85  versicolor
+86  versicolor
+87  versicolor
+88  versicolor
+89  versicolor
+90  versicolor
+91  versicolor
+92  versicolor
+93  versicolor
+94  versicolor
+95  versicolor
+96  versicolor
+97  versicolor
+98  versicolor
+99  versicolor
+100 versicolor
+101  virginica
+102  virginica
+103  virginica
+104  virginica
+105  virginica
+106  virginica
+107  virginica
+108  virginica
+109  virginica
+110  virginica
+111  virginica
+112  virginica
+113  virginica
+114  virginica
+115  virginica
+116  virginica
+117  virginica
+118  virginica
+119  virginica
+120  virginica
+121  virginica
+122  virginica
+123  virginica
+124  virginica
+125  virginica
+126  virginica
+127  virginica
+128  virginica
+129  virginica
+130  virginica
+131  virginica
+132  virginica
+133  virginica
+134  virginica
+135  virginica
+136  virginica
+137  virginica
+138  virginica
+139  virginica
+140  virginica
+141  virginica
+142  virginica
+143  virginica
+144  virginica
+145  virginica
+146  virginica
+147  virginica
+148  virginica
+149  virginica
+150  virginica
+> output$continuous
+    Sepal.Length Sepal.Width Petal.Length Petal.Width
+1            5.1         3.5          1.4         0.2
+2            4.9         3.0          1.4         0.2
+3            4.7         3.2          1.3         0.2
+4            4.6         3.1          1.5         0.2
+5            5.0         3.6          1.4         0.2
+6            5.4         3.9          1.7         0.4
+7            4.6         3.4          1.4         0.3
+8            5.0         3.4          1.5         0.2
+9            4.4         2.9          1.4         0.2
+10           4.9         3.1          1.5         0.1
+11           5.4         3.7          1.5         0.2
+12           4.8         3.4          1.6         0.2
+13           4.8         3.0          1.4         0.1
+14           4.3         3.0          1.1         0.1
+15           5.8         4.0          1.2         0.2
+16           5.7         4.4          1.5         0.4
+17           5.4         3.9          1.3         0.4
+18           5.1         3.5          1.4         0.3
+19           5.7         3.8          1.7         0.3
+20           5.1         3.8          1.5         0.3
+21           5.4         3.4          1.7         0.2
+22           5.1         3.7          1.5         0.4
+23           4.6         3.6          1.0         0.2
+24           5.1         3.3          1.7         0.5
+25           4.8         3.4          1.9         0.2
+26           5.0         3.0          1.6         0.2
+27           5.0         3.4          1.6         0.4
+28           5.2         3.5          1.5         0.2
+29           5.2         3.4          1.4         0.2
+30           4.7         3.2          1.6         0.2
+31           4.8         3.1          1.6         0.2
+32           5.4         3.4          1.5         0.4
+33           5.2         4.1          1.5         0.1
+34           5.5         4.2          1.4         0.2
+35           4.9         3.1          1.5         0.2
+36           5.0         3.2          1.2         0.2
+37           5.5         3.5          1.3         0.2
+38           4.9         3.6          1.4         0.1
+39           4.4         3.0          1.3         0.2
+40           5.1         3.4          1.5         0.2
+41           5.0         3.5          1.3         0.3
+42           4.5         2.3          1.3         0.3
+43           4.4         3.2          1.3         0.2
+44           5.0         3.5          1.6         0.6
+45           5.1         3.8          1.9         0.4
+46           4.8         3.0          1.4         0.3
+47           5.1         3.8          1.6         0.2
+48           4.6         3.2          1.4         0.2
+49           5.3         3.7          1.5         0.2
+50           5.0         3.3          1.4         0.2
+51           7.0         3.2          4.7         1.4
+52           6.4         3.2          4.5         1.5
+53           6.9         3.1          4.9         1.5
+54           5.5         2.3          4.0         1.3
+55           6.5         2.8          4.6         1.5
+56           5.7         2.8          4.5         1.3
+57           6.3         3.3          4.7         1.6
+58           4.9         2.4          3.3         1.0
+59           6.6         2.9          4.6         1.3
+60           5.2         2.7          3.9         1.4
+61           5.0         2.0          3.5         1.0
+62           5.9         3.0          4.2         1.5
+63           6.0         2.2          4.0         1.0
+64           6.1         2.9          4.7         1.4
+65           5.6         2.9          3.6         1.3
+66           6.7         3.1          4.4         1.4
+67           5.6         3.0          4.5         1.5
+68           5.8         2.7          4.1         1.0
+69           6.2         2.2          4.5         1.5
+70           5.6         2.5          3.9         1.1
+71           5.9         3.2          4.8         1.8
+72           6.1         2.8          4.0         1.3
+73           6.3         2.5          4.9         1.5
+74           6.1         2.8          4.7         1.2
+75           6.4         2.9          4.3         1.3
+76           6.6         3.0          4.4         1.4
+77           6.8         2.8          4.8         1.4
+78           6.7         3.0          5.0         1.7
+79           6.0         2.9          4.5         1.5
+80           5.7         2.6          3.5         1.0
+81           5.5         2.4          3.8         1.1
+82           5.5         2.4          3.7         1.0
+83           5.8         2.7          3.9         1.2
+84           6.0         2.7          5.1         1.6
+85           5.4         3.0          4.5         1.5
+86           6.0         3.4          4.5         1.6
+87           6.7         3.1          4.7         1.5
+88           6.3         2.3          4.4         1.3
+89           5.6         3.0          4.1         1.3
+90           5.5         2.5          4.0         1.3
+91           5.5         2.6          4.4         1.2
+92           6.1         3.0          4.6         1.4
+93           5.8         2.6          4.0         1.2
+94           5.0         2.3          3.3         1.0
+95           5.6         2.7          4.2         1.3
+96           5.7         3.0          4.2         1.2
+97           5.7         2.9          4.2         1.3
+98           6.2         2.9          4.3         1.3
+99           5.1         2.5          3.0         1.1
+100          5.7         2.8          4.1         1.3
+101          6.3         3.3          6.0         2.5
+102          5.8         2.7          5.1         1.9
+103          7.1         3.0          5.9         2.1
+104          6.3         2.9          5.6         1.8
+105          6.5         3.0          5.8         2.2
+106          7.6         3.0          6.6         2.1
+107          4.9         2.5          4.5         1.7
+108          7.3         2.9          6.3         1.8
+109          6.7         2.5          5.8         1.8
+110          7.2         3.6          6.1         2.5
+111          6.5         3.2          5.1         2.0
+112          6.4         2.7          5.3         1.9
+113          6.8         3.0          5.5         2.1
+114          5.7         2.5          5.0         2.0
+115          5.8         2.8          5.1         2.4
+116          6.4         3.2          5.3         2.3
+117          6.5         3.0          5.5         1.8
+118          7.7         3.8          6.7         2.2
+119          7.7         2.6          6.9         2.3
+120          6.0         2.2          5.0         1.5
+121          6.9         3.2          5.7         2.3
+122          5.6         2.8          4.9         2.0
+123          7.7         2.8          6.7         2.0
+124          6.3         2.7          4.9         1.8
+125          6.7         3.3          5.7         2.1
+126          7.2         3.2          6.0         1.8
+127          6.2         2.8          4.8         1.8
+128          6.1         3.0          4.9         1.8
+129          6.4         2.8          5.6         2.1
+130          7.2         3.0          5.8         1.6
+131          7.4         2.8          6.1         1.9
+132          7.9         3.8          6.4         2.0
+133          6.4         2.8          5.6         2.2
+134          6.3         2.8          5.1         1.5
+135          6.1         2.6          5.6         1.4
+136          7.7         3.0          6.1         2.3
+137          6.3         3.4          5.6         2.4
+138          6.4         3.1          5.5         1.8
+139          6.0         3.0          4.8         1.8
+140          6.9         3.1          5.4         2.1
+141          6.7         3.1          5.6         2.4
+142          6.9         3.1          5.1         2.3
+143          5.8         2.7          5.1         1.9
+144          6.8         3.2          5.9         2.3
+145          6.7         3.3          5.7         2.5
+146          6.7         3.0          5.2         2.3
+147          6.3         2.5          5.0         1.9
+148          6.5         3.0          5.2         2.0
+149          6.2         3.4          5.4         2.3
+150          5.9         3.0          5.1         1.8
+> output$num_discrete
+[1] 1
+> output$num_continuous
+[1] 4
+> output$num_all_missing
+[1] 0
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("split_columns", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  13.343 0.563 14.249 0.351 0.321 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

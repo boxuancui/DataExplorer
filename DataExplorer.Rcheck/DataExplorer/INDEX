@@ -1,0 +1,25 @@
+.getAllMissing          Get all missing columns
+.getCores               Get cores
+.getPageLayout          Calculate page layout index
+.ignoreCat              Truncate category
+DataExplorer-package    Data Explorer
+create_report           create_report Function
+drop_columns            Drop selected variables
+dummify                 Dummify discrete features to binary columns
+group_category          Group categories for discrete features
+introduce               Describe basic information
+plot_bar                Plot bar chart
+plot_boxplot            Create boxplot for continuous features
+plot_correlation        Create correlation heatmap for discrete
+                        features
+plot_density            Plot density estimates
+plot_histogram          Plot histogram
+plot_intro              Plot introduction
+plot_missing            Plot missing value profile
+plot_prcomp             Visualize principle component analysis
+plot_qq                 Plot QQ plot
+plot_scatterplot        Create scatterplot for all features
+plot_str                Visualize data structure
+profile_missing         Profile missing values
+set_missing             Set all missing values to indicated value
+split_columns           Split data into discrete and continuous parts
