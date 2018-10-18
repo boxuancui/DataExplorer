@@ -24,16 +24,15 @@
 #' @export
 #' @examples
 #' plot_prcomp(
-#'   data = na.omit(airquality),
-#'   prcomp_args = list(scale. = TRUE),
+#'   data = na.omit(airquality)
 #'   nrow = 2L,
 #'   ncol = 2L
 #' )
 #'
 #' data("diamonds", package = "ggplot2")
-#' plot_prcomp(diamonds, maxcat = 7L, prcomp_args = list(scale. = TRUE))
+#' plot_prcomp(diamonds, maxcat = 7L)
 
-plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L) {
+plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = list("scale." = TRUE), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L) {
 	## Declare variable first to pass R CMD check
 	pc <- pct <- cum_pct <- Feature <- variable <- value <- NULL
 	## Check if input is data.table

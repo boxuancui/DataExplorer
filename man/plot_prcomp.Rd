@@ -5,8 +5,9 @@
 \title{Visualize principle component analysis}
 \usage{
 plot_prcomp(data, variance_cap = 0.8, maxcat = 50L,
-  prcomp_args = list(), title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), nrow = 3L, ncol = 3L)
+  prcomp_args = list(scale. = TRUE), title = NULL,
+  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
+  ncol = 3L)
 }
 \arguments{
 \item{data}{input data}
@@ -45,13 +46,12 @@ Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your 
 }
 \examples{
 plot_prcomp(
-  data = na.omit(airquality),
-  prcomp_args = list(scale. = TRUE),
+  data = na.omit(airquality)
   nrow = 2L,
   ncol = 2L
 )
 
 data("diamonds", package = "ggplot2")
-plot_prcomp(diamonds, maxcat = 7L, prcomp_args = list(scale. = TRUE))
+plot_prcomp(diamonds, maxcat = 7L)
 }
 \keyword{plot_prcomp}

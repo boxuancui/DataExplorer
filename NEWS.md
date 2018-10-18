@@ -1,7 +1,8 @@
 # Changelog
 
-### DataExplorer 0.6.1.9000
+### DataExplorer 0.7.0
 #### New Features
+* [#72](https://github.com/boxuancui/DataExplorer/issues/72): Added `plot_qq` for QQ plot.
 * [#76](https://github.com/boxuancui/DataExplorer/issues/76): Added `plot_intro` to visualize results of `introduce`.
 
 #### Enhancements

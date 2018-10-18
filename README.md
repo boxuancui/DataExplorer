@@ -4,13 +4,13 @@
 [![Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 [![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 
-###### master v0.6.1
+###### master v0.7.0
 
 [![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer/branches)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=master&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
 [![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/master/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer/branch/master)
 
-###### develop v0.6.1.9000
+###### develop v0.7.0.9000
 
 [![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop)](https://travis-ci.org/boxuancui/DataExplorer/branches)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=develop&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
@@ -77,12 +77,15 @@ plot_missing(airquality)
 
 ## View distribution of all discrete variables
 plot_bar(diamonds)
-
-## View `price` distribution of all discrete variables
 plot_bar(diamonds, with = "price")
 
 ## View distribution of all continuous variables
 plot_histogram(diamonds)
+plot_density(diamonds)
+
+## View quantile-quantile plot of all continuous variables
+plot_qq(diamonds)
+plot_qq(diamonds, by = "price")
 
 ## View overall correlation heatmap
 plot_correlation(diamonds)
@@ -94,7 +97,7 @@ plot_boxplot(diamonds, by = "price")
 plot_scatterplot(diamonds, by = "price")
 
 ## Visualize principle component analysis
-plot_prcomp(iris)
+plot_prcomp(diamonds, maxcat = 5L)
 ```
 
 #### Feature Engineering
@@ -109,6 +112,10 @@ group_category(diamonds, feature = "clarity", threshold = 0.2, update = TRUE)
 
 ## Group bottom 20% `clarity` by `price`
 group_category(diamonds, feature = "clarity", threshold = 0.2, measure = "price", update = TRUE)
+
+## Dummify diamonds dataset
+dummify(diamonds)
+dummify(diamonds, select = "cut")
 
 ## Set values for missing observations
 df <- data.frame("a" = rnorm(260), "b" = rep(letters, 10))
