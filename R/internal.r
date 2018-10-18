@@ -51,7 +51,7 @@
 		if (nzchar(chk) && chk == "TRUE") {
 			2L
 		} else {
-			detectCores() - 1L
+			max(1L, detectCores() - 1L)
 		}
 	}
 }
