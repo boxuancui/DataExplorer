@@ -9,7 +9,7 @@
 #' When supplying a list of two values, only one numeric and one non-numeric is allowed.
 #' @details \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 #' @import data.table
-#' @export set_missing
+#' @export
 #' @examples
 #' # Load packages
 #' library(data.table)

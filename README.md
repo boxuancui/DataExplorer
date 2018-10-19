@@ -1,6 +1,7 @@
-# DataExplorer <img src="man/figures/logo.png" align="right" width="280" height="280"/>
+# DataExplorer <img src="man/figures/logo.png" align="right" width="130" height="150"/>
 
 [![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2053/badge)](https://bestpractices.coreinfrastructure.org/projects/2053)
 [![Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 [![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 
@@ -31,15 +32,15 @@ install.packages("DataExplorer")
 However, the latest stable version (if any) could be found on [GitHub](https://github.com/boxuancui/DataExplorer), and installed using `remotes` package.
 
 ```R
-if (!require(remotes)) install.packages("remotes")
-remotes::install_github("boxuancui/DataExplorer")
+if (!require(devtools)) install.packages("devtools")
+devtools::install_github("boxuancui/DataExplorer")
 ```
 
 If you would like to install the latest [development version](https://github.com/boxuancui/DataExplorer/tree/develop), you may install the dev branch.
 
 ```R
-if (!require(remotes)) install.packages("remotes")
-remotes::install_github("boxuancui/DataExplorer", ref = "develop")
+if (!require(devtools)) install.packages("devtools")
+devtools::install_github("boxuancui/DataExplorer", ref = "develop")
 ```
 
 ## Examples
@@ -56,7 +57,6 @@ create_report(airquality)
 To get a report for the [diamonds](http://docs.ggplot2.org/0.9.3.1/diamonds.html) dataset with response variable **price**:
 
 ```R
-library(DataExplorer)
 library(ggplot2)
 create_report(diamonds, y = "price")
 ```
@@ -65,9 +65,6 @@ create_report(diamonds, y = "price")
 You may also run all the plotting functions individually for your analysis, e.g.,
 
 ```R
-library(DataExplorer)
-library(ggplot2)
-
 ## View basic description for airquality data
 introduce(airquality)
 plot_intro(airquality)
@@ -85,16 +82,16 @@ plot_density(diamonds)
 
 ## View quantile-quantile plot of all continuous variables
 plot_qq(diamonds)
-plot_qq(diamonds, by = "price")
+plot_qq(diamonds, by = "cut")
 
 ## View overall correlation heatmap
 plot_correlation(diamonds)
 
 ## View bivariate continuous distribution based on `price`
-plot_boxplot(diamonds, by = "price")
+plot_boxplot(diamonds, by = "cut")
 	
-## Scatterplot `price` with all other features
-plot_scatterplot(diamonds, by = "price")
+## Scatterplot `price` with all other continuous features
+plot_scatterplot(split_columns(diamonds)$continuous, by = "price", sampled_rows = 1000L)
 
 ## Visualize principle component analysis
 plot_prcomp(diamonds, maxcat = 5L)
@@ -104,9 +101,6 @@ plot_prcomp(diamonds, maxcat = 5L)
 To make quick updates to your data:
 
 ```R
-library(DataExplorer)
-library(ggplot2)
-
 ## Group bottom 20% `clarity` by frequency
 group_category(diamonds, feature = "clarity", threshold = 0.2, update = TRUE)
 

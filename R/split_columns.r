@@ -11,7 +11,7 @@
 #' @return \code{num_continuous} number of continuous features
 #' @return \code{num_all_missing} number of features with no observations (all values are missing)
 #' @import data.table
-#' @export split_columns
+#' @export
 #' @examples
 #' output <- split_columns(iris)
 #' output$discrete

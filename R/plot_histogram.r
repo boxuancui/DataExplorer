@@ -8,12 +8,12 @@
 #' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @param nrow number of rows per page. Default is 4.
 #' @param ncol number of columns per page. Default is 4.
+#' @param parallel enable parallel? Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_histogram
 #' @import data.table
 #' @import ggplot2
 #' @importFrom stats setNames
-#' @importFrom parallel mclapply
 #' @export
 #' @seealso \link{geom_histogram} \link{plot_density}
 #' @examples
@@ -25,7 +25,7 @@
 #' data <- cbind(sapply(seq.int(4L), function(x) {rnorm(1000, sd = 30 * x)}))
 #' plot_histogram(data, geom_histogram_args = list("breaks" = seq(-400, 400, length = 50)))
 
-plot_histogram <- function(data, geom_histogram_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L) {
+plot_histogram <- function(data, geom_histogram_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
 	if (!is.data.table(data)) data <- data.table(data)
 	## Stop if no continuous features
 	if (split_columns(data)$num_continuous == 0) stop("No Continuous Features")
@@ -34,17 +34,15 @@ plot_histogram <- function(data, geom_histogram_args = list(), title = NULL, ggt
 	## Calculate number of pages
 	layout <- .getPageLayout(nrow, ncol, ncol(continuous))
 	## Create ggplot object
-	plot_list <- mclapply(
-		setNames(seq_along(continuous), names(continuous)),
-		function(j) {
+	plot_list <- .lapply(
+		parallel = parallel,
+		X = setNames(seq_along(continuous), names(continuous)),
+		FUN = function(j) {
 			x <- continuous[, j, with = FALSE]
 			ggplot(x, aes_string(x = names(x))) +
 				do.call("geom_histogram", c("na.rm" = TRUE, geom_histogram_args)) +
 				ylab("Frequency")
-		},
-		mc.preschedule = TRUE,
-		mc.silent = TRUE,
-		mc.cores = .getCores()
+		}
 	)
 	## Plot objects
 	class(plot_list) <- c("grid", class(plot_list))

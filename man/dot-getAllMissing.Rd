@@ -15,3 +15,4 @@ a named logical vector indicating if a column has only missing values.
 \description{
 Get number of columns with all values missing
 }
+\keyword{internal}

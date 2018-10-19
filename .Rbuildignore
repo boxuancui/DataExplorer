@@ -1,5 +1,7 @@
+^_pkgdown\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^docs$
 ^\.travis\.yml$
 ^codecov\.yml$
 ^cran-comments\.md$
@@ -9,3 +11,5 @@
 ^\.github$
 report.html
 report_files/
+^README\.Rmd$
+^README-.*\.png$

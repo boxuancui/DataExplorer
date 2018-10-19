@@ -17,3 +17,4 @@ a named vector containing number of categories for to-be-ignored features.
 \description{
 Output index and name for features that will be ignored
 }
+\keyword{internal}

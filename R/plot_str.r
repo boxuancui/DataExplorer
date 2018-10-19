@@ -11,7 +11,7 @@
 #' @import data.table
 #' @importFrom networkD3 diagonalNetwork radialNetwork
 #' @importFrom utils capture.output str
-#' @export plot_str
+#' @export
 #' @seealso \link{str}
 #' @examples
 #' ## Visualize structure of iris dataset

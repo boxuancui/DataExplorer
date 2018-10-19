@@ -24,4 +24,7 @@ invisibly return the ggplot object
 \description{
 Plot single DataExplorer object
 }
+\seealso{
+\link{plotDataExplorer} \link{plotDataExplorer.grid} \link{plotDataExplorer.multiple}
+}
 \keyword{internal}

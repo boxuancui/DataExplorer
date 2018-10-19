@@ -24,7 +24,8 @@ opts_chunk$set(
 	fig.width = 6,
 	fig.height = 6,
 	fig.align = "center",
-	warning = FALSE
+	warning = FALSE,
+	screenshot.force = FALSE
 )
 ```
 
@@ -297,16 +298,14 @@ Among all the subtle changes in correlation with arrival delays, you could immed
 An alternative visualization is scatterplot. For example:
 
 ```{r eda-plot-scatterplot-template, eval=FALSE}
-## Reduce data size for demo purpose
-arr_delay_df2 <- final_data[sample.int(nrow(final_data), 1000), c("arr_delay", "dep_time", "dep_delay", "arr_time", "air_time", "distance", "year_planes", "seats")]
+arr_delay_df2 <- final_data[, c("arr_delay", "dep_time", "dep_delay", "arr_time", "air_time", "distance", "year_planes", "seats")]
 
-## Call scatterplot function
-plot_scatterplot(arr_delay_df2, by = "arr_delay")
+plot_scatterplot(arr_delay_df2, by = "arr_delay", sampled_rows = 1000L)
 ```
 
 ```{r eda-plot-scatterplot, echo=FALSE, fig.width=8, fig.height=8}
-arr_delay_df2 <- final_data[sample.int(nrow(final_data), 1000), c("arr_delay", "dep_time", "dep_delay", "arr_time", "air_time", "distance", "year_planes", "seats")]
-plot_scatterplot(arr_delay_df2, by = "arr_delay", geom_point_args = list("size" = 0.5, "na.rm" = TRUE))
+arr_delay_df2 <- final_data[, c("arr_delay", "dep_time", "dep_delay", "arr_time", "air_time", "distance", "year_planes", "seats")]
+plot_scatterplot(arr_delay_df2, by = "arr_delay", sampled_rows = 1000L, geom_point_args = list("size" = 0.5, "na.rm" = TRUE))
 ```
 
 ## Feature Engineering
@@ -429,7 +428,7 @@ config <- list(
 	"plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
 	"plot_prcomp" = list(),
 	"plot_boxplot" = list(),
-	"plot_scatterplot" = list()
+	"plot_scatterplot" = list(sampled_rows = 1000L)
 )
 ## Create final report
 create_report(final_data, y = "arr_delay", config = config)

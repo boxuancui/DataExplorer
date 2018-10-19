@@ -6,7 +6,7 @@
 \usage{
 plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE,
   title = NULL, ggtheme = theme_gray(), theme_config = list(),
-  nrow = 3L, ncol = 3L)
+  nrow = 3L, ncol = 3L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -26,6 +26,8 @@ plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE,
 \item{nrow}{number of rows per page. Default is 3.}
 
 \item{ncol}{number of columns per page. Default is 3.}
+
+\item{parallel}{enable parallel? Default is \code{FALSE}.}
 }
 \value{
 invisibly return the named list of ggplot objects

@@ -47,6 +47,7 @@ plotDataExplorer <- function(plot_obj, title, ggtheme, theme_config, ...) {
 #' @import ggplot2
 #' @import gridExtra
 #' @export
+#' @seealso \link{plotDataExplorer} \link{plotDataExplorer.single} \link{plotDataExplorer.multiple}
 plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_layout, nrow, ncol, ...) {
 	plot_list <- lapply(plot_obj, function(p) {
 		p +
@@ -79,6 +80,7 @@ plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_l
 #' @method plotDataExplorer single
 #' @import ggplot2
 #' @export
+#' @seealso \link{plotDataExplorer} \link{plotDataExplorer.grid} \link{plotDataExplorer.multiple}
 plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, ...) {
 	plot_obj <- plot_obj +
 		ggtitle(title) +
@@ -105,6 +107,7 @@ plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, ...)
 #' @import ggplot2
 #' @importFrom stats setNames
 #' @export
+#' @seealso \link{plotDataExplorer} \link{plotDataExplorer.grid} \link{plotDataExplorer.single}
 plotDataExplorer.multiple <- function(plot_obj, title, ggtheme, theme_config, page_layout, facet_wrap_args = list(), ...) {
 	n <- length(page_layout)
 	plot_list <- lapply(setNames(seq.int(n), paste0("page_", seq.int(n))), function(i) {
