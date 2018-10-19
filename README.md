@@ -1,6 +1,7 @@
 # DataExplorer <img src="man/figures/logo.png" align="right" width="200" height="200"/>
 
 [![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2053/badge)](https://bestpractices.coreinfrastructure.org/projects/2053)
 [![Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 [![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 
