@@ -61,15 +61,6 @@
 			mc.cores = max(1L, detectCores() - 1L)
 		)
 	} else {
-<<<<<<< HEAD
-		chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
-		if (nzchar(chk) && chk == "TRUE") {
-			2L
-		} else {
-			max(1L, detectCores() - 1L)
-		}
-=======
 		lapply(X = X, FUN = FUN)
->>>>>>> master
 	}
 }
