@@ -1,3 +1,4 @@
+^_pkgdown\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^docs$
@@ -10,3 +11,5 @@
 ^\.github$
 report.html
 report_files/
+^README\.Rmd$
+^README-.*\.png$

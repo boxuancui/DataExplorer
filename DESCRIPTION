@@ -30,7 +30,7 @@ Suggests:
 SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/boxuancui/DataExplorer
+URL: http://boxuancui.github.io/DataExplorer/
 BugReports: https://github.com/boxuancui/DataExplorer/issues
 RoxygenNote: 6.1.0
 Encoding: UTF-8

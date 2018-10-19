@@ -1,0 +1,213 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, echo = FALSE}
+library(DataExplorer)
+library(knitr)
+library(ggplot2)
+library(gridExtra)
+
+knitr::opts_chunk$set(
+	eval = FALSE,
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+
+# DataExplorer <img src="man/figures/logo.png" align="right" width="130" height="150"/>
+
+[![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2053/badge)](https://bestpractices.coreinfrastructure.org/projects/2053)
+[![Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
+[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
+
+## Background
+
+[Exploratory Data Analysis (EDA)](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is the initial and an important phase of data analysis. Through this phase, analysts/modelers will have a first look of the data, and thus generate relevant hypothesis and decide next steps. However, the EDA process could be a hassle at times. This [R](https://cran.r-project.org/) package aims to automate most of data handling and visualization, so that users could focus on studying the data and extracting insights.
+
+## Installation
+
+The package can be installed directly from CRAN.
+
+```{r install-cran}
+install.packages("DataExplorer")
+```
+
+However, the latest stable version (if any) could be found on [GitHub](https://github.com/boxuancui/DataExplorer), and installed using `devtools` package.
+
+```{r install-github}
+if (!require(devtools)) install.packages("devtools")
+devtools::install_github("boxuancui/DataExplorer")
+```
+
+If you would like to install the latest [development version](https://github.com/boxuancui/DataExplorer/tree/develop), you may install the develop branch.
+
+```{r install-github-develop}
+if (!require(devtools)) install.packages("devtools")
+devtools::install_github("boxuancui/DataExplorer", ref = "develop")
+```
+
+## Examples
+
+The package is extremely easy to use. Almost everything could be done in one line of code. Please refer to the package manuals for more information. You may also find the package vignettes [here](https://boxuancui.github.io/DataExplorer/articles/dataexplorer-intro.html).
+
+#### Report
+To get a report for the [airquality](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/airquality.html) dataset:
+
+```{r create-report-airquality}
+library(DataExplorer)
+create_report(airquality)
+```
+
+To get a report for the [diamonds](http://docs.ggplot2.org/0.9.3.1/diamonds.html) dataset with response variable **price**:
+
+```{r create-report-diamonds}
+library(ggplot2)
+create_report(diamonds, y = "price")
+```
+
+#### Visualization
+Instead of running `create_report`, you may also run each function individually for your analysis, e.g.,
+
+```{r introduce-template}
+## View basic description for airquality data
+introduce(airquality)
+```
+
+```{r introduce, echo=FALSE, eval=TRUE}
+kable(t(introduce(airquality)), row.names = TRUE, col.names = "", format.args = list(big.mark = ","))
+```
+
+```{r plot-intro, eval=TRUE}
+## Plot basic description for airquality data
+plot_intro(airquality)
+```
+
+```{r plot-missing, eval=TRUE}
+## View missing value distribution for airquality data
+plot_missing(airquality)
+```
+
+```{r plot-bar-template}
+## Left: view frequency distribution of all discrete variables
+plot_bar(diamonds)
+## Right: view `price` distribution of all discrete variables
+plot_bar(diamonds, with = "price")
+```
+
+```{r plot-bar-prepare, include=FALSE, echo=FALSE, eval=TRUE}
+plot_bar_a <- plot_bar(diamonds)
+plot_bar_b <- plot_bar(diamonds, with = "price")
+```
+
+```{r plot-bar, echo=FALSE, eval=TRUE}
+DataExplorer:::plotDataExplorer.grid(
+	plot_obj = list(
+		"cut" = plot_bar_a$cut,
+		"cut" = plot_bar_b$cut,
+		"color" = plot_bar_a$color,
+		"color" = plot_bar_b$color,
+		"clarity" = plot_bar_a$clarity,
+		"clarity" = plot_bar_b$clarity
+	),
+	page_layout = list("Page 1" = seq.int(6L)),
+	nrow = 3L,
+	ncol = 2L,
+	ggtheme = theme_gray(),
+	theme_config = list(),
+	title = NULL
+)
+```
+
+```{r plot-histogram, eval=TRUE}
+## View histogram of all continuous variables
+plot_histogram(diamonds)
+```
+
+```{r plot-density, eval=TRUE}
+## View estimated density distribution of all continuous variables
+plot_density(diamonds)
+```
+
+```{r plot-qq-template}
+## View quantile-quantile plot of all continuous variables
+plot_qq(diamonds)
+```
+
+```{r plot-qq, echo=FALSE, eval=TRUE}
+plot_qq(diamonds, sampled_rows = 500L, geom_qq_args = list("size" = 0.5))
+```
+
+```{r plot-qq-cut-template}
+## View quantile-quantile plot of all continuous variables by feature `cut`
+plot_qq(diamonds, by = "cut")
+```
+
+```{r plot-qq-cut, echo=FALSE, eval=TRUE}
+plot_qq(diamonds, by = "cut", sampled_rows = 500L, geom_qq_args = list("size" = 0.5))
+```
+
+```{r plot_correlation, eval=TRUE}
+## View overall correlation heatmap
+plot_correlation(diamonds)
+```
+
+```{r plot_boxplot-template}
+## View bivariate continuous distribution based on `cut`
+plot_boxplot(diamonds, by = "cut")
+```
+
+```{r plot_boxplot, echo=FALSE, eval=TRUE}
+plot_boxplot(diamonds, by = "cut", nrow = 3L, ncol = 3L)
+```
+
+```{r plot_scatterplot-template}
+## Scatterplot `price` with all other continuous features
+plot_scatterplot(split_columns(diamonds)$continuous, by = "price", sampled_rows = 1000L)
+```
+
+```{r plot_scatterplot, echo=FALSE, eval=TRUE}
+plot_scatterplot(split_columns(diamonds)$continuous, by = "price", sampled_rows = 1000L, geom_point_args = list("size" = 0.5))
+```
+
+```{r plot_prcomp-template}
+## Visualize principle component analysis
+plot_prcomp(diamonds, maxcat = 5L)
+```
+
+```{r plot_prcomp, echo=FALSE, eval=TRUE}
+plot_prcomp(diamonds, maxcat = 5L, nrow = 2L, ncol = 2L)
+```
+
+#### Feature Engineering
+
+To make quick updates to your data:
+
+```{r, eval=FALSE}
+## Group bottom 20% `clarity` by frequency
+group_category(diamonds, feature = "clarity", threshold = 0.2, update = TRUE)
+
+## Group bottom 20% `clarity` by `price`
+group_category(diamonds, feature = "clarity", threshold = 0.2, measure = "price", update = TRUE)
+
+## Dummify diamonds dataset
+dummify(diamonds)
+dummify(diamonds, select = "cut")
+
+## Set values for missing observations
+df <- data.frame("a" = rnorm(260), "b" = rep(letters, 10))
+df[sample.int(260, 50), ] <- NA
+set_missing(df, list(0L, "unknown"))
+
+## Drop columns
+drop_columns(diamonds, 8:10)
+drop_columns(diamonds, "clarity")
+```
+
+## Articles
+
+See [article wiki page](https://github.com/boxuancui/DataExplorer/wiki/Articles).

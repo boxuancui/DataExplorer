@@ -19,3 +19,4 @@ a list containing column indices for each page
 \description{
 Calculate column index on each page based on row and column counts
 }
+\keyword{internal}
