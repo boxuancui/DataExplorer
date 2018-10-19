@@ -6,7 +6,7 @@
 \usage{
 plot_scatterplot(data, by, sampled_rows = nrow(data),
   geom_point_args = list(), title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), nrow = 3L, ncol = 3L)
+  theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -26,6 +26,8 @@ plot_scatterplot(data, by, sampled_rows = nrow(data),
 \item{nrow}{number of rows per page}
 
 \item{ncol}{number of columns per page}
+
+\item{parallel}{enable parallel? Default is \code{FALSE}.}
 }
 \value{
 invisibly return the named list of ggplot objects

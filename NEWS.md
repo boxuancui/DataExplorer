@@ -13,7 +13,7 @@
 * [#85](https://github.com/boxuancui/DataExplorer/issues/85): Users can now specify number of rows/columns for plot page layout.
 * `plot_prcomp` now passed `scale. = TRUE` to `prcomp` by default.
 * Added `sampled_rows` argument to `plot_scatterplot`.
-* Plot objects are now constructed with `parallel::mclapply`.
+* Added option to parallelize plot object construction.
 * Updated default config for `create_report`.
 
 #### Bug Fixes

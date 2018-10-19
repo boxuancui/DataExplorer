@@ -18,7 +18,7 @@
 |:------------|:--|:-------|:----------|:---------------------------------|
 |covr         |   |3.2.0   |2018-09-21 |cran (@3.2.0)                     |
 |data.table   |   |1.11.8  |2018-09-30 |cran (@1.11.8)                    |
-|DataExplorer |*  |0.7.0   |2018-10-18 |local (boxuancui/DataExplorer@NA) |
+|DataExplorer |*  |0.7.0   |2018-10-19 |local (boxuancui/DataExplorer@NA) |
 |ggplot2      |   |3.0.0   |2018-07-03 |cran (@3.0.0)                     |
 |gridExtra    |   |2.3     |2017-09-09 |cran (@2.3)                       |
 |jsonlite     |   |1.5     |2017-06-01 |cran (@1.5)                       |
@@ -28,7 +28,7 @@
 |reshape2     |   |1.4.3   |2017-12-11 |cran (@1.4.3)                     |
 |rmarkdown    |   |1.10    |2018-06-11 |cran (@1.10)                      |
 |scales       |   |1.0.0   |2018-08-09 |cran (@1.0.0)                     |
-|testthat     |*  |2.0.1   |2018-10-13 |cran (@2.0.1)                     |
+|testthat     |   |2.0.1   |2018-10-13 |cran (@2.0.1)                     |
 
 # Check results
 

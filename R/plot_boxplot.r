@@ -9,18 +9,18 @@
 #' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
+#' @param parallel enable parallel? Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_boxplot
 #' @import data.table
 #' @import ggplot2
-#' @importFrom parallel mclapply
 #' @export
 #' @seealso \link{geom_boxplot}
 #' @examples
 #' plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
 #' plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))
 
-plot_boxplot <- function(data, by, geom_boxplot_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 4L) {
+plot_boxplot <- function(data, by, geom_boxplot_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 4L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	variable <- by_f <- value <- NULL
 	## Check if input is data.table
@@ -43,17 +43,15 @@ plot_boxplot <- function(data, by, geom_boxplot_args = list(), title = NULL, ggt
 	## Calculate number of pages
 	layout <- .getPageLayout(nrow, ncol, length(feature_names))
 	## Create list of ggplot objects
-	plot_list <- mclapply(
-		layout,
-		function(x) {
+	plot_list <- .lapply(
+		parallel = parallel,
+		X = layout,
+		FUN = function(x) {
 			ggplot(dt2[variable %in% feature_names[x]], aes(x = by_f, y = value)) +
 				do.call("geom_boxplot", geom_boxplot_args) +
 				coord_flip() +
 				xlab(by)
-		},
-		mc.preschedule = TRUE,
-		mc.silent = TRUE,
-		mc.cores = .getCores()
+		}
 	)
 	## Plot objects
 	class(plot_list) <- c("multiple", class(plot_list))

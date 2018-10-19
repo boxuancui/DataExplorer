@@ -6,7 +6,7 @@
 \usage{
 plot_boxplot(data, by, geom_boxplot_args = list(), title = NULL,
   ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
-  ncol = 4L)
+  ncol = 4L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -24,6 +24,8 @@ plot_boxplot(data, by, geom_boxplot_args = list(), title = NULL,
 \item{nrow}{number of rows per page}
 
 \item{ncol}{number of columns per page}
+
+\item{parallel}{enable parallel? Default is \code{FALSE}.}
 }
 \value{
 invisibly return the named list of ggplot objects

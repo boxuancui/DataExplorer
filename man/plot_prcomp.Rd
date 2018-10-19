@@ -7,7 +7,7 @@
 plot_prcomp(data, variance_cap = 0.8, maxcat = 50L,
   prcomp_args = list(scale. = TRUE), title = NULL,
   ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
-  ncol = 3L)
+  ncol = 3L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -27,6 +27,8 @@ plot_prcomp(data, variance_cap = 0.8, maxcat = 50L,
 \item{nrow}{number of rows per page}
 
 \item{ncol}{number of columns per page}
+
+\item{parallel}{enable parallel? Default is \code{FALSE}.}
 }
 \value{
 invisibly return the named list of ggplot objects

@@ -24,7 +24,8 @@ opts_chunk$set(
 	fig.width = 6,
 	fig.height = 6,
 	fig.align = "center",
-	warning = FALSE
+	warning = FALSE,
+	screenshot.force = FALSE
 )
 ```
 

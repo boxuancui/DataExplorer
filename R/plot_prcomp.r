@@ -10,6 +10,7 @@
 #' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
+#' @param parallel enable parallel? Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_prcomp
 #' @details When cumulative explained variance exceeds \code{variance_cap}, remaining principle components will be ignored. Set \code{variance_cap} to 1 for all principle components.
@@ -20,7 +21,6 @@
 #' @import ggplot2
 #' @importFrom scales percent
 #' @importFrom stats prcomp
-#' @importFrom parallel mclapply
 #' @export
 #' @examples
 #' plot_prcomp(na.omit(airquality), nrow = 2L, ncol = 2L)
@@ -28,7 +28,7 @@
 #' data("diamonds", package = "ggplot2")
 #' plot_prcomp(diamonds, maxcat = 7L)
 
-plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = list("scale." = TRUE), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L) {
+plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = list("scale." = TRUE), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	pc <- pct <- cum_pct <- Feature <- variable <- value <- NULL
 	## Check if input is data.table
@@ -77,17 +77,15 @@ plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = li
 	## Calculate number of pages
 	layout <- .getPageLayout(nrow, ncol, ncol(rotation_dt) - 1L)
 	## Create list of ggplot objects
-	plot_list <- mclapply(
-		layout,
-		function(x) {
+	plot_list <- .lapply(
+		parallel = parallel,
+		X = layout,
+		FUN = function(x) {
 			ggplot(melt_rotation_dt[variable %in% paste0("PC", x)], aes(x = Feature, y = value)) +
 				geom_bar(stat = "identity") +
 				coord_flip() +
 				ylab("Relative Importance")
-		},
-		mc.preschedule = TRUE,
-		mc.silent = TRUE,
-		mc.cores = .getCores()
+		}
 	)
 	## Plot objects
 	class(plot_list) <- c("multiple", class(plot_list))

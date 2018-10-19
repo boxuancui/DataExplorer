@@ -10,12 +10,12 @@
 #' @param theme_config a list of configurations to be passed to \link{theme}
 #' @param nrow number of rows per page. Default is 3.
 #' @param ncol number of columns per page. Default is 3.
+#' @param parallel enable parallel? Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_bar
 #' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 #' @import data.table
 #' @import ggplot2
-#' @importFrom parallel mclapply
 #' @importFrom stats reorder
 #' @importFrom stats setNames
 #' @importFrom tools toTitleCase
@@ -32,7 +32,7 @@
 #' # Plot bar charts with `price` feature
 #' plot_bar(diamonds, with = "price")
 
-plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L) {
+plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	frequency <- agg_by <- NULL
 	## Check if input is data.table
@@ -50,9 +50,10 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, title = N
 	## Calculate number of pages
 	layout <- .getPageLayout(nrow, ncol, ncol(discrete))
 	## Create list of ggplot objects
-	plot_list <- mclapply(
-		setNames(seq_along(discrete), names(discrete)),
-		function(j) {
+	plot_list <- .lapply(
+		parallel = parallel,
+		X = setNames(seq_along(discrete), names(discrete)),
+		FUN = function(j) {
 			if (is.null(with)) {
 				x <- discrete[, j, with = FALSE]
 				agg_x <- x[, list(frequency = .N), by = names(x)]
@@ -70,10 +71,7 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, title = N
 				geom_bar(stat = "identity") +
 				coord_flip() +
 				xlab(names(agg_x)[1]) + ylab(ifelse(is.null(with), "Frequency", toTitleCase(with)))
-		},
-		mc.preschedule = TRUE,
-		mc.silent = TRUE,
-		mc.cores = .getCores()
+		}
 	)
 	## Plot objects
 	class(plot_list) <- c("grid", class(plot_list))

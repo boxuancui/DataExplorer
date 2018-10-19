@@ -76,6 +76,7 @@ create_report(airquality, y = "Ozone")
 # Load library
 library(ggplot2)
 library(data.table)
+library(rmarkdown)
 
 # Set some missing values
 diamonds2 <- data.table(diamonds)

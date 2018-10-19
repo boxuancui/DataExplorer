@@ -11,11 +11,11 @@
 #' @param theme_config a list of configurations to be passed to \link{theme}
 #' @param nrow number of rows per page. Default is 3.
 #' @param ncol number of columns per page. Default is 3.
+#' @param parallel enable parallel? Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_qq
 #' @import data.table
 #' @import ggplot2
-#' @importFrom parallel mclapply
 #' @export
 #' @examples
 #' plot_qq(iris)
@@ -28,7 +28,7 @@
 #'   geom_qq_line_args = list(na.rm = TRUE)
 #' )
 
-plot_qq <- function(data, by = NULL, sampled_rows = nrow(data), geom_qq_args = list(), geom_qq_line_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L) {
+plot_qq <- function(data, by = NULL, sampled_rows = nrow(data), geom_qq_args = list(), geom_qq_line_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	variable <- value <- group <- NULL
 	## Check if input is data.table
@@ -57,9 +57,10 @@ plot_qq <- function(data, by = NULL, sampled_rows = nrow(data), geom_qq_args = l
 	## Calculate number of pages
 	layout <- .getPageLayout(nrow, ncol, ncol(continuous))
 	## Create list of ggplot objects
-	plot_list <- mclapply(
-		layout,
-		function(x) {
+	plot_list <- .lapply(
+		parallel = parallel,
+		X = layout,
+		FUN = function(x) {
 			if (is.null(by)) {
 				ggplot(dt2[variable %in% feature_names[x]], aes(sample = value)) +
 					do.call("geom_qq", geom_qq_args) +
@@ -69,10 +70,7 @@ plot_qq <- function(data, by = NULL, sampled_rows = nrow(data), geom_qq_args = l
 					do.call("geom_qq", geom_qq_args) +
 					do.call("geom_qq_line", geom_qq_line_args)
 			}
-		},
-		mc.preschedule = TRUE,
-		mc.silent = TRUE,
-		mc.cores = .getCores()
+		}
 	)
 	## Plot objects
 	class(plot_list) <- c("multiple", class(plot_list))

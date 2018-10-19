@@ -10,11 +10,11 @@
 #' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
+#' @param parallel enable parallel? Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_scatterplot
 #' @import data.table
 #' @import ggplot2
-#' @importFrom parallel mclapply
 #' @export
 #' @seealso \link{geom_point}
 #' @examples
@@ -29,7 +29,7 @@
 #'   ncol = 4L
 #' )
 
-plot_scatterplot <- function(data, by, sampled_rows = nrow(data), geom_point_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L) {
+plot_scatterplot <- function(data, by, sampled_rows = nrow(data), geom_point_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	variable <- NULL
 	## Check if input is data.table
@@ -42,17 +42,15 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data), geom_point_arg
 	## Calculate number of pages
 	layout <- .getPageLayout(nrow, ncol, length(feature_names))
 	## Create list of ggplot objects
-	plot_list <- mclapply(
-		layout,
-		function(x) {
+	plot_list <- .lapply(
+		parallel = parallel,
+		X = layout,
+		FUN = function(x) {
 			ggplot(dt[variable %in% feature_names[x]], aes_string(x = by, y = "value")) +
 				do.call("geom_point", geom_point_args) +
 				coord_flip() +
 				xlab(by)
-		},
-		mc.preschedule = TRUE,
-		mc.silent = TRUE,
-		mc.cores = .getCores()
+		}
 	)
 	## Plot objects
 	class(plot_list) <- c("multiple", class(plot_list))

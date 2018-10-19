@@ -38,20 +38,25 @@
 	})
 }
 
-#' Get cores
+#' Parallelization
 #'
-#' Get different number of cores under various environment
-#' @return number of cores to use
+#' Parallelize jobs based on condition
+#' @param parallel enable parallel?
+#' @param X a vector (atomic or list) or an expression object
+#' @param FUN the function to be applied to each element of X
+#' @return list of output from input
 #' @importFrom parallel detectCores
-.getCores <- function() {
-	if (.Platform$OS.type == "windows") {
-		1L
+#' @importFrom parallel mclapply
+.lapply <- function(parallel, X, FUN) {
+	if (parallel) {
+		mclapply(
+			X = X,
+			FUN = FUN,
+			mc.preschedule = TRUE,
+			mc.silent = TRUE,
+			mc.cores = max(1L, detectCores() - 1L)
+		)
 	} else {
-		chk <- Sys.getenv("_R_CHECK_LIMIT_CORES_", "")
-		if (nzchar(chk) && chk == "TRUE") {
-			2L
-		} else {
-			max(1L, detectCores() - 1L)
-		}
+		lapply(X = X, FUN = FUN)
 	}
 }

@@ -8,13 +8,13 @@
 #' @param theme_config a list of configurations to be passed to \link{theme}.
 #' @param nrow number of rows per page. Default is 4.
 #' @param ncol number of columns per page. Default is 4.
+#' @param parallel enable parallel? Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_density
 #' @import data.table
 #' @import ggplot2
 #' @import gridExtra
 #' @importFrom stats setNames
-#' @importFrom parallel mclapply
 #' @export
 #' @seealso \link{geom_density} \link{plot_histogram}
 #' @examples
@@ -31,7 +31,7 @@
 #' # Add color to density area
 #' plot_density(data, geom_density_args = list("fill" = "black", "alpha" = 0.6))
 
-plot_density <- function(data, geom_density_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L) {
+plot_density <- function(data, geom_density_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
 	if (!is.data.table(data)) data <- data.table(data)
 	## Stop if no continuous features
 	if (split_columns(data)$num_continuous == 0) stop("No Continuous Features")
@@ -40,17 +40,15 @@ plot_density <- function(data, geom_density_args = list(), title = NULL, ggtheme
 	## Calculate number of pages
 	layout <- .getPageLayout(nrow, ncol, ncol(continuous))
 	## Create ggplot object
-	plot_list <- mclapply(
-		setNames(seq_along(continuous), names(continuous)),
-		function(j) {
+	plot_list <- .lapply(
+		parallel = parallel,
+		X = setNames(seq_along(continuous), names(continuous)),
+		FUN = function(j) {
 			x <- continuous[, j, with = FALSE]
 			ggplot(x, aes_string(x = names(x))) +
 				do.call("geom_density", c("na.rm" = TRUE, geom_density_args)) +
 				ylab("Density")
-		},
-		mc.preschedule = TRUE,
-		mc.silent = TRUE,
-		mc.cores = .getCores()
+		}
 	)
 	## Plot objects
 	class(plot_list) <- c("grid", class(plot_list))
