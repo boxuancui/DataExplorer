@@ -9,6 +9,7 @@ library(DataExplorer)
 library(knitr)
 library(ggplot2)
 library(gridExtra)
+set.seed(1)
 
 knitr::opts_chunk$set(
 	eval = FALSE,

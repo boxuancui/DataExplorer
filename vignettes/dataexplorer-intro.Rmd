@@ -18,6 +18,7 @@ library(data.table)
 library(ggplot2)
 library(nycflights13)
 library(networkD3)
+set.seed(1)
 
 opts_chunk$set(
 	collapse = TRUE,
