@@ -47,7 +47,7 @@ plot_density <- function(data, geom_density_args = list(), title = NULL, ggtheme
 		FUN = function(x) {
 			ggplot(dt[variable %in% feature_names[x]], aes(x = value)) +
 				do.call("geom_density", c("na.rm" = TRUE, geom_density_args)) +
-				ylab("Frequency")
+				ylab("Density")
 		}
 	)
 	## Plot objects

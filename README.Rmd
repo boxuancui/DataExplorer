@@ -98,9 +98,9 @@ plot_missing(airquality)
 ```
 
 ```{r plot-bar-template}
-## Left: view frequency distribution of all discrete variables
+## Left: frequency distribution of all discrete variables
 plot_bar(diamonds)
-## Right: view `price` distribution of all discrete variables
+## Right: `price` distribution of all discrete variables
 plot_bar(diamonds, with = "price")
 ```
 
@@ -111,7 +111,7 @@ plot_bar_b <- plot_bar(diamonds, with = "price", nrow = 3L, ncol = 1L)
 
 ```{r plot-bar, echo=FALSE, eval=TRUE}
 DataExplorer:::plotDataExplorer.grid(
-	plot_obj = list("Frequency" = plot_bar_a[[1]], "Price" = plot_bar_b[[1]]),
+	plot_obj = list(plot_bar_a[[1]], plot_bar_b[[1]]),
 	page_layout = list("Page 1" = seq.int(2L)),
 	nrow = 1L,
 	ncol = 2L,
