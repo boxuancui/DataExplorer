@@ -32,14 +32,12 @@ invisibly return the named list of ggplot objects
 Plot density estimates for each continuous feature
 }
 \examples{
-# Plot using iris data
-plot_density(iris)
+# Plot iris data
+plot_density(iris, nrow = 2L, ncol = 2L)
 
-# Plot using random data
+# Plot random data
 set.seed(1)
-data <- cbind(sapply(seq.int(4L), function(x) {
-          runif(500, min = sample(100, 1), max = sample(1000, 1))
-        }))
+data <- data.frame(replicate(16L, rnorm(100)))
 plot_density(data)
 
 # Add color to density area

@@ -13,46 +13,53 @@
 #' @keywords plot_histogram
 #' @import data.table
 #' @import ggplot2
-#' @importFrom stats setNames
 #' @export
 #' @seealso \link{geom_histogram} \link{plot_density}
 #' @examples
 #' # Plot iris data
-#' plot_histogram(iris)
+#' plot_histogram(iris, nrow = 2L, ncol = 2L)
 #'
-#' # Plot random data with customized geom_histogram settings
+#' # Plot random data
 #' set.seed(1)
-#' data <- cbind(sapply(seq.int(4L), function(x) {rnorm(1000, sd = 30 * x)}))
-#' plot_histogram(data, geom_histogram_args = list("breaks" = seq(-400, 400, length = 50)))
+#' data <- data.frame(replicate(16L, rnorm(50)))
+#' plot_histogram(data)
 
-plot_histogram <- function(data, geom_histogram_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
+plot_histogram <- function(data, geom_histogram_args = list("bins" = 30L), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
+	## Declare variable first to pass R CMD check
+	variable <- value <- NULL
+	## Check if input is data.table
 	if (!is.data.table(data)) data <- data.table(data)
 	## Stop if no continuous features
 	if (split_columns(data)$num_continuous == 0) stop("No Continuous Features")
-	## Get continuous features
+	## Get and reshape continuous features
 	continuous <- split_columns(data)$continuous
+	feature_names <- names(continuous)
+	dt <- suppressWarnings(melt.data.table(continuous, measure.vars = feature_names, variable.factor = FALSE))
 	## Calculate number of pages
 	layout <- .getPageLayout(nrow, ncol, ncol(continuous))
 	## Create ggplot object
 	plot_list <- .lapply(
 		parallel = parallel,
-		X = setNames(seq_along(continuous), names(continuous)),
-		FUN = function(j) {
-			x <- continuous[, j, with = FALSE]
-			ggplot(x, aes_string(x = names(x))) +
+		X = layout,
+		FUN = function(x) {
+			ggplot(dt[variable %in% feature_names[x]], aes(x = value)) +
 				do.call("geom_histogram", c("na.rm" = TRUE, geom_histogram_args)) +
 				ylab("Frequency")
 		}
 	)
 	## Plot objects
-	class(plot_list) <- c("grid", class(plot_list))
+	class(plot_list) <- c("multiple", class(plot_list))
 	plotDataExplorer(
 		plot_obj = plot_list,
 		page_layout = layout,
-		nrow = nrow,
-		ncol = ncol,
 		title = title,
 		ggtheme = ggtheme,
-		theme_config = theme_config
+		theme_config = theme_config,
+		facet_wrap_args = list(
+			"facet" = ~ variable,
+			"nrow" = nrow,
+			"ncol" = ncol,
+			"scales" = "free"
+		)
 	)
 }

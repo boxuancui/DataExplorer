@@ -17,15 +17,11 @@
 #' @import data.table
 #' @import ggplot2
 #' @importFrom stats reorder
-#' @importFrom stats setNames
 #' @importFrom tools toTitleCase
 #' @export
 #' @examples
-#' # Load diamonds dataset from ggplot2
-#' library(ggplot2)
-#' data("diamonds", package = "ggplot2")
-#'
 #' # Plot bar charts for diamonds dataset
+#' library(ggplot2)
 #' plot_bar(diamonds)
 #' plot_bar(diamonds, maxcat = 5)
 #'
@@ -34,7 +30,7 @@
 
 plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
-	frequency <- agg_by <- NULL
+	frequency <- measure <- variable <- value <- NULL
 	## Check if input is data.table
 	if (!is.data.table(data)) data <- data.table(data)
 	## Stop if no discrete features
@@ -47,41 +43,47 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, title = N
 		message(length(ind), " columns ignored with more than ", maxcat, " categories.\n", paste0(names(ind), ": ", ind, " categories\n"))
 		drop_columns(discrete, names(ind))
 	}
+	## Aggregate feature categories
+	feature_names <- names(discrete)
+	if (is.null(with)) {
+		dt <- discrete[, list(frequency = .N), by = feature_names]
+	} else {
+		if (!is.numeric(data[[with]])) stop("`with` should be continuous!")
+		tmp_dt <- data.table(discrete, "measure" = data[[with]])
+		dt <- tmp_dt[, list(frequency = sum(measure, na.rm = TRUE)), by = feature_names]
+	}
+	dt2 <- melt.data.table(dt, measure.vars = feature_names)
 	## Calculate number of pages
 	layout <- .getPageLayout(nrow, ncol, ncol(discrete))
 	## Create list of ggplot objects
 	plot_list <- .lapply(
 		parallel = parallel,
-		X = setNames(seq_along(discrete), names(discrete)),
-		FUN = function(j) {
-			if (is.null(with)) {
-				x <- discrete[, j, with = FALSE]
-				agg_x <- x[, list(frequency = .N), by = names(x)]
-			} else {
-				if (!is.numeric(data[[with]])) stop("`with` should be continuous!")
-				x <- data.table(discrete[, j, with = FALSE], "agg_by" = data[[with]])
-				agg_x <- x[, list(frequency = sum(agg_by, na.rm = TRUE)), by = eval(names(x)[1])]
-			}
+		X = layout,
+		FUN = function(x) {
 			if (order_bar) {
-				base_plot <- ggplot(agg_x, aes(x = reorder(get(names(agg_x)[1]), frequency), y = frequency))
+				base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = reorder(value, frequency), y = frequency))
 			} else {
-				base_plot <- ggplot(agg_x, aes_string(x = names(agg_x)[1], y = "frequency"))
+				base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = value, y = "frequency"))
 			}
 			base_plot +
 				geom_bar(stat = "identity") +
 				coord_flip() +
-				xlab(names(agg_x)[1]) + ylab(ifelse(is.null(with), "Frequency", toTitleCase(with)))
+				xlab("") + ylab(ifelse(is.null(with), "Frequency", toTitleCase(with)))
 		}
 	)
 	## Plot objects
-	class(plot_list) <- c("grid", class(plot_list))
+	class(plot_list) <- c("multiple", class(plot_list))
 	plotDataExplorer(
 		plot_obj = plot_list,
 		page_layout = layout,
-		nrow = nrow,
-		ncol = ncol,
 		title = title,
 		ggtheme = ggtheme,
-		theme_config = theme_config
+		theme_config = theme_config,
+		facet_wrap_args = list(
+			"facet" = ~ variable,
+			"nrow" = nrow,
+			"ncol" = ncol,
+			"scales" = "free"
+		)
 	)
 }

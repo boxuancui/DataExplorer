@@ -1,12 +1,11 @@
 Package: DataExplorer
-Title: Data Explorer
-Version: 0.7.0
+Title: Automate data exploration and treatment
+Version: 0.7.1
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
-Description: Data exploration process for data analysis and model building, so
-    that users could focus on understanding data and extracting insights. The
-    package automatically scans through each variable and does data profiling.
-    Typical graphical techniques will be performed for both discrete and
-    continuous features.
+Description: Automated data exploration process for analytical tasks and predictive modeling, so
+    that users could focus on understanding data and extracting insights. The package scans and
+    analyzes each variable, and visualizes them with typical graphical techniques. Common
+    data processing methods are also available to treat and format data.
 Depends:
     R (>= 3.4)
 Imports:

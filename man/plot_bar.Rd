@@ -39,11 +39,8 @@ Plot bar chart for each discrete feature, based on either frequency or another c
 If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 }
 \examples{
-# Load diamonds dataset from ggplot2
-library(ggplot2)
-data("diamonds", package = "ggplot2")
-
 # Plot bar charts for diamonds dataset
+library(ggplot2)
 plot_bar(diamonds)
 plot_bar(diamonds, maxcat = 5)
 

@@ -4,9 +4,9 @@
 \alias{plot_histogram}
 \title{Plot histogram}
 \usage{
-plot_histogram(data, geom_histogram_args = list(), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 4L,
-  ncol = 4L, parallel = FALSE)
+plot_histogram(data, geom_histogram_args = list(bins = 30L),
+  title = NULL, ggtheme = theme_gray(), theme_config = list(),
+  nrow = 4L, ncol = 4L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -33,12 +33,12 @@ Plot histogram for each continuous feature
 }
 \examples{
 # Plot iris data
-plot_histogram(iris)
+plot_histogram(iris, nrow = 2L, ncol = 2L)
 
-# Plot random data with customized geom_histogram settings
+# Plot random data
 set.seed(1)
-data <- cbind(sapply(seq.int(4L), function(x) {rnorm(1000, sd = 30 * x)}))
-plot_histogram(data, geom_histogram_args = list("breaks" = seq(-400, 400, length = 50)))
+data <- data.frame(replicate(16L, rnorm(50)))
+plot_histogram(data)
 }
 \seealso{
 \link{geom_histogram} \link{plot_density}

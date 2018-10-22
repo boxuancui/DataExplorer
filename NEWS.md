@@ -1,3 +1,9 @@
+# DataExplorer 0.7.1
+## Enhancements
+* [#86](https://github.com/boxuancui/DataExplorer/issues/86): Replaced `gridExtra::grid.arrange` with facets.
+* Added seeds to vignette and README for re-producible examples.
+* Hid all internal functions.
+
 # DataExplorer 0.7.0
 ## New Features
 * [#72](https://github.com/boxuancui/DataExplorer/issues/72): Added `plot_qq` for QQ plot.

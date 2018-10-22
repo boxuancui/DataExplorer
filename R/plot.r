@@ -61,7 +61,7 @@ plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_l
 			suppressMessages(do.call(grid.arrange, c(plot_list[index], ncol = ncol, nrow = nrow, top = title, bottom = pg_name)))
 		}))
 	} else {
-		suppressMessages(do.call(grid.arrange, c(plot_list, top = title)))
+		suppressMessages(do.call(grid.arrange, c(plot_list, ncol = ncol, nrow = nrow, top = title)))
 	}
 
 	invisible(plot_list)

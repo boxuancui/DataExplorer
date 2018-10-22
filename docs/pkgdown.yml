@@ -1,6 +1,6 @@
 pandoc: 2.3.1
-pkgdown: 1.1.0
-pkgdown_sha: ~
+pkgdown: 1.1.0.9000
+pkgdown_sha: 8ede1b57ad5e044bf0860bc9b15764c2d28bc4d2
 articles:
   dataexplorer-intro: dataexplorer-intro.html
 

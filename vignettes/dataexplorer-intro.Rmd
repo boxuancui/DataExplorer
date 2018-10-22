@@ -32,7 +32,7 @@ opts_chunk$set(
 
 <script src="d3.min.js"></script>
 
-This document introduces the package **DataExplorer**, and shows how it can help you with different tasks throughout your data exploration process.
+This document introduces the package [DataExplorer](http://boxuancui.github.io/DataExplorer/), and shows how it can help you with different tasks throughout your data exploration process.
 
 There are 3 main goals for **DataExplorer**:
 

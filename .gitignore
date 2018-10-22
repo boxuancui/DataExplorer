@@ -1,4 +1,5 @@
 .Rbuildignore
+.Rapp.history
 .Rhistory
 *.Rproj
 .DS_Store

@@ -32,7 +32,7 @@ knitr::opts_chunk$set(
 
 ## Background
 
-[Exploratory Data Analysis (EDA)](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is the initial and an important phase of data analysis. Through this phase, analysts/modelers will have a first look of the data, and thus generate relevant hypothesis and decide next steps. However, the EDA process could be a hassle at times. This [R](https://cran.r-project.org/) package aims to automate most of data handling and visualization, so that users could focus on studying the data and extracting insights.
+[Exploratory Data Analysis (EDA)](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is the initial and an important phase of data analysis/predictive modeling. During this process, analysts/modelers will have a first look of the data, and thus generate relevant hypotheses and decide next steps. However, the EDA process could be a hassle at times. This [R](https://cran.r-project.org/) package aims to automate most of data handling and visualization, so that users could focus on studying the data and extracting insights.
 
 ## Installation
 
@@ -68,7 +68,7 @@ library(DataExplorer)
 create_report(airquality)
 ```
 
-To get a report for the [diamonds](http://docs.ggplot2.org/0.9.3.1/diamonds.html) dataset with response variable **price**:
+To get a report for the [diamonds](https://ggplot2.tidyverse.org/reference/diamonds.html) dataset with response variable **price**:
 
 ```{r create-report-diamonds}
 library(ggplot2)
@@ -105,22 +105,15 @@ plot_bar(diamonds, with = "price")
 ```
 
 ```{r plot-bar-prepare, include=FALSE, echo=FALSE, eval=TRUE}
-plot_bar_a <- plot_bar(diamonds)
-plot_bar_b <- plot_bar(diamonds, with = "price")
+plot_bar_a <- plot_bar(diamonds, nrow = 3L, ncol = 1L)
+plot_bar_b <- plot_bar(diamonds, with = "price", nrow = 3L, ncol = 1L)
 ```
 
 ```{r plot-bar, echo=FALSE, eval=TRUE}
 DataExplorer:::plotDataExplorer.grid(
-	plot_obj = list(
-		"cut" = plot_bar_a$cut,
-		"cut" = plot_bar_b$cut,
-		"color" = plot_bar_a$color,
-		"color" = plot_bar_b$color,
-		"clarity" = plot_bar_a$clarity,
-		"clarity" = plot_bar_b$clarity
-	),
-	page_layout = list("Page 1" = seq.int(6L)),
-	nrow = 3L,
+	plot_obj = list("Frequency" = plot_bar_a[[1]], "Price" = plot_bar_b[[1]]),
+	page_layout = list("Page 1" = seq.int(2L)),
+	nrow = 1L,
 	ncol = 2L,
 	ggtheme = theme_gray(),
 	theme_config = list(),
@@ -128,14 +121,22 @@ DataExplorer:::plotDataExplorer.grid(
 )
 ```
 
-```{r plot-histogram, eval=TRUE}
+```{r plot-histogram-template}
 ## View histogram of all continuous variables
 plot_histogram(diamonds)
 ```
 
-```{r plot-density, eval=TRUE}
+```{r plot-histogram, echo=FALSE, eval=TRUE}
+plot_histogram(diamonds, nrow = 3L, ncol = 3L)
+```
+
+```{r plot-density-template}
 ## View estimated density distribution of all continuous variables
 plot_density(diamonds)
+```
+
+```{r plot-density, echo=FALSE, eval=TRUE}
+plot_density(diamonds, nrow = 3L, ncol = 3L)
 ```
 
 ```{r plot-qq-template}
