@@ -93,7 +93,7 @@ plot_boxplot(diamonds, by = "cut")
 ## Scatterplot `price` with all other continuous features
 plot_scatterplot(split_columns(diamonds)$continuous, by = "price", sampled_rows = 1000L)
 
-## Visualize principle component analysis
+## Visualize principal component analysis
 plot_prcomp(diamonds, maxcat = 5L)
 ```
 

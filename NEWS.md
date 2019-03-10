@@ -1,3 +1,12 @@
+# DataExplorer 0.7.1.9000
+## Bug Fixes
+* [#90](https://github.com/boxuancui/DataExplorer/issues/90): Added first plot in `plot_prcomp` to output and `page_0`.
+* [#94](https://github.com/boxuancui/DataExplorer/issues/94): Fixed typo.
+
+## Enhancements
+* [#98](https://github.com/boxuancui/DataExplorer/issues/98): Added band customization to `plot_missing`.
+* [#100](https://github.com/boxuancui/DataExplorer/issues/100): Switched `geom_text` to `geom_label`.
+
 # DataExplorer 0.7.1
 ## Enhancements
 * [#86](https://github.com/boxuancui/DataExplorer/issues/86): Replaced `gridExtra::grid.arrange` with facets.
@@ -38,7 +47,7 @@
 
 # DataExplorer 0.6.0
 ## New Features
-* [#15](https://github.com/boxuancui/DataExplorer/issues/15): Added `plot_prcomp` to visualize principle component analysis.
+* [#15](https://github.com/boxuancui/DataExplorer/issues/15): Added `plot_prcomp` to visualize principal component analysis.
 * [#54](https://github.com/boxuancui/DataExplorer/issues/54): Extracted `dummify` from `plot_correlation` as a new function.
 * [#59](https://github.com/boxuancui/DataExplorer/issues/59): Added `introduce` for basic metadata.
 

@@ -1,6 +1,7 @@
 context("internal")
 
 test_that(".ignoreCat", {
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(1)
   dt <- data.table(
     "a" = as.factor(rep(1, 10)),

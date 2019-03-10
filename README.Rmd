@@ -181,7 +181,7 @@ plot_scatterplot(split_columns(diamonds)$continuous, by = "price", sampled_rows 
 ```
 
 ```{r plot_prcomp-template}
-## Visualize principle component analysis
+## Visualize principal component analysis
 plot_prcomp(diamonds, maxcat = 5L)
 ```
 

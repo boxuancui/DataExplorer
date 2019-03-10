@@ -39,7 +39,7 @@ plot_intro <- function(data, title = NULL, ggtheme = theme_gray(), theme_config 
 	## Create ggplot object
 	output <- ggplot(intro2, aes(x = reorder(variable, -id), y = value, fill = dimension)) +
 		geom_bar(stat = "identity") +
-		geom_text(aes(label = percent(value))) +
+		geom_label(aes(label = percent(value))) +
 		scale_y_continuous(labels = percent) +
 		scale_fill_discrete("Dimension") +
 		coord_flip() +
