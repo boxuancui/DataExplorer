@@ -5,6 +5,7 @@
 #' @param variance_cap maximum cumulative explained variance allowed for all principal components. Default is 80\%.
 #' @param maxcat maximum categories allowed for each discrete feature. The default is 50.
 #' @param prcomp_args a list of other arguments to \link{prcomp}
+#' @param geom_label_args a list of other arguments to \link{geom_label}
 #' @param title plot title starting from page 2.
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
@@ -28,7 +29,7 @@
 #' data("diamonds", package = "ggplot2")
 #' plot_prcomp(diamonds, maxcat = 7L)
 
-plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = list("scale." = TRUE), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
+plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = list("scale." = TRUE), geom_label_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
   ## Declare variable first to pass R CMD check
   pc <- pct <- cum_pct <- Feature <- variable <- value <- NULL
   ## Check if input is data.table
@@ -58,16 +59,12 @@ plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = li
   ## Create explained variance plot
   varexp_plot <- ggplot(pc_var2, aes(x = reorder(pc, pct), y = pct)) +
     geom_bar(stat = "identity") +
-    geom_label(aes(label = percent(cum_pct))) +
     scale_y_continuous(labels = percent) +
     coord_flip() +
     labs(x = "Principal Components", y = "% Variance Explained")
-  # ggtitle(
-  #   label = "% Variance Explained By Principal Components",
-  #   subtitle = "Note: Labels indicate cumulative % explained variance"
-  # ) +
-  #   
-  # print(varexp_plot)
+  geom_label_args_list <- list("mapping" = aes(label = percent(cum_pct)))
+  varexp_plot <- varexp_plot +
+    do.call("geom_label", c(geom_label_args_list, geom_label_args))
   ## Format rotation data
   rotation_dt <- data.table(
     "Feature" = rownames(pca$rotation),

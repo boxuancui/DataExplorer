@@ -4,6 +4,8 @@
 * [#94](https://github.com/boxuancui/DataExplorer/issues/94): Fixed typo.
 
 ## Enhancements
+* [#89](https://github.com/boxuancui/DataExplorer/issues/89): Added option to customize `geom_text` and `geom_label` arguments.
+* [#91](https://github.com/boxuancui/DataExplorer/issues/91): `create_report` now displays full report directory after completion.
 * [#98](https://github.com/boxuancui/DataExplorer/issues/98): Added band customization to `plot_missing`.
 * [#100](https://github.com/boxuancui/DataExplorer/issues/100): Switched `geom_text` to `geom_label`.
 

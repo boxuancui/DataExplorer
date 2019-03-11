@@ -5,9 +5,9 @@
 \title{Visualize principal component analysis}
 \usage{
 plot_prcomp(data, variance_cap = 0.8, maxcat = 50L,
-  prcomp_args = list(scale. = TRUE), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
-  ncol = 3L, parallel = FALSE)
+  prcomp_args = list(scale. = TRUE), geom_label_args = list(),
+  title = NULL, ggtheme = theme_gray(), theme_config = list(),
+  nrow = 3L, ncol = 3L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -17,6 +17,8 @@ plot_prcomp(data, variance_cap = 0.8, maxcat = 50L,
 \item{maxcat}{maximum categories allowed for each discrete feature. The default is 50.}
 
 \item{prcomp_args}{a list of other arguments to \link{prcomp}}
+
+\item{geom_label_args}{a list of other arguments to \link{geom_label}}
 
 \item{title}{plot title starting from page 2.}
 

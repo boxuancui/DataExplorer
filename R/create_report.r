@@ -127,7 +127,7 @@ create_report <- function(data, output_file = "report.html", output_dir = getwd(
 		...
 	))
 	## Open report
-	report_path <- file.path(output_dir, output_file)
+	report_path <- path.expand(file.path(output_dir, output_file))
 	browseURL(report_path)
 	## Print report directory
 	args <- as.list(match.call())
