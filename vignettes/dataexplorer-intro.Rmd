@@ -265,7 +265,7 @@ plot_correlation(na.omit(final_data), type = "c")
 plot_correlation(na.omit(final_data), type = "d")
 ```
 
-### Principle Component Analysis
+### Principal Component Analysis
 While you can always do `plot_prcomp(na.omit(final_data))` directly, but PCA works better with cleaner data. To perform and visualize PCA on some selected features:
 
 ```{r eda-plot-prcomp, fig.width=8, fig.height=8}
@@ -416,6 +416,7 @@ You may also customize each individual section by passing their corresponding ar
 ## Customize report configuration
 config <- list(
 	"introduce" = list(),
+	"plot_intro" = list(),
 	"plot_str" = list(
 		"type" = "diagonal",
 		"fontSize" = 35,

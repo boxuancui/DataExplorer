@@ -1,5 +1,4 @@
 ---
-title: "Data Profiling Report"
 output:
   html_document: 
     theme: cerulean
@@ -9,6 +8,8 @@ params:
   data: data
   report_config: report_config
   response: response
+  set_title: report_title
+title: "`r params$set_title`"
 ---
 
 ```{r global_options, include=FALSE}
@@ -70,7 +71,7 @@ if ("introduce" %in% names(report_config)) {
 ```
 
 ```{r plot_intro}
-if ("introduce" %in% names(report_config)) {
+if ("plot_intro" %in% names(report_config)) {
 	cat("#### Percentages", fill = TRUE)
   do_call("plot_intro")
 }

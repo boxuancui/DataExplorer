@@ -6,6 +6,7 @@
 #' @param output_dir output directory for report. The default is user's current directory.
 #' @param y name of response variable if any. Response variables will be passed to appropriate plotting functions automatically.
 #' @param config report configuration with function arguments as \link{list}. See details.
+#' @param report_title report title. Default is "Data Profiling Report".
 #' @param \dots other arguments to be passed to \link{render}.
 #' @keywords create_report
 #' @details \code{config} is a named list to be evaluated by \code{create_report}.
@@ -76,6 +77,7 @@
 #'   y = "price",
 #'   config = list(
 #'     "introduce" = list(),
+#'     "plot_intro" = list(),
 #'     "plot_missing" = list(),
 #'     "plot_histogram" = list(),
 #'     "plot_qq" = list("by" = "cut", sampled_rows = 1000L),
@@ -88,7 +90,7 @@
 #' )
 #' }
 
-create_report <- function(data, output_file = "report.html", output_dir = getwd(), y = NULL, config = list(), ...) {
+create_report <- function(data, output_file = "report.html", output_dir = getwd(), y = NULL, config = list(), report_title = "Data Profiling Report", ...) {
 	## Check if input is data.table
 	if (!is.data.table(data)) data <- data.table(data)
 	## Check response variable
@@ -101,6 +103,7 @@ create_report <- function(data, output_file = "report.html", output_dir = getwd(
 	if (length(config) == 0) {
 		config <- list(
 			"introduce" = list(),
+			"plot_intro" = list(),
 			"plot_str" = list(
 				"type" = "diagonal",
 				"fontSize" = 35,
@@ -123,7 +126,7 @@ create_report <- function(data, output_file = "report.html", output_dir = getwd(
 		output_file = output_file,
 		output_dir = output_dir,
 		intermediates_dir = output_dir,
-		params = list(data = data, report_config = config, response = y),
+		params = list(data = data, report_config = config, response = y, set_title = report_title),
 		...
 	))
 	## Open report

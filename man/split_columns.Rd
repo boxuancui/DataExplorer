@@ -4,10 +4,12 @@
 \alias{split_columns}
 \title{Split data into discrete and continuous parts}
 \usage{
-split_columns(data)
+split_columns(data, binary_as_factor = FALSE)
 }
 \arguments{
 \item{data}{input data}
+
+\item{binary_as_factor}{treat binary as categorical? Default is \code{FALSE}.}
 }
 \value{
 \code{discrete} all discrete features

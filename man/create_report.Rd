@@ -5,7 +5,8 @@
 \title{create_report Function}
 \usage{
 create_report(data, output_file = "report.html", output_dir = getwd(),
-  y = NULL, config = list(), ...)
+  y = NULL, config = list(), report_title = "Data Profiling Report",
+  ...)
 }
 \arguments{
 \item{data}{input data}
@@ -17,6 +18,8 @@ create_report(data, output_file = "report.html", output_dir = getwd(),
 \item{y}{name of response variable if any. Response variables will be passed to appropriate plotting functions automatically.}
 
 \item{config}{report configuration with function arguments as \link{list}. See details.}
+
+\item{report_title}{report title. Default is "Data Profiling Report".}
 
 \item{\dots}{other arguments to be passed to \link{render}.}
 }
@@ -95,6 +98,7 @@ create_report(
   y = "price",
   config = list(
     "introduce" = list(),
+    "plot_intro" = list(),
     "plot_missing" = list(),
     "plot_histogram" = list(),
     "plot_qq" = list("by" = "cut", sampled_rows = 1000L),

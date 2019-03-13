@@ -3,9 +3,10 @@ data(diamonds, package = "ggplot2")
 
 test_that("test maximum categories", {
   expect_error(plot_bar(iris[, 1:4]))
-  expect_message(plot_bar(diamonds, maxcat = 5))
+  expect_message(plot_bar(diamonds, maxcat = 5L))
   expect_silent(plot_bar(diamonds))
   expect_silent(plot_bar(iris, with = "Sepal.Length"))
+  expect_error(plot_bar(iris, maxcat = 1L))
 })
 
 test_that("test return object", {
@@ -18,4 +19,16 @@ test_that("test return object", {
 	expect_is(plot_list2, "list")
 	expect_equal(names(plot_list2), c("page_1", "page_2", "page_3"))
 	expect_true(all(vapply(plot_list2, is.ggplot, TRUE)))
+})
+
+test_that("test binary categories", {
+  df <- data.frame(
+    "a" = sample.int(n = 2L, size = 26L, replace = TRUE),
+    "b" = letters,
+    "c" = rnorm(26L)
+  )
+  expect_silent(plot_bar(df, with = "a"))
+  expect_error(plot_bar(df, with = "b"))
+  expect_silent(plot_bar(df, with = "c"))
+  expect_silent(plot_bar(df, with = "a", binary_as_factor = FALSE))
 })
