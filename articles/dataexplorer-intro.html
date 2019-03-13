@@ -6,15 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Introduction to DataExplorer • DataExplorer</title>
-<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.1/clipboard.min.js" integrity="sha256-hIvIxeqhGZF+VVeM55k0mJvWpQ6gTkWk3Emc+NmowYA=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to DataExplorer">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-127813892-1"></script><script>
@@ -38,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataExplorer</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1.9000</span>
       </span>
     </div>
 
@@ -84,7 +83,7 @@
       <h1>Introduction to DataExplorer</h1>
                         <h4 class="author">Boxuan Cui</h4>
             
-            <h4 class="date">2018-10-22</h4>
+            <h4 class="date">2019-03-12</h4>
       
       
       <div class="hidden name"><code>dataexplorer-intro.Rmd</code></div>
@@ -105,8 +104,8 @@
 <h2 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h2>
 <p>We will be using the <a href="https://cran.r-project.org/package=nycflights13">nycflights13</a> datasets for this document. If you have not installed the package, please do the following:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"nycflights13"</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(nycflights13)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"nycflights13"</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nycflights13)</code></pre></div>
 <p>There are 5 datasets in this package:</p>
 <ul>
 <li>airlines</li>
@@ -116,24 +115,24 @@
 <li>weather</li>
 </ul>
 <p>If you want to quickly visualize the structure of all, you may do the following:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(DataExplorer)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">data_list &lt;-<span class="st"> </span><span class="kw">list</span>(airlines, airports, flights, planes, weather)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="../reference/plot_str.html">plot_str</a></span>(data_list)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(DataExplorer)
+data_list &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(airlines, airports, flights, planes, weather)
+<span class="kw"><a href="../reference/plot_str.html">plot_str</a></span>(data_list)</code></pre></div>
 <div id="htmlwidget-435f92e833e5f1a9a10f" style="width:800px;height:800px;" class="diagonalNetwork html-widget"></div>
 <script type="application/json" data-for="htmlwidget-435f92e833e5f1a9a10f">{"x":{"root":{"name":"root (List of 5)","children":[{"name":"X (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"carrier (chr)"},{"name":"name (chr)"}]},{"name":"X.1 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"faa (chr)"},{"name":"name (chr)"},{"name":"lat (num)"},{"name":"lon (num)"},{"name":"alt (int)"},{"name":"tz (num)"},{"name":"dst (chr)"},{"name":"tzone (chr)"}]},{"name":"X.2 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"year (int)"},{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"carrier (chr)"},{"name":"flight (int)"},{"name":"tailnum (chr)"},{"name":"origin (chr)"},{"name":"dest (chr)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"time_hour (POSIXct, format)"}]},{"name":"X.3 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"tailnum (chr)"},{"name":"year (int)"},{"name":"type (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"speed (int)"},{"name":"engine (chr)"}]},{"name":"X.4 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"origin (chr)"},{"name":"year.1 (num)"},{"name":"month (num)"},{"name":"day (int)"},{"name":"hour (int)"},{"name":"temp (num)"},{"name":"dewp (num)"},{"name":"humid (num)"},{"name":"wind_dir (num)"},{"name":"wind_speed (num)"},{"name":"wind_gust (num)"},{"name":"precip (num)"},{"name":"pressure (num)"},{"name":"visib (num)"},{"name":"time_hour (POSIXct, format)"}]}]},"options":{"height":800,"width":800,"fontSize":20,"fontFamily":"serif","linkColour":"#ccc","nodeColour":"#fff","nodeStroke":"steelblue","textColour":"#111","margin":{"top":null,"right":50,"bottom":null,"left":50},"opacity":0.9}},"evals":[],"jsHooks":[]}</script><p>You may also try <code><a href="../reference/plot_str.html">plot_str(data_list, type = "r")</a></code> for a radial network.</p>
 <hr>
 <p>Now let’s merge all tables together for a more robust dataset for later sections.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">merge_airlines &lt;-<span class="st"> </span><span class="kw">merge</span>(flights, airlines, <span class="dt">by =</span> <span class="st">"carrier"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">merge_planes &lt;-<span class="st"> </span><span class="kw">merge</span>(merge_airlines, planes, <span class="dt">by =</span> <span class="st">"tailnum"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw">c</span>(<span class="st">"_flights"</span>, <span class="st">"_planes"</span>))</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">merge_airports_origin &lt;-<span class="st"> </span><span class="kw">merge</span>(merge_planes, airports, <span class="dt">by.x =</span> <span class="st">"origin"</span>, <span class="dt">by.y =</span> <span class="st">"faa"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw">c</span>(<span class="st">"_carrier"</span>, <span class="st">"_origin"</span>))</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">final_data &lt;-<span class="st"> </span><span class="kw">merge</span>(merge_airports_origin, airports, <span class="dt">by.x =</span> <span class="st">"dest"</span>, <span class="dt">by.y =</span> <span class="st">"faa"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw">c</span>(<span class="st">"_origin"</span>, <span class="st">"_dest"</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">merge_airlines &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge</a></span>(flights, airlines, <span class="dt">by =</span> <span class="st">"carrier"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>)
+merge_planes &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge</a></span>(merge_airlines, planes, <span class="dt">by =</span> <span class="st">"tailnum"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"_flights"</span>, <span class="st">"_planes"</span>))
+merge_airports_origin &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge</a></span>(merge_planes, airports, <span class="dt">by.x =</span> <span class="st">"origin"</span>, <span class="dt">by.y =</span> <span class="st">"faa"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"_carrier"</span>, <span class="st">"_origin"</span>))
+final_data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge</a></span>(merge_airports_origin, airports, <span class="dt">by.x =</span> <span class="st">"dest"</span>, <span class="dt">by.y =</span> <span class="st">"faa"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"_origin"</span>, <span class="st">"_dest"</span>))</code></pre></div>
 </div>
 <div id="exploratory-data-analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exploratory-data-analysis" class="anchor"></a>Exploratory Data Analysis</h2>
 <p>Exploratory data analysis is the process to get to know your data, so that you can generate and test your hypothesis. Visualization techniques are usually applied.</p>
 <p>To get introduced to your newly created dataset:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/introduce.html">introduce</a></span>(final_data)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/introduce.html">introduce</a></span>(final_data)</code></pre></div>
 <table class="table"><tbody>
 <tr class="odd">
 <td align="left">rows</td>
@@ -173,7 +172,7 @@
 </tr>
 </tbody></table>
 <p>To visualize the table above (with some light analysis):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/plot_intro.html">plot_intro</a></span>(final_data)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_intro.html">plot_intro</a></span>(final_data)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-intro-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>You should immediately notice some surprises:</p>
 <ol style="list-style-type: decimal">
@@ -185,10 +184,10 @@
 <h3 class="hasAnchor">
 <a href="#missing-values" class="anchor"></a>Missing values</h3>
 <p>Real-world data is messy, and you can simply use <code>plot_missing</code> function to visualize missing profile for each feature.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/plot_missing.html">plot_missing</a></span>(final_data)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_missing.html">plot_missing</a></span>(final_data)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-missing-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>From the chart, <strong>speed</strong> variable is mostly missing, and probably not informative. Looks like we have found the culprit for the 0.3% complete rows. Let’s drop it:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="st">"speed"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="st">"speed"</span>)</code></pre></div>
 <p>Note: You may store the missing data profile with <code><a href="../reference/profile_missing.html">profile_missing(final_data)</a></code> for additional analysis.</p>
 </div>
 <div id="distributions" class="section level3">
@@ -198,7 +197,7 @@
 <h4 class="hasAnchor">
 <a href="#bar-charts" class="anchor"></a>Bar Charts</h4>
 <p>To visualize frequency distributions for all discrete features:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_data)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_data)</code></pre></div>
 <pre><code>## 5 columns ignored with more than 50 categories.
 ## dest: 105 categories
 ## tailnum: 4044 categories
@@ -219,16 +218,16 @@
 </li>
 </ul>
 <p>Let’s clean it up and look at the <strong>manufacturer</strong> distribution again:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">final_data[<span class="kw">which</span>(final_data<span class="op">$</span>manufacturer <span class="op">==</span><span class="st"> "AIRBUS INDUSTRIE"</span>),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "AIRBUS"</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">final_data[<span class="kw">which</span>(final_data<span class="op">$</span>manufacturer <span class="op">==</span><span class="st"> "CANADAIR LTD"</span>),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "CANADAIR"</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">final_data[<span class="kw">which</span>(final_data<span class="op">$</span>manufacturer <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"MCDONNELL DOUGLAS AIRCRAFT CO"</span>, <span class="st">"MCDONNELL DOUGLAS CORPORATION"</span>)),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "MCDONNELL DOUGLAS"</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_data<span class="op">$</span>manufacturer)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_data[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(final_data<span class="op">$</span>manufacturer <span class="op">==</span><span class="st"> "AIRBUS INDUSTRIE"</span>),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "AIRBUS"</span>
+final_data[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(final_data<span class="op">$</span>manufacturer <span class="op">==</span><span class="st"> "CANADAIR LTD"</span>),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "CANADAIR"</span>
+final_data[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(final_data<span class="op">$</span>manufacturer <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"MCDONNELL DOUGLAS AIRCRAFT CO"</span>, <span class="st">"MCDONNELL DOUGLAS CORPORATION"</span>)),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "MCDONNELL DOUGLAS"</span>
+
+<span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_data<span class="op">$</span>manufacturer)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-update-manufacturer-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>Feature <strong>dst_origin</strong> and <strong>tzone_origin</strong> contains only 1 value, so we should drop them:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw">c</span>(<span class="st">"dst_origin"</span>, <span class="st">"tzone_origin"</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"dst_origin"</span>, <span class="st">"tzone_origin"</span>))</code></pre></div>
 <p>Frequently, it is very beneficial to look at bivariate frequency distribution. For example, to look at discrete features by <strong>arr_delay</strong>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_data, <span class="dt">with =</span> <span class="st">"arr_delay"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_data, <span class="dt">with =</span> <span class="st">"arr_delay"</span>)</code></pre></div>
 <pre><code>## 5 columns ignored with more than 50 categories.
 ## dest: 105 categories
 ## tailnum: 4044 categories
@@ -242,32 +241,32 @@
 <h4 class="hasAnchor">
 <a href="#histograms" class="anchor"></a>Histograms</h4>
 <p>To visualize distributions for all continuous features:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="../reference/plot_histogram.html">plot_histogram</a></span>(final_data)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_histogram.html">plot_histogram</a></span>(final_data)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-histogram-1.png" width="768" style="display: block; margin: auto;"><img src="dataexplorer-intro_files/figure-html/eda-plot-histogram-2.png" width="768" style="display: block; margin: auto;"><img src="dataexplorer-intro_files/figure-html/eda-plot-histogram-3.png" width="768" style="display: block; margin: auto;"></p>
 <p>Immediately, you could observe that there are datetime features to be further treated, e.g., concatenating year, month and day to form date, and/or adding hour and minute to form datetime.</p>
 <p>For the purpose of this vignette, I will not go deep into the analytical tasks. However, we should treat the following features based on the output of the histograms.</p>
 <ul>
 <li>Set <strong>flight</strong> to categorical, since that is the flight number with no mathematical meaning:</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">final_data<span class="op">$</span>flight &lt;-<span class="st"> </span><span class="kw">as.factor</span>(final_data<span class="op">$</span>flight)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_data<span class="op">$</span>flight &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(final_data<span class="op">$</span>flight)</code></pre></div>
 <ul>
 <li>Remove <strong>year_flights</strong> and <strong>tz_origin</strong> since there is only one value:</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw">c</span>(<span class="st">"year_flights"</span>, <span class="st">"tz_origin"</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"year_flights"</span>, <span class="st">"tz_origin"</span>))</code></pre></div>
 </div>
 <div id="qq-plot" class="section level4">
 <h4 class="hasAnchor">
 <a href="#qq-plot" class="anchor"></a>QQ Plot</h4>
 <p>Quantile-Quantile plot is a way to visualize the deviation from a specific probability distribution. After analyzing these plots, it is often beneficial to apply mathematical transformation (such as log) for models like linear regression. To do so, we can use <code>plot_qq</code> function. By default, it compares with normal distribution.</p>
 <p>Note: The function will take a long time with many observations, so you may choose to specify an appropriate <code>sampled_rows</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">qq_data &lt;-<span class="st"> </span>final_data[, <span class="kw">c</span>(<span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span>)]</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(qq_data, <span class="dt">sampled_rows =</span> 1000L)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qq_data &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span>)]
+
+<span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(qq_data, <span class="dt">sampled_rows =</span> 1000L)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-qq-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>You may also view the QQ plot by another feature:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">qq_data &lt;-<span class="st"> </span>final_data[, <span class="kw">c</span>(<span class="st">"name_origin"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span>)]</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(qq_data, <span class="dt">by =</span> <span class="st">"name_origin"</span>, <span class="dt">sampled_rows =</span> 1000L)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qq_data &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"name_origin"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span>)]
+
+<span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(qq_data, <span class="dt">by =</span> <span class="st">"name_origin"</span>, <span class="dt">sampled_rows =</span> 1000L)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-qq-by-1.png" width="768" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -275,31 +274,31 @@
 <h3 class="hasAnchor">
 <a href="#correlation-analysis" class="anchor"></a>Correlation Analysis</h3>
 <p>To visualize correlation heatmap for all non-missing features:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw">na.omit</span>(final_data), <span class="dt">maxcat =</span> 5L)</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="co">## 11 features with more than 5 categories ignored!</span></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co">## dest: 100 categories</span></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co">## tailnum: 3246 categories</span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co">## carrier: 16 categories</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="co">## flight: 3773 categories</span></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="co">## time_hour: 6642 categories</span></a>
-<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="co">## name_carrier: 16 categories</span></a>
-<a class="sourceLine" id="cb19-9" data-line-number="9"><span class="co">## manufacturer: 24 categories</span></a>
-<a class="sourceLine" id="cb19-10" data-line-number="10"><span class="co">## model: 121 categories</span></a>
-<a class="sourceLine" id="cb19-11" data-line-number="11"><span class="co">## engine: 6 categories</span></a>
-<a class="sourceLine" id="cb19-12" data-line-number="12"><span class="co">## name: 100 categories</span></a>
-<a class="sourceLine" id="cb19-13" data-line-number="13"><span class="co">## tzone_dest: 7 categories</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(final_data), <span class="dt">maxcat =</span> 5L)
+## 11 features with more than 5 categories ignored!
+## dest: 100 categories
+## tailnum: 3246 categories
+## carrier: 16 categories
+## flight: 3773 categories
+## time_hour: 6642 categories
+## name_carrier: 16 categories
+## manufacturer: 24 categories
+## model: 121 categories
+## engine: 6 categories
+## name: 100 categories
+## tzone_dest: 7 categories</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-correlation-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>You may also choose to visualize only discrete/continuous features with:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw">na.omit</span>(final_data), <span class="dt">type =</span> <span class="st">"c"</span>)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw">na.omit</span>(final_data), <span class="dt">type =</span> <span class="st">"d"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(final_data), <span class="dt">type =</span> <span class="st">"c"</span>)
+<span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(final_data), <span class="dt">type =</span> <span class="st">"d"</span>)</code></pre></div>
 </div>
-<div id="principle-component-analysis" class="section level3">
+<div id="principal-component-analysis" class="section level3">
 <h3 class="hasAnchor">
-<a href="#principle-component-analysis" class="anchor"></a>Principle Component Analysis</h3>
+<a href="#principal-component-analysis" class="anchor"></a>Principal Component Analysis</h3>
 <p>While you can always do <code><a href="../reference/plot_prcomp.html">plot_prcomp(na.omit(final_data))</a></code> directly, but PCA works better with cleaner data. To perform and visualize PCA on some selected features:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">pca_df &lt;-<span class="st"> </span><span class="kw">na.omit</span>(final_data[, <span class="kw">c</span>(<span class="st">"origin"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)])</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="kw"><a href="../reference/plot_prcomp.html">plot_prcomp</a></span>(pca_df, <span class="dt">variance_cap =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca_df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"origin"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)])
+
+<span class="kw"><a href="../reference/plot_prcomp.html">plot_prcomp</a></span>(pca_df, <span class="dt">variance_cap =</span> <span class="dv">1</span>)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-prcomp-1.png" width="768" style="display: block; margin: auto;"><img src="dataexplorer-intro_files/figure-html/eda-plot-prcomp-2.png" width="768" style="display: block; margin: auto;"></p>
 </div>
 <div id="slicing-dicing" class="section level3">
@@ -310,11 +309,11 @@
 <h4 class="hasAnchor">
 <a href="#boxplots" class="anchor"></a>Boxplots</h4>
 <p>Suppose you would like to build a model to predict arrival delays, you may visualize the distribution of all continuous features based on arrival delays with a boxplot:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">## Reduce data size for demo purpose</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">arr_delay_df &lt;-<span class="st"> </span>final_data[, <span class="kw">c</span>(<span class="st">"arr_delay"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"dep_delay"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)]</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="co">## Call boxplot function</span></a>
-<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="kw"><a href="../reference/plot_boxplot.html">plot_boxplot</a></span>(arr_delay_df, <span class="dt">by =</span> <span class="st">"arr_delay"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Reduce data size for demo purpose
+arr_delay_df &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"arr_delay"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"dep_delay"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)]
+
+## Call boxplot function
+<span class="kw"><a href="../reference/plot_boxplot.html">plot_boxplot</a></span>(arr_delay_df, <span class="dt">by =</span> <span class="st">"arr_delay"</span>)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-boxplot-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>Among all the subtle changes in correlation with arrival delays, you could immediately spot that planes with 300+ seats tend to have much longer delays (16 ~ 21 hours). You may now drill down further to verify or generate more hypotheses.</p>
 </div>
@@ -322,9 +321,9 @@
 <h4 class="hasAnchor">
 <a href="#scatterplots" class="anchor"></a>Scatterplots</h4>
 <p>An alternative visualization is scatterplot. For example:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">arr_delay_df2 &lt;-<span class="st"> </span>final_data[, <span class="kw">c</span>(<span class="st">"arr_delay"</span>, <span class="st">"dep_time"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_time"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)]</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw"><a href="../reference/plot_scatterplot.html">plot_scatterplot</a></span>(arr_delay_df2, <span class="dt">by =</span> <span class="st">"arr_delay"</span>, <span class="dt">sampled_rows =</span> 1000L)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arr_delay_df2 &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"arr_delay"</span>, <span class="st">"dep_time"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_time"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)]
+
+<span class="kw"><a href="../reference/plot_scatterplot.html">plot_scatterplot</a></span>(arr_delay_df2, <span class="dt">by =</span> <span class="st">"arr_delay"</span>, <span class="dt">sampled_rows =</span> 1000L)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-scatterplot-1.png" width="768" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -339,73 +338,73 @@
 <a href="#replace-missing-values" class="anchor"></a>Replace missing values</h3>
 <p>Missing values may have meanings for a feature. Other than imputation methods, we may also set them to some logical values. For example, for discrete features, we may want to group missing values to a new category. For continuous features, we may want to set missing values to a known number based on existing knowledge.</p>
 <p>In <strong>DataExplorer</strong>, this can be done by <code>set_missing</code>. The function automatically matches the argument for either discrete or continuous features, i.e., if you specify a number, all missing continuous values will be set to that number. If you specify a string, all missing discrete values will be set to that string. If you supply both, both types will be set.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co">## Return data.frame</span></a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/set_missing.html">set_missing</a></span>(final_data, <span class="kw">list</span>(0L, <span class="st">"unknown"</span>))</a>
-<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="co">## Column [dep_time]: Set 8255 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="co">## Column [dep_delay]: Set 8255 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="co">## Column [arr_time]: Set 8713 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="co">## Column [arr_delay]: Set 9430 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-7" data-line-number="7"><span class="co">## Column [air_time]: Set 9430 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-8" data-line-number="8"><span class="co">## Column [year_planes]: Set 57912 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-9" data-line-number="9"><span class="co">## Column [engines]: Set 52606 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-10" data-line-number="10"><span class="co">## Column [seats]: Set 52606 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-11" data-line-number="11"><span class="co">## Column [lat_dest]: Set 7602 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-12" data-line-number="12"><span class="co">## Column [lon_dest]: Set 7602 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-13" data-line-number="13"><span class="co">## Column [alt_dest]: Set 7602 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-14" data-line-number="14"><span class="co">## Column [tz_dest]: Set 7602 missing values to 0</span></a>
-<a class="sourceLine" id="cb24-15" data-line-number="15"><span class="co">## Column [tailnum]: Set 2512 missing values to unknown</span></a>
-<a class="sourceLine" id="cb24-16" data-line-number="16"><span class="co">## Column [type]: Set 52606 missing values to unknown</span></a>
-<a class="sourceLine" id="cb24-17" data-line-number="17"><span class="co">## Column [manufacturer]: Set 52606 missing values to unknown</span></a>
-<a class="sourceLine" id="cb24-18" data-line-number="18"><span class="co">## Column [model]: Set 52606 missing values to unknown</span></a>
-<a class="sourceLine" id="cb24-19" data-line-number="19"><span class="co">## Column [engine]: Set 52606 missing values to unknown</span></a>
-<a class="sourceLine" id="cb24-20" data-line-number="20"><span class="co">## Column [name]: Set 7602 missing values to unknown</span></a>
-<a class="sourceLine" id="cb24-21" data-line-number="21"><span class="co">## Column [dst_dest]: Set 7602 missing values to unknown</span></a>
-<a class="sourceLine" id="cb24-22" data-line-number="22"><span class="co">## Column [tzone_dest]: Set 7602 missing values to unknown</span></a>
-<a class="sourceLine" id="cb24-23" data-line-number="23"><span class="kw"><a href="../reference/plot_missing.html">plot_missing</a></span>(final_df)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Return data.frame
+final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/set_missing.html">set_missing</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(0L, <span class="st">"unknown"</span>))
+## Column [dep_time]: Set 8255 missing values to 0
+## Column [dep_delay]: Set 8255 missing values to 0
+## Column [arr_time]: Set 8713 missing values to 0
+## Column [arr_delay]: Set 9430 missing values to 0
+## Column [air_time]: Set 9430 missing values to 0
+## Column [year_planes]: Set 57912 missing values to 0
+## Column [engines]: Set 52606 missing values to 0
+## Column [seats]: Set 52606 missing values to 0
+## Column [lat_dest]: Set 7602 missing values to 0
+## Column [lon_dest]: Set 7602 missing values to 0
+## Column [alt_dest]: Set 7602 missing values to 0
+## Column [tz_dest]: Set 7602 missing values to 0
+## Column [tailnum]: Set 2512 missing values to unknown
+## Column [type]: Set 52606 missing values to unknown
+## Column [manufacturer]: Set 52606 missing values to unknown
+## Column [model]: Set 52606 missing values to unknown
+## Column [engine]: Set 52606 missing values to unknown
+## Column [name]: Set 7602 missing values to unknown
+## Column [dst_dest]: Set 7602 missing values to unknown
+## Column [tzone_dest]: Set 7602 missing values to unknown
+<span class="kw"><a href="../reference/plot_missing.html">plot_missing</a></span>(final_df)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/fe-set-missing-1.png" width="576" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="co">## Update data.table by reference</span></a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="co"># library(data.table)</span></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="co"># final_dt &lt;- data.table(final_data)</span></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="co"># set_missing(final_dt, list(0L, "unknown"))</span></a>
-<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="co"># plot_missing(final_dt)</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+## Update data.table by reference
+<span class="co"># library(data.table)</span>
+<span class="co"># final_dt &lt;- data.table(final_data)</span>
+<span class="co"># set_missing(final_dt, list(0L, "unknown"))</span>
+<span class="co"># plot_missing(final_dt)</span></code></pre></div>
 </div>
 <div id="group-sparse-categories" class="section level3">
 <h3 class="hasAnchor">
 <a href="#group-sparse-categories" class="anchor"></a>Group sparse categories</h3>
 <p>From the bar charts above, we observed a number of discrete features with sparse categorical distributions. Sometimes, we want to group low-frequency categories to a new bucket, or reduce the number of categories to a reasonable range. <code>group_category</code> will do the work.</p>
 <p>Take <strong>manufacturer</strong> feature for example, suppose we want to group the long tail to another category. We could try with bottom 20% (by count) first:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw"><a href="../reference/group_category.html">group_category</a></span>(<span class="dt">data =</span> final_data, <span class="dt">feature =</span> <span class="st">"manufacturer"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>)</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="co">##   manufacturer   cnt       pct   cum_pct</span></a>
-<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="co">## 1       AIRBUS 88193 0.2618744 0.2618744</span></a>
-<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co">## 2       BOEING 82912 0.2461933 0.5080677</span></a>
-<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="co">## 3      EMBRAER 66068 0.1961779 0.7042456</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/group_category.html">group_category</a></span>(<span class="dt">data =</span> final_data, <span class="dt">feature =</span> <span class="st">"manufacturer"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>)
+##   manufacturer   cnt       pct   cum_pct
+## 1       AIRBUS 88193 0.2618744 0.2618744
+## 2       BOEING 82912 0.2461933 0.5080677
+## 3      EMBRAER 66068 0.1961779 0.7042456</code></pre></div>
 <p>As we can see, manufacturer will be shrinked down to 4 categories, i.e., AIRBUS, BOEING, EMBRAER, and OTHER. If you like this threshold, you may specify <code>update = TRUE</code> to update the original dataset:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/group_category.html">group_category</a></span>(<span class="dt">data =</span> final_data, <span class="dt">feature =</span> <span class="st">"manufacturer"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_df<span class="op">$</span>manufacturer)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/group_category.html">group_category</a></span>(<span class="dt">data =</span> final_data, <span class="dt">feature =</span> <span class="st">"manufacturer"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)
+<span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_df<span class="op">$</span>manufacturer)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/fe-group-category-count-update-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>Instead of shrinking categories by frequency, you may also group the categories by another continuous metric. For example, if you want to bucket the carrier with bottom 20% distance traveled, you may do the following:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw"><a href="../reference/group_category.html">group_category</a></span>(<span class="dt">data =</span> final_data, <span class="dt">feature =</span> <span class="st">"name_carrier"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">measure =</span> <span class="st">"distance"</span>)</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="co">##             name_carrier      cnt       pct   cum_pct</span></a>
-<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="co">## 1  United Air Lines Inc. 89705524 0.2561422 0.2561422</span></a>
-<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co">## 2   Delta Air Lines Inc. 59507317 0.1699153 0.4260575</span></a>
-<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="co">## 3        JetBlue Airways 58384137 0.1667082 0.5927657</span></a>
-<a class="sourceLine" id="cb28-6" data-line-number="6"><span class="co">## 4 American Airlines Inc. 43864584 0.1252495 0.7180152</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/group_category.html">group_category</a></span>(<span class="dt">data =</span> final_data, <span class="dt">feature =</span> <span class="st">"name_carrier"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">measure =</span> <span class="st">"distance"</span>)
+##             name_carrier      cnt       pct   cum_pct
+## 1  United Air Lines Inc. 89705524 0.2561422 0.2561422
+## 2   Delta Air Lines Inc. 59507317 0.1699153 0.4260575
+## 3        JetBlue Airways 58384137 0.1667082 0.5927657
+## 4 American Airlines Inc. 43864584 0.1252495 0.7180152</code></pre></div>
 <p>Similarly, if you like it, you may add <code>update = TRUE</code> to update the original dataset.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/group_category.html">group_category</a></span>(<span class="dt">data =</span> final_data, <span class="dt">feature =</span> <span class="st">"name_carrier"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">measure =</span> <span class="st">"distance"</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_df<span class="op">$</span>name_carrier)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/group_category.html">group_category</a></span>(<span class="dt">data =</span> final_data, <span class="dt">feature =</span> <span class="st">"name_carrier"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">measure =</span> <span class="st">"distance"</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)
+<span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_df<span class="op">$</span>name_carrier)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/fe-group-category-metric-update-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="dummify-data-one-hot-encoding" class="section level3">
 <h3 class="hasAnchor">
 <a href="#dummify-data-one-hot-encoding" class="anchor"></a>Dummify data (one hot encoding)</h3>
 <p>To transform the data into binary format (so that ML algorithms can pick it up), <code>dummify</code> will do the job. The function preserves original data structure, so that only eligible discrete features will be turned into binary format.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw"><a href="../reference/plot_str.html">plot_str</a></span>(</a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">    <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3">        <span class="st">"original"</span> =<span class="st"> </span>final_data,</a>
-<a class="sourceLine" id="cb30-4" data-line-number="4">        <span class="st">"dummified"</span> =<span class="st"> </span><span class="kw"><a href="../reference/dummify.html">dummify</a></span>(final_data, <span class="dt">maxcat =</span> 5L)</a>
-<a class="sourceLine" id="cb30-5" data-line-number="5">    )</a>
-<a class="sourceLine" id="cb30-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_str.html">plot_str</a></span>(
+    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(
+        <span class="st">"original"</span> =<span class="st"> </span>final_data,
+        <span class="st">"dummified"</span> =<span class="st"> </span><span class="kw"><a href="../reference/dummify.html">dummify</a></span>(final_data, <span class="dt">maxcat =</span> 5L)
+    )
+)</code></pre></div>
 <pre><code>## 11 features with more than 5 categories ignored!
 ## dest: 105 categories
 ## tailnum: 4044 categories
@@ -425,41 +424,42 @@
 <h3 class="hasAnchor">
 <a href="#drop-features" class="anchor"></a>Drop features</h3>
 <p>After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like <strong>dst_dest</strong> has mostly one value, and it doesn’t provide any valuable information. You can use <code>drop_columns</code> to quickly drop features. The function takes either names or column indices.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">identical</span>(</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">    <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw">c</span>(<span class="st">"dst_dest"</span>, <span class="st">"tzone_dest"</span>)),</a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">    <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw">c</span>(<span class="dv">36</span>, <span class="dv">37</span>))</a>
-<a class="sourceLine" id="cb32-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="co">## [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/identical">identical</a></span>(
+    <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"dst_dest"</span>, <span class="st">"tzone_dest"</span>)),
+    <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">36</span>, <span class="dv">37</span>))
+)
+## [1] TRUE</code></pre></div>
 </div>
 </div>
 <div id="data-reporting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-reporting" class="anchor"></a>Data Reporting</h2>
 <p>To organize all the data profiling statistics into a report, you may use the <code><a href="../reference/create_report.html">create_report()</a></code> function. It will run most of the EDA functions and output a html file.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data)</code></pre></div>
 <p>To maximize the usage of this function, always supply a response variable (if applicable) to automate various bivariate analyses. For example,</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data, <span class="dt">y =</span> <span class="st">"arr_delay"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data, <span class="dt">y =</span> <span class="st">"arr_delay"</span>)</code></pre></div>
 <p>You may also customize each individual section by passing their corresponding arguments as a list. They will later be passed to <code>do.call</code> to be invoked. The default config file is listed below. Simply copy and edit as necessary.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co">## Customize report configuration</span></a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">config &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb35-3" data-line-number="3">    <span class="st">"introduce"</span> =<span class="st"> </span><span class="kw">list</span>(),</a>
-<a class="sourceLine" id="cb35-4" data-line-number="4">    <span class="st">"plot_str"</span> =<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb35-5" data-line-number="5">        <span class="st">"type"</span> =<span class="st"> "diagonal"</span>,</a>
-<a class="sourceLine" id="cb35-6" data-line-number="6">        <span class="st">"fontSize"</span> =<span class="st"> </span><span class="dv">35</span>,</a>
-<a class="sourceLine" id="cb35-7" data-line-number="7">        <span class="st">"width"</span> =<span class="st"> </span><span class="dv">1000</span>,</a>
-<a class="sourceLine" id="cb35-8" data-line-number="8">        <span class="st">"margin"</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">"left"</span> =<span class="st"> </span><span class="dv">350</span>, <span class="st">"right"</span> =<span class="st"> </span><span class="dv">250</span>)</a>
-<a class="sourceLine" id="cb35-9" data-line-number="9">    ),</a>
-<a class="sourceLine" id="cb35-10" data-line-number="10">    <span class="st">"plot_missing"</span> =<span class="st"> </span><span class="kw">list</span>(),</a>
-<a class="sourceLine" id="cb35-11" data-line-number="11">    <span class="st">"plot_histogram"</span> =<span class="st"> </span><span class="kw">list</span>(),</a>
-<a class="sourceLine" id="cb35-12" data-line-number="12">    <span class="st">"plot_qq"</span> =<span class="st"> </span><span class="kw">list</span>(<span class="dt">sampled_rows =</span> 1000L),</a>
-<a class="sourceLine" id="cb35-13" data-line-number="13">    <span class="st">"plot_bar"</span> =<span class="st"> </span><span class="kw">list</span>(),</a>
-<a class="sourceLine" id="cb35-14" data-line-number="14">    <span class="st">"plot_correlation"</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">"cor_args"</span> =<span class="st"> </span><span class="kw">list</span>(<span class="st">"use"</span> =<span class="st"> "pairwise.complete.obs"</span>)),</a>
-<a class="sourceLine" id="cb35-15" data-line-number="15">    <span class="st">"plot_prcomp"</span> =<span class="st"> </span><span class="kw">list</span>(),</a>
-<a class="sourceLine" id="cb35-16" data-line-number="16">    <span class="st">"plot_boxplot"</span> =<span class="st"> </span><span class="kw">list</span>(),</a>
-<a class="sourceLine" id="cb35-17" data-line-number="17">    <span class="st">"plot_scatterplot"</span> =<span class="st"> </span><span class="kw">list</span>(<span class="dt">sampled_rows =</span> 1000L)</a>
-<a class="sourceLine" id="cb35-18" data-line-number="18">)</a>
-<a class="sourceLine" id="cb35-19" data-line-number="19"><span class="co">## Create final report</span></a>
-<a class="sourceLine" id="cb35-20" data-line-number="20"><span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data, <span class="dt">y =</span> <span class="st">"arr_delay"</span>, <span class="dt">config =</span> config)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Customize report configuration
+config &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(
+    <span class="st">"introduce"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
+    <span class="st">"plot_intro"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
+    <span class="st">"plot_str"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(
+        <span class="st">"type"</span> =<span class="st"> "diagonal"</span>,
+        <span class="st">"fontSize"</span> =<span class="st"> </span><span class="dv">35</span>,
+        <span class="st">"width"</span> =<span class="st"> </span><span class="dv">1000</span>,
+        <span class="st">"margin"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"left"</span> =<span class="st"> </span><span class="dv">350</span>, <span class="st">"right"</span> =<span class="st"> </span><span class="dv">250</span>)
+    ),
+    <span class="st">"plot_missing"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
+    <span class="st">"plot_histogram"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
+    <span class="st">"plot_qq"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">sampled_rows =</span> 1000L),
+    <span class="st">"plot_bar"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
+    <span class="st">"plot_correlation"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"cor_args"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"use"</span> =<span class="st"> "pairwise.complete.obs"</span>)),
+    <span class="st">"plot_prcomp"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
+    <span class="st">"plot_boxplot"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
+    <span class="st">"plot_scatterplot"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">sampled_rows =</span> 1000L)
+)
+## Create final report
+<span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data, <span class="dt">y =</span> <span class="st">"arr_delay"</span>, <span class="dt">config =</span> config)</code></pre></div>
 </div>
   </div>
 
@@ -484,9 +484,8 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
-
       </footer>
 </div>
 
