@@ -3,6 +3,7 @@
 #' Plot histogram for each continuous feature
 #' @param data input data
 #' @param geom_histogram_args a list of other arguments to \link{geom_histogram}
+#' @param binary_as_factor treat binary as categorical? Default is \code{TRUE}.
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
@@ -24,15 +25,16 @@
 #' data <- data.frame(replicate(16L, rnorm(50)))
 #' plot_histogram(data)
 
-plot_histogram <- function(data, geom_histogram_args = list("bins" = 30L), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
+plot_histogram <- function(data, geom_histogram_args = list("bins" = 30L), binary_as_factor = TRUE, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	variable <- value <- NULL
 	## Check if input is data.table
 	if (!is.data.table(data)) data <- data.table(data)
 	## Stop if no continuous features
-	if (split_columns(data)$num_continuous == 0) stop("No Continuous Features")
+	split_data <- split_columns(data, binary_as_factor = binary_as_factor)
+	if (split_data$num_continuous == 0) stop("No continuous features found!")
 	## Get and reshape continuous features
-	continuous <- split_columns(data)$continuous
+	continuous <- split_data$continuous
 	feature_names <- names(continuous)
 	dt <- suppressWarnings(melt.data.table(continuous, measure.vars = feature_names, variable.factor = FALSE))
 	## Calculate number of pages

@@ -27,3 +27,11 @@ test_that("test return object", {
 	expect_equal(names(density_list2), c("page_1", "page_2", "page_3", "page_4"))
 	expect_true(all(vapply(density_list2, is.ggplot, TRUE)))
 })
+
+test_that("test binary categories and error messages", {
+  df <- sample.int(n = 2L, size = 26L, replace = TRUE)
+  expect_silent(plot_histogram(sample.int(n = 2L, size = 26L, replace = TRUE), binary_as_factor = FALSE))
+  expect_error(plot_histogram(sample.int(n = 2L, size = 26L, replace = TRUE)))
+  expect_silent(plot_density(sample.int(n = 2L, size = 26L, replace = TRUE), binary_as_factor = FALSE))
+  expect_error(plot_density(sample.int(n = 2L, size = 26L, replace = TRUE)))
+})

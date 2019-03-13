@@ -35,9 +35,10 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, binary_as
   ## Check if input is data.table
   if (!is.data.table(data)) data <- data.table(data)
   ## Stop if no discrete features
-  if (split_columns(data)$num_discrete == 0) stop("No discrete features found!")
+  split_data <- split_columns(data, binary_as_factor = binary_as_factor)
+  if (split_data$num_discrete == 0) stop("No discrete features found!")
   ## Get discrete features
-  discrete <- split_columns(data, binary_as_factor = binary_as_factor)$discrete
+  discrete <- split_data$discrete
   ## Drop features with categories greater than `maxcat`
   ind <- .ignoreCat(discrete, maxcat = maxcat)
   if (length(ind)) {
@@ -73,7 +74,7 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, binary_as
       if (order_bar) {
         base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = reorder(value, frequency), y = frequency))
       } else {
-        base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = value, y = "frequency"))
+        base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = value, y = frequency))
       }
       base_plot +
         geom_bar(stat = "identity") +

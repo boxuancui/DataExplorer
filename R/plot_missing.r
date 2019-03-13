@@ -14,7 +14,13 @@
 #' @seealso \link{profile_missing}
 #' @examples
 #' plot_missing(airquality)
+#' 
+#' ## Customize band
 #' plot_missing(airquality, group = list("B1" = 0, "B2" = 0.06, "B3" = 1))
+#' 
+#' ## Shrink geom_label size
+#' library(ggplot2)
+#' plot_missing(airquality, geom_label_args = list("size" = 2, "label.padding" = unit(0.1, "lines")))
 
 plot_missing <- function(data, group = list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1), geom_label_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list("legend.position" = c("bottom"))) {
   ## Declare variable first to pass R CMD check

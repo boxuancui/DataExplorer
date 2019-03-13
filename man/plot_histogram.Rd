@@ -5,13 +5,15 @@
 \title{Plot histogram}
 \usage{
 plot_histogram(data, geom_histogram_args = list(bins = 30L),
-  title = NULL, ggtheme = theme_gray(), theme_config = list(),
-  nrow = 4L, ncol = 4L, parallel = FALSE)
+  binary_as_factor = TRUE, title = NULL, ggtheme = theme_gray(),
+  theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
 
 \item{geom_histogram_args}{a list of other arguments to \link{geom_histogram}}
+
+\item{binary_as_factor}{treat binary as categorical? Default is \code{TRUE}.}
 
 \item{title}{plot title}
 
