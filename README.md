@@ -116,6 +116,10 @@ df <- data.frame("a" = rnorm(260), "b" = rep(letters, 10))
 df[sample.int(260, 50), ] <- NA
 set_missing(df, list(0L, "unknown"))
 
+## Update columns
+update_columns(airquality, c("Month", "Day"), as.factor)
+update_columns(airquality, 1L, function(x) x^2)
+
 ## Drop columns
 drop_columns(diamonds, 8:10)
 drop_columns(diamonds, "clarity")

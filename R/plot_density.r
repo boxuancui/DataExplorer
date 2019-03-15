@@ -2,8 +2,8 @@
 #'
 #' Plot density estimates for each continuous feature
 #' @param data input data
-#' @param geom_density_args a list of other arguments to \link{geom_density}
 #' @param binary_as_factor treat binary as categorical? Default is \code{TRUE}.
+#' @param geom_density_args a list of other arguments to \link{geom_density}
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
@@ -28,7 +28,7 @@
 #' # Add color to density area
 #' plot_density(data, geom_density_args = list("fill" = "black", "alpha" = 0.6))
 
-plot_density <- function(data, geom_density_args = list(), binary_as_factor = TRUE, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
+plot_density <- function(data, binary_as_factor = TRUE, geom_density_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	variable <- value <- NULL
 	## Check if input is data.table

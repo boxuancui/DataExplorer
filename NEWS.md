@@ -1,8 +1,6 @@
 # DataExplorer 0.7.1.9000
-## Bug Fixes
-* [#88](https://github.com/boxuancui/DataExplorer/issues/88): Added `plot_intro` to report config.
-* [#90](https://github.com/boxuancui/DataExplorer/issues/90): Added first plot in `plot_prcomp` to output and `page_0`.
-* [#94](https://github.com/boxuancui/DataExplorer/issues/94): Fixed typo for PCA.
+## New Features
+* [#92](https://github.com/boxuancui/DataExplorer/issues/92): Added `update_columns` to transform any selected columns.
 
 ## Enhancements
 * [#89](https://github.com/boxuancui/DataExplorer/issues/89): Added option to customize `geom_text` and `geom_label` arguments.
@@ -11,7 +9,13 @@
 * [#98](https://github.com/boxuancui/DataExplorer/issues/98): Added band customization to `plot_missing`.
 * [#100](https://github.com/boxuancui/DataExplorer/issues/100): Switched `geom_text` to `geom_label`.
 * [#103](https://github.com/boxuancui/DataExplorer/issues/103): Report title can now be customized in `create_report`.
-* [#108](https://github.com/boxuancui/DataExplorer/issues/108): Added option to treat binary features as discrete in `plot_bar`, `plot_histogram` and `plot_density`.
+* [#108](https://github.com/boxuancui/DataExplorer/issues/108): Added option to treat binary features as discrete in `plot_bar`, `plot_histogram`, `plot_density` and `plot_boxplot`.
+* Updated d3.min.js to v5.9.2.
+
+## Bug Fixes
+* [#88](https://github.com/boxuancui/DataExplorer/issues/88): Added `plot_intro` to report config.
+* [#90](https://github.com/boxuancui/DataExplorer/issues/90): Added first plot in `plot_prcomp` to output and `page_0`.
+* [#94](https://github.com/boxuancui/DataExplorer/issues/94): Fixed typo for PCA.
 
 # DataExplorer 0.7.1
 ## Enhancements

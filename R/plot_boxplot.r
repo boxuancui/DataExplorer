@@ -3,6 +3,7 @@
 #' This function creates boxplot for each continuous feature based on a selected feature.
 #' @param data input data
 #' @param by feature name to be broken down by. If selecting a continuous feature, boxplot will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature.
+#' @param binary_as_factor treat binary as categorical? Default is \code{TRUE}.
 #' @param geom_boxplot_args a list of other arguments to \link{geom_boxplot}
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
@@ -20,13 +21,13 @@
 #' plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
 #' plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))
 
-plot_boxplot <- function(data, by, geom_boxplot_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 4L, parallel = FALSE) {
+plot_boxplot <- function(data, by, binary_as_factor = TRUE, geom_boxplot_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 4L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	variable <- by_f <- value <- NULL
 	## Check if input is data.table
 	if (!is.data.table(data)) data <- data.table(data)
 	## Stop if no continuous features
-	split_obj <- split_columns(data)
+	split_obj <- split_columns(data, binary_as_factor = binary_as_factor)
 	if (split_obj$num_continuous == 0) stop("No Continuous Features!")
 	## Get continuous features
 	continuous <- split_obj$continuous

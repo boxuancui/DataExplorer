@@ -2,8 +2,8 @@
 #'
 #' Plot histogram for each continuous feature
 #' @param data input data
-#' @param geom_histogram_args a list of other arguments to \link{geom_histogram}
 #' @param binary_as_factor treat binary as categorical? Default is \code{TRUE}.
+#' @param geom_histogram_args a list of other arguments to \link{geom_histogram}
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
@@ -25,7 +25,7 @@
 #' data <- data.frame(replicate(16L, rnorm(50)))
 #' plot_histogram(data)
 
-plot_histogram <- function(data, geom_histogram_args = list("bins" = 30L), binary_as_factor = TRUE, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
+plot_histogram <- function(data, binary_as_factor = TRUE, geom_histogram_args = list("bins" = 30L), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	variable <- value <- NULL
 	## Check if input is data.table
