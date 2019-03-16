@@ -225,6 +225,10 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocument
 df[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample.int</a></span>(<span class="dv">260</span>, <span class="dv">50</span>), ] &lt;-<span class="st"> </span><span class="ot">NA</span>
 <span class="kw"><a href="reference/set_missing.html">set_missing</a></span>(df, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(0L, <span class="st">"unknown"</span>))
 
+## Update columns
+<span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Month"</span>, <span class="st">"Day"</span>), as.factor)
+<span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, 1L, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)
+
 ## Drop columns
 <span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="dv">8</span><span class="op">:</span><span class="dv">10</span>)
 <span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="st">"clarity"</span>)</code></pre></div>

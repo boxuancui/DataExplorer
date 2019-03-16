@@ -1,8 +1,9 @@
-# DataExplorer 0.7.1.9000
+# DataExplorer 0.8.0
 ## New Features
 * [#92](https://github.com/boxuancui/DataExplorer/issues/92): Added `update_columns` to transform any selected columns.
 
 ## Enhancements
+* [#87](https://github.com/boxuancui/DataExplorer/issues/87): Added `configure_report` function to customize report content.
 * [#89](https://github.com/boxuancui/DataExplorer/issues/89): Added option to customize `geom_text` and `geom_label` arguments.
 * [#91](https://github.com/boxuancui/DataExplorer/issues/91): `create_report` now displays full report directory after completion.
 * [#95](https://github.com/boxuancui/DataExplorer/issues/95): Added better exception handling for `plot_bar`.

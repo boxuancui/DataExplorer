@@ -22,8 +22,8 @@ set.seed(1)
 
 opts_chunk$set(
 	collapse = TRUE,
-	fig.width = 6,
-	fig.height = 6,
+	fig.width = 8,
+	fig.height = 8,
 	fig.align = "center",
 	warning = FALSE,
 	screenshot.force = FALSE
@@ -122,8 +122,12 @@ Missing values are definitely creating problems. Let's take a look at the missin
 ### Missing values
 Real-world data is messy, and you can simply use `plot_missing` function to visualize missing profile for each feature.
 
-```{r eda-plot-missing}
+```{r eda-plot-missing-template, eval=FALSE}
 plot_missing(final_data)
+```
+
+```{r eda-plot-missing, echo=FALSE}
+plot_missing(final_data, geom_label_args = list(size = 2, label.padding = unit(0.1, "lines")))
 ```
 
 From the chart, **speed** variable is mostly missing, and probably not informative. Looks like we have found the culprit for the 0.3% complete rows. Let's drop it:

@@ -1,9 +1,4 @@
 ---
-output:
-  html_document: 
-    theme: cerulean
-    toc: yes
-    toc_depth: 6
 params:
   data: data
   report_config: report_config
