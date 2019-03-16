@@ -132,9 +132,10 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_histogram</span>(<span class='no'>data</span>, <span class='kw'>geom_histogram_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30L</span>),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='fu'>theme_gray</span>(), <span class='kw'>theme_config</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>4L</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4L</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_histogram</span>(<span class='no'>data</span>, <span class='kw'>binary_as_factor</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>geom_histogram_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>bins</span> <span class='kw'>=</span> <span class='fl'>30L</span>), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='fu'>theme_gray</span>(), <span class='kw'>theme_config</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>4L</span>,
+  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4L</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,6 +143,10 @@
     <tr>
       <th>data</th>
       <td><p>input data</p></td>
+    </tr>
+    <tr>
+      <th>binary_as_factor</th>
+      <td><p>treat binary as categorical? Default is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>geom_histogram_args</th>
