@@ -25,11 +25,7 @@ profile_missing <- function(data) {
 		"num_missing" = sapply(data, function(x) {sum(is.na(x))})
 	)
 	missing_value[, feature := factor(feature, levels = feature[order(-rank(num_missing))])]
-	missing_value[, pct_missing := num_missing / nrow(data)]
-	missing_value[pct_missing < 0.05, group := "Good"]
-	missing_value[pct_missing >= 0.05 & pct_missing < 0.4, group := "OK"]
-	missing_value[pct_missing >= 0.4 & pct_missing < 0.8, group := "Bad"]
-	missing_value[pct_missing >= 0.8, group := "Remove"][]
+	missing_value[, pct_missing := num_missing / nrow(data)][]
 	## Set data class back to original
 	if (!is_data_table) class(missing_value) <- data_class
 

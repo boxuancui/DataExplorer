@@ -2,6 +2,7 @@
 #'
 #' This function splits the input data into two \link{data.table} objects: discrete and continuous. A feature is continuous if \code{is.numeric} returns \code{TRUE}.
 #' @param data input data
+#' @param binary_as_factor treat binary as categorical? Default is \code{FALSE}.
 #' @keywords split_columns
 #' @details Features with all missing values will be dropped from the output data, but will be counted towards the column count.
 #' @details The elements in the output list will have the same class as the input data.
@@ -20,17 +21,23 @@
 #' output$num_continuous
 #' output$num_all_missing
 
-split_columns <- function(data) {
+split_columns <- function(data, binary_as_factor = FALSE) {
   ## Check if input is data.table
   is_data_table <- is.data.table(data)
   ## Detect input data class
   data_class <- class(data)
   ## Set data to data.table
   if (!is_data_table) data <- data.table(data)
-  ## Find indicies for continuous features
+  ## Find indicies for each feature type
   all_missing_ind <- which(.getAllMissing(data))
-  numeric_ind <- setdiff(which(vapply(data, is.numeric, TRUE)), all_missing_ind)
-  discrete_ind <- setdiff(which(vapply(data, function(x) !is.numeric(x), TRUE)), all_missing_ind)
+  if (binary_as_factor) {
+    binary_ind <- which(vapply(data, function(x) {length(unique(x)) == 2L}, TRUE))
+    numeric_ind <- setdiff(which(vapply(data, is.numeric, TRUE)), c(all_missing_ind, binary_ind))
+    discrete_ind <- setdiff(c(which(vapply(data, function(x) !is.numeric(x), TRUE)), binary_ind), all_missing_ind)
+  } else {
+    numeric_ind <- setdiff(which(vapply(data, is.numeric, TRUE)), all_missing_ind)
+    discrete_ind <- setdiff(which(vapply(data, function(x) !is.numeric(x), TRUE)), all_missing_ind)
+  }
   ## Count number of discrete, continuous and all-missing features
   n_all_missing <- length(all_missing_ind)
   n_continuous <- length(numeric_ind)

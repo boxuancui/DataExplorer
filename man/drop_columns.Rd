@@ -12,7 +12,7 @@ drop_columns(data, ind)
 \item{ind}{a vector of either names or column positions of the variables to be dropped.}
 }
 \description{
-Quickly drop variables by either name or column position.
+Quickly drop variables by either column names or positions.
 }
 \details{
 \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.

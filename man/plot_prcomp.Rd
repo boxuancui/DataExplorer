@@ -2,21 +2,23 @@
 % Please edit documentation in R/plot_prcomp.r
 \name{plot_prcomp}
 \alias{plot_prcomp}
-\title{Visualize principle component analysis}
+\title{Visualize principal component analysis}
 \usage{
 plot_prcomp(data, variance_cap = 0.8, maxcat = 50L,
-  prcomp_args = list(scale. = TRUE), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
-  ncol = 3L, parallel = FALSE)
+  prcomp_args = list(scale. = TRUE), geom_label_args = list(),
+  title = NULL, ggtheme = theme_gray(), theme_config = list(),
+  nrow = 3L, ncol = 3L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
 
-\item{variance_cap}{maximum cumulative explained variance allowed for all principle components. Default is 80\%.}
+\item{variance_cap}{maximum cumulative explained variance allowed for all principal components. Default is 80\%.}
 
 \item{maxcat}{maximum categories allowed for each discrete feature. The default is 50.}
 
 \item{prcomp_args}{a list of other arguments to \link{prcomp}}
+
+\item{geom_label_args}{a list of other arguments to \link{geom_label}}
 
 \item{title}{plot title starting from page 2.}
 
@@ -37,7 +39,7 @@ invisibly return the named list of ggplot objects
 Visualize output of \link{prcomp}.
 }
 \details{
-When cumulative explained variance exceeds \code{variance_cap}, remaining principle components will be ignored. Set \code{variance_cap} to 1 for all principle components.
+When cumulative explained variance exceeds \code{variance_cap}, remaining principal components will be ignored. Set \code{variance_cap} to 1 for all principal components.
 
 Discrete features containing more categories than \code{maxcat} specifies will be ignored.
 }

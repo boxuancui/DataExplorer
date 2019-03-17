@@ -4,12 +4,14 @@
 \alias{plot_density}
 \title{Plot density estimates}
 \usage{
-plot_density(data, geom_density_args = list(), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 4L,
-  ncol = 4L, parallel = FALSE)
+plot_density(data, binary_as_factor = TRUE, geom_density_args = list(),
+  title = NULL, ggtheme = theme_gray(), theme_config = list(),
+  nrow = 4L, ncol = 4L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
+
+\item{binary_as_factor}{treat binary as categorical? Default is \code{TRUE}.}
 
 \item{geom_density_args}{a list of other arguments to \link{geom_density}}
 

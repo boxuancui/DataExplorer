@@ -4,14 +4,16 @@
 \alias{plot_boxplot}
 \title{Create boxplot for continuous features}
 \usage{
-plot_boxplot(data, by, geom_boxplot_args = list(), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
-  ncol = 4L, parallel = FALSE)
+plot_boxplot(data, by, binary_as_factor = TRUE,
+  geom_boxplot_args = list(), title = NULL, ggtheme = theme_gray(),
+  theme_config = list(), nrow = 3L, ncol = 4L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
 
 \item{by}{feature name to be broken down by. If selecting a continuous feature, boxplot will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature.}
+
+\item{binary_as_factor}{treat binary as categorical? Default is \code{TRUE}.}
 
 \item{geom_boxplot_args}{a list of other arguments to \link{geom_boxplot}}
 

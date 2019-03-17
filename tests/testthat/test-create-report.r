@@ -13,10 +13,10 @@ test_that("test if quiet is working for create_report", {
 
 test_that("test overall functionalities", {
 	skip_on_cran()
-	create_report(iris, output_file = file_name, output_dir = dir_name, y = "Species", quiet = TRUE)
-	create_report(iris, output_file = file_name, output_dir = dir_name, y = "Sepal.Length", quiet = TRUE)
-	create_report(iris, output_file = file_name, output_dir = dir_name, config = list("introduce" = list(), "plot_prcomp" = list()), quiet = TRUE)
-	create_report(iris, output_file = file_name, output_dir = dir_name, y = "Species", config = list("plot_bar" = list("with" = "Sepal.Length"), "plot_prcomp" = list()), quiet = TRUE)
+	create_report(iris, output_file = file_name, output_dir = dir_name, y = "Species", report_title = "Set y as Species", quiet = TRUE)
+	create_report(iris, output_file = file_name, output_dir = dir_name, y = "Sepal.Length", report_title = "Set y as Sepal.Length", quiet = TRUE)
+	create_report(iris, output_file = file_name, output_dir = dir_name, config = list("introduce" = list(), "plot_prcomp" = list()), report_title = "`introduce` & `plot_prcomp`", quiet = TRUE)
+	create_report(iris, output_file = file_name, output_dir = dir_name, y = "Species", config = list("plot_bar" = list("with" = "Sepal.Length"), "plot_prcomp" = list()), report_title = "Set y as Species; `plot_bar` with Sepal.Length; `plot_prcomp`", quiet = TRUE)
 	if (file.exists(file_dir)) file.remove(file_dir)
 })
 

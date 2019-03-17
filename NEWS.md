@@ -1,3 +1,23 @@
+# DataExplorer 0.8.0
+## New Features
+* [#92](https://github.com/boxuancui/DataExplorer/issues/92): Added `update_columns` to transform any selected columns.
+
+## Enhancements
+* [#87](https://github.com/boxuancui/DataExplorer/issues/87): Added `configure_report` function to customize report content.
+* [#89](https://github.com/boxuancui/DataExplorer/issues/89): Added option to customize `geom_text` and `geom_label` arguments.
+* [#91](https://github.com/boxuancui/DataExplorer/issues/91): `create_report` now displays full report directory after completion.
+* [#95](https://github.com/boxuancui/DataExplorer/issues/95): Added better exception handling for `plot_bar`.
+* [#98](https://github.com/boxuancui/DataExplorer/issues/98): Added band customization to `plot_missing`.
+* [#100](https://github.com/boxuancui/DataExplorer/issues/100): Switched `geom_text` to `geom_label`.
+* [#103](https://github.com/boxuancui/DataExplorer/issues/103): Report title can now be customized in `create_report`.
+* [#108](https://github.com/boxuancui/DataExplorer/issues/108): Added option to treat binary features as discrete in `plot_bar`, `plot_histogram`, `plot_density` and `plot_boxplot`.
+* Updated d3.min.js to v5.9.2.
+
+## Bug Fixes
+* [#88](https://github.com/boxuancui/DataExplorer/issues/88): Added `plot_intro` to report config.
+* [#90](https://github.com/boxuancui/DataExplorer/issues/90): Added first plot in `plot_prcomp` to output and `page_0`.
+* [#94](https://github.com/boxuancui/DataExplorer/issues/94): Fixed typo for PCA.
+
 # DataExplorer 0.7.1
 ## Enhancements
 * [#86](https://github.com/boxuancui/DataExplorer/issues/86): Replaced `gridExtra::grid.arrange` with facets.
@@ -38,7 +58,7 @@
 
 # DataExplorer 0.6.0
 ## New Features
-* [#15](https://github.com/boxuancui/DataExplorer/issues/15): Added `plot_prcomp` to visualize principle component analysis.
+* [#15](https://github.com/boxuancui/DataExplorer/issues/15): Added `plot_prcomp` to visualize principal component analysis.
 * [#54](https://github.com/boxuancui/DataExplorer/issues/54): Extracted `dummify` from `plot_correlation` as a new function.
 * [#59](https://github.com/boxuancui/DataExplorer/issues/59): Added `introduce` for basic metadata.
 

@@ -34,8 +34,10 @@ reference:
   - '`group_category`'
   - '`set_missing`'
   - '`split_columns`'
+  - '`update_columns`'
 
 - title: Reporting
   desc: ~
   contents:
+  - '`configure_report`'
   - '`create_report`'

@@ -1,12 +1,12 @@
 #' Drop selected variables
 #'
-#' Quickly drop variables by either name or column position.
+#' Quickly drop variables by either column names or positions.
 #' @param data input data
 #' @param ind a vector of either names or column positions of the variables to be dropped.
 #' @keywords drop_columns
 #' @details \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 #' @import data.table
-#' @export drop_columns
+#' @export
 #' @examples
 #' # Load packages
 #' library(data.table)

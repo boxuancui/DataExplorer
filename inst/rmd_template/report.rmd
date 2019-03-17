@@ -1,14 +1,10 @@
 ---
-title: "Data Profiling Report"
-output:
-  html_document: 
-    theme: cerulean
-    toc: yes
-    toc_depth: 6
 params:
   data: data
   report_config: report_config
   response: response
+  set_title: report_title
+title: "`r params$set_title`"
 ---
 
 ```{r global_options, include=FALSE}
@@ -70,7 +66,7 @@ if ("introduce" %in% names(report_config)) {
 ```
 
 ```{r plot_intro}
-if ("introduce" %in% names(report_config)) {
+if ("plot_intro" %in% names(report_config)) {
 	cat("#### Percentages", fill = TRUE)
   do_call("plot_intro")
 }
@@ -204,9 +200,9 @@ if ("plot_correlation" %in% names(report_config)) {
 }
 ```
 
-```{r principle_component_analysis}
+```{r principal_component_analysis}
 if ("plot_prcomp" %in% names(report_config)) {
-	cat("### Principle Component Analysis", fill = TRUE)
+	cat("### Principal Component Analysis", fill = TRUE)
 	if (intro[["complete_rows"]] > 0) {
 		if (!is.null(response)) {
 			dt <- na.omit(data[, -response, with = FALSE])
@@ -215,7 +211,7 @@ if ("plot_prcomp" %in% names(report_config)) {
 			do_call("plot_prcomp", na_omit = TRUE)
 		}
 	} else {
-		message("Insufficient complete rows! Skipping principle component analysis.")
+		message("Insufficient complete rows! Skipping principal component analysis.")
 	}
 }
 ```
