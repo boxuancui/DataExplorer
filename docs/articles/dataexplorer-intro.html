@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataExplorer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@
       <h1>Introduction to DataExplorer</h1>
                         <h4 class="author">Boxuan Cui</h4>
             
-            <h4 class="date">2019-03-15</h4>
+            <h4 class="date">2019-03-16</h4>
       
       
       <div class="hidden name"><code>dataexplorer-intro.Rmd</code></div>
@@ -173,7 +173,7 @@ final_data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.r
 </tbody></table>
 <p>To visualize the table above (with some light analysis):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_intro.html">plot_intro</a></span>(final_data)</code></pre></div>
-<p><img src="dataexplorer-intro_files/figure-html/eda-plot-intro-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="dataexplorer-intro_files/figure-html/eda-plot-intro-1.png" width="960" style="display: block; margin: auto;"></p>
 <p>You should immediately notice some surprises:</p>
 <ol style="list-style-type: decimal">
 <li>0.3% complete rows: This means only 0.3% of all rows are not completely missing!</li>
@@ -185,7 +185,7 @@ final_data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.r
 <a href="#missing-values" class="anchor"></a>Missing values</h3>
 <p>Real-world data is messy, and you can simply use <code>plot_missing</code> function to visualize missing profile for each feature.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_missing.html">plot_missing</a></span>(final_data)</code></pre></div>
-<p><img src="dataexplorer-intro_files/figure-html/eda-plot-missing-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="dataexplorer-intro_files/figure-html/eda-plot-missing-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>From the chart, <strong>speed</strong> variable is mostly missing, and probably not informative. Looks like we have found the culprit for the 0.3% complete rows. Let’s drop it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="st">"speed"</span>)</code></pre></div>
 <p>Note: You may store the missing data profile with <code><a href="../reference/profile_missing.html">profile_missing(final_data)</a></code> for additional analysis.</p>
@@ -248,7 +248,7 @@ final_data[<span class="kw"><a href="https://www.rdocumentation.org/packages/bas
 <ul>
 <li>Set <strong>flight</strong> to categorical, since that is the flight number with no mathematical meaning:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_data<span class="op">$</span>flight &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(final_data<span class="op">$</span>flight)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/update_columns.html">update_columns</a></span>(final_data, <span class="st">"flight"</span>, as.factor)</code></pre></div>
 <ul>
 <li>Remove <strong>year_flights</strong> and <strong>tz_origin</strong> since there is only one value:</li>
 </ul>
@@ -263,7 +263,12 @@ final_data[<span class="kw"><a href="https://www.rdocumentation.org/packages/bas
 
 <span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(qq_data, <span class="dt">sampled_rows =</span> 1000L)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-qq-1.png" width="576" style="display: block; margin: auto;"></p>
-<p>You may also view the QQ plot by another feature:</p>
+<p>From the chart, <strong>air_time</strong>, <strong>distance</strong> and <strong>seats</strong> seems skewed on both tails. Let’s apply a simple log transformation and plot them again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">log_qq_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/update_columns.html">update_columns</a></span>(qq_data, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))
+
+<span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(log_qq_data[, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">sampled_rows =</span> 1000L)</code></pre></div>
+<p><img src="dataexplorer-intro_files/figure-html/eda-plot-qq-log-features-1.png" width="576" style="display: block; margin: auto;"></p>
+<p>The distribution looks better now! If necessary, you may also view the QQ plot by another feature:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qq_data &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"name_origin"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span>)]
 
 <span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(qq_data, <span class="dt">by =</span> <span class="st">"name_origin"</span>, <span class="dt">sampled_rows =</span> 1000L)</code></pre></div>
@@ -298,7 +303,7 @@ final_data[<span class="kw"><a href="https://www.rdocumentation.org/packages/bas
 <p>While you can always do <code><a href="../reference/plot_prcomp.html">plot_prcomp(na.omit(final_data))</a></code> directly, but PCA works better with cleaner data. To perform and visualize PCA on some selected features:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pca_df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"origin"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)])
 
-<span class="kw"><a href="../reference/plot_prcomp.html">plot_prcomp</a></span>(pca_df, <span class="dt">variance_cap =</span> <span class="dv">1</span>)</code></pre></div>
+<span class="kw"><a href="../reference/plot_prcomp.html">plot_prcomp</a></span>(pca_df, <span class="dt">variance_cap =</span> <span class="fl">0.9</span>, <span class="dt">nrow =</span> 2L, <span class="dt">ncol =</span> 2L)</code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-prcomp-1.png" width="768" style="display: block; margin: auto;"><img src="dataexplorer-intro_files/figure-html/eda-plot-prcomp-2.png" width="768" style="display: block; margin: auto;"></p>
 </div>
 <div id="slicing-dicing" class="section level3">
@@ -400,10 +405,10 @@ final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/se
 <a href="#dummify-data-one-hot-encoding" class="anchor"></a>Dummify data (one hot encoding)</h3>
 <p>To transform the data into binary format (so that ML algorithms can pick it up), <code>dummify</code> will do the job. The function preserves original data structure, so that only eligible discrete features will be turned into binary format.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_str.html">plot_str</a></span>(
-    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(
-        <span class="st">"original"</span> =<span class="st"> </span>final_data,
-        <span class="st">"dummified"</span> =<span class="st"> </span><span class="kw"><a href="../reference/dummify.html">dummify</a></span>(final_data, <span class="dt">maxcat =</span> 5L)
-    )
+  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(
+    <span class="st">"original"</span> =<span class="st"> </span>final_data,
+    <span class="st">"dummified"</span> =<span class="st"> </span><span class="kw"><a href="../reference/dummify.html">dummify</a></span>(final_data, <span class="dt">maxcat =</span> 5L)
+  )
 )</code></pre></div>
 <pre><code>## 11 features with more than 5 categories ignored!
 ## dest: 105 categories
@@ -418,48 +423,116 @@ final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/se
 ## name: 102 categories
 ## tzone_dest: 8 categories</code></pre>
 <div id="htmlwidget-342daf62c57fb7fd61c7" style="width:800px;height:1500px;" class="diagonalNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-342daf62c57fb7fd61c7">{"x":{"root":{"name":"root (List of 2)","children":[{"name":"original ('data.frame')","children":[{"name":"dest (chr)"},{"name":"origin (chr)"},{"name":"tailnum (chr)"},{"name":"carrier (chr)"},{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"flight (Factor w/ 3844 levels \"1\",\"2\",\"3\",\"4\",)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"time_hour (POSIXct, format)"},{"name":"name_carrier (chr)"},{"name":"year_planes (int)"},{"name":"type (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"engine (chr)"},{"name":"name_origin (chr)"},{"name":"lat_origin (num)"},{"name":"lon_origin (num)"},{"name":"alt_origin (int)"},{"name":"name (chr)"},{"name":"lat_dest (num)"},{"name":"lon_dest (num)"},{"name":"alt_dest (int)"},{"name":"tz_dest (num)"},{"name":"dst_dest (chr)"},{"name":"tzone_dest (chr)"}]},{"name":"dummified ('data.frame')","children":[{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"year_planes (int)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"lat_origin (num)"},{"name":"lon_origin (num)"},{"name":"alt_origin (int)"},{"name":"lat_dest (num)"},{"name":"lon_dest (num)"},{"name":"alt_dest (int)"},{"name":"tz_dest (num)"},{"name":"dest (chr)"},{"name":"tailnum (chr)"},{"name":"carrier (chr)"},{"name":"flight (Factor w/ 3844 levels \"1\",\"2\",\"3\",\"4\",)"},{"name":"time_hour (POSIXct, format)"},{"name":"name_carrier (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engine (chr)"},{"name":"name (chr)"},{"name":"tzone_dest (chr)"},{"name":"origin_EWR (int)"},{"name":"origin_JFK (int)"},{"name":"origin_LGA (int)"},{"name":"type_Fixed.wing.multi.engine (int)"},{"name":"type_Fixed.wing.single.engine (int)"},{"name":"type_NA (int)"},{"name":"type_Rotorcraft (int)"},{"name":"name_origin_John.F.Kennedy.Intl (int)"},{"name":"name_origin_La.Guardia (int)"},{"name":"name_origin_Newark.Liberty.Intl (int)"},{"name":"dst_dest_A (int)"},{"name":"dst_dest_N (int)"},{"name":"dst_dest_NA (int)"}]}]},"options":{"height":1500,"width":800,"fontSize":20,"fontFamily":"serif","linkColour":"#ccc","nodeColour":"#fff","nodeStroke":"steelblue","textColour":"#111","margin":{"top":null,"right":50,"bottom":null,"left":50},"opacity":0.9}},"evals":[],"jsHooks":[]}</script><p>Note the <code>maxcat</code> argument. If a discrete feature has more categories than <code>maxcat</code>, it will not be dummified. As a result, it will be returned touched.</p>
+<script type="application/json" data-for="htmlwidget-342daf62c57fb7fd61c7">{"x":{"root":{"name":"root (List of 2)","children":[{"name":"original ('data.frame')","children":[{"name":"dest (chr)"},{"name":"origin (chr)"},{"name":"tailnum (chr)"},{"name":"carrier (chr)"},{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"flight (Factor w/ 3844 levels \"1\",\"2\",\"3\",\"4\",)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"time_hour (POSIXct, format)"},{"name":"name_carrier (chr)"},{"name":"year_planes (int)"},{"name":"type (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"engine (chr)"},{"name":"name_origin (chr)"},{"name":"lat_origin (num)"},{"name":"lon_origin (num)"},{"name":"alt_origin (int)"},{"name":"name (chr)"},{"name":"lat_dest (num)"},{"name":"lon_dest (num)"},{"name":"alt_dest (int)"},{"name":"tz_dest (num)"},{"name":"dst_dest (chr)"},{"name":"tzone_dest (chr)"}]},{"name":"dummified ('data.frame')","children":[{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"year_planes (int)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"lat_origin (num)"},{"name":"lon_origin (num)"},{"name":"alt_origin (int)"},{"name":"lat_dest (num)"},{"name":"lon_dest (num)"},{"name":"alt_dest (int)"},{"name":"tz_dest (num)"},{"name":"dest (chr)"},{"name":"tailnum (chr)"},{"name":"carrier (chr)"},{"name":"flight (Factor w/ 3844 levels \"1\",\"2\",\"3\",\"4\",)"},{"name":"time_hour (POSIXct, format)"},{"name":"name_carrier (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engine (chr)"},{"name":"name (chr)"},{"name":"tzone_dest (chr)"},{"name":"origin_EWR (int)"},{"name":"origin_JFK (int)"},{"name":"origin_LGA (int)"},{"name":"type_Fixed.wing.multi.engine (int)"},{"name":"type_Fixed.wing.single.engine (int)"},{"name":"type_NA (int)"},{"name":"type_Rotorcraft (int)"},{"name":"name_origin_John.F.Kennedy.Intl (int)"},{"name":"name_origin_La.Guardia (int)"},{"name":"name_origin_Newark.Liberty.Intl (int)"},{"name":"dst_dest_A (int)"},{"name":"dst_dest_N (int)"},{"name":"dst_dest_NA (int)"}]}]},"options":{"height":1500,"width":800,"fontSize":20,"fontFamily":"serif","linkColour":"#ccc","nodeColour":"#fff","nodeStroke":"steelblue","textColour":"#111","margin":{"top":null,"right":50,"bottom":null,"left":50},"opacity":0.9}},"evals":[],"jsHooks":[]}</script><p>Note the <code>maxcat</code> argument. If a discrete feature has more categories than <code>maxcat</code>, it will not be dummified. As a result, it will be returned untouched.</p>
 </div>
 <div id="drop-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#drop-features" class="anchor"></a>Drop features</h3>
 <p>After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like <strong>dst_dest</strong> has mostly one value, and it doesn’t provide any valuable information. You can use <code>drop_columns</code> to quickly drop features. The function takes either names or column indices.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/identical">identical</a></span>(
-    <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"dst_dest"</span>, <span class="st">"tzone_dest"</span>)),
-    <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">36</span>, <span class="dv">37</span>))
+  <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"dst_dest"</span>, <span class="st">"tzone_dest"</span>)),
+  <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">36</span>, <span class="dv">37</span>))
 )
 ## [1] TRUE</code></pre></div>
+</div>
+<div id="update-features" class="section level3">
+<h3 class="hasAnchor">
+<a href="#update-features" class="anchor"></a>Update features</h3>
+<p>To quickly update many features with the same treatment, you may use <code>update_columns</code>. A very common use case is to set features to a different type, e.g., continuous to discrete. To quickly set all time related features to discrete:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">temporal_features &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"tz_dest"</span>)
+final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/update_columns.html">update_columns</a></span>(final_data, temporal_features, as.factor)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"tz_dest"</span>)])
+## 'data.frame':    336776 obs. of  5 variables:
+##  $ month  : Factor w/ 12 levels "1","2","3","4",..: 5 10 12 5 12 8 7 7 5 8 ...
+##  $ day    : Factor w/ 31 levels "1","2","3","4",..: 14 29 19 30 7 25 12 1 15 26 ...
+##  $ hour   : Factor w/ 20 levels "1","5","6","7",..: 17 17 17 17 17 17 17 17 17 17 ...
+##  $ minute : Factor w/ 60 levels "0","1","2","3",..: 2 1 2 2 2 8 8 8 2 8 ...
+##  $ tz_dest: Factor w/ 6 levels "-10","-9","-8",..: 4 4 4 4 4 4 4 4 4 4 ...</code></pre></div>
+<p>You may also use this function to transform selected features with a customized function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bin_seat &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cut">cut</a></span>(x, <span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(0L, 50L, 100L, 150L, 200L, 500L))
+transformed_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/update_columns.html">update_columns</a></span>(final_data, <span class="st">"seats"</span>, bin_seat)
+
+<span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(transformed_data<span class="op">$</span>seats)</code></pre></div>
+<p><img src="dataexplorer-intro_files/figure-html/update-feature-transformation-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="data-reporting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-reporting" class="anchor"></a>Data Reporting</h2>
-<p>To organize all the data profiling statistics into a report, you may use the <code><a href="../reference/create_report.html">create_report()</a></code> function. It will run most of the EDA functions and output a html file.</p>
+<p>To organize all the data profiling statistics into a report, you may use the <code>create_report</code> function. It will run most of the EDA functions and output a html file.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data)</code></pre></div>
 <p>To maximize the usage of this function, always supply a response variable (if applicable) to automate various bivariate analyses. For example,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data, <span class="dt">y =</span> <span class="st">"arr_delay"</span>)</code></pre></div>
-<p>You may also customize each individual section by passing their corresponding arguments as a list. They will later be passed to <code>do.call</code> to be invoked. The default config file is listed below. Simply copy and edit as necessary.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Customize report configuration
-config &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(
-    <span class="st">"introduce"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
-    <span class="st">"plot_intro"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
-    <span class="st">"plot_str"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(
-        <span class="st">"type"</span> =<span class="st"> "diagonal"</span>,
-        <span class="st">"fontSize"</span> =<span class="st"> </span><span class="dv">35</span>,
-        <span class="st">"width"</span> =<span class="st"> </span><span class="dv">1000</span>,
-        <span class="st">"margin"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"left"</span> =<span class="st"> </span><span class="dv">350</span>, <span class="st">"right"</span> =<span class="st"> </span><span class="dv">250</span>)
-    ),
-    <span class="st">"plot_missing"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
-    <span class="st">"plot_histogram"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
-    <span class="st">"plot_qq"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">sampled_rows =</span> 1000L),
-    <span class="st">"plot_bar"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
-    <span class="st">"plot_correlation"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"cor_args"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"use"</span> =<span class="st"> "pairwise.complete.obs"</span>)),
-    <span class="st">"plot_prcomp"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
-    <span class="st">"plot_boxplot"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),
-    <span class="st">"plot_scatterplot"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">sampled_rows =</span> 1000L)
+<p>You may also customize each individual section using <code>configure_report</code> function. It returns all specified arguments in a list, and then will be passed to <code>do.call</code> to be invoked. There are 3 types of arguments in this function:</p>
+<ol style="list-style-type: decimal">
+<li>switches (<code>add_*</code>): turn on/off a section</li>
+<li>arguments (<code>*_args</code>): customize each section</li>
+<li>global settings (<code>global_*</code>): global theme settings</li>
+</ol>
+<p>To turn off a few sections and set a global theme:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/configure_report.html">configure_report</a></span>(
+  <span class="dt">add_plot_str =</span> <span class="ot">FALSE</span>,
+  <span class="dt">add_plot_qq =</span> <span class="ot">FALSE</span>,
+  <span class="dt">add_plot_prcomp =</span> <span class="ot">FALSE</span>,
+  <span class="dt">add_plot_boxplot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">add_plot_scatterplot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">global_ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substitute">quote</a></span>(<span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>))
 )
-## Create final report
-<span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data, <span class="dt">y =</span> <span class="st">"arr_delay"</span>, <span class="dt">config =</span> config)</code></pre></div>
+## $introduce
+## list()
+## 
+## $plot_intro
+## $plot_intro$ggtheme
+## theme_minimal(base_size = 14)
+## 
+## $plot_intro$theme_config
+## list()
+## 
+## 
+## $plot_missing
+## $plot_missing$ggtheme
+## theme_minimal(base_size = 14)
+## 
+## $plot_missing$theme_config
+## list()
+## 
+## 
+## $plot_histogram
+## $plot_histogram$ggtheme
+## theme_minimal(base_size = 14)
+## 
+## $plot_histogram$theme_config
+## list()
+## 
+## 
+## $plot_bar
+## $plot_bar$ggtheme
+## theme_minimal(base_size = 14)
+## 
+## $plot_bar$theme_config
+## list()
+## 
+## 
+## $plot_correlation
+## $plot_correlation$ggtheme
+## theme_minimal(base_size = 14)
+## 
+## $plot_correlation$theme_config
+## list()
+## 
+## $plot_correlation$cor_args
+## $plot_correlation$cor_args$use
+## [1] "pairwise.complete.obs"</code></pre></div>
+<p>The output can be passed directly to <code>config</code> argument in <code>create_repot</code>, e.g.,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">config &lt;-<span class="st"> </span><span class="kw"><a href="../reference/configure_report.html">configure_report</a></span>(
+  <span class="dt">add_plot_str =</span> <span class="ot">FALSE</span>,
+  <span class="dt">add_plot_qq =</span> <span class="ot">FALSE</span>,
+  <span class="dt">add_plot_prcomp =</span> <span class="ot">FALSE</span>,
+  <span class="dt">add_plot_boxplot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">add_plot_scatterplot =</span> <span class="ot">FALSE</span>,
+  <span class="dt">global_ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substitute">quote</a></span>(<span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>))
+)
+<span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data, <span class="dt">config =</span> config)</code></pre></div>
 </div>
   </div>
 

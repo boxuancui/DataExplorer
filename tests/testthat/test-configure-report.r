@@ -48,3 +48,16 @@ test_that("test global settings", {
     expect_identical(config[[x]], list())
   }
 })
+
+test_that("test local theme overwrite", {
+  config <- configure_report(
+    plot_intro_args = list(ggtheme = quote(theme_minimal())),
+    plot_missing_args = list(ggtheme = quote(theme_minimal())),
+    global_ggtheme = quote(theme_light())
+  )
+  expect_identical(config$plot_intro$ggtheme, quote(theme_minimal()))
+  expect_identical(config$plot_missing$ggtheme, quote(theme_minimal()))
+  for (x in c("plot_histogram", "plot_qq", "plot_bar", "plot_correlation", "plot_prcomp", "plot_boxplot", "plot_scatterplot")) {
+    expect_identical(config[[x]]$ggtheme, quote(theme_light()))
+  }
+})

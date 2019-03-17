@@ -2,7 +2,10 @@
 title: "Introduction to DataExplorer"
 author: "Boxuan Cui"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: TRUE
+    toc_depth: 6
 vignette: >
   %\VignetteIndexEntry{Introduction to DataExplorer}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,12 +24,12 @@ library(networkD3)
 set.seed(1)
 
 opts_chunk$set(
-	collapse = TRUE,
-	fig.width = 8,
-	fig.height = 8,
-	fig.align = "center",
-	warning = FALSE,
-	screenshot.force = FALSE
+collapse = TRUE,
+fig.width = 6,
+fig.height = 6,
+fig.align = "center",
+warning = FALSE,
+screenshot.force = FALSE
 )
 ```
 
@@ -69,14 +72,14 @@ plot_str(data_list)
 ```{r plot-str-run, echo=FALSE}
 data_list <- list(airlines, airports, flights, planes, weather)
 diagonalNetwork(
-	plot_str(data_list, print_network = FALSE),
-	width = 800,
-	height = 800,
-	fontSize = 20,
-	margin = list(
-		"left" = 50,
-		"right" = 50
-	)
+  plot_str(data_list, print_network = FALSE),
+  width = 800,
+  height = 800,
+  fontSize = 20,
+  margin = list(
+    "left" = 50,
+    "right" = 50
+  )
 )
 ```
 
@@ -108,7 +111,7 @@ kable(t(introduce(final_data)), row.names = TRUE, col.names = "", format.args = 
 
 To visualize the table above (with some light analysis):
 
-```{r eda-plot-intro}
+```{r eda-plot-intro, fig.width=10, fig.height=8}
 plot_intro(final_data)
 ```
 
@@ -126,8 +129,8 @@ Real-world data is messy, and you can simply use `plot_missing` function to visu
 plot_missing(final_data)
 ```
 
-```{r eda-plot-missing, echo=FALSE}
-plot_missing(final_data, geom_label_args = list(size = 2, label.padding = unit(0.1, "lines")))
+```{r eda-plot-missing, echo=FALSE, fig.width=8, fig.height=8}
+plot_missing(final_data, geom_label_args = list(size = 3, label.padding = unit(0.1, "lines")))
 ```
 
 From the chart, **speed** variable is mostly missing, and probably not informative. Looks like we have found the culprit for the 0.3% complete rows. Let's drop it:
@@ -201,7 +204,7 @@ For the purpose of this vignette, I will not go deep into the analytical tasks. 
 
 * Set **flight** to categorical, since that is the flight number with no mathematical meaning:
 ```{r eda-update-flight}
-final_data$flight <- as.factor(final_data$flight)
+final_data <- update_columns(final_data, "flight", as.factor)
 ```
 
 * Remove **year_flights** and **tz_origin** since there is only one value:
@@ -224,16 +227,36 @@ plot_qq(qq_data, sampled_rows = 1000L)
 qq_data <- final_data[, c("arr_delay", "air_time", "distance", "seats")]
 
 plot_qq(
-	qq_data,
-	sampled_rows = 1000L,
-	geom_qq_args = list("na.rm" = TRUE),
-	geom_qq_line_args = list("na.rm" = TRUE),
-	nrow = 2L,
-	ncol = 2L
+  qq_data,
+  sampled_rows = 1000L,
+  geom_qq_args = list("na.rm" = TRUE),
+  geom_qq_line_args = list("na.rm" = TRUE),
+  nrow = 2L,
+  ncol = 2L
 )
 ```
 
-You may also view the QQ plot by another feature:
+From the chart, **air_time**, **distance** and **seats** seems skewed on both tails. Let's apply a simple log transformation and plot them again.
+
+```{r eda-plot-qq-log-features-template, eval=FALSE}
+log_qq_data <- update_columns(qq_data, 2:4, function(x) log(x + 1))
+
+plot_qq(log_qq_data[, 2:4], sampled_rows = 1000L)
+```
+
+```{r eda-plot-qq-log-features, echo=FALSE}
+log_qq_data <- update_columns(qq_data, 2:4, function(x) log(x + 1))
+plot_qq(
+  log_qq_data[, 2:4],
+  sampled_rows = 1000L,
+  geom_qq_args = list("na.rm" = TRUE),
+  geom_qq_line_args = list("na.rm" = TRUE),
+  nrow = 2L,
+  ncol = 2L
+)
+```
+
+The distribution looks better now! If necessary, you may also view the QQ plot by another feature:
 
 ```{r eda-plot-qq-by-template, eval=FALSE}
 qq_data <- final_data[, c("name_origin", "arr_delay", "air_time", "distance", "seats")]
@@ -243,15 +266,14 @@ plot_qq(qq_data, by = "name_origin", sampled_rows = 1000L)
 
 ```{r eda-plot-qq-by, echo=FALSE, fig.width=8, fig.height=8}
 qq_data <- final_data[, c("name_origin", "arr_delay", "air_time", "distance", "seats")]
-
 plot_qq(
-	qq_data,
-	by = "name_origin",
-	geom_qq_args = list("na.rm" = TRUE),
-	geom_qq_line_args = list("na.rm" = TRUE),
-	sampled_rows = 1000L,
-	nrow = 2L,
-	ncol = 2L
+  qq_data,
+  by = "name_origin",
+  geom_qq_args = list("na.rm" = TRUE),
+  geom_qq_line_args = list("na.rm" = TRUE),
+  sampled_rows = 1000L,
+  nrow = 2L,
+  ncol = 2L
 )
 ```
 
@@ -275,7 +297,7 @@ While you can always do `plot_prcomp(na.omit(final_data))` directly, but PCA wor
 ```{r eda-plot-prcomp, fig.width=8, fig.height=8}
 pca_df <- na.omit(final_data[, c("origin", "dep_delay", "arr_delay", "air_time", "year_planes", "seats")])
 
-plot_prcomp(pca_df, variance_cap = 1)
+plot_prcomp(pca_df, variance_cap = 0.9, nrow = 2L, ncol = 2L)
 ```
 
 ### Slicing & dicing
@@ -369,40 +391,58 @@ To transform the data into binary format (so that ML algorithms can pick it up),
 
 ```{r fe-dummify-template, eval=FALSE}
 plot_str(
-	list(
-		"original" = final_data,
-		"dummified" = dummify(final_data, maxcat = 5L)
-	)
+  list(
+    "original" = final_data,
+    "dummified" = dummify(final_data, maxcat = 5L)
+  )
 )
 ```
 
 ```{r fe-dummify-run, echo=FALSE}
 diagonalNetwork(
-	plot_str(list("original" = final_data, "dummified" = dummify(final_data, maxcat = 5L)), print_network = FALSE),
-	width = 800,
-	height = 1500,
-	fontSize = 20,
-	margin = list(
-		"left" = 50,
-		"right" = 50
-	)
+  plot_str(list("original" = final_data, "dummified" = dummify(final_data, maxcat = 5L)), print_network = FALSE),
+  width = 800,
+  height = 1500,
+  fontSize = 20,
+  margin = list(
+    "left" = 50,
+    "right" = 50
+  )
 )
 ```
 
-Note the `maxcat` argument. If a discrete feature has more categories than `maxcat`, it will not be dummified. As a result, it will be returned touched.
+Note the `maxcat` argument. If a discrete feature has more categories than `maxcat`, it will not be dummified. As a result, it will be returned untouched.
 
 ### Drop features
 After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like **dst_dest** has mostly one value, and it doesn't provide any valuable information. You can use `drop_columns` to quickly drop features. The function takes either names or column indices.
 
 ```{r fe-drop-columns}
 identical(
-	drop_columns(final_data, c("dst_dest", "tzone_dest")),
-	drop_columns(final_data, c(36, 37))
+  drop_columns(final_data, c("dst_dest", "tzone_dest")),
+  drop_columns(final_data, c(36, 37))
 )
 ```
 
+### Update features
+To quickly update many features with the same treatment, you may use `update_columns`. A very common use case is to set features to a different type, e.g., continuous to discrete. To quickly set all time related features to discrete:
+
+```{r update-feature-type}
+temporal_features <- c("month", "day", "hour", "minute", "tz_dest")
+final_data <- update_columns(final_data, temporal_features, as.factor)
+str(final_data[, c("month", "day", "hour", "minute", "tz_dest")])
+```
+
+You may also use this function to transform selected features with a customized function:
+
+```{r update-feature-transformation}
+bin_seat <- function(x) cut(x, breaks = c(0L, 50L, 100L, 150L, 200L, 500L))
+transformed_data <- update_columns(final_data, "seats", bin_seat)
+
+plot_bar(transformed_data$seats)
+```
+
 ## Data Reporting
-To organize all the data profiling statistics into a report, you may use the `create_report()` function. It will run most of the EDA functions and output a html file.
+To organize all the data profiling statistics into a report, you may use the `create_report` function. It will run most of the EDA functions and output a html file.
 
 ```{r dr-create-report, eval=FALSE}
 create_report(final_data)
@@ -414,28 +454,35 @@ To maximize the usage of this function, always supply a response variable (if ap
 create_report(final_data, y = "arr_delay")
 ```
 
-You may also customize each individual section by passing their corresponding arguments as a list. They will later be passed to `do.call` to be invoked. The default config file is listed below. Simply copy and edit as necessary.
+You may also customize each individual section using `configure_report` function. It returns all specified arguments in a list, and then will be passed to `do.call` to be invoked. There are 3 types of arguments in this function:
+
+1. switches (`add_*`): turn on/off a section
+1. arguments (`*_args`): customize each section
+1. global settings (`global_*`): global theme settings
+
+To turn off a few sections and set a global theme:
+
+```{r dr-configure-report}
+configure_report(
+  add_plot_str = FALSE,
+  add_plot_qq = FALSE,
+  add_plot_prcomp = FALSE,
+  add_plot_boxplot = FALSE,
+  add_plot_scatterplot = FALSE,
+  global_ggtheme = quote(theme_minimal(base_size = 14))
+)
+```
+
+The output can be passed directly to `config` argument in `create_repot`, e.g.,
 
 ```{r dr-create-report-customize, eval=FALSE}
-## Customize report configuration
-config <- list(
-	"introduce" = list(),
-	"plot_intro" = list(),
-	"plot_str" = list(
-		"type" = "diagonal",
-		"fontSize" = 35,
-		"width" = 1000,
-		"margin" = list("left" = 350, "right" = 250)
-	),
-	"plot_missing" = list(),
-	"plot_histogram" = list(),
-	"plot_qq" = list(sampled_rows = 1000L),
-	"plot_bar" = list(),
-	"plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
-	"plot_prcomp" = list(),
-	"plot_boxplot" = list(),
-	"plot_scatterplot" = list(sampled_rows = 1000L)
+config <- configure_report(
+  add_plot_str = FALSE,
+  add_plot_qq = FALSE,
+  add_plot_prcomp = FALSE,
+  add_plot_boxplot = FALSE,
+  add_plot_scatterplot = FALSE,
+  global_ggtheme = quote(theme_minimal(base_size = 14))
 )
-## Create final report
-create_report(final_data, y = "arr_delay", config = config)
+create_report(final_data, config = config)
 ```
