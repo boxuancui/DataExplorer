@@ -31,7 +31,7 @@ split_columns <- function(data, binary_as_factor = FALSE) {
   ## Find indicies for each feature type
   all_missing_ind <- which(.getAllMissing(data))
   if (binary_as_factor) {
-    binary_ind <- which(vapply(data, function(x) {length(unique(x)) == 2L}, TRUE))
+    binary_ind <- which(vapply(data, function(x) {length(setdiff(unique(x), NA)) <= 2L}, TRUE))
     numeric_ind <- setdiff(which(vapply(data, is.numeric, TRUE)), c(all_missing_ind, binary_ind))
     discrete_ind <- setdiff(c(which(vapply(data, function(x) !is.numeric(x), TRUE)), binary_ind), all_missing_ind)
   } else {
