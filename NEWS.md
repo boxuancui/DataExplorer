@@ -1,3 +1,7 @@
+# DataExplorer 0.9.0
+## Bug Fixes
+* [#121](https://github.com/boxuancui/DataExplorer/issues/121): Fixed missing value bug when `split_columns(..., binary_as_factor = TRUE)`.
+
 # DataExplorer 0.8.0
 ## New Features
 * [#92](https://github.com/boxuancui/DataExplorer/issues/92): Added `update_columns` to transform any selected columns.
