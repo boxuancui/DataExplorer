@@ -135,7 +135,7 @@
     <pre class="usage"><span class='fu'>plot_missing</span>(<span class='no'>data</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>Good</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>OK</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>Bad</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>Remove</span>
   <span class='kw'>=</span> <span class='fl'>1</span>), <span class='kw'>geom_label_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='fu'>theme_gray</span>(), <span class='kw'>theme_config</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>legend.position</span> <span class='kw'>=</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"bottom"</span>)))</pre>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"bottom"</span>)), <span class='kw'>ignore_zeroes</span> <span class='kw'>=</span> <span class='kw'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,6 +163,10 @@
     <tr>
       <th>theme_config</th>
       <td><p>a list of configurations to be passed to theme.</p></td>
+    </tr>
+    <tr>
+      <th>ignore_zeroes</th>
+      <td><p>exclude features with no missing values from the chart.</p></td>
     </tr>
     </table>
     

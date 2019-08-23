@@ -22,11 +22,13 @@
 #' library(ggplot2)
 #' plot_missing(airquality, geom_label_args = list("size" = 2, "label.padding" = unit(0.1, "lines")))
 
-plot_missing <- function(data, group = list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1), geom_label_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list("legend.position" = c("bottom"))) {
+plot_missing <- function(data, group = list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1), geom_label_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list("legend.position" = c("bottom")), ignore_zeroes) {
   ## Declare variable first to pass R CMD check
   pct_missing <- Band <- NULL
   ## Profile missing values
   missing_value <- data.table(profile_missing(data))
+  if (ignore_zeroes)
+    missing_value <- missing_value[missing_value$num_missing>0, ]
   ## Sort group based on value
   group <- group[sort.list(unlist(group))]
   invisible(lapply(seq_along(group), function(i) {

@@ -7,7 +7,7 @@
 plot_missing(data, group = list(Good = 0.05, OK = 0.4, Bad = 0.8, Remove
   = 1), geom_label_args = list(), title = NULL,
   ggtheme = theme_gray(), theme_config = list(legend.position =
-  c("bottom")))
+  c("bottom")), ignore_zeroes = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -21,6 +21,8 @@ plot_missing(data, group = list(Good = 0.05, OK = 0.4, Bad = 0.8, Remove
 \item{ggtheme}{complete ggplot2 themes. The default is \link{theme_gray}.}
 
 \item{theme_config}{a list of configurations to be passed to \link{theme}.}
+
+\item{ignore_zeroes}{exclude features with no missing values from the chart.}
 }
 \value{
 invisibly return the ggplot object
