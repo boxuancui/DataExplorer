@@ -39,7 +39,7 @@ plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = li
   ## Remove columns with zero variance
   cond <- sapply(dt, function(x) length(unique(x))==1)
   cond <- names(cond)[cond]
-  setDT(dt)[, c(cond) := NULL]
+  dt[, c(cond) := NULL]
   prcomp_args_list <- list("x" = dt, "retx" = FALSE)
   ## Analyze principal components
   pca <- tryCatch(
