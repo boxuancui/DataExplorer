@@ -42,7 +42,7 @@
 configure_report <- function(
   add_introduce = TRUE,
   add_plot_intro = TRUE,
-  add_plot_str = TRUE,
+  add_plot_str = FALSE, # turned off for now
   add_plot_missing = TRUE,
   add_plot_histogram = TRUE,
   add_plot_density = FALSE,
