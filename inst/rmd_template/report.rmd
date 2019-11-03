@@ -35,7 +35,6 @@ opts_chunk$set(
 )
 ```
 
-<script src="d3.min.js"></script>
 
 ```{r introduce}
 if ("introduce" %in% names(report_config)) {
@@ -72,6 +71,13 @@ if ("plot_intro" %in% names(report_config)) {
 }
 ```
 
+
+```{r script_structure}
+if ("plot_str" %in% names(report_config)) {
+    knitr::raw_html('<script src="d3.min.js"></script>')
+}
+```
+
 ```{r data_structure}
 if ("plot_str" %in% names(report_config)) {
   str_object <- do.call(plot_str, c(list("data" = data, "max_level" = report_config[["plot_str"]][["max_level"]], "print_network" = FALSE)))
@@ -100,7 +106,7 @@ if (any(c("plot_bar", "plot_histogram", "plot_density", "plot_qq") %in% names(re
 ```
 
 ```{r plot_histogram}
-if ("plot_histogram" %in% names(report_config)) {
+if ("plot_histogram" %in% names(report_config)) {   
   if (intro[["continuous_columns"]] > 0) {
     cat("#### Histogram", fill = TRUE)
     do_call("plot_histogram")
