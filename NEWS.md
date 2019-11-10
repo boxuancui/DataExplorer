@@ -1,5 +1,6 @@
 # DataExplorer 0.9.0
 ## Bug Fixes
+* [#116](https://github.com/boxuancui/DataExplorer/issues/116): Fixed pandoc document conversion error 99.
 * [#121](https://github.com/boxuancui/DataExplorer/issues/121): Fixed missing value bug when `split_columns(..., binary_as_factor = TRUE)`.
 
 # DataExplorer 0.8.0

@@ -35,8 +35,6 @@ opts_chunk$set(
 )
 ```
 
-<script src="d3.min.js"></script>
-
 ```{r introduce}
 if ("introduce" %in% names(report_config)) {
   memory_usage <- intro[["memory_usage"]]
