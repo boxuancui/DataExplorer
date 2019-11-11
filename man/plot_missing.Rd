@@ -5,7 +5,7 @@
 \title{Plot missing value profile}
 \usage{
 plot_missing(data, group = list(Good = 0.05, OK = 0.4, Bad = 0.8, Remove
-  = 1), geom_label_args = list(), title = NULL,
+  = 1), missing_only = FALSE, geom_label_args = list(), title = NULL,
   ggtheme = theme_gray(), theme_config = list(legend.position =
   c("bottom")))
 }
@@ -13,6 +13,8 @@ plot_missing(data, group = list(Good = 0.05, OK = 0.4, Bad = 0.8, Remove
 \item{data}{input data}
 
 \item{group}{missing profile band taking a list of group name and group upper bounds. Default is \code{list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1)}.}
+
+\item{missing_only}{plot features with missing values only? Default is \code{FALSE}.}
 
 \item{geom_label_args}{a list of other arguments to \link{geom_label}}
 
@@ -30,6 +32,7 @@ This function returns and plots frequency of missing values for each feature.
 }
 \examples{
 plot_missing(airquality)
+plot_missing(airquality, missing_only = TRUE)
 
 ## Customize band
 plot_missing(airquality, group = list("B1" = 0, "B2" = 0.06, "B3" = 1))

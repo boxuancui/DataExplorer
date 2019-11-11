@@ -47,6 +47,8 @@ Discrete features containing more categories than \code{maxcat} specifies will b
 Discrete features will be \link{dummify}-ed first before passing to \link{prcomp}.
 
 Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your input data first.
+
+Features with zero variance are dropped.
 }
 \examples{
 plot_prcomp(na.omit(airquality), nrow = 2L, ncol = 2L)

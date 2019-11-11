@@ -1,7 +1,11 @@
 # DataExplorer 0.9.0
+## Enhancements
+* [PR #127](https://github.com/boxuancui/DataExplorer/pull/127): Added option to plot columns with missing values only in `plot_missing`.
+
 ## Bug Fixes
 * [#116](https://github.com/boxuancui/DataExplorer/issues/116): Fixed pandoc document conversion error 99.
 * [#121](https://github.com/boxuancui/DataExplorer/issues/121): Fixed missing value bug when `split_columns(..., binary_as_factor = TRUE)`.
+* [PR #130](https://github.com/boxuancui/DataExplorer/pull/130): `plot_prcomp` now drops columns with zero variance.
 
 # DataExplorer 0.8.0
 ## New Features

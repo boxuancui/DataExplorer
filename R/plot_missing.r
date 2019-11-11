@@ -3,6 +3,7 @@
 #' This function returns and plots frequency of missing values for each feature.
 #' @param data input data
 #' @param group missing profile band taking a list of group name and group upper bounds. Default is \code{list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1)}.
+#' @param missing_only plot features with missing values only? Default is \code{FALSE}.
 #' @param geom_label_args a list of other arguments to \link{geom_label}
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
@@ -14,6 +15,7 @@
 #' @seealso \link{profile_missing}
 #' @examples
 #' plot_missing(airquality)
+#' plot_missing(airquality, missing_only = TRUE)
 #' 
 #' ## Customize band
 #' plot_missing(airquality, group = list("B1" = 0, "B2" = 0.06, "B3" = 1))
@@ -22,11 +24,18 @@
 #' library(ggplot2)
 #' plot_missing(airquality, geom_label_args = list("size" = 2, "label.padding" = unit(0.1, "lines")))
 
-plot_missing <- function(data, group = list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1), geom_label_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list("legend.position" = c("bottom"))) {
+plot_missing <- function(data,
+                         group = list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1),
+                         missing_only = FALSE,
+                         geom_label_args = list(),
+                         title = NULL,
+                         ggtheme = theme_gray(),
+                         theme_config = list("legend.position" = c("bottom"))) {
   ## Declare variable first to pass R CMD check
   pct_missing <- Band <- NULL
   ## Profile missing values
   missing_value <- data.table(profile_missing(data))
+  if (missing_only) missing_value <- missing_value[num_missing > 0]
   ## Sort group based on value
   group <- group[sort.list(unlist(group))]
   invisible(lapply(seq_along(group), function(i) {
