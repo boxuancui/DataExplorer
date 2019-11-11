@@ -1,5 +1,6 @@
 # DataExplorer 0.9.0
 ## Enhancements
+* [#126](https://github.com/boxuancui/DataExplorer/issues/126): Cleaned up labels in legend guide.
 * [PR #127](https://github.com/boxuancui/DataExplorer/pull/127): Added option to plot columns with missing values only in `plot_missing`.
 
 ## Bug Fixes

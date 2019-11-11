@@ -50,7 +50,8 @@ plot_missing <- function(data,
     geom_bar(stat = "identity") +
     scale_fill_discrete("Band") +
     coord_flip() +
-    xlab("Features") + ylab("Missing Rows")
+    xlab("Features") + ylab("Missing Rows") +
+    guides(fill = guide_legend(override.aes = aes(label = "")))
   geom_label_args_list <- list("mapping" = aes(label = paste0(round(100 * pct_missing, 2), "%")))
   output <- output +
     do.call("geom_label", c(geom_label_args_list, geom_label_args))
