@@ -1,12 +1,15 @@
 # DataExplorer 0.9.0
 ## Enhancements
 * [#126](https://github.com/boxuancui/DataExplorer/issues/126): Cleaned up labels in legend guide.
-* [PR #127](https://github.com/boxuancui/DataExplorer/pull/127): Added option to plot columns with missing values only in `plot_missing`.
+* [#127 (PR)](https://github.com/boxuancui/DataExplorer/pull/127): Added option to plot columns with missing values only in `plot_missing`.
+* Cleaned up code for `create_report`.
 
 ## Bug Fixes
+* [#114](https://github.com/boxuancui/DataExplorer/issues/114): Removed redundant message in `dummify`.
 * [#116](https://github.com/boxuancui/DataExplorer/issues/116): Fixed pandoc document conversion error 99.
+* [#120](https://github.com/boxuancui/DataExplorer/issues/120): Fixed type `logical` being parsed as `symbol` in `configure_report`.
 * [#121](https://github.com/boxuancui/DataExplorer/issues/121): Fixed missing value bug when `split_columns(..., binary_as_factor = TRUE)`.
-* [PR #130](https://github.com/boxuancui/DataExplorer/pull/130): `plot_prcomp` now drops columns with zero variance.
+* [#130 (PR)](https://github.com/boxuancui/DataExplorer/pull/130): `plot_prcomp` now drops columns with zero variance.
 
 # DataExplorer 0.8.0
 ## New Features

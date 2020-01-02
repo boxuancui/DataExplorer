@@ -66,7 +66,14 @@
 #' )
 #' }
 
-create_report <- function(data, output_format = html_document(toc = TRUE, toc_depth = 6, theme = "yeti"), output_file = "report.html", output_dir = getwd(), y = NULL, config = configure_report(), report_title = "Data Profiling Report", ...) {
+create_report <- function(data,
+                          output_format = html_document(toc = TRUE, toc_depth = 6, theme = "yeti"),
+                          output_file = "report.html",
+                          output_dir = getwd(),
+                          y = NULL,
+                          config = configure_report(),
+                          report_title = "Data Profiling Report",
+                          ...) {
   ## Check if input is data.table
   if (!is.data.table(data)) data <- data.table(data)
   ## Check response variable
@@ -88,7 +95,4 @@ create_report <- function(data, output_format = html_document(toc = TRUE, toc_de
   ## Open report
   report_path <- path.expand(file.path(output_dir, output_file))
   browseURL(report_path)
-  ## Print report directory
-  args <- as.list(match.call())
-  if (ifelse(is.null(args[["quiet"]]), TRUE, !args[["quiet"]])) message(paste0("\n\nReport is generated at \"", report_path, "\"."))
 }
