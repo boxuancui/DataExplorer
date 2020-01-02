@@ -149,7 +149,7 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><b>This function updates <a href='https://www.rdocumentation.org/packages/data.table/topics/data.table'>data.table</a> object directly.</b> Otherwise, output data will be returned matching input object class.</p>
+    <p><b>This function updates <a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a> object directly.</b> Otherwise, output data will be returned matching input object class.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -157,8 +157,8 @@
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>data.table</span>)
 
 <span class='co'># Generate data</span>
-<span class='no'>dt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/data.table/topics/data.table'>data.table</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/setNames'>setNames</a></span>(<span class='no'>letters</span>, <span class='no'>letters</span>), <span class='kw'>function</span>(<span class='no'>x</span>) {<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>))}))
-<span class='no'>dt2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/data.table/topics/copy'>copy</a></span>(<span class='no'>dt</span>)
+<span class='no'>dt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/setNames'>setNames</a></span>(<span class='no'>letters</span>, <span class='no'>letters</span>), <span class='kw'>function</span>(<span class='no'>x</span>) {<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/assign'>assign</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fl'>10</span>))}))
+<span class='no'>dt2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/copy.html'>copy</a></span>(<span class='no'>dt</span>)
 
 <span class='co'># Drop variables by name</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>dt</span>)</div><div class='output co'>#&gt;  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
