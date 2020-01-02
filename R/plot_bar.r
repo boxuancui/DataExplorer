@@ -29,7 +29,11 @@
 #' # Plot bar charts with `price` feature
 #' plot_bar(diamonds, with = "price")
 
-plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, binary_as_factor = TRUE, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
+plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, binary_as_factor = TRUE,
+                     title = NULL,
+                     ggtheme = theme_gray(), theme_config = list(),
+                     nrow = 3L, ncol = 3L,
+                     parallel = FALSE) {
   ## Declare variable first to pass R CMD check
   frequency <- measure <- variable <- value <- NULL
   ## Check if input is data.table

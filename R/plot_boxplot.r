@@ -21,52 +21,57 @@
 #' plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
 #' plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))
 
-plot_boxplot <- function(data, by, binary_as_factor = TRUE, geom_boxplot_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 4L, parallel = FALSE) {
-	## Declare variable first to pass R CMD check
-	variable <- by_f <- value <- NULL
-	## Check if input is data.table
-	if (!is.data.table(data)) data <- data.table(data)
-	## Stop if no continuous features
-	split_obj <- split_columns(data, binary_as_factor = binary_as_factor)
-	if (split_obj$num_continuous == 0) stop("No Continuous Features!")
-	## Get continuous features
-	continuous <- split_obj$continuous
-	## Check feature to be broken down
-	by_feature <- data[[by]]
-	if (is.null(by_feature)) stop(paste0("Feature \"", by, "\" not found!"))
-	if (is.numeric(by_feature)) {
-		dt <- suppressWarnings(melt.data.table(data.table(continuous, "by_f" = cut_interval(by_feature, 5)), id.vars = "by_f", variable.factor = FALSE))
-	} else {
-		dt <- suppressWarnings(melt.data.table(data.table(continuous, "by_f" = by_feature), id.vars = "by_f", variable.factor = FALSE))
-	}
-	dt2 <- dt[variable != by]
-	feature_names <- unique(dt2[["variable"]])
-	## Calculate number of pages
-	layout <- .getPageLayout(nrow, ncol, length(feature_names))
-	## Create list of ggplot objects
-	plot_list <- .lapply(
-		parallel = parallel,
-		X = layout,
-		FUN = function(x) {
-			ggplot(dt2[variable %in% feature_names[x]], aes(x = by_f, y = value)) +
-				do.call("geom_boxplot", geom_boxplot_args) +
-				coord_flip() +
-				xlab(by)
-		}
-	)
-	## Plot objects
-	class(plot_list) <- c("multiple", class(plot_list))
-	plotDataExplorer(
-		plot_obj = plot_list,
-		page_layout = layout,
-		title = title,
-		ggtheme = ggtheme,
-		theme_config = theme_config,
-		facet_wrap_args = list(
-			"facet" = ~ variable,
-			"nrow" = nrow,
-			"ncol" = ncol,
-			"scales" = "free_x"
-		)
-	)
+plot_boxplot <- function(data, by, binary_as_factor = TRUE,
+                         geom_boxplot_args = list(),
+                         title = NULL,
+                         ggtheme = theme_gray(), theme_config = list(),
+                         nrow = 3L, ncol = 4L,
+                         parallel = FALSE) {
+  ## Declare variable first to pass R CMD check
+  variable <- by_f <- value <- NULL
+  ## Check if input is data.table
+  if (!is.data.table(data)) data <- data.table(data)
+  ## Stop if no continuous features
+  split_obj <- split_columns(data, binary_as_factor = binary_as_factor)
+  if (split_obj$num_continuous == 0) stop("No Continuous Features!")
+  ## Get continuous features
+  continuous <- split_obj$continuous
+  ## Check feature to be broken down
+  by_feature <- data[[by]]
+  if (is.null(by_feature)) stop(paste0("Feature \"", by, "\" not found!"))
+  if (is.numeric(by_feature)) {
+    dt <- suppressWarnings(melt.data.table(data.table(continuous, "by_f" = cut_interval(by_feature, 5)), id.vars = "by_f", variable.factor = FALSE))
+  } else {
+    dt <- suppressWarnings(melt.data.table(data.table(continuous, "by_f" = by_feature), id.vars = "by_f", variable.factor = FALSE))
+  }
+  dt2 <- dt[variable != by]
+  feature_names <- unique(dt2[["variable"]])
+  ## Calculate number of pages
+  layout <- .getPageLayout(nrow, ncol, length(feature_names))
+  ## Create list of ggplot objects
+  plot_list <- .lapply(
+    parallel = parallel,
+    X = layout,
+    FUN = function(x) {
+      ggplot(dt2[variable %in% feature_names[x]], aes(x = by_f, y = value)) +
+        do.call("geom_boxplot", geom_boxplot_args) +
+        coord_flip() +
+        xlab(by)
+    }
+  )
+  ## Plot objects
+  class(plot_list) <- c("multiple", class(plot_list))
+  plotDataExplorer(
+    plot_obj = plot_list,
+    page_layout = layout,
+    title = title,
+    ggtheme = ggtheme,
+    theme_config = theme_config,
+    facet_wrap_args = list(
+      "facet" = ~ variable,
+      "nrow" = nrow,
+      "ncol" = ncol,
+      "scales" = "free_x"
+    )
+  )
 }

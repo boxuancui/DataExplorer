@@ -25,7 +25,12 @@
 #' data <- data.frame(replicate(16L, rnorm(50)))
 #' plot_histogram(data)
 
-plot_histogram <- function(data, binary_as_factor = TRUE, geom_histogram_args = list("bins" = 30L), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE) {
+plot_histogram <- function(data, binary_as_factor = TRUE,
+                           geom_histogram_args = list("bins" = 30L),
+                           title = NULL,
+                           ggtheme = theme_gray(), theme_config = list(),
+                           nrow = 4L, ncol = 4L,
+                           parallel = FALSE) {
 	## Declare variable first to pass R CMD check
 	variable <- value <- NULL
 	## Check if input is data.table

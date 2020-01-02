@@ -101,13 +101,13 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The package can be installed directly from CRAN.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"DataExplorer"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"DataExplorer"</span>)</span></code></pre></div>
 <p>However, the latest stable version (if any) could be found on <a href="https://github.com/boxuancui/DataExplorer">GitHub</a>, and installed using <code>devtools</code> package.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(devtools)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"boxuancui/DataExplorer"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(devtools)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"boxuancui/DataExplorer"</span>)</span></code></pre></div>
 <p>If you would like to install the latest <a href="https://github.com/boxuancui/DataExplorer/tree/develop">development version</a>, you may install the develop branch.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(devtools)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"boxuancui/DataExplorer"</span>, <span class="dt">ref =</span> <span class="st">"develop"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(devtools)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"boxuancui/DataExplorer"</span>, <span class="dt">ref =</span> <span class="st">"develop"</span>)</span></code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
@@ -117,18 +117,18 @@
 <h4 class="hasAnchor">
 <a href="#report" class="anchor"></a>Report</h4>
 <p>To get a report for the <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/airquality.html">airquality</a> dataset:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(DataExplorer)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="reference/create_report.html">create_report</a></span>(airquality)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(DataExplorer)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw"><a href="reference/create_report.html">create_report</a></span>(airquality)</span></code></pre></div>
 <p>To get a report for the <a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a> dataset with response variable <strong>price</strong>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="reference/create_report.html">create_report</a></span>(diamonds, <span class="dt">y =</span> <span class="st">"price"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="reference/create_report.html">create_report</a></span>(diamonds, <span class="dt">y =</span> <span class="st">"price"</span>)</span></code></pre></div>
 </div>
 <div id="visualization" class="section level4">
 <h4 class="hasAnchor">
 <a href="#visualization" class="anchor"></a>Visualization</h4>
 <p>Instead of running <code>create_report</code>, you may also run each function individually for your analysis, e.g.,</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">## View basic description for airquality data</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="reference/introduce.html">introduce</a></span>(airquality)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## View basic description for airquality data</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw"><a href="reference/introduce.html">introduce</a></span>(airquality)</span></code></pre></div>
 <table class="table table"><tbody>
 <tr class="odd">
 <td align="left">rows</td>
@@ -167,40 +167,40 @@
 <td align="right">6,376</td>
 </tr>
 </tbody></table>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co">## Plot basic description for airquality data</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw"><a href="reference/plot_intro.html">plot_intro</a></span>(airquality)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## Plot basic description for airquality data</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw"><a href="reference/plot_intro.html">plot_intro</a></span>(airquality)</span></code></pre></div>
 <p><img src="reference/figures/README-plot-intro-1.png" width="700"></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co">## View missing value distribution for airquality data</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="reference/plot_missing.html">plot_missing</a></span>(airquality)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## View missing value distribution for airquality data</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw"><a href="reference/plot_missing.html">plot_missing</a></span>(airquality)</span></code></pre></div>
 <p><img src="reference/figures/README-plot-missing-1.png" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co">## Left: frequency distribution of all discrete variables</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="reference/plot_bar.html">plot_bar</a></span>(diamonds)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">## Right: `price` distribution of all discrete variables</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw"><a href="reference/plot_bar.html">plot_bar</a></span>(diamonds, <span class="dt">with =</span> <span class="st">"price"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">## Left: frequency distribution of all discrete variables</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw"><a href="reference/plot_bar.html">plot_bar</a></span>(diamonds)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">## Right: `price` distribution of all discrete variables</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="kw"><a href="reference/plot_bar.html">plot_bar</a></span>(diamonds, <span class="dt">with =</span> <span class="st">"price"</span>)</span></code></pre></div>
 <p><img src="reference/figures/README-plot-bar-1.png" width="700"></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co">## View histogram of all continuous variables</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="reference/plot_histogram.html">plot_histogram</a></span>(diamonds)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## View histogram of all continuous variables</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw"><a href="reference/plot_histogram.html">plot_histogram</a></span>(diamonds)</span></code></pre></div>
 <p><img src="reference/figures/README-plot-histogram-1.png" width="700"></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co">## View estimated density distribution of all continuous variables</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="reference/plot_density.html">plot_density</a></span>(diamonds)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">## View estimated density distribution of all continuous variables</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw"><a href="reference/plot_density.html">plot_density</a></span>(diamonds)</span></code></pre></div>
 <p><img src="reference/figures/README-plot-density-1.png" width="700"></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">## View quantile-quantile plot of all continuous variables</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="reference/plot_qq.html">plot_qq</a></span>(diamonds)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## View quantile-quantile plot of all continuous variables</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw"><a href="reference/plot_qq.html">plot_qq</a></span>(diamonds)</span></code></pre></div>
 <p><img src="reference/figures/README-plot-qq-1.png" width="700"></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co">## View quantile-quantile plot of all continuous variables by feature `cut`</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw"><a href="reference/plot_qq.html">plot_qq</a></span>(diamonds, <span class="dt">by =</span> <span class="st">"cut"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">## View quantile-quantile plot of all continuous variables by feature `cut`</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw"><a href="reference/plot_qq.html">plot_qq</a></span>(diamonds, <span class="dt">by =</span> <span class="st">"cut"</span>)</span></code></pre></div>
 <p><img src="reference/figures/README-plot-qq-cut-1.png" width="700"></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co">## View overall correlation heatmap</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw"><a href="reference/plot_correlation.html">plot_correlation</a></span>(diamonds)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">## View overall correlation heatmap</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="kw"><a href="reference/plot_correlation.html">plot_correlation</a></span>(diamonds)</span></code></pre></div>
 <p><img src="reference/figures/README-plot_correlation-1.png" width="700"></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co">## View bivariate continuous distribution based on `cut`</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw"><a href="reference/plot_boxplot.html">plot_boxplot</a></span>(diamonds, <span class="dt">by =</span> <span class="st">"cut"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">## View bivariate continuous distribution based on `cut`</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="kw"><a href="reference/plot_boxplot.html">plot_boxplot</a></span>(diamonds, <span class="dt">by =</span> <span class="st">"cut"</span>)</span></code></pre></div>
 <p><img src="reference/figures/README-plot_boxplot-1.png" width="700"></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">## Scatterplot `price` with all other continuous features</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="reference/plot_scatterplot.html">plot_scatterplot</a></span>(<span class="kw"><a href="reference/split_columns.html">split_columns</a></span>(diamonds)<span class="op">$</span>continuous, <span class="dt">by =</span> <span class="st">"price"</span>, <span class="dt">sampled_rows =</span> 1000L)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">## Scatterplot `price` with all other continuous features</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="kw"><a href="reference/plot_scatterplot.html">plot_scatterplot</a></span>(<span class="kw"><a href="reference/split_columns.html">split_columns</a></span>(diamonds)<span class="op">$</span>continuous, <span class="dt">by =</span> <span class="st">"price"</span>, <span class="dt">sampled_rows =</span> 1000L)</span></code></pre></div>
 <p><img src="reference/figures/README-plot_scatterplot-1.png" width="700"></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co">## Visualize principal component analysis</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="reference/plot_prcomp.html">plot_prcomp</a></span>(diamonds, <span class="dt">maxcat =</span> 5L)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">## Visualize principal component analysis</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="kw"><a href="reference/plot_prcomp.html">plot_prcomp</a></span>(diamonds, <span class="dt">maxcat =</span> 5L)</span></code></pre></div>
 <pre><code>#&gt; 2 features with more than 5 categories ignored!
 #&gt; color: 7 categories
 #&gt; clarity: 8 categories</code></pre>
@@ -210,28 +210,28 @@
 <h4 class="hasAnchor">
 <a href="#feature-engineering" class="anchor"></a>Feature Engineering</h4>
 <p>To make quick updates to your data:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co">## Group bottom 20% `clarity` by frequency</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw"><a href="reference/group_category.html">group_category</a></span>(diamonds, <span class="dt">feature =</span> <span class="st">"clarity"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co">## Group bottom 20% `clarity` by `price`</span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="kw"><a href="reference/group_category.html">group_category</a></span>(diamonds, <span class="dt">feature =</span> <span class="st">"clarity"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">measure =</span> <span class="st">"price"</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="co">## Dummify diamonds dataset</span></a>
-<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="kw"><a href="reference/dummify.html">dummify</a></span>(diamonds)</a>
-<a class="sourceLine" id="cb19-9" data-line-number="9"><span class="kw"><a href="reference/dummify.html">dummify</a></span>(diamonds, <span class="dt">select =</span> <span class="st">"cut"</span>)</a>
-<a class="sourceLine" id="cb19-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb19-11" data-line-number="11"><span class="co">## Set values for missing observations</span></a>
-<a class="sourceLine" id="cb19-12" data-line-number="12">df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="st">"a"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">260</span>), <span class="st">"b"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(letters, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb19-13" data-line-number="13">df[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample.int</a></span>(<span class="dv">260</span>, <span class="dv">50</span>), ] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb19-14" data-line-number="14"><span class="kw"><a href="reference/set_missing.html">set_missing</a></span>(df, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(0L, <span class="st">"unknown"</span>))</a>
-<a class="sourceLine" id="cb19-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb19-16" data-line-number="16"><span class="co">## Update columns</span></a>
-<a class="sourceLine" id="cb19-17" data-line-number="17"><span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Month"</span>, <span class="st">"Day"</span>), as.factor)</a>
-<a class="sourceLine" id="cb19-18" data-line-number="18"><span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, 1L, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb19-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb19-20" data-line-number="20"><span class="co">## Drop columns</span></a>
-<a class="sourceLine" id="cb19-21" data-line-number="21"><span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="dv">8</span><span class="op">:</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb19-22" data-line-number="22"><span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="st">"clarity"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">## Group bottom 20% `clarity` by frequency</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw"><a href="reference/group_category.html">group_category</a></span>(diamonds, <span class="dt">feature =</span> <span class="st">"clarity"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="co">## Group bottom 20% `clarity` by `price`</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="kw"><a href="reference/group_category.html">group_category</a></span>(diamonds, <span class="dt">feature =</span> <span class="st">"clarity"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">measure =</span> <span class="st">"price"</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb19-6"><a href="#cb19-6"></a></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="co">## Dummify diamonds dataset</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a><span class="kw"><a href="reference/dummify.html">dummify</a></span>(diamonds)</span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="kw"><a href="reference/dummify.html">dummify</a></span>(diamonds, <span class="dt">select =</span> <span class="st">"cut"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10"></a></span>
+<span id="cb19-11"><a href="#cb19-11"></a><span class="co">## Set values for missing observations</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="st">"a"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">260</span>), <span class="st">"b"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(letters, <span class="dv">10</span>))</span>
+<span id="cb19-13"><a href="#cb19-13"></a>df[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample.int</a></span>(<span class="dv">260</span>, <span class="dv">50</span>), ] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a><span class="kw"><a href="reference/set_missing.html">set_missing</a></span>(df, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(0L, <span class="st">"unknown"</span>))</span>
+<span id="cb19-15"><a href="#cb19-15"></a></span>
+<span id="cb19-16"><a href="#cb19-16"></a><span class="co">## Update columns</span></span>
+<span id="cb19-17"><a href="#cb19-17"></a><span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Month"</span>, <span class="st">"Day"</span>), as.factor)</span>
+<span id="cb19-18"><a href="#cb19-18"></a><span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, 1L, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb19-19"><a href="#cb19-19"></a></span>
+<span id="cb19-20"><a href="#cb19-20"></a><span class="co">## Drop columns</span></span>
+<span id="cb19-21"><a href="#cb19-21"></a><span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="dv">8</span><span class="op">:</span><span class="dv">10</span>)</span>
+<span id="cb19-22"><a href="#cb19-22"></a><span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="st">"clarity"</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="articles" class="section level2">

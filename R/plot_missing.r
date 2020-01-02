@@ -32,7 +32,7 @@ plot_missing <- function(data,
                          ggtheme = theme_gray(),
                          theme_config = list("legend.position" = c("bottom"))) {
   ## Declare variable first to pass R CMD check
-  pct_missing <- Band <- NULL
+  num_missing <- pct_missing <- Band <- NULL
   ## Profile missing values
   missing_value <- data.table(profile_missing(data))
   if (missing_only) missing_value <- missing_value[num_missing > 0]

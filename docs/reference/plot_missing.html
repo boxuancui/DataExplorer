@@ -133,7 +133,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>plot_missing</span>(<span class='no'>data</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>Good</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>OK</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>Bad</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>Remove</span>
-  <span class='kw'>=</span> <span class='fl'>1</span>), <span class='kw'>geom_label_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>=</span> <span class='fl'>1</span>), <span class='kw'>missing_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>geom_label_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='fu'>theme_gray</span>(), <span class='kw'>theme_config</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>legend.position</span> <span class='kw'>=</span>
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"bottom"</span>)))</pre>
     
@@ -147,6 +147,10 @@
     <tr>
       <th>group</th>
       <td><p>missing profile band taking a list of group name and group upper bounds. Default is <code><a href='https://www.rdocumentation.org/packages/base/topics/list'>list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1)</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>missing_only</th>
+      <td><p>plot features with missing values only? Default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>geom_label_args</th>
@@ -176,12 +180,12 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>plot_missing</span>(<span class='no'>airquality</span>)</div><div class='img'><img src='plot_missing-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>plot_missing</span>(<span class='no'>airquality</span>)</div><div class='img'><img src='plot_missing-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plot_missing</span>(<span class='no'>airquality</span>, <span class='kw'>missing_only</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plot_missing-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## Customize band</span>
-<span class='fu'>plot_missing</span>(<span class='no'>airquality</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"B1"</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='st'>"B2"</span> <span class='kw'>=</span> <span class='fl'>0.06</span>, <span class='st'>"B3"</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='img'><img src='plot_missing-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>plot_missing</span>(<span class='no'>airquality</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"B1"</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='st'>"B2"</span> <span class='kw'>=</span> <span class='fl'>0.06</span>, <span class='st'>"B3"</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='img'><img src='plot_missing-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## Shrink geom_label size</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'>plot_missing</span>(<span class='no'>airquality</span>, <span class='kw'>geom_label_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"size"</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='st'>"label.padding"</span> <span class='kw'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/reexports.html'>unit</a></span>(<span class='fl'>0.1</span>, <span class='st'>"lines"</span>)))</div><div class='img'><img src='plot_missing-3.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plot_missing</span>(<span class='no'>airquality</span>, <span class='kw'>geom_label_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"size"</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='st'>"label.padding"</span> <span class='kw'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/reexports.html'>unit</a></span>(<span class='fl'>0.1</span>, <span class='st'>"lines"</span>)))</div><div class='img'><img src='plot_missing-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

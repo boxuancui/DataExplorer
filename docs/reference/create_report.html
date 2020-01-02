@@ -210,9 +210,9 @@ For example, <code>create_report(..., y = "a", config = list("plot_bar" = list("
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>rmarkdown</span>)
 
 <span class='co'># Set some missing values</span>
-<span class='no'>diamonds2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/data.table/topics/data.table'>data.table</a></span>(<span class='no'>diamonds</span>)
+<span class='no'>diamonds2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='no'>diamonds</span>)
 <span class='kw'>for</span> (<span class='no'>j</span> <span class='kw'>in</span> <span class='fl'>5</span>:<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>ncol</a></span>(<span class='no'>diamonds2</span>)) {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/data.table/topics/assign'>set</a></span>(<span class='no'>diamonds2</span>,
+  <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/assign.html'>set</a></span>(<span class='no'>diamonds2</span>,
       <span class='kw'>i</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample.int</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>diamonds2</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample.int</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>diamonds2</span>), <span class='fl'>1</span>)),
       <span class='no'>j</span>,
       <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>NA_integer_</span>)
@@ -233,6 +233,27 @@ For example, <code>create_report(..., y = "a", config = list("plot_bar" = list("
     <span class='kw'>plot_boxplot_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"by"</span> <span class='kw'>=</span> <span class='st'>"cut"</span>),
     <span class='kw'>global_ggtheme</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_light</a></span>())
   )
+)
+
+<span class='co'>## Configure report without `configure_report`</span>
+<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+  <span class='st'>"introduce"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
+  <span class='st'>"plot_intro"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
+  <span class='st'>"plot_str"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+    <span class='st'>"type"</span> <span class='kw'>=</span> <span class='st'>"diagonal"</span>,
+    <span class='st'>"fontSize"</span> <span class='kw'>=</span> <span class='fl'>35</span>,
+    <span class='st'>"width"</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+    <span class='st'>"margin"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"left"</span> <span class='kw'>=</span> <span class='fl'>350</span>, <span class='st'>"right"</span> <span class='kw'>=</span> <span class='fl'>250</span>)
+  ),
+  <span class='st'>"plot_missing"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
+  <span class='st'>"plot_histogram"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
+  <span class='st'>"plot_density"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
+  <span class='st'>"plot_qq"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>sampled_rows</span> <span class='kw'>=</span> <span class='fl'>1000L</span>),
+  <span class='st'>"plot_bar"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
+  <span class='st'>"plot_correlation"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"cor_args"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='st'>"use"</span> <span class='kw'>=</span> <span class='st'>"pairwise.complete.obs"</span>)),
+  <span class='st'>"plot_prcomp"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
+  <span class='st'>"plot_boxplot"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
+  <span class='st'>"plot_scatterplot"</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>sampled_rows</span> <span class='kw'>=</span> <span class='fl'>1000L</span>)
 )
 <span class='co'># }</span></pre>
   </div>

@@ -29,43 +29,48 @@
 #'   ncol = 4L
 #' )
 
-plot_scatterplot <- function(data, by, sampled_rows = nrow(data), geom_point_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
-	## Declare variable first to pass R CMD check
-	variable <- NULL
-	## Check if input is data.table
-	if (!is.data.table(data)) data <- data.table(data)
-	## Sample data if necessary
-	if (sampled_rows < nrow(data)) data <- data[sample.int(nrow(data), sampled_rows)]
-	## Create plot function
-	dt <- suppressWarnings(melt.data.table(data, id.vars = by, variable.factor = FALSE))
-	feature_names <- unique(dt[["variable"]])
-	## Calculate number of pages
-	layout <- .getPageLayout(nrow, ncol, length(feature_names))
-	## Create list of ggplot objects
-	plot_list <- .lapply(
-		parallel = parallel,
-		X = layout,
-		FUN = function(x) {
-			ggplot(dt[variable %in% feature_names[x]], aes_string(x = by, y = "value")) +
-				do.call("geom_point", geom_point_args) +
-				coord_flip() +
-				xlab(by)
-		}
-	)
-	## Plot objects
-	class(plot_list) <- c("multiple", class(plot_list))
-	plotDataExplorer(
-		plot_obj = plot_list,
-		page_layout = layout,
-		title = title,
-		ggtheme = ggtheme,
-		theme_config = theme_config,
-		facet_wrap_args = list(
-			"facet" = ~ variable,
-			"nrow" = nrow,
-			"ncol" = ncol,
-			"scales" = "free_x",
-			"shrink" = FALSE
-		)
-	)
+plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
+                             geom_point_args = list(),
+                             title = NULL,
+                             ggtheme = theme_gray(), theme_config = list(),
+                             nrow = 3L, ncol = 3L,
+                             parallel = FALSE) {
+  ## Declare variable first to pass R CMD check
+  variable <- NULL
+  ## Check if input is data.table
+  if (!is.data.table(data)) data <- data.table(data)
+  ## Sample data if necessary
+  if (sampled_rows < nrow(data)) data <- data[sample.int(nrow(data), sampled_rows)]
+  ## Create plot function
+  dt <- suppressWarnings(melt.data.table(data, id.vars = by, variable.factor = FALSE))
+  feature_names <- unique(dt[["variable"]])
+  ## Calculate number of pages
+  layout <- .getPageLayout(nrow, ncol, length(feature_names))
+  ## Create list of ggplot objects
+  plot_list <- .lapply(
+    parallel = parallel,
+    X = layout,
+    FUN = function(x) {
+      ggplot(dt[variable %in% feature_names[x]], aes_string(x = by, y = "value")) +
+        do.call("geom_point", geom_point_args) +
+        coord_flip() +
+        xlab(by)
+    }
+  )
+  ## Plot objects
+  class(plot_list) <- c("multiple", class(plot_list))
+  plotDataExplorer(
+    plot_obj = plot_list,
+    page_layout = layout,
+    title = title,
+    ggtheme = ggtheme,
+    theme_config = theme_config,
+    facet_wrap_args = list(
+      "facet" = ~ variable,
+      "nrow" = nrow,
+      "ncol" = ncol,
+      "scales" = "free_x",
+      "shrink" = FALSE
+    )
+  )
 }
