@@ -5,8 +5,8 @@
 #' @param by feature name to be fixed at
 #' @param sampled_rows number of rows to sample if data has too many rows. Default is all rows, which means do not sample.
 #' @param geom_point_args a list of other arguments to \link{geom_point}
-#' @param scale_x scale of x axis. See \link{scale_x_continuous} for all options. Default is \code{continuous}.
-#' @param scale_y scale of y axis. See \link{scale_y_continuous} for all options. Default is \code{continuous}.
+#' @param scale_x scale of original x axis (before \code{coord_flip}). See \link{scale_x_continuous} for all options. Default is \code{NULL}.
+#' @param scale_y scale of original y axis (before \code{coord_flip}). See \link{scale_y_continuous} for all options. Default is \code{NULL}.
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
@@ -40,8 +40,8 @@
 
 plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
                              geom_point_args = list(),
-                             scale_x = "continuous",
-                             scale_y = "continuous",
+                             scale_x = NULL,
+                             scale_y = NULL,
                              title = NULL,
                              ggtheme = theme_gray(), theme_config = list(),
                              nrow = 3L, ncol = 3L,
@@ -62,12 +62,13 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
     parallel = parallel,
     X = layout,
     FUN = function(x) {
-      ggplot(dt[variable %in% feature_names[x]], aes_string(x = by, y = "value")) +
+      base_plot <- ggplot(dt[variable %in% feature_names[x]], aes_string(x = by, y = "value")) +
         do.call("geom_point", geom_point_args) +
-        do.call(paste0("scale_x_", scale_x), list()) +
-        do.call(paste0("scale_y_", scale_y), list()) +
         coord_flip() +
         xlab(by)
+      if (!is.null(scale_x)) base_plot <- base_plot + do.call(paste0("scale_x_", scale_x), list())
+      if (!is.null(scale_y)) base_plot <- base_plot + do.call(paste0("scale_y_", scale_y), list())
+      base_plot
     }
   )
   ## Plot objects

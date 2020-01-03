@@ -5,9 +5,9 @@
 \title{Create scatterplot for all features}
 \usage{
 plot_scatterplot(data, by, sampled_rows = nrow(data),
-  geom_point_args = list(), scale_x = "continuous",
-  scale_y = "continuous", title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE)
+  geom_point_args = list(), scale_x = NULL, scale_y = NULL,
+  title = NULL, ggtheme = theme_gray(), theme_config = list(),
+  nrow = 3L, ncol = 3L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -18,9 +18,9 @@ plot_scatterplot(data, by, sampled_rows = nrow(data),
 
 \item{geom_point_args}{a list of other arguments to \link{geom_point}}
 
-\item{scale_x}{scale of x axis. See \link{scale_x_continuous} for all options. Default is \code{continuous}.}
+\item{scale_x}{scale of original x axis (before \code{coord_flip}). See \link{scale_x_continuous} for all options. Default is \code{NULL}.}
 
-\item{scale_y}{scale of y axis. See \link{scale_y_continuous} for all options. Default is \code{continuous}.}
+\item{scale_y}{scale of original y axis (before \code{coord_flip}). See \link{scale_y_continuous} for all options. Default is \code{NULL}.}
 
 \item{title}{plot title}
 
