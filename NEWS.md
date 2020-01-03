@@ -1,5 +1,6 @@
 # DataExplorer 0.9.0
 ## Enhancements
+* [#111](https://github.com/boxuancui/DataExplorer/issues/111): Continuous distributions can now be plotted with different scales, i.e., histogram, density, boxplot, scatterplot.
 * [#126](https://github.com/boxuancui/DataExplorer/issues/126): Cleaned up labels in legend guide.
 * [#127 (PR)](https://github.com/boxuancui/DataExplorer/pull/127): Added option to plot columns with missing values only in `plot_missing`.
 * Cleaned up code for `create_report`.

@@ -5,6 +5,7 @@
 #' @param by feature name to be broken down by. If selecting a continuous feature, boxplot will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature.
 #' @param binary_as_factor treat binary as categorical? Default is \code{TRUE}.
 #' @param geom_boxplot_args a list of other arguments to \link{geom_boxplot}
+#' @param scale_y scale of original y axis (before \code{coord_flip}). See \link{scale_y_continuous} for all options. Default is \code{continuous}.
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link{theme}.
@@ -20,9 +21,17 @@
 #' @examples
 #' plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
 #' plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))
+#' 
+#' # Plot skewed data on log scale
+#' set.seed(1)
+#' skew <- data.frame(y = rep(c("a", "b"), 500), replicate(4L, rbeta(1000, 1, 5000)))
+#' plot_boxplot(skew, by = "y", ncol = 2L)
+#' plot_boxplot(skew, by = "y", scale_y = "log10", ncol = 2L)
 
-plot_boxplot <- function(data, by, binary_as_factor = TRUE,
+plot_boxplot <- function(data, by,
+                         binary_as_factor = TRUE,
                          geom_boxplot_args = list(),
+                         scale_y = "continuous",
                          title = NULL,
                          ggtheme = theme_gray(), theme_config = list(),
                          nrow = 3L, ncol = 4L,
@@ -55,6 +64,7 @@ plot_boxplot <- function(data, by, binary_as_factor = TRUE,
     FUN = function(x) {
       ggplot(dt2[variable %in% feature_names[x]], aes(x = by_f, y = value)) +
         do.call("geom_boxplot", geom_boxplot_args) +
+        do.call(paste0("scale_y_", scale_y), list()) +
         coord_flip() +
         xlab(by)
     }

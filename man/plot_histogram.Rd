@@ -5,9 +5,9 @@
 \title{Plot histogram}
 \usage{
 plot_histogram(data, binary_as_factor = TRUE,
-  geom_histogram_args = list(bins = 30L), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 4L,
-  ncol = 4L, parallel = FALSE)
+  geom_histogram_args = list(bins = 30L), scale_x = "continuous",
+  title = NULL, ggtheme = theme_gray(), theme_config = list(),
+  nrow = 4L, ncol = 4L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -15,6 +15,8 @@ plot_histogram(data, binary_as_factor = TRUE,
 \item{binary_as_factor}{treat binary as categorical? Default is \code{TRUE}.}
 
 \item{geom_histogram_args}{a list of other arguments to \link{geom_histogram}}
+
+\item{scale_x}{scale of x axis. See \link{scale_x_continuous} for all options. Default is \code{continuous}.}
 
 \item{title}{plot title}
 
@@ -36,12 +38,18 @@ Plot histogram for each continuous feature
 }
 \examples{
 # Plot iris data
-plot_histogram(iris, nrow = 2L, ncol = 2L)
+plot_histogram(iris, ncol = 2L)
 
 # Plot random data
 set.seed(1)
 data <- data.frame(replicate(16L, rnorm(50)))
 plot_histogram(data)
+
+# Plot skewed data on log scale
+set.seed(1)
+skew <- data.frame(replicate(4L, rbeta(1000, 1, 5000)))
+plot_histogram(skew, ncol = 2L)
+plot_histogram(skew, scale_x = "log10", ncol = 2L)
 }
 \seealso{
 \link{geom_histogram} \link{plot_density}

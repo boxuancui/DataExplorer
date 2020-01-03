@@ -5,8 +5,9 @@
 \title{Create boxplot for continuous features}
 \usage{
 plot_boxplot(data, by, binary_as_factor = TRUE,
-  geom_boxplot_args = list(), title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), nrow = 3L, ncol = 4L, parallel = FALSE)
+  geom_boxplot_args = list(), scale_y = "continuous", title = NULL,
+  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
+  ncol = 4L, parallel = FALSE)
 }
 \arguments{
 \item{data}{input data}
@@ -16,6 +17,8 @@ plot_boxplot(data, by, binary_as_factor = TRUE,
 \item{binary_as_factor}{treat binary as categorical? Default is \code{TRUE}.}
 
 \item{geom_boxplot_args}{a list of other arguments to \link{geom_boxplot}}
+
+\item{scale_y}{scale of original y axis (before \code{coord_flip}). See \link{scale_y_continuous} for all options. Default is \code{continuous}.}
 
 \item{title}{plot title}
 
@@ -38,6 +41,12 @@ This function creates boxplot for each continuous feature based on a selected fe
 \examples{
 plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
 plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))
+
+# Plot skewed data on log scale
+set.seed(1)
+skew <- data.frame(y = rep(c("a", "b"), 500), replicate(4L, rbeta(1000, 1, 5000)))
+plot_boxplot(skew, by = "y", ncol = 2L)
+plot_boxplot(skew, by = "y", scale_y = "log10", ncol = 2L)
 }
 \seealso{
 \link{geom_boxplot}
