@@ -6,6 +6,7 @@
 * Cleaned up code for `create_report`.
 
 ## Bug Fixes
+* [#109](https://github.com/boxuancui/DataExplorer/issues/109): Fixed a bug causing unordered bar charts.
 * [#114](https://github.com/boxuancui/DataExplorer/issues/114): Removed redundant message in `dummify`.
 * [#116](https://github.com/boxuancui/DataExplorer/issues/116): Fixed pandoc document conversion error 99.
 * [#120](https://github.com/boxuancui/DataExplorer/issues/120): Fixed type `logical` being parsed as `symbol` in `configure_report`.
