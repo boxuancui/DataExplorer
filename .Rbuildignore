@@ -16,3 +16,4 @@ report.html
 report_files/
 ^README\.Rmd$
 ^README-.*\.png$
+^pkgdown$

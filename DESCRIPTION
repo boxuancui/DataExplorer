@@ -7,7 +7,7 @@ Description: Automated data exploration process for analytic tasks and predictiv
     analyzes each variable, and visualizes them with typical graphical techniques. Common
     data processing methods are also available to treat and format data.
 Depends:
-    R (>= 3.6)
+    R (>= 3.5)
 Imports:
     data.table (>= 1.12.8),
     reshape2 (>= 1.4.3),
