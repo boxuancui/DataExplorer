@@ -21,13 +21,8 @@
 #' # Plot iris data
 #' plot_density(iris, ncol = 2L)
 #'
-#' # Plot random data
-#' set.seed(1)
-#' data <- data.frame(replicate(16L, rnorm(100)))
-#' plot_density(data)
-#'
 #' # Add color to density area
-#' plot_density(data, geom_density_args = list("fill" = "black", "alpha" = 0.6))
+#' plot_density(iris, geom_density_args = list("fill" = "black", "alpha" = 0.6), ncol = 2L)
 #' 
 #' # Plot skewed data on log scale
 #' set.seed(1)

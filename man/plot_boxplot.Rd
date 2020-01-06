@@ -48,7 +48,7 @@ invisibly return the named list of ggplot objects
 This function creates boxplot for each continuous feature based on a selected feature.
 }
 \examples{
-plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
+plot_boxplot(iris, by = "Species", ncol = 2L)
 plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))
 
 # Plot skewed data on log scale

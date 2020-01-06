@@ -19,8 +19,7 @@
 #' @export
 #' @examples
 #' plot_qq(iris)
-#' plot_qq(iris, by = "Sepal.Width")
-#' plot_qq(iris, by = "Species", nrow = 2L, ncol = 2L)
+#' plot_qq(iris, by = "Species", ncol = 2L)
 #'
 #' plot_qq(
 #'   data = airquality,

@@ -19,7 +19,7 @@
 #' @export
 #' @seealso \link{geom_boxplot}
 #' @examples
-#' plot_boxplot(iris, by = "Species", nrow = 2L, ncol = 2L)
+#' plot_boxplot(iris, by = "Species", ncol = 2L)
 #' plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))
 #' 
 #' # Plot skewed data on log scale

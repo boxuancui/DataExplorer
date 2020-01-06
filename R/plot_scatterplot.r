@@ -22,6 +22,13 @@
 #' @examples
 #' plot_scatterplot(iris, by = "Species")
 #'
+#' # Plot skewed data on log scale
+#' set.seed(1)
+#' skew <- data.frame(replicate(5L, rbeta(1000, 1, 5000)))
+#' plot_scatterplot(skew, by = "X5", ncol = 2L)
+#' plot_scatterplot(skew, by = "X5", scale_x = "log10", scale_y = "log10", ncol = 2L)
+#' 
+#' \dontrun{
 #' # Customize themes
 #' library(ggplot2)
 #' plot_scatterplot(
@@ -31,12 +38,7 @@
 #'   theme_config = list("axis.text.x" = element_text(angle = 90)),
 #'   ncol = 4L
 #' )
-#' 
-#' # Plot skewed data on log scale
-#' set.seed(1)
-#' skew <- data.frame(replicate(5L, rbeta(1000, 1, 5000)))
-#' plot_scatterplot(skew, by = "X5", ncol = 2L)
-#' plot_scatterplot(skew, by = "X5", scale_x = "log10", scale_y = "log10", ncol = 2L)
+#' }
 
 plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
                              geom_point_args = list(),

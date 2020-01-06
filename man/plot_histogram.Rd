@@ -48,11 +48,6 @@ Plot histogram for each continuous feature
 # Plot iris data
 plot_histogram(iris, ncol = 2L)
 
-# Plot random data
-set.seed(1)
-data <- data.frame(replicate(16L, rnorm(50)))
-plot_histogram(data)
-
 # Plot skewed data on log scale
 set.seed(1)
 skew <- data.frame(replicate(4L, rbeta(1000, 1, 5000)))
