@@ -4,10 +4,19 @@
 \alias{plot_boxplot}
 \title{Create boxplot for continuous features}
 \usage{
-plot_boxplot(data, by, binary_as_factor = TRUE,
-  geom_boxplot_args = list(), scale_y = "continuous", title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
-  ncol = 4L, parallel = FALSE)
+plot_boxplot(
+  data,
+  by,
+  binary_as_factor = TRUE,
+  geom_boxplot_args = list(),
+  scale_y = "continuous",
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(),
+  nrow = 3L,
+  ncol = 4L,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{data}{input data}

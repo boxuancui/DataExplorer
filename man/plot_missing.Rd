@@ -4,10 +4,15 @@
 \alias{plot_missing}
 \title{Plot missing value profile}
 \usage{
-plot_missing(data, group = list(Good = 0.05, OK = 0.4, Bad = 0.8, Remove
-  = 1), missing_only = FALSE, geom_label_args = list(), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(legend.position =
-  c("bottom")))
+plot_missing(
+  data,
+  group = list(Good = 0.05, OK = 0.4, Bad = 0.8, Remove = 1),
+  missing_only = FALSE,
+  geom_label_args = list(),
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(legend.position = c("bottom"))
+)
 }
 \arguments{
 \item{data}{input data}

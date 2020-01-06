@@ -4,8 +4,15 @@
 \alias{group_category}
 \title{Group categories for discrete features}
 \usage{
-group_category(data, feature, threshold, measure, update = FALSE,
-  category_name = "OTHER", exclude = NULL)
+group_category(
+  data,
+  feature,
+  threshold,
+  measure,
+  update = FALSE,
+  category_name = "OTHER",
+  exclude = NULL
+)
 }
 \arguments{
 \item{data}{input data}

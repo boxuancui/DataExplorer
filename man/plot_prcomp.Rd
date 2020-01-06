@@ -4,10 +4,19 @@
 \alias{plot_prcomp}
 \title{Visualize principal component analysis}
 \usage{
-plot_prcomp(data, variance_cap = 0.8, maxcat = 50L,
-  prcomp_args = list(scale. = TRUE), geom_label_args = list(),
-  title = NULL, ggtheme = theme_gray(), theme_config = list(),
-  nrow = 3L, ncol = 3L, parallel = FALSE)
+plot_prcomp(
+  data,
+  variance_cap = 0.8,
+  maxcat = 50L,
+  prcomp_args = list(scale. = TRUE),
+  geom_label_args = list(),
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(),
+  nrow = 3L,
+  ncol = 3L,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{data}{input data}

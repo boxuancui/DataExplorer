@@ -4,8 +4,16 @@
 \alias{plotDataExplorer.grid}
 \title{Plot objects with gridExtra}
 \usage{
-\method{plotDataExplorer}{grid}(plot_obj, title, ggtheme, theme_config,
-  page_layout, nrow, ncol, ...)
+\method{plotDataExplorer}{grid}(
+  plot_obj,
+  title,
+  ggtheme,
+  theme_config,
+  page_layout,
+  nrow,
+  ncol,
+  ...
+)
 }
 \arguments{
 \item{plot_obj}{list of ggplot objects}

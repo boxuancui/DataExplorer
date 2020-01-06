@@ -4,11 +4,17 @@
 \alias{plot_correlation}
 \title{Create correlation heatmap for discrete features}
 \usage{
-plot_correlation(data, type = c("all", "discrete", "continuous"),
-  maxcat = 20L, cor_args = list(), geom_text_args = list(),
-  title = NULL, ggtheme = theme_gray(),
-  theme_config = list(legend.position = "bottom", axis.text.x =
-  element_text(angle = 90)))
+plot_correlation(
+  data,
+  type = c("all", "discrete", "continuous"),
+  maxcat = 20L,
+  cor_args = list(),
+  geom_text_args = list(),
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(legend.position = "bottom", axis.text.x = element_text(angle =
+    90))
+)
 }
 \arguments{
 \item{data}{input data}

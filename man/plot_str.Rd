@@ -4,8 +4,13 @@
 \alias{plot_str}
 \title{Visualize data structure}
 \usage{
-plot_str(data, type = c("diagonal", "radial"), max_level = NULL,
-  print_network = TRUE, ...)
+plot_str(
+  data,
+  type = c("diagonal", "radial"),
+  max_level = NULL,
+  print_network = TRUE,
+  ...
+)
 }
 \arguments{
 \item{data}{input data}

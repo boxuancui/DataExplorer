@@ -4,10 +4,20 @@
 \alias{plot_scatterplot}
 \title{Create scatterplot for all features}
 \usage{
-plot_scatterplot(data, by, sampled_rows = nrow(data),
-  geom_point_args = list(), scale_x = NULL, scale_y = NULL,
-  title = NULL, ggtheme = theme_gray(), theme_config = list(),
-  nrow = 3L, ncol = 3L, parallel = FALSE)
+plot_scatterplot(
+  data,
+  by,
+  sampled_rows = nrow(data),
+  geom_point_args = list(),
+  scale_x = NULL,
+  scale_y = NULL,
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(),
+  nrow = 3L,
+  ncol = 3L,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{data}{input data}

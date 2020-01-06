@@ -6,9 +6,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Introduction to DataExplorer • DataExplorer</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to DataExplorer">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
@@ -37,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataExplorer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
       </span>
     </div>
 
@@ -45,7 +52,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -77,13 +84,14 @@
 <!--/.navbar -->
 
       
+
       </header><script src="dataexplorer-intro_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="dataexplorer-intro_files/d3-4.5.0/d3.min.js"></script><script src="dataexplorer-intro_files/diagonalNetwork-binding-0.4/diagonalNetwork.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Introduction to DataExplorer</h1>
                         <h4 class="author">Boxuan Cui</h4>
             
-            <h4 class="date">2020-01-02</h4>
+            <h4 class="date">2020-01-05</h4>
       
       
       <div class="hidden name"><code>dataexplorer-intro.Rmd</code></div>
@@ -104,8 +112,8 @@
 <h2 class="hasAnchor">
 <a href="#data" class="anchor"></a>Data</h2>
 <p>We will be using the <a href="https://cran.r-project.org/package=nycflights13">nycflights13</a> datasets for this document. If you have not installed the package, please do the following:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"nycflights13"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nycflights13)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"nycflights13"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(nycflights13)</span></code></pre></div>
 <p>There are 5 datasets in this package:</p>
 <ul>
 <li>airlines</li>
@@ -115,17 +123,17 @@
 <li>weather</li>
 </ul>
 <p>If you want to quickly visualize the structure of all, you may do the following:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(DataExplorer)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>data_list &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(airlines, airports, flights, planes, weather)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(DataExplorer)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>data_list &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(airlines, airports, flights, planes, weather)</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="../reference/plot_str.html">plot_str</a></span>(data_list)</span></code></pre></div>
 <div id="htmlwidget-f843a680a1fcd62a0dd1" style="width:800px;height:800px;" class="diagonalNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f843a680a1fcd62a0dd1">{"x":{"root":{"name":"root (List of 5)","children":[{"name":"X (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"carrier (chr)"},{"name":"name (chr)"}]},{"name":"X.1 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"faa (chr)"},{"name":"name (chr)"},{"name":"lat (num)"},{"name":"lon (num)"},{"name":"alt (int)"},{"name":"tz (num)"},{"name":"dst (chr)"},{"name":"tzone (chr)"}]},{"name":"X.2 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"year (int)"},{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"carrier (chr)"},{"name":"flight (int)"},{"name":"tailnum (chr)"},{"name":"origin (chr)"},{"name":"dest (chr)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"time_hour (POSIXct, format)"}]},{"name":"X.3 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"tailnum (chr)"},{"name":"year (int)"},{"name":"type (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"speed (int)"},{"name":"engine (chr)"}]},{"name":"X.4 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"origin (chr)"},{"name":"year.1 (num)"},{"name":"month (num)"},{"name":"day (int)"},{"name":"hour (int)"},{"name":"temp (num)"},{"name":"dewp (num)"},{"name":"humid (num)"},{"name":"wind_dir (num)"},{"name":"wind_speed (num)"},{"name":"wind_gust (num)"},{"name":"precip (num)"},{"name":"pressure (num)"},{"name":"visib (num)"},{"name":"time_hour (POSIXct, format)"}]}]},"options":{"height":800,"width":800,"fontSize":20,"fontFamily":"serif","linkColour":"#ccc","nodeColour":"#fff","nodeStroke":"steelblue","textColour":"#111","margin":{"top":null,"right":50,"bottom":null,"left":50},"opacity":0.9}},"evals":[],"jsHooks":[]}</script><p>You may also try <code><a href="../reference/plot_str.html">plot_str(data_list, type = "r")</a></code> for a radial network.</p>
+<script type="application/json" data-for="htmlwidget-f843a680a1fcd62a0dd1">{"x":{"root":{"name":"root (List of 5)","children":[{"name":"X (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"carrier (chr)"},{"name":"name (chr)"}]},{"name":"X.1 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"faa (chr)"},{"name":"name (chr)"},{"name":"lat (num)"},{"name":"lon (num)"},{"name":"alt (num)"},{"name":"tz (num)"},{"name":"dst (chr)"},{"name":"tzone (chr)"}]},{"name":"X.2 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"year (int)"},{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"carrier (chr)"},{"name":"flight (int)"},{"name":"tailnum (chr)"},{"name":"origin (chr)"},{"name":"dest (chr)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"time_hour (POSIXct, format)"}]},{"name":"X.3 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"tailnum (chr)"},{"name":"year (int)"},{"name":"type (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"speed (int)"},{"name":"engine (chr)"}]},{"name":"X.4 (Classes 'tbl_df', 'tbl' and 'data.frame')","children":[{"name":"origin (chr)"},{"name":"year.1 (int)"},{"name":"month (int)"},{"name":"day (int)"},{"name":"hour (int)"},{"name":"temp (num)"},{"name":"dewp (num)"},{"name":"humid (num)"},{"name":"wind_dir (num)"},{"name":"wind_speed (num)"},{"name":"wind_gust (num)"},{"name":"precip (num)"},{"name":"pressure (num)"},{"name":"visib (num)"},{"name":"time_hour (POSIXct, format)"}]}]},"options":{"height":800,"width":800,"fontSize":20,"fontFamily":"serif","linkColour":"#ccc","nodeColour":"#fff","nodeStroke":"steelblue","textColour":"#111","margin":{"top":null,"right":50,"bottom":null,"left":50},"opacity":0.9}},"evals":[],"jsHooks":[]}</script><p>You may also try <code><a href="../reference/plot_str.html">plot_str(data_list, type = "r")</a></code> for a radial network.</p>
 <hr>
 <p>Now let’s merge all tables together for a more robust dataset for later sections.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>merge_airlines &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge</a></span>(flights, airlines, <span class="dt">by =</span> <span class="st">"carrier"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>merge_planes &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge</a></span>(merge_airlines, planes, <span class="dt">by =</span> <span class="st">"tailnum"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"_flights"</span>, <span class="st">"_planes"</span>))</span>
-<span id="cb3-3"><a href="#cb3-3"></a>merge_airports_origin &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge</a></span>(merge_planes, airports, <span class="dt">by.x =</span> <span class="st">"origin"</span>, <span class="dt">by.y =</span> <span class="st">"faa"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"_carrier"</span>, <span class="st">"_origin"</span>))</span>
-<span id="cb3-4"><a href="#cb3-4"></a>final_data &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/merge">merge</a></span>(merge_airports_origin, airports, <span class="dt">by.x =</span> <span class="st">"dest"</span>, <span class="dt">by.y =</span> <span class="st">"faa"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"_origin"</span>, <span class="st">"_dest"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>merge_airlines &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/merge.html">merge</a></span>(flights, airlines, <span class="dt">by =</span> <span class="st">"carrier"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>merge_planes &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/merge.html">merge</a></span>(merge_airlines, planes, <span class="dt">by =</span> <span class="st">"tailnum"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"_flights"</span>, <span class="st">"_planes"</span>))</span>
+<span id="cb3-3"><a href="#cb3-3"></a>merge_airports_origin &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/merge.html">merge</a></span>(merge_planes, airports, <span class="dt">by.x =</span> <span class="st">"origin"</span>, <span class="dt">by.y =</span> <span class="st">"faa"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"_carrier"</span>, <span class="st">"_origin"</span>))</span>
+<span id="cb3-4"><a href="#cb3-4"></a>final_data &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/merge.html">merge</a></span>(merge_airports_origin, airports, <span class="dt">by.x =</span> <span class="st">"dest"</span>, <span class="dt">by.y =</span> <span class="st">"faa"</span>, <span class="dt">all.x =</span> <span class="ot">TRUE</span>, <span class="dt">suffixes =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"_origin"</span>, <span class="st">"_dest"</span>))</span></code></pre></div>
 </div>
 <div id="exploratory-data-analysis" class="section level2">
 <h2 class="hasAnchor">
@@ -168,7 +176,7 @@
 </tr>
 <tr class="odd">
 <td align="left">memory_usage</td>
-<td align="right">94,560,448</td>
+<td align="right">97,254,656</td>
 </tr>
 </tbody></table>
 <p>To visualize the table above (with some light analysis):</p>
@@ -218,14 +226,14 @@
 </li>
 </ul>
 <p>Let’s clean it up and look at the <strong>manufacturer</strong> distribution again:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>final_data[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(final_data<span class="op">$</span>manufacturer <span class="op">==</span><span class="st"> "AIRBUS INDUSTRIE"</span>),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "AIRBUS"</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>final_data[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(final_data<span class="op">$</span>manufacturer <span class="op">==</span><span class="st"> "CANADAIR LTD"</span>),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "CANADAIR"</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>final_data[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/which">which</a></span>(final_data<span class="op">$</span>manufacturer <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"MCDONNELL DOUGLAS AIRCRAFT CO"</span>, <span class="st">"MCDONNELL DOUGLAS CORPORATION"</span>)),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "MCDONNELL DOUGLAS"</span></span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>final_data[<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(final_data<span class="op">$</span>manufacturer <span class="op">==</span><span class="st"> "AIRBUS INDUSTRIE"</span>),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "AIRBUS"</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>final_data[<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(final_data<span class="op">$</span>manufacturer <span class="op">==</span><span class="st"> "CANADAIR LTD"</span>),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "CANADAIR"</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>final_data[<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(final_data<span class="op">$</span>manufacturer <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"MCDONNELL DOUGLAS AIRCRAFT CO"</span>, <span class="st">"MCDONNELL DOUGLAS CORPORATION"</span>)),]<span class="op">$</span>manufacturer &lt;-<span class="st"> "MCDONNELL DOUGLAS"</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a></span>
 <span id="cb10-5"><a href="#cb10-5"></a><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_data<span class="op">$</span>manufacturer)</span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-update-manufacturer-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>Feature <strong>dst_origin</strong> and <strong>tzone_origin</strong> contains only 1 value, so we should drop them:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"dst_origin"</span>, <span class="st">"tzone_origin"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dst_origin"</span>, <span class="st">"tzone_origin"</span>))</span></code></pre></div>
 <p>Frequently, it is very beneficial to look at bivariate frequency distribution. For example, to look at discrete features by <strong>arr_delay</strong>:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(final_data, <span class="dt">with =</span> <span class="st">"arr_delay"</span>)</span></code></pre></div>
 <pre><code>## 5 columns ignored with more than 50 categories.
@@ -252,24 +260,24 @@
 <ul>
 <li>Remove <strong>year_flights</strong> and <strong>tz_origin</strong> since there is only one value:</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"year_flights"</span>, <span class="st">"tz_origin"</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"year_flights"</span>, <span class="st">"tz_origin"</span>))</span></code></pre></div>
 </div>
 <div id="qq-plot" class="section level4">
 <h4 class="hasAnchor">
 <a href="#qq-plot" class="anchor"></a>QQ Plot</h4>
 <p>Quantile-Quantile plot is a way to visualize the deviation from a specific probability distribution. After analyzing these plots, it is often beneficial to apply mathematical transformation (such as log) for models like linear regression. To do so, we can use <code>plot_qq</code> function. By default, it compares with normal distribution.</p>
 <p>Note: The function will take a long time with many observations, so you may choose to specify an appropriate <code>sampled_rows</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>qq_data &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span>)]</span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>qq_data &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span>)]</span>
 <span id="cb17-2"><a href="#cb17-2"></a></span>
 <span id="cb17-3"><a href="#cb17-3"></a><span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(qq_data, <span class="dt">sampled_rows =</span> 1000L)</span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-qq-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>From the chart, <strong>air_time</strong>, <strong>distance</strong> and <strong>seats</strong> seems skewed on both tails. Let’s apply a simple log transformation and plot them again.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>log_qq_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/update_columns.html">update_columns</a></span>(qq_data, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))</span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>log_qq_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/update_columns.html">update_columns</a></span>(qq_data, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(x) <span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>))</span>
 <span id="cb18-2"><a href="#cb18-2"></a></span>
 <span id="cb18-3"><a href="#cb18-3"></a><span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(log_qq_data[, <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">sampled_rows =</span> 1000L)</span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-qq-log-features-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>The distribution looks better now! If necessary, you may also view the QQ plot by another feature:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>qq_data &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"name_origin"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span>)]</span>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>qq_data &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"name_origin"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span>)]</span>
 <span id="cb19-2"><a href="#cb19-2"></a></span>
 <span id="cb19-3"><a href="#cb19-3"></a><span class="kw"><a href="../reference/plot_qq.html">plot_qq</a></span>(qq_data, <span class="dt">by =</span> <span class="st">"name_origin"</span>, <span class="dt">sampled_rows =</span> 1000L)</span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-qq-by-1.png" width="768" style="display: block; margin: auto;"></p>
@@ -279,7 +287,7 @@
 <h3 class="hasAnchor">
 <a href="#correlation-analysis" class="anchor"></a>Correlation Analysis</h3>
 <p>To visualize correlation heatmap for all non-missing features:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(final_data), <span class="dt">maxcat =</span> 5L)</span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>(final_data), <span class="dt">maxcat =</span> 5L)</span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="co">## 11 features with more than 5 categories ignored!</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a><span class="co">## dest: 100 categories</span></span>
 <span id="cb20-4"><a href="#cb20-4"></a><span class="co">## tailnum: 3246 categories</span></span>
@@ -294,14 +302,14 @@
 <span id="cb20-13"><a href="#cb20-13"></a><span class="co">## tzone_dest: 7 categories</span></span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-correlation-1.png" width="768" style="display: block; margin: auto;"></p>
 <p>You may also choose to visualize only discrete/continuous features with:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(final_data), <span class="dt">type =</span> <span class="st">"c"</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(final_data), <span class="dt">type =</span> <span class="st">"d"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>(final_data), <span class="dt">type =</span> <span class="st">"c"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="kw"><a href="../reference/plot_correlation.html">plot_correlation</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>(final_data), <span class="dt">type =</span> <span class="st">"d"</span>)</span></code></pre></div>
 </div>
 <div id="principal-component-analysis" class="section level3">
 <h3 class="hasAnchor">
 <a href="#principal-component-analysis" class="anchor"></a>Principal Component Analysis</h3>
 <p>While you can always do <code><a href="../reference/plot_prcomp.html">plot_prcomp(na.omit(final_data))</a></code> directly, but PCA works better with cleaner data. To perform and visualize PCA on some selected features:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>pca_df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/na.fail">na.omit</a></span>(final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"origin"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)])</span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>pca_df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>(final_data[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"origin"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)])</span>
 <span id="cb22-2"><a href="#cb22-2"></a></span>
 <span id="cb22-3"><a href="#cb22-3"></a><span class="kw"><a href="../reference/plot_prcomp.html">plot_prcomp</a></span>(pca_df, <span class="dt">variance_cap =</span> <span class="fl">0.9</span>, <span class="dt">nrow =</span> 2L, <span class="dt">ncol =</span> 2L)</span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-prcomp-1.png" width="768" style="display: block; margin: auto;"><img src="dataexplorer-intro_files/figure-html/eda-plot-prcomp-2.png" width="768" style="display: block; margin: auto;"></p>
@@ -315,7 +323,7 @@
 <a href="#boxplots" class="anchor"></a>Boxplots</h4>
 <p>Suppose you would like to build a model to predict arrival delays, you may visualize the distribution of all continuous features based on arrival delays with a boxplot:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">## Reduce data size for demo purpose</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>arr_delay_df &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"arr_delay"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"dep_delay"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)]</span>
+<span id="cb23-2"><a href="#cb23-2"></a>arr_delay_df &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"arr_delay"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"dep_delay"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)]</span>
 <span id="cb23-3"><a href="#cb23-3"></a></span>
 <span id="cb23-4"><a href="#cb23-4"></a><span class="co">## Call boxplot function</span></span>
 <span id="cb23-5"><a href="#cb23-5"></a><span class="kw"><a href="../reference/plot_boxplot.html">plot_boxplot</a></span>(arr_delay_df, <span class="dt">by =</span> <span class="st">"arr_delay"</span>)</span></code></pre></div>
@@ -326,7 +334,7 @@
 <h4 class="hasAnchor">
 <a href="#scatterplots" class="anchor"></a>Scatterplots</h4>
 <p>An alternative visualization is scatterplot. For example:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>arr_delay_df2 &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"arr_delay"</span>, <span class="st">"dep_time"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_time"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)]</span>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>arr_delay_df2 &lt;-<span class="st"> </span>final_data[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"arr_delay"</span>, <span class="st">"dep_time"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_time"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span>)]</span>
 <span id="cb24-2"><a href="#cb24-2"></a></span>
 <span id="cb24-3"><a href="#cb24-3"></a><span class="kw"><a href="../reference/plot_scatterplot.html">plot_scatterplot</a></span>(arr_delay_df2, <span class="dt">by =</span> <span class="st">"arr_delay"</span>, <span class="dt">sampled_rows =</span> 1000L)</span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-scatterplot-1.png" width="768" style="display: block; margin: auto;"></p>
@@ -344,7 +352,7 @@
 <p>Missing values may have meanings for a feature. Other than imputation methods, we may also set them to some logical values. For example, for discrete features, we may want to group missing values to a new category. For continuous features, we may want to set missing values to a known number based on existing knowledge.</p>
 <p>In <strong>DataExplorer</strong>, this can be done by <code>set_missing</code>. The function automatically matches the argument for either discrete or continuous features, i.e., if you specify a number, all missing continuous values will be set to that number. If you specify a string, all missing discrete values will be set to that string. If you supply both, both types will be set.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">## Return data.frame</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/set_missing.html">set_missing</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(0L, <span class="st">"unknown"</span>))</span>
+<span id="cb25-2"><a href="#cb25-2"></a>final_df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/set_missing.html">set_missing</a></span>(final_data, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(0L, <span class="st">"unknown"</span>))</span>
 <span id="cb25-3"><a href="#cb25-3"></a><span class="co">## Column [dep_time]: Set 8255 missing values to 0</span></span>
 <span id="cb25-4"><a href="#cb25-4"></a><span class="co">## Column [dep_delay]: Set 8255 missing values to 0</span></span>
 <span id="cb25-5"><a href="#cb25-5"></a><span class="co">## Column [arr_time]: Set 8713 missing values to 0</span></span>
@@ -405,7 +413,7 @@
 <a href="#dummify-data-one-hot-encoding" class="anchor"></a>Dummify data (one hot encoding)</h3>
 <p>To transform the data into binary format (so that ML algorithms can pick it up), <code>dummify</code> will do the job. The function preserves original data structure, so that only eligible discrete features will be turned into binary format.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw"><a href="../reference/plot_str.html">plot_str</a></span>(</span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
 <span id="cb31-3"><a href="#cb31-3"></a>    <span class="st">"original"</span> =<span class="st"> </span>final_data,</span>
 <span id="cb31-4"><a href="#cb31-4"></a>    <span class="st">"dummified"</span> =<span class="st"> </span><span class="kw"><a href="../reference/dummify.html">dummify</a></span>(final_data, <span class="dt">maxcat =</span> 5L)</span>
 <span id="cb31-5"><a href="#cb31-5"></a>  )</span>
@@ -423,15 +431,15 @@
 ## name: 102 categories
 ## tzone_dest: 8 categories</code></pre>
 <div id="htmlwidget-ba32e0541469b5ed4906" style="width:800px;height:1500px;" class="diagonalNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ba32e0541469b5ed4906">{"x":{"root":{"name":"root (List of 2)","children":[{"name":"original ('data.frame')","children":[{"name":"dest (chr)"},{"name":"origin (chr)"},{"name":"tailnum (chr)"},{"name":"carrier (chr)"},{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"flight (Factor w/ 3844 levels \"1\",\"2\",\"3\",\"4\",)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"time_hour (POSIXct, format)"},{"name":"name_carrier (chr)"},{"name":"year_planes (int)"},{"name":"type (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"engine (chr)"},{"name":"name_origin (chr)"},{"name":"lat_origin (num)"},{"name":"lon_origin (num)"},{"name":"alt_origin (int)"},{"name":"name (chr)"},{"name":"lat_dest (num)"},{"name":"lon_dest (num)"},{"name":"alt_dest (int)"},{"name":"tz_dest (num)"},{"name":"dst_dest (chr)"},{"name":"tzone_dest (chr)"}]},{"name":"dummified ('data.frame')","children":[{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"year_planes (int)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"lat_origin (num)"},{"name":"lon_origin (num)"},{"name":"alt_origin (int)"},{"name":"lat_dest (num)"},{"name":"lon_dest (num)"},{"name":"alt_dest (int)"},{"name":"tz_dest (num)"},{"name":"dest (chr)"},{"name":"tailnum (chr)"},{"name":"carrier (chr)"},{"name":"flight (Factor w/ 3844 levels \"1\",\"2\",\"3\",\"4\",)"},{"name":"time_hour (POSIXct, format)"},{"name":"name_carrier (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engine (chr)"},{"name":"name (chr)"},{"name":"tzone_dest (chr)"},{"name":"origin_EWR (int)"},{"name":"origin_JFK (int)"},{"name":"origin_LGA (int)"},{"name":"type_Fixed.wing.multi.engine (int)"},{"name":"type_Fixed.wing.single.engine (int)"},{"name":"type_NA (int)"},{"name":"type_Rotorcraft (int)"},{"name":"name_origin_John.F.Kennedy.Intl (int)"},{"name":"name_origin_La.Guardia (int)"},{"name":"name_origin_Newark.Liberty.Intl (int)"},{"name":"dst_dest_A (int)"},{"name":"dst_dest_N (int)"},{"name":"dst_dest_NA (int)"}]}]},"options":{"height":1500,"width":800,"fontSize":20,"fontFamily":"serif","linkColour":"#ccc","nodeColour":"#fff","nodeStroke":"steelblue","textColour":"#111","margin":{"top":null,"right":50,"bottom":null,"left":50},"opacity":0.9}},"evals":[],"jsHooks":[]}</script><p>Note the <code>maxcat</code> argument. If a discrete feature has more categories than <code>maxcat</code>, it will not be dummified. As a result, it will be returned untouched.</p>
+<script type="application/json" data-for="htmlwidget-ba32e0541469b5ed4906">{"x":{"root":{"name":"root (List of 2)","children":[{"name":"original ('data.frame')","children":[{"name":"dest (chr)"},{"name":"origin (chr)"},{"name":"tailnum (chr)"},{"name":"carrier (chr)"},{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"flight (Factor w/ 3844 levels \"1\",\"2\",\"3\",\"4\",)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"time_hour (POSIXct, format)"},{"name":"name_carrier (chr)"},{"name":"year_planes (int)"},{"name":"type (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"engine (chr)"},{"name":"name_origin (chr)"},{"name":"lat_origin (num)"},{"name":"lon_origin (num)"},{"name":"alt_origin (num)"},{"name":"name (chr)"},{"name":"lat_dest (num)"},{"name":"lon_dest (num)"},{"name":"alt_dest (num)"},{"name":"tz_dest (num)"},{"name":"dst_dest (chr)"},{"name":"tzone_dest (chr)"}]},{"name":"dummified ('data.frame')","children":[{"name":"month (int)"},{"name":"day (int)"},{"name":"dep_time (int)"},{"name":"sched_dep_time (int)"},{"name":"dep_delay (num)"},{"name":"arr_time (int)"},{"name":"sched_arr_time (int)"},{"name":"arr_delay (num)"},{"name":"air_time (num)"},{"name":"distance (num)"},{"name":"hour (num)"},{"name":"minute (num)"},{"name":"year_planes (int)"},{"name":"engines (int)"},{"name":"seats (int)"},{"name":"lat_origin (num)"},{"name":"lon_origin (num)"},{"name":"alt_origin (num)"},{"name":"lat_dest (num)"},{"name":"lon_dest (num)"},{"name":"alt_dest (num)"},{"name":"tz_dest (num)"},{"name":"dest (chr)"},{"name":"tailnum (chr)"},{"name":"carrier (chr)"},{"name":"flight (Factor w/ 3844 levels \"1\",\"2\",\"3\",\"4\",)"},{"name":"time_hour (POSIXct, format)"},{"name":"name_carrier (chr)"},{"name":"manufacturer (chr)"},{"name":"model (chr)"},{"name":"engine (chr)"},{"name":"name (chr)"},{"name":"tzone_dest (chr)"},{"name":"origin_EWR (int)"},{"name":"origin_JFK (int)"},{"name":"origin_LGA (int)"},{"name":"type_Fixed.wing.multi.engine (int)"},{"name":"type_Fixed.wing.single.engine (int)"},{"name":"type_NA (int)"},{"name":"type_Rotorcraft (int)"},{"name":"name_origin_John.F.Kennedy.Intl (int)"},{"name":"name_origin_La.Guardia (int)"},{"name":"name_origin_Newark.Liberty.Intl (int)"},{"name":"dst_dest_A (int)"},{"name":"dst_dest_N (int)"},{"name":"dst_dest_NA (int)"}]}]},"options":{"height":1500,"width":800,"fontSize":20,"fontFamily":"serif","linkColour":"#ccc","nodeColour":"#fff","nodeStroke":"steelblue","textColour":"#111","margin":{"top":null,"right":50,"bottom":null,"left":50},"opacity":0.9}},"evals":[],"jsHooks":[]}</script><p>Note the <code>maxcat</code> argument. If a discrete feature has more categories than <code>maxcat</code>, it will not be dummified. As a result, it will be returned untouched.</p>
 </div>
 <div id="drop-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#drop-features" class="anchor"></a>Drop features</h3>
 <p>After viewing the feature distribution, you often want to drop features that are insignificant. For example, features like <strong>dst_dest</strong> has mostly one value, and it doesn’t provide any valuable information. You can use <code>drop_columns</code> to quickly drop features. The function takes either names or column indices.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/identical">identical</a></span>(</span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"dst_dest"</span>, <span class="st">"tzone_dest"</span>)),</span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">36</span>, <span class="dv">37</span>))</span>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw"><a href="https://rdrr.io/r/base/identical.html">identical</a></span>(</span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dst_dest"</span>, <span class="st">"tzone_dest"</span>)),</span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="kw"><a href="../reference/drop_columns.html">drop_columns</a></span>(final_data, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">36</span>, <span class="dv">37</span>))</span>
 <span id="cb33-4"><a href="#cb33-4"></a>)</span>
 <span id="cb33-5"><a href="#cb33-5"></a><span class="co">## [1] TRUE</span></span></code></pre></div>
 </div>
@@ -439,9 +447,9 @@
 <h3 class="hasAnchor">
 <a href="#update-features" class="anchor"></a>Update features</h3>
 <p>To quickly update many features with the same treatment, you may use <code>update_columns</code>. A very common use case is to set features to a different type, e.g., continuous to discrete. To quickly set all time related features to discrete:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>temporal_features &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"tz_dest"</span>)</span>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>temporal_features &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"tz_dest"</span>)</span>
 <span id="cb34-2"><a href="#cb34-2"></a>final_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/update_columns.html">update_columns</a></span>(final_data, temporal_features, as.factor)</span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(final_data[, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"tz_dest"</span>)])</span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(final_data[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"tz_dest"</span>)])</span>
 <span id="cb34-4"><a href="#cb34-4"></a><span class="co">## 'data.frame':    336776 obs. of  5 variables:</span></span>
 <span id="cb34-5"><a href="#cb34-5"></a><span class="co">##  $ month  : Factor w/ 12 levels "1","2","3","4",..: 5 10 12 5 12 8 7 7 5 8 ...</span></span>
 <span id="cb34-6"><a href="#cb34-6"></a><span class="co">##  $ day    : Factor w/ 31 levels "1","2","3","4",..: 14 29 19 30 7 25 12 1 15 26 ...</span></span>
@@ -449,7 +457,7 @@
 <span id="cb34-8"><a href="#cb34-8"></a><span class="co">##  $ minute : Factor w/ 60 levels "0","1","2","3",..: 2 1 2 2 2 8 8 8 2 8 ...</span></span>
 <span id="cb34-9"><a href="#cb34-9"></a><span class="co">##  $ tz_dest: Factor w/ 6 levels "-10","-9","-8",..: 4 4 4 4 4 4 4 4 4 4 ...</span></span></code></pre></div>
 <p>You may also use this function to transform selected features with a customized function:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>bin_seat &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cut">cut</a></span>(x, <span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(0L, 50L, 100L, 150L, 200L, 500L))</span>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>bin_seat &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw"><a href="https://rdrr.io/r/base/cut.html">cut</a></span>(x, <span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(0L, 50L, 100L, 150L, 200L, 500L))</span>
 <span id="cb35-2"><a href="#cb35-2"></a>transformed_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/update_columns.html">update_columns</a></span>(final_data, <span class="st">"seats"</span>, bin_seat)</span>
 <span id="cb35-3"><a href="#cb35-3"></a></span>
 <span id="cb35-4"><a href="#cb35-4"></a><span class="kw"><a href="../reference/plot_bar.html">plot_bar</a></span>(transformed_data<span class="op">$</span>seats)</span></code></pre></div>
@@ -476,7 +484,7 @@
 <span id="cb38-4"><a href="#cb38-4"></a>  <span class="dt">add_plot_prcomp =</span> <span class="ot">FALSE</span>,</span>
 <span id="cb38-5"><a href="#cb38-5"></a>  <span class="dt">add_plot_boxplot =</span> <span class="ot">FALSE</span>,</span>
 <span id="cb38-6"><a href="#cb38-6"></a>  <span class="dt">add_plot_scatterplot =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb38-7"><a href="#cb38-7"></a>  <span class="dt">global_ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substitute">quote</a></span>(<span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>))</span>
+<span id="cb38-7"><a href="#cb38-7"></a>  <span class="dt">global_ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span>(<span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>))</span>
 <span id="cb38-8"><a href="#cb38-8"></a>)</span>
 <span id="cb38-9"><a href="#cb38-9"></a><span class="co">## $introduce</span></span>
 <span id="cb38-10"><a href="#cb38-10"></a><span class="co">## list()</span></span>
@@ -530,34 +538,35 @@
 <span id="cb39-4"><a href="#cb39-4"></a>  <span class="dt">add_plot_prcomp =</span> <span class="ot">FALSE</span>,</span>
 <span id="cb39-5"><a href="#cb39-5"></a>  <span class="dt">add_plot_boxplot =</span> <span class="ot">FALSE</span>,</span>
 <span id="cb39-6"><a href="#cb39-6"></a>  <span class="dt">add_plot_scatterplot =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb39-7"><a href="#cb39-7"></a>  <span class="dt">global_ggtheme =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/substitute">quote</a></span>(<span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>))</span>
+<span id="cb39-7"><a href="#cb39-7"></a>  <span class="dt">global_ggtheme =</span> <span class="kw"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span>(<span class="kw">theme_minimal</span>(<span class="dt">base_size =</span> <span class="dv">14</span>))</span>
 <span id="cb39-8"><a href="#cb39-8"></a>)</span>
 <span id="cb39-9"><a href="#cb39-9"></a><span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data, <span class="dt">config =</span> config)</span></code></pre></div>
 <p>To configure the report without using <code>configure_report</code> function, you may edit the template below and pass it directly to <code>config</code> argument:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>config &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
-<span id="cb40-2"><a href="#cb40-2"></a>  <span class="st">"introduce"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),</span>
-<span id="cb40-3"><a href="#cb40-3"></a>  <span class="st">"plot_intro"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),</span>
-<span id="cb40-4"><a href="#cb40-4"></a>  <span class="st">"plot_str"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</span>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>config &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
+<span id="cb40-2"><a href="#cb40-2"></a>  <span class="st">"introduce"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb40-3"><a href="#cb40-3"></a>  <span class="st">"plot_intro"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb40-4"><a href="#cb40-4"></a>  <span class="st">"plot_str"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
 <span id="cb40-5"><a href="#cb40-5"></a>    <span class="st">"type"</span> =<span class="st"> "diagonal"</span>,</span>
 <span id="cb40-6"><a href="#cb40-6"></a>    <span class="st">"fontSize"</span> =<span class="st"> </span><span class="dv">35</span>,</span>
 <span id="cb40-7"><a href="#cb40-7"></a>    <span class="st">"width"</span> =<span class="st"> </span><span class="dv">1000</span>,</span>
-<span id="cb40-8"><a href="#cb40-8"></a>    <span class="st">"margin"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"left"</span> =<span class="st"> </span><span class="dv">350</span>, <span class="st">"right"</span> =<span class="st"> </span><span class="dv">250</span>)</span>
+<span id="cb40-8"><a href="#cb40-8"></a>    <span class="st">"margin"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"left"</span> =<span class="st"> </span><span class="dv">350</span>, <span class="st">"right"</span> =<span class="st"> </span><span class="dv">250</span>)</span>
 <span id="cb40-9"><a href="#cb40-9"></a>  ),</span>
-<span id="cb40-10"><a href="#cb40-10"></a>  <span class="st">"plot_missing"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),</span>
-<span id="cb40-11"><a href="#cb40-11"></a>  <span class="st">"plot_histogram"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),</span>
-<span id="cb40-12"><a href="#cb40-12"></a>  <span class="st">"plot_density"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),</span>
-<span id="cb40-13"><a href="#cb40-13"></a>  <span class="st">"plot_qq"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">sampled_rows =</span> 1000L),</span>
-<span id="cb40-14"><a href="#cb40-14"></a>  <span class="st">"plot_bar"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),</span>
-<span id="cb40-15"><a href="#cb40-15"></a>  <span class="st">"plot_correlation"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"cor_args"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="st">"use"</span> =<span class="st"> "pairwise.complete.obs"</span>)),</span>
-<span id="cb40-16"><a href="#cb40-16"></a>  <span class="st">"plot_prcomp"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),</span>
-<span id="cb40-17"><a href="#cb40-17"></a>  <span class="st">"plot_boxplot"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(),</span>
-<span id="cb40-18"><a href="#cb40-18"></a>  <span class="st">"plot_scatterplot"</span> =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">sampled_rows =</span> 1000L)</span>
+<span id="cb40-10"><a href="#cb40-10"></a>  <span class="st">"plot_missing"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb40-11"><a href="#cb40-11"></a>  <span class="st">"plot_histogram"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb40-12"><a href="#cb40-12"></a>  <span class="st">"plot_density"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb40-13"><a href="#cb40-13"></a>  <span class="st">"plot_qq"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">sampled_rows =</span> 1000L),</span>
+<span id="cb40-14"><a href="#cb40-14"></a>  <span class="st">"plot_bar"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb40-15"><a href="#cb40-15"></a>  <span class="st">"plot_correlation"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"cor_args"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"use"</span> =<span class="st"> "pairwise.complete.obs"</span>)),</span>
+<span id="cb40-16"><a href="#cb40-16"></a>  <span class="st">"plot_prcomp"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb40-17"><a href="#cb40-17"></a>  <span class="st">"plot_boxplot"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(),</span>
+<span id="cb40-18"><a href="#cb40-18"></a>  <span class="st">"plot_scatterplot"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">sampled_rows =</span> 1000L)</span>
 <span id="cb40-19"><a href="#cb40-19"></a>)</span>
 <span id="cb40-20"><a href="#cb40-20"></a><span class="kw"><a href="../reference/create_report.html">create_report</a></span>(final_data, <span class="dt">config =</span> config)</span></code></pre></div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -573,17 +582,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Boxuan Cui.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

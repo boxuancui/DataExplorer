@@ -4,10 +4,19 @@
 \alias{plot_qq}
 \title{Plot QQ plot}
 \usage{
-plot_qq(data, by = NULL, sampled_rows = nrow(data),
-  geom_qq_args = list(), geom_qq_line_args = list(), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
-  ncol = 3L, parallel = FALSE)
+plot_qq(
+  data,
+  by = NULL,
+  sampled_rows = nrow(data),
+  geom_qq_args = list(),
+  geom_qq_line_args = list(),
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(),
+  nrow = 3L,
+  ncol = 3L,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{data}{input data}

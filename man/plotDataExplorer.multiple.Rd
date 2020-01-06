@@ -4,8 +4,15 @@
 \alias{plotDataExplorer.multiple}
 \title{Plot multiple objects}
 \usage{
-\method{plotDataExplorer}{multiple}(plot_obj, title, ggtheme, theme_config,
-  page_layout, facet_wrap_args = list(), ...)
+\method{plotDataExplorer}{multiple}(
+  plot_obj,
+  title,
+  ggtheme,
+  theme_config,
+  page_layout,
+  facet_wrap_args = list(),
+  ...
+)
 }
 \arguments{
 \item{plot_obj}{list of ggplot objects separated by page}

@@ -1,4 +1,4 @@
-# DataExplorer 0.9.0
+# DataExplorer 0.8.1
 ## Enhancements
 * [#111](https://github.com/boxuancui/DataExplorer/issues/111): Continuous distributions can now be plotted with different scales, i.e., histogram, density, boxplot, scatterplot.
 * [#126](https://github.com/boxuancui/DataExplorer/issues/126): Cleaned up labels in legend guide.

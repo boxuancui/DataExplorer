@@ -4,9 +4,18 @@
 \alias{plot_density}
 \title{Plot density estimates}
 \usage{
-plot_density(data, binary_as_factor = TRUE, geom_density_args = list(),
-  scale_x = "continuous", title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), nrow = 4L, ncol = 4L, parallel = FALSE)
+plot_density(
+  data,
+  binary_as_factor = TRUE,
+  geom_density_args = list(),
+  scale_x = "continuous",
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(),
+  nrow = 4L,
+  ncol = 4L,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{data}{input data}

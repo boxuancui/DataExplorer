@@ -4,10 +4,16 @@
 \alias{create_report}
 \title{Create report}
 \usage{
-create_report(data, output_format = html_document(toc = TRUE, toc_depth =
-  6, theme = "yeti"), output_file = "report.html",
-  output_dir = getwd(), y = NULL, config = configure_report(),
-  report_title = "Data Profiling Report", ...)
+create_report(
+  data,
+  output_format = html_document(toc = TRUE, toc_depth = 6, theme = "yeti"),
+  output_file = "report.html",
+  output_dir = getwd(),
+  y = NULL,
+  config = configure_report(),
+  report_title = "Data Profiling Report",
+  ...
+)
 }
 \arguments{
 \item{data}{input data}

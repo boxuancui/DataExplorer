@@ -4,10 +4,18 @@
 \alias{plot_histogram}
 \title{Plot histogram}
 \usage{
-plot_histogram(data, binary_as_factor = TRUE,
-  geom_histogram_args = list(bins = 30L), scale_x = "continuous",
-  title = NULL, ggtheme = theme_gray(), theme_config = list(),
-  nrow = 4L, ncol = 4L, parallel = FALSE)
+plot_histogram(
+  data,
+  binary_as_factor = TRUE,
+  geom_histogram_args = list(bins = 30L),
+  scale_x = "continuous",
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(),
+  nrow = 4L,
+  ncol = 4L,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{data}{input data}

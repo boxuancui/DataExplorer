@@ -4,8 +4,13 @@
 \alias{plot_intro}
 \title{Plot introduction}
 \usage{
-plot_intro(data, geom_label_args = list(), title = NULL,
-  ggtheme = theme_gray(), theme_config = list())
+plot_intro(
+  data,
+  geom_label_args = list(),
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list()
+)
 }
 \arguments{
 \item{data}{input data}
