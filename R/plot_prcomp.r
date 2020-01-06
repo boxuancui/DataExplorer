@@ -18,6 +18,7 @@
 #' @details Discrete features containing more categories than \code{maxcat} specifies will be ignored.
 #' @note Discrete features will be \link{dummify}-ed first before passing to \link{prcomp}.
 #' @note Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your input data first.
+#' @note Features with zero variance are dropped.
 #' @import data.table
 #' @import ggplot2
 #' @importFrom scales percent
@@ -25,17 +26,28 @@
 #' @export
 #' @examples
 #' plot_prcomp(na.omit(airquality), nrow = 2L, ncol = 2L)
-#'
-#' data("diamonds", package = "ggplot2")
-#' plot_prcomp(diamonds, maxcat = 7L)
 
-plot_prcomp <- function(data, variance_cap = 0.8, maxcat = 50L, prcomp_args = list("scale." = TRUE), geom_label_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
+plot_prcomp <- function(data,
+                        variance_cap = 0.8,
+                        maxcat = 50L,
+                        prcomp_args = list("scale." = TRUE),
+                        geom_label_args = list(),
+                        title = NULL,
+                        ggtheme = theme_gray(),
+                        theme_config = list(), nrow = 3L, ncol = 3L,
+                        parallel = FALSE) {
   ## Declare variable first to pass R CMD check
   pc <- pct <- cum_pct <- Feature <- variable <- value <- NULL
   ## Check if input is data.table
   if (!is.data.table(data)) data <- data.table(data)
   ## Dummify data
   dt <- suppressWarnings(split_columns(dummify(data, maxcat = maxcat))$continuous)
+  zv_search <- sapply(dt, function(x) length(unique(x)) == 1)
+  if (any(zv_search)) {
+    warning("The following features are dropped due to zero variance:\n",
+            paste0("\t* ", names(zv_search)[which(zv_search)], "\n"))
+    drop_columns(dt, which(zv_search))
+  }
   prcomp_args_list <- list("x" = dt, "retx" = FALSE)
   ## Analyze principal components
   pca <- tryCatch(

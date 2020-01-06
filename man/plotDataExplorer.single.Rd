@@ -4,8 +4,7 @@
 \alias{plotDataExplorer.single}
 \title{Plot single object}
 \usage{
-\method{plotDataExplorer}{single}(plot_obj, title, ggtheme, theme_config,
-  ...)
+\method{plotDataExplorer}{single}(plot_obj, title, ggtheme, theme_config, ...)
 }
 \arguments{
 \item{title}{plot title}

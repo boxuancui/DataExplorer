@@ -43,7 +43,8 @@ plot_intro <- function(data, geom_label_args = list(), title = NULL, ggtheme = t
     scale_y_continuous(labels = percent) +
     scale_fill_discrete("Dimension") +
     coord_flip() +
-    labs(x = "Metrics", y = "Value")
+    labs(x = "Metrics", y = "Value") +
+    guides(fill = guide_legend(override.aes = aes(label = "")))
   geom_label_args_list <- list("mapping" = aes(label = percent(value)))
   output <- output +
     do.call("geom_label", c(geom_label_args_list, geom_label_args))

@@ -4,10 +4,16 @@
 \alias{create_report}
 \title{Create report}
 \usage{
-create_report(data, output_format = html_document(toc = TRUE, toc_depth =
-  6, theme = "yeti"), output_file = "report.html",
-  output_dir = getwd(), y = NULL, config = configure_report(),
-  report_title = "Data Profiling Report", ...)
+create_report(
+  data,
+  output_format = html_document(toc = TRUE, toc_depth = 6, theme = "yeti"),
+  output_file = "report.html",
+  output_dir = getwd(),
+  y = NULL,
+  config = configure_report(),
+  report_title = "Data Profiling Report",
+  ...
+)
 }
 \arguments{
 \item{data}{input data}
@@ -85,6 +91,27 @@ create_report(
     plot_boxplot_args = list("by" = "cut"),
     global_ggtheme = quote(theme_light())
   )
+)
+
+## Configure report without `configure_report`
+config <- list(
+  "introduce" = list(),
+  "plot_intro" = list(),
+  "plot_str" = list(
+    "type" = "diagonal",
+    "fontSize" = 35,
+    "width" = 1000,
+    "margin" = list("left" = 350, "right" = 250)
+  ),
+  "plot_missing" = list(),
+  "plot_histogram" = list(),
+  "plot_density" = list(),
+  "plot_qq" = list(sampled_rows = 1000L),
+  "plot_bar" = list(),
+  "plot_correlation" = list("cor_args" = list("use" = "pairwise.complete.obs")),
+  "plot_prcomp" = list(),
+  "plot_boxplot" = list(),
+  "plot_scatterplot" = list(sampled_rows = 1000L)
 )
 }
 }

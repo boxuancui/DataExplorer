@@ -32,22 +32,22 @@ test_that("test data.frame return object", {
 })
 
 test_that("test data.frame with all missing columns", {
-	df <- data.frame(
-		"a" = letters,
-		"b" = rnorm(26L),
-		"c" = rep(NA_character_, 26L),
-		"d" = rnorm(26L),
-		"e" = rep(NA_integer_, 26L),
-		"f" = LETTERS,
-		"g" = rep(NA, 26L)
-	)
-	df_output <- split_columns(df)
-	expect_equal(names(df_output$discrete), c("a", "f"))
-	expect_equal(names(df_output$continuous), c("b", "d"))
-	expect_equal(df_output$num_discrete, 2L)
-	expect_equal(df_output$num_continuous, 2L)
-	expect_equal(df_output$num_all_missing, 3L)
-	expect_equal(sum(df_output$num_discrete, df_output$num_continuous, df_output$num_all_missing), ncol(df))
+  df <- data.frame(
+    "a" = letters,
+    "b" = rnorm(26L),
+    "c" = rep(NA_character_, 26L),
+    "d" = rnorm(26L),
+    "e" = rep(NA_integer_, 26L),
+    "f" = LETTERS,
+    "g" = rep(NA, 26L)
+  )
+  df_output <- split_columns(df)
+  expect_equal(names(df_output$discrete), c("a", "f"))
+  expect_equal(names(df_output$continuous), c("b", "d"))
+  expect_equal(df_output$num_discrete, 2L)
+  expect_equal(df_output$num_continuous, 2L)
+  expect_equal(df_output$num_all_missing, 3L)
+  expect_equal(sum(df_output$num_discrete, df_output$num_continuous, df_output$num_all_missing), ncol(df))
 })
 
 test_that("test binary categories", {
@@ -57,18 +57,20 @@ test_that("test binary categories", {
     "c" = LETTERS,
     "d" = as.factor(rep(c(-1L, 1L), each = 13L)),
     "e" = letters,
-    "f" = rnorm(26L)
+    "f" = rnorm(26L),
+    "g" = c(NA, rep(1:2, 12L), NA),
+    "h" = rep(c(1L, NA), each = 13L)
   )
   df_output_false <- split_columns(df)
   df_output_true <- split_columns(df, binary_as_factor = TRUE)
   expect_equal(df_output_false$num_discrete, 3L)
-  expect_equal(df_output_false$num_continuous, 3L)
+  expect_equal(df_output_false$num_continuous, 5L)
   expect_equal(df_output_false$num_all_missing, 0L)
   expect_setequal(names(df_output_false$discrete), c("c", "d", "e"))
-  expect_setequal(names(df_output_false$continuous), c("a", "b", "f"))
-  expect_equal(df_output_true$num_discrete, 5L)
+  expect_setequal(names(df_output_false$continuous), c("a", "b", "f", "g", "h"))
+  expect_equal(df_output_true$num_discrete, 7L)
   expect_equal(df_output_true$num_continuous, 1L)
   expect_equal(df_output_true$num_all_missing, 0L)
-  expect_setequal(names(df_output_true$discrete), c("a", "b", "c", "d", "e"))
+  expect_setequal(names(df_output_true$discrete), c("a", "b", "c", "d", "e", "g", "h"))
   expect_setequal(names(df_output_true$continuous), "f")
 })

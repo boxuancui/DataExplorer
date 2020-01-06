@@ -4,10 +4,19 @@
 \alias{plot_prcomp}
 \title{Visualize principal component analysis}
 \usage{
-plot_prcomp(data, variance_cap = 0.8, maxcat = 50L,
-  prcomp_args = list(scale. = TRUE), geom_label_args = list(),
-  title = NULL, ggtheme = theme_gray(), theme_config = list(),
-  nrow = 3L, ncol = 3L, parallel = FALSE)
+plot_prcomp(
+  data,
+  variance_cap = 0.8,
+  maxcat = 50L,
+  prcomp_args = list(scale. = TRUE),
+  geom_label_args = list(),
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(),
+  nrow = 3L,
+  ncol = 3L,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{data}{input data}
@@ -47,11 +56,10 @@ Discrete features containing more categories than \code{maxcat} specifies will b
 Discrete features will be \link{dummify}-ed first before passing to \link{prcomp}.
 
 Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your input data first.
+
+Features with zero variance are dropped.
 }
 \examples{
 plot_prcomp(na.omit(airquality), nrow = 2L, ncol = 2L)
-
-data("diamonds", package = "ggplot2")
-plot_prcomp(diamonds, maxcat = 7L)
 }
 \keyword{plot_prcomp}

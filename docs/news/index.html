@@ -8,21 +8,32 @@
 
 <title>Changelog • DataExplorer</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +41,11 @@
 
 
 
-<meta property="og:title" content="Changelog" />
 
+<meta property="og:title" content="Changelog" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -57,6 +69,7 @@
   gtag('config', 'UA-127813892-1');
 </script>
 
+
   </head>
 
   <body>
@@ -73,7 +86,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataExplorer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
       </span>
     </div>
 
@@ -81,7 +94,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -104,7 +117,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -114,6 +126,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -123,9 +136,45 @@
       
     </div>
 
-    <div id="dataexplorer-0-8-0" class="section level1">
+    <div id="dataexplorer-081" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-8-0" class="anchor"></a>DataExplorer 0.8.0<small> 2019-03-17 </small>
+<a href="#dataexplorer-081" class="anchor"></a>DataExplorer 0.8.1<small> Unreleased </small>
+</h1>
+<div id="enhancements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#enhancements" class="anchor"></a>Enhancements</h2>
+<ul>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/111">#111</a>: Continuous distributions can now be plotted with different scales, i.e., histogram, density, boxplot, scatterplot.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/126">#126</a>: Cleaned up labels in legend guide.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/pull/127">#127 (PR)</a>: Added option to plot columns with missing values only in <code>plot_missing</code>.</li>
+<li>Cleaned up code for <code>create_report</code>.</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug Fixes</h2>
+<ul>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/109">#109</a>: Fixed a bug causing unordered bar charts.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/114">#114</a>: Removed redundant message in <code>dummify</code>.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/116">#116</a>: Fixed pandoc document conversion error 99.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/120">#120</a>: Fixed type <code>logical</code> being parsed as <code>symbol</code> in <code>configure_report</code>.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/121">#121</a>: Fixed missing value bug when <code><a href="../reference/split_columns.html">split_columns(..., binary_as_factor = TRUE)</a></code>.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/pull/130">#130 (PR)</a>: <code>plot_prcomp</code> now drops columns with zero variance.</li>
+</ul>
+</div>
+</div>
+    <div id="dataexplorer-080" class="section level1">
+<h1 class="page-header">
+<a href="#dataexplorer-080" class="anchor"></a>DataExplorer 0.8.0<small> 2019-03-17 </small>
 </h1>
 <div id="new-features" class="section level2">
 <h2 class="hasAnchor">
@@ -135,9 +184,9 @@
 <a href="https://github.com/boxuancui/DataExplorer/issues/92">#92</a>: Added <code>update_columns</code> to transform any selected columns.</li>
 </ul>
 </div>
-<div id="enhancements" class="section level2">
+<div id="enhancements-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-1" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/87">#87</a>: Added <code>configure_report</code> function to customize report content.</li>
@@ -158,9 +207,9 @@
 <li>Updated d3.min.js to v5.9.2.</li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/88">#88</a>: Added <code>plot_intro</code> to report config.</li>
@@ -171,24 +220,24 @@
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-7-1" class="section level1">
+    <div id="dataexplorer-071" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-7-1" class="anchor"></a>DataExplorer 0.7.1<small> Unreleased </small>
+<a href="#dataexplorer-071" class="anchor"></a>DataExplorer 0.7.1<small> Unreleased </small>
 </h1>
-<div id="enhancements-1" class="section level2">
+<div id="enhancements-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-1" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-2" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/86">#86</a>: Replaced <code><a href="https://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">gridExtra::grid.arrange</a></code> with facets.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/86">#86</a>: Replaced <code><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">gridExtra::grid.arrange</a></code> with facets.</li>
 <li>Added seeds to vignette and README for re-producible examples.</li>
 <li>Hid all internal functions.</li>
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-7-0" class="section level1">
+    <div id="dataexplorer-070" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-7-0" class="anchor"></a>DataExplorer 0.7.0<small> 2018-10-19 </small>
+<a href="#dataexplorer-070" class="anchor"></a>DataExplorer 0.7.0<small> 2018-10-19 </small>
 </h1>
 <div id="new-features-1" class="section level2">
 <h2 class="hasAnchor">
@@ -200,9 +249,9 @@
 <a href="https://github.com/boxuancui/DataExplorer/issues/76">#76</a>: Added <code>plot_intro</code> to visualize results of <code>introduce</code>.</li>
 </ul>
 </div>
-<div id="enhancements-2" class="section level2">
+<div id="enhancements-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-2" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-3" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/42">#42</a>: Applied S3 methods for plotting functions.</li>
@@ -221,9 +270,9 @@
 <li>Updated default config for <code>create_report</code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/74">#74</a>: Fixed a bug causing <code>create_report</code> failure due to zero complete rows.</li>
@@ -236,22 +285,22 @@
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-6-1" class="section level1">
+    <div id="dataexplorer-061" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-6-1" class="anchor"></a>DataExplorer 0.6.1<small> Unreleased </small>
+<a href="#dataexplorer-061" class="anchor"></a>DataExplorer 0.6.1<small> Unreleased </small>
 </h1>
-<div id="enhancements-3" class="section level2">
+<div id="enhancements-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-3" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-4" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>Updated vignette for better clarity.</li>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/71">#71</a>: Added better error handler for <code>plot_prcomp</code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/69">#69</a>: Fixed bug causing <code>create_report</code> failure (specifically from <code>plot_prcomp</code>) when <code>y</code> is specified.</li>
@@ -259,9 +308,9 @@
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-6-0" class="section level1">
+    <div id="dataexplorer-060" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-6-0" class="anchor"></a>DataExplorer 0.6.0<small> 2018-05-30 </small>
+<a href="#dataexplorer-060" class="anchor"></a>DataExplorer 0.6.0<small> 2018-05-30 </small>
 </h1>
 <div id="new-features-2" class="section level2">
 <h2 class="hasAnchor">
@@ -275,9 +324,9 @@
 <a href="https://github.com/boxuancui/DataExplorer/issues/59">#59</a>: Added <code>introduce</code> for basic metadata.</li>
 </ul>
 </div>
-<div id="enhancements-4" class="section level2">
+<div id="enhancements-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-4" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-5" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/41">#41</a>: <code>create_report</code> can now be customized.</li>
@@ -299,9 +348,9 @@
 <li>Added <code>.ignoreCat</code> and <code>.getAllMissing</code> to helper.</li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level2">
+<div id="bug-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-3" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-4" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/55">#55</a>: Fixed bugs and updated vignette with latest functions.</li>
@@ -312,9 +361,9 @@
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-5-0" class="section level1">
+    <div id="dataexplorer-050" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-5-0" class="anchor"></a>DataExplorer 0.5.0<small> 2018-01-10 </small>
+<a href="#dataexplorer-050" class="anchor"></a>DataExplorer 0.5.0<small> 2018-01-10 </small>
 </h1>
 <div id="new-features-3" class="section level2">
 <h2 class="hasAnchor">
@@ -326,9 +375,9 @@
 <a href="https://github.com/boxuancui/DataExplorer/issues/50">#50</a>: Added <code>plot_boxplot</code> to visualize continuous distributions broken down by another feature.</li>
 </ul>
 </div>
-<div id="enhancements-5" class="section level2">
+<div id="enhancements-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-5" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-6" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/44">#44</a>: Added option to exclude categories in <code>group_category</code>.</li>
@@ -382,18 +431,18 @@
 <li>Optimized layout for multiple plots.</li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/47">#47</a>: Fixed color scale for correlation heatmap.</li>
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-4-0" class="section level1">
+    <div id="dataexplorer-040" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-4-0" class="anchor"></a>DataExplorer 0.4.0<small> 2017-01-26 </small>
+<a href="#dataexplorer-040" class="anchor"></a>DataExplorer 0.4.0<small> 2017-01-26 </small>
 </h1>
 <div id="new-features-4" class="section level2">
 <h2 class="hasAnchor">
@@ -405,28 +454,28 @@
 <a href="https://github.com/boxuancui/DataExplorer/issues/40">#40</a>: Added network graph to <code>GenerateReport</code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level2">
+<div id="bug-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-6" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/32">#32</a>: Fixed pandoc requirement error in unit test on cran.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/34">#34</a>: Fixed error message when <code>quiet</code> is not supplied. In addition, report directory are printed through <code><a href="https://www.rdocumentation.org/packages/base/topics/message">message()</a></code> instead of <code><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat()</a></code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/34">#34</a>: Fixed error message when <code>quiet</code> is not supplied. In addition, report directory are printed through <code><a href="https://rdrr.io/r/base/message.html">message()</a></code> instead of <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code>.</li>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/35">#35</a>: Fixed <strong>rprojroot</strong> not found error.</li>
 </ul>
 </div>
-<div id="enhancements-6" class="section level2">
+<div id="enhancements-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-6" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-7" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/12">#12</a>: Added vignette: <strong>dataexplorer-intro</strong>.</li>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/36">#36</a>: Fixed warnings from data.table in <code>DropVar</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/37">#37</a>: Changed all <code><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat()</a></code> to <code><a href="https://www.rdocumentation.org/packages/base/topics/message">message()</a></code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/37">#37</a>: Changed all <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> to <code><a href="https://rdrr.io/r/base/message.html">message()</a></code>.</li>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/38">#38</a>: Added option to order bars in <code>BarDiscrete</code>.</li>
 <li>
@@ -435,9 +484,9 @@
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-3-0" class="section level1">
+    <div id="dataexplorer-030" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-3-0" class="anchor"></a>DataExplorer 0.3.0<small> 2016-11-19 </small>
+<a href="#dataexplorer-030" class="anchor"></a>DataExplorer 0.3.0<small> 2016-11-19 </small>
 </h1>
 <div id="new-features-5" class="section level2">
 <h2 class="hasAnchor">
@@ -449,17 +498,17 @@
 <a href="https://github.com/boxuancui/DataExplorer/issues/29">#29</a>: Added <code>DropVar</code> to quickly drop variables by either name or column position.</li>
 </ul>
 </div>
-<div id="bug-fixes-6" class="section level2">
+<div id="bug-fixes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-6" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-7" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/24">#24</a>: <code>CorrelationDiscrete</code> now displays all factor levels instead of full rank matrix from <code>model.matrix</code>.</li>
 </ul>
 </div>
-<div id="enhancements-7" class="section level2">
+<div id="enhancements-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-7" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-8" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/11">#11</a>: Functions with return values will now match the input class and set it back.</li>
@@ -482,42 +531,42 @@
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-2-6" class="section level1">
+    <div id="dataexplorer-026" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-2-6" class="anchor"></a>DataExplorer 0.2.6<small> 2016-05-08 </small>
-</h1>
-<div id="bug-fixes-7" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bug-fixes-7" class="anchor"></a>Bug Fixes</h2>
-<ul>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/20">#20</a>: Fixed permission denied bug due to intermediates_dir argument in <code>knitr::render</code>.</li>
-</ul>
-</div>
-<div id="enhancements-8" class="section level2">
-<h2 class="hasAnchor">
-<a href="#enhancements-8" class="anchor"></a>Enhancements</h2>
-<ul>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/16">#16</a>: Improved handling of missing values.</li>
-</ul>
-</div>
-</div>
-    <div id="dataexplorer-0-2-5" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-0-2-5" class="anchor"></a>DataExplorer 0.2.5<small> Unreleased </small>
+<a href="#dataexplorer-026" class="anchor"></a>DataExplorer 0.2.6<small> 2016-05-08 </small>
 </h1>
 <div id="bug-fixes-8" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes-8" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/18">#18</a>: <code>GenerateReport</code> now handles data without discrete or continuous features.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/20">#20</a>: Fixed permission denied bug due to intermediates_dir argument in <code>knitr::render</code>.</li>
 </ul>
 </div>
 <div id="enhancements-9" class="section level2">
 <h2 class="hasAnchor">
 <a href="#enhancements-9" class="anchor"></a>Enhancements</h2>
+<ul>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/16">#16</a>: Improved handling of missing values.</li>
+</ul>
+</div>
+</div>
+    <div id="dataexplorer-025" class="section level1">
+<h1 class="page-header">
+<a href="#dataexplorer-025" class="anchor"></a>DataExplorer 0.2.5<small> Unreleased </small>
+</h1>
+<div id="bug-fixes-9" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes-9" class="anchor"></a>Bug Fixes</h2>
+<ul>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/18">#18</a>: <code>GenerateReport</code> now handles data without discrete or continuous features.</li>
+</ul>
+</div>
+<div id="enhancements-10" class="section level2">
+<h2 class="hasAnchor">
+<a href="#enhancements-10" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <a href="https://github.com/boxuancui/DataExplorer/issues/14">#14</a>: Updated rmarkdown template for <code>GenerateReport</code>.</li>
@@ -526,29 +575,29 @@
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-2-4" class="section level1">
+    <div id="dataexplorer-024" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-2-4" class="anchor"></a>DataExplorer 0.2.4<small> 2016-03-02 </small>
+<a href="#dataexplorer-024" class="anchor"></a>DataExplorer 0.2.4<small> 2016-03-02 </small>
 </h1>
-<div id="bug-fixes-9" class="section level2">
+<div id="bug-fixes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-9" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-10" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>Fixed a major bug in <code>GenerateReport</code> function due to package renaming.</li>
 </ul>
 </div>
-<div id="enhancements-10" class="section level2">
+<div id="enhancements-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-10" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-11" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
 <code>GenerateReport</code> will now print the directory of the report to console.</li>
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-0-2-3" class="section level1">
+    <div id="dataexplorer-023" class="section level1">
 <h1 class="page-header">
-<a href="#dataexplorer-0-2-3" class="anchor"></a>DataExplorer 0.2.3<small> 2016-03-01 </small>
+<a href="#dataexplorer-023" class="anchor"></a>DataExplorer 0.2.3<small> 2016-03-01 </small>
 </h1>
 <div id="new-features-6" class="section level2">
 <h2 class="hasAnchor">
@@ -559,17 +608,17 @@
 <li>Added density plot for continuous features.</li>
 </ul>
 </div>
-<div id="bug-fixes-10" class="section level2">
+<div id="bug-fixes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-10" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-11" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>Fixed a bug in <code>BarDiscrete</code> and <code>CorrelationDiscrete</code> for not plotting non-factor class.</li>
 <li>Minor changes for CRAN re-submission.</li>
 </ul>
 </div>
-<div id="enhancements-11" class="section level2">
+<div id="enhancements-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-11" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-12" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>Changed grid layout for <code>BarDiscrete</code> and <code>HistogramContinuous</code>.</li>
 <li>Features with all missing values will be ignored.</li>
@@ -586,23 +635,25 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#dataexplorer-0-8-0">0.8.0</a></li>
-        <li><a href="#dataexplorer-0-7-1">0.7.1</a></li>
-        <li><a href="#dataexplorer-0-7-0">0.7.0</a></li>
-        <li><a href="#dataexplorer-0-6-1">0.6.1</a></li>
-        <li><a href="#dataexplorer-0-6-0">0.6.0</a></li>
-        <li><a href="#dataexplorer-0-5-0">0.5.0</a></li>
-        <li><a href="#dataexplorer-0-4-0">0.4.0</a></li>
-        <li><a href="#dataexplorer-0-3-0">0.3.0</a></li>
-        <li><a href="#dataexplorer-0-2-6">0.2.6</a></li>
-        <li><a href="#dataexplorer-0-2-5">0.2.5</a></li>
-        <li><a href="#dataexplorer-0-2-4">0.2.4</a></li>
-        <li><a href="#dataexplorer-0-2-3">0.2.3</a></li>
+        <li><a href="#dataexplorer-081">0.8.1</a></li>
+        <li><a href="#dataexplorer-080">0.8.0</a></li>
+        <li><a href="#dataexplorer-071">0.7.1</a></li>
+        <li><a href="#dataexplorer-070">0.7.0</a></li>
+        <li><a href="#dataexplorer-061">0.6.1</a></li>
+        <li><a href="#dataexplorer-060">0.6.0</a></li>
+        <li><a href="#dataexplorer-050">0.5.0</a></li>
+        <li><a href="#dataexplorer-040">0.4.0</a></li>
+        <li><a href="#dataexplorer-030">0.3.0</a></li>
+        <li><a href="#dataexplorer-026">0.2.6</a></li>
+        <li><a href="#dataexplorer-025">0.2.5</a></li>
+        <li><a href="#dataexplorer-024">0.2.4</a></li>
+        <li><a href="#dataexplorer-023">0.2.3</a></li>
       </ul>
     </div>
   </div>
 
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -610,13 +661,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

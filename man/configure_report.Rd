@@ -4,22 +4,35 @@
 \alias{configure_report}
 \title{Configure report template}
 \usage{
-configure_report(add_introduce = TRUE, add_plot_intro = TRUE,
-  add_plot_str = TRUE, add_plot_missing = TRUE,
-  add_plot_histogram = TRUE, add_plot_density = FALSE,
-  add_plot_qq = TRUE, add_plot_bar = TRUE,
-  add_plot_correlation = TRUE, add_plot_prcomp = TRUE,
-  add_plot_boxplot = TRUE, add_plot_scatterplot = TRUE,
-  introduce_args = list(), plot_intro_args = list(),
-  plot_str_args = list(type = "diagonal", fontSize = 35, width = 1000,
-  margin = list(left = 350, right = 250)), plot_missing_args = list(),
-  plot_histogram_args = list(), plot_density_args = list(),
-  plot_qq_args = list(sampled_rows = 1000L), plot_bar_args = list(),
-  plot_correlation_args = list(cor_args = list(use =
-  "pairwise.complete.obs")), plot_prcomp_args = list(),
-  plot_boxplot_args = list(), plot_scatterplot_args = list(sampled_rows
-  = 1000L), global_ggtheme = quote(theme_gray()),
-  global_theme_config = list())
+configure_report(
+  add_introduce = TRUE,
+  add_plot_intro = TRUE,
+  add_plot_str = TRUE,
+  add_plot_missing = TRUE,
+  add_plot_histogram = TRUE,
+  add_plot_density = FALSE,
+  add_plot_qq = TRUE,
+  add_plot_bar = TRUE,
+  add_plot_correlation = TRUE,
+  add_plot_prcomp = TRUE,
+  add_plot_boxplot = TRUE,
+  add_plot_scatterplot = TRUE,
+  introduce_args = list(),
+  plot_intro_args = list(),
+  plot_str_args = list(type = "diagonal", fontSize = 35, width = 1000, margin =
+    list(left = 350, right = 250)),
+  plot_missing_args = list(),
+  plot_histogram_args = list(),
+  plot_density_args = list(),
+  plot_qq_args = list(sampled_rows = 1000L),
+  plot_bar_args = list(),
+  plot_correlation_args = list(cor_args = list(use = "pairwise.complete.obs")),
+  plot_prcomp_args = list(),
+  plot_boxplot_args = list(),
+  plot_scatterplot_args = list(sampled_rows = 1000L),
+  global_ggtheme = quote(theme_gray()),
+  global_theme_config = list()
+)
 }
 \arguments{
 \item{add_introduce}{add \link{introduce}? Default is \code{TRUE}.}

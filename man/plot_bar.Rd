@@ -4,9 +4,19 @@
 \alias{plot_bar}
 \title{Plot bar chart}
 \usage{
-plot_bar(data, with = NULL, maxcat = 50, order_bar = TRUE,
-  binary_as_factor = TRUE, title = NULL, ggtheme = theme_gray(),
-  theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE)
+plot_bar(
+  data,
+  with = NULL,
+  maxcat = 50,
+  order_bar = TRUE,
+  binary_as_factor = TRUE,
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(),
+  nrow = 3L,
+  ncol = 3L,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{data}{input data}

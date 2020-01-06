@@ -13,29 +13,30 @@ library(data.table)
 library(rmarkdown)
 library(knitr)
 
-## Create helper functions
-do_call <- function(fun_name, na_omit = FALSE) {
-	if (na_omit) data <- na.omit(data)
-	do.call(fun_name, c(list("data" = data), report_config[[fun_name]]))
-}
+## Set knitr options
+opts_chunk$set(
+  fig.width = 14,
+  fig.height = 10,
+  echo = FALSE,
+  results = "asis",
+  warning = TRUE
+)
 
 ## Get user data
 data <- params$data
 report_config <- params$report_config
 response <- params$response
+
+## Create helper functions
+do_call <- function(fun_name, na_omit = FALSE) {
+  if (na_omit) data <- na.omit(data)
+  do.call(fun_name, c(list("data" = data), report_config[[fun_name]]))
+}
+
+## Create global data
 intro <- do_call("introduce")
 
-## Set knitr options
-opts_chunk$set(
-	fig.width = 14,
-	fig.height = 10,
-	echo = FALSE,
-	results = "asis",
-	warning = TRUE
-)
 ```
-
-<script src="d3.min.js"></script>
 
 ```{r introduce}
 if ("introduce" %in% names(report_config)) {
@@ -45,7 +46,7 @@ if ("introduce" %in% names(report_config)) {
     "Name" = c("Rows", "Columns",
                "Discrete columns", "Continuous columns", "All missing columns",
                "Missing observations", "Complete Rows",
-    					 "Total observations", "Memory allocation"),
+               "Total observations", "Memory allocation"),
     "Value" = c(
       format(intro[["rows"]], big.mark = ","),
       format(intro[["columns"]], big.mark = ","),
@@ -67,7 +68,7 @@ if ("introduce" %in% names(report_config)) {
 
 ```{r plot_intro}
 if ("plot_intro" %in% names(report_config)) {
-	cat("#### Percentages", fill = TRUE)
+  cat("#### Percentages", fill = TRUE)
   do_call("plot_intro")
 }
 ```
@@ -166,12 +167,12 @@ if ("plot_qq" %in% names(report_config)) {
 
 ```{r plot_response_qq}
 if ("plot_qq" %in% names(report_config)) {
-	if (intro[["continuous_columns"]] > 0) {
-		if (!is.null(response)) {
-			cat(paste0("#### QQ Plot (by ", response, ")"), fill = TRUE)
-			do.call(plot_qq, c(list("data" = data, "by" = response), qq_option))
-		}
-	}
+  if (intro[["continuous_columns"]] > 0) {
+    if (!is.null(response)) {
+      cat(paste0("#### QQ Plot (by ", response, ")"), fill = TRUE)
+      do.call(plot_qq, c(list("data" = data, "by" = response), qq_option))
+    }
+  }
 }
 ```
 
@@ -191,28 +192,28 @@ if ("plot_qq" %in% names(report_config)) {
 
 ```{r correlation_analysis}
 if ("plot_correlation" %in% names(report_config)) {
-	cat("### Correlation Analysis", fill = TRUE)
-	if (intro[["complete_rows"]] > 0) {
-		do_call("plot_correlation", na_omit = TRUE)
-	} else {
-		message("Insufficient complete rows! Skipping correlation analysis.")
-	}
+  cat("### Correlation Analysis", fill = TRUE)
+  if (intro[["complete_rows"]] > 0) {
+    do_call("plot_correlation", na_omit = TRUE)
+  } else {
+    message("Insufficient complete rows! Skipping correlation analysis.")
+  }
 }
 ```
 
 ```{r principal_component_analysis}
 if ("plot_prcomp" %in% names(report_config)) {
-	cat("### Principal Component Analysis", fill = TRUE)
-	if (intro[["complete_rows"]] > 0) {
-		if (!is.null(response)) {
-			dt <- na.omit(data[, -response, with = FALSE])
-			do.call(plot_prcomp, c(list("data" = dt), report_config[["plot_prcomp"]]))
-		} else {
-			do_call("plot_prcomp", na_omit = TRUE)
-		}
-	} else {
-		message("Insufficient complete rows! Skipping principal component analysis.")
-	}
+  cat("### Principal Component Analysis", fill = TRUE)
+  if (intro[["complete_rows"]] > 0) {
+    if (!is.null(response)) {
+      dt <- na.omit(data[, -response, with = FALSE])
+      do.call(plot_prcomp, c(list("data" = dt), report_config[["plot_prcomp"]]))
+    } else {
+      do_call("plot_prcomp", na_omit = TRUE)
+    }
+  } else {
+    message("Insufficient complete rows! Skipping principal component analysis.")
+  }
 }
 ```
 

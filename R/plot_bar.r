@@ -29,9 +29,14 @@
 #' # Plot bar charts with `price` feature
 #' plot_bar(diamonds, with = "price")
 
-plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, binary_as_factor = TRUE, title = NULL, ggtheme = theme_gray(), theme_config = list(), nrow = 3L, ncol = 3L, parallel = FALSE) {
+plot_bar <- function(data, with = NULL,
+                     maxcat = 50, order_bar = TRUE, binary_as_factor = TRUE,
+                     title = NULL,
+                     ggtheme = theme_gray(), theme_config = list(),
+                     nrow = 3L, ncol = 3L,
+                     parallel = FALSE) {
   ## Declare variable first to pass R CMD check
-  frequency <- measure <- variable <- value <- NULL
+  frequency <- measure <- variable <- value <- facet_value <- NULL
   ## Check if input is data.table
   if (!is.data.table(data)) data <- data.table(data)
   ## Stop if no discrete features
@@ -63,7 +68,9 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, binary_as
     tmp_dt <- data.table(discrete, "measure" = measure_var)
     dt <- tmp_dt[, list(frequency = sum(measure, na.rm = TRUE)), by = feature_names]
   }
-  dt2 <- suppressWarnings(melt.data.table(dt, measure.vars = feature_names))
+  dt_tmp <- suppressWarnings(melt.data.table(dt, measure.vars = feature_names))
+  dt2 <- dt_tmp[, list(frequency = sum(frequency)), by = list(variable, value)]
+  dt2[, facet_value := paste0(value, "___", variable)]
   ## Calculate number of pages
   layout <- .getPageLayout(nrow, ncol, ncol(discrete))
   ## Create list of ggplot objects
@@ -72,12 +79,13 @@ plot_bar <- function(data, with = NULL, maxcat = 50, order_bar = TRUE, binary_as
     X = layout,
     FUN = function(x) {
       if (order_bar) {
-        base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = reorder(value, frequency), y = frequency))
+        base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = reorder(facet_value, frequency), y = frequency))
       } else {
         base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = value, y = frequency))
       }
       base_plot +
         geom_bar(stat = "identity") +
+        scale_x_discrete(labels = function(x) tstrsplit(x, "___")[[1]]) +
         coord_flip() +
         xlab("") + ylab(ifelse(is.null(with), "Frequency", toTitleCase(with)))
     }

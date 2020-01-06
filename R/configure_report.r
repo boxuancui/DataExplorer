@@ -76,7 +76,7 @@ configure_report <- function(
   global_exceptions <- c("add_introduce", "add_plot_str")
   ## Set config data based on arguments
   config <- lapply(setNames(switches, switches), function(s) {
-    if ((!is.null(input_args[[s]]) && input_args[[s]]) || (is.null(input_args[[s]]) && formal_args[[s]])) {
+    if ((!is.null(input_args[[s]]) && eval(input_args[[s]])) || (is.null(input_args[[s]]) && formal_args[[s]])) {
       key_args <- paste0(gsub("add_", "", s, fixed = TRUE), "_args")
       input_values <- eval(input_args[[key_args]])
       formal_values <- eval(formal_args[[key_args]])

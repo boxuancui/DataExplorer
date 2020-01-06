@@ -21,7 +21,13 @@
 #' plot_correlation(iris, type = "c")
 #' plot_correlation(airquality, cor_args = list("use" = "pairwise.complete.obs"))
 
-plot_correlation <- function(data, type = c("all", "discrete", "continuous"), maxcat = 20L, cor_args = list(), geom_text_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list("legend.position" = "bottom", "axis.text.x" = element_text(angle = 90))) {
+plot_correlation <- function(data, type = c("all", "discrete", "continuous"), maxcat = 20L,
+                             cor_args = list(),
+                             geom_text_args = list(),
+                             title = NULL,
+                             ggtheme = theme_gray(),
+                             theme_config = list("legend.position" = "bottom",
+                                                 "axis.text.x" = element_text(angle = 90))) {
   ## Declare variable first to pass R CMD check
   Var1 <- Var2 <- value <- NULL
   ## Set data to data.table

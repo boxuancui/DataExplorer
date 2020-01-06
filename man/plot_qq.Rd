@@ -4,10 +4,19 @@
 \alias{plot_qq}
 \title{Plot QQ plot}
 \usage{
-plot_qq(data, by = NULL, sampled_rows = nrow(data),
-  geom_qq_args = list(), geom_qq_line_args = list(), title = NULL,
-  ggtheme = theme_gray(), theme_config = list(), nrow = 3L,
-  ncol = 3L, parallel = FALSE)
+plot_qq(
+  data,
+  by = NULL,
+  sampled_rows = nrow(data),
+  geom_qq_args = list(),
+  geom_qq_line_args = list(),
+  title = NULL,
+  ggtheme = theme_gray(),
+  theme_config = list(),
+  nrow = 3L,
+  ncol = 3L,
+  parallel = FALSE
+)
 }
 \arguments{
 \item{data}{input data}
@@ -40,8 +49,7 @@ Plot quantile-quantile for each continuous feature
 }
 \examples{
 plot_qq(iris)
-plot_qq(iris, by = "Sepal.Width")
-plot_qq(iris, by = "Species", nrow = 2L, ncol = 2L)
+plot_qq(iris, by = "Species", ncol = 2L)
 
 plot_qq(
   data = airquality,
