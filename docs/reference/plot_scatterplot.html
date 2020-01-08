@@ -219,6 +219,11 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>plot_scatterplot</span>(<span class='no'>iris</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"Species"</span>)</div><div class='img'><img src='plot_scatterplot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Plot skewed data on log scale</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
+<span class='no'>skew</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span>(<span class='fl'>5L</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Beta.html'>rbeta</a></span>(<span class='fl'>1000</span>, <span class='fl'>1</span>, <span class='fl'>5000</span>)))
+<span class='fu'>plot_scatterplot</span>(<span class='no'>skew</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"X5"</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='img'><img src='plot_scatterplot-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plot_scatterplot</span>(<span class='no'>skew</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"X5"</span>, <span class='kw'>scale_x</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>scale_y</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='img'><img src='plot_scatterplot-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Customize themes</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='fu'>plot_scatterplot</span>(
@@ -227,11 +232,8 @@
   <span class='kw'>geom_point_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>1L</span>),
   <span class='kw'>theme_config</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"axis.text.x"</span> <span class='kw'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span>(<span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>90</span>)),
   <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4L</span>
-)</div><div class='img'><img src='plot_scatterplot-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Plot skewed data on log scale</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
-<span class='no'>skew</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span>(<span class='fl'>5L</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Beta.html'>rbeta</a></span>(<span class='fl'>1000</span>, <span class='fl'>1</span>, <span class='fl'>5000</span>)))
-<span class='fu'>plot_scatterplot</span>(<span class='no'>skew</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"X5"</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='img'><img src='plot_scatterplot-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>plot_scatterplot</span>(<span class='no'>skew</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"X5"</span>, <span class='kw'>scale_x</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>scale_y</span> <span class='kw'>=</span> <span class='st'>"log10"</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='img'><img src='plot_scatterplot-4.png' alt='' width='700' height='433' /></div></pre>
+)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
