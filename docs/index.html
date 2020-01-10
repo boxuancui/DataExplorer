@@ -95,15 +95,6 @@
 <a href="#dataexplorer-" class="anchor"></a>DataExplorer <img src="reference/figures/logo.png" align="right" width="130" height="150">
 </h1></div>
 
-<div id="master-v081" class="section level6">
-<h6>master v0.8.1</h6>
-<p><a href="https://travis-ci.org/boxuancui/DataExplorer/branches"><img src="https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master" alt="Travis Build Status"></a> <a href="https://ci.appveyor.com/project/boxuancui/DataExplorer"><img src="https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://codecov.io/gh/boxuancui/DataExplorer/branch/master"><img src="https://codecov.io/gh/boxuancui/DataExplorer/branch/master/graph/badge.svg" alt="codecov"></a></p>
-</div>
-<div id="develop-v0819000" class="section level6">
-<h6>develop v0.8.1.9000</h6>
-<p><a href="https://travis-ci.org/boxuancui/DataExplorer/branches"><img src="https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop" alt="Travis Build Status"></a> <a href="https://ci.appveyor.com/project/boxuancui/DataExplorer"><img src="https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=develop&amp;svg=true" alt="AppVeyor Build Status"></a> <a href="https://codecov.io/gh/boxuancui/DataExplorer/branch/develop"><img src="https://codecov.io/gh/boxuancui/DataExplorer/branch/develop/graph/badge.svg" alt="codecov"></a></p>
-<hr>
-</div>
 <div id="background" class="section level2">
 <h2 class="hasAnchor">
 <a href="#background" class="anchor"></a>Background</h2>
@@ -114,17 +105,17 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The package can be installed directly from CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"DataExplorer"</span>)</span></code></pre></div>
-<p>However, the latest stable version (if any) could be found on <a href="https://github.com/boxuancui/DataExplorer">GitHub</a>, and installed using <code>remotes</code> package.</p>
+<p>However, the latest stable version (if any) could be found on <a href="https://github.com/boxuancui/DataExplorer">GitHub</a>, and installed using <code>devtools</code> package.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span>(devtools)) <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"boxuancui/DataExplorer"</span>)</span></code></pre></div>
-<p>If you would like to install the latest <a href="https://github.com/boxuancui/DataExplorer/tree/develop">development version</a>, you may install the dev branch.</p>
+<p>If you would like to install the latest <a href="https://github.com/boxuancui/DataExplorer/tree/develop">development version</a>, you may install the develop branch.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span>(devtools)) <span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"boxuancui/DataExplorer"</span>, <span class="dt">ref =</span> <span class="st">"develop"</span>)</span></code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>The package is extremely easy to use. Almost everything could be done in one line of code. Please refer to the package manuals for more information. You may also find the package vignettes <a href="https://CRAN.R-project.org/package=DataExplorer/vignettes/dataexplorer-intro.html">here</a>.</p>
+<p>The package is extremely easy to use. Almost everything could be done in one line of code. Please refer to the package manuals for more information. You may also find the package vignettes <a href="https://boxuancui.github.io/DataExplorer/articles/dataexplorer-intro.html">here</a>.</p>
 <div id="report" class="section level4">
 <h4 class="hasAnchor">
 <a href="#report" class="anchor"></a>Report</h4>
@@ -138,64 +129,112 @@
 <div id="visualization" class="section level4">
 <h4 class="hasAnchor">
 <a href="#visualization" class="anchor"></a>Visualization</h4>
-<p>You may also run all the plotting functions individually for your analysis, e.g.,</p>
+<p>Instead of running <code>create_report</code>, you may also run each function individually for your analysis, e.g.,</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## View basic description for airquality data</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="kw"><a href="reference/introduce.html">introduce</a></span>(airquality)</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw"><a href="reference/plot_intro.html">plot_intro</a></span>(airquality)</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">## View missing value distribution for airquality data</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="kw"><a href="reference/plot_missing.html">plot_missing</a></span>(airquality)</span>
-<span id="cb6-7"><a href="#cb6-7"></a></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">## View distribution of all discrete variables</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="kw"><a href="reference/plot_bar.html">plot_bar</a></span>(diamonds)</span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="kw"><a href="reference/plot_bar.html">plot_bar</a></span>(diamonds, <span class="dt">with =</span> <span class="st">"price"</span>)</span>
-<span id="cb6-11"><a href="#cb6-11"></a></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">## View distribution of all continuous variables</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="kw"><a href="reference/plot_histogram.html">plot_histogram</a></span>(diamonds)</span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="kw"><a href="reference/plot_density.html">plot_density</a></span>(diamonds)</span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">## View quantile-quantile plot of all continuous variables</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="kw"><a href="reference/plot_qq.html">plot_qq</a></span>(diamonds)</span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="kw"><a href="reference/plot_qq.html">plot_qq</a></span>(diamonds, <span class="dt">by =</span> <span class="st">"cut"</span>)</span>
-<span id="cb6-19"><a href="#cb6-19"></a></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="co">## View overall correlation heatmap</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="kw"><a href="reference/plot_correlation.html">plot_correlation</a></span>(diamonds)</span>
-<span id="cb6-22"><a href="#cb6-22"></a></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co">## View bivariate continuous distribution based on `price`</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="kw"><a href="reference/plot_boxplot.html">plot_boxplot</a></span>(diamonds, <span class="dt">by =</span> <span class="st">"cut"</span>)</span>
-<span id="cb6-25"><a href="#cb6-25"></a>    </span>
-<span id="cb6-26"><a href="#cb6-26"></a><span class="co">## Scatterplot `price` with all other continuous features</span></span>
-<span id="cb6-27"><a href="#cb6-27"></a><span class="kw"><a href="reference/plot_scatterplot.html">plot_scatterplot</a></span>(<span class="kw"><a href="reference/split_columns.html">split_columns</a></span>(diamonds)<span class="op">$</span>continuous, <span class="dt">by =</span> <span class="st">"price"</span>, <span class="dt">sampled_rows =</span> 1000L)</span>
-<span id="cb6-28"><a href="#cb6-28"></a></span>
-<span id="cb6-29"><a href="#cb6-29"></a><span class="co">## Visualize principal component analysis</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a><span class="kw"><a href="reference/plot_prcomp.html">plot_prcomp</a></span>(diamonds, <span class="dt">maxcat =</span> 5L)</span></code></pre></div>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw"><a href="reference/introduce.html">introduce</a></span>(airquality)</span></code></pre></div>
+<table class="table"><tbody>
+<tr class="odd">
+<td align="left">rows</td>
+<td align="right">153</td>
+</tr>
+<tr class="even">
+<td align="left">columns</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">discrete_columns</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">continuous_columns</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">all_missing_columns</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">total_missing_values</td>
+<td align="right">44</td>
+</tr>
+<tr class="odd">
+<td align="left">complete_rows</td>
+<td align="right">111</td>
+</tr>
+<tr class="even">
+<td align="left">total_observations</td>
+<td align="right">918</td>
+</tr>
+<tr class="odd">
+<td align="left">memory_usage</td>
+<td align="right">6,376</td>
+</tr>
+</tbody></table>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## Plot basic description for airquality data</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw"><a href="reference/plot_intro.html">plot_intro</a></span>(airquality)</span></code></pre></div>
+<p><img src="reference/figures/README-plot-intro-1.png"><!-- --></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## View missing value distribution for airquality data</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw"><a href="reference/plot_missing.html">plot_missing</a></span>(airquality)</span></code></pre></div>
+<p><img src="reference/figures/README-plot-missing-1.png"><!-- --></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">## Left: frequency distribution of all discrete variables</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw"><a href="reference/plot_bar.html">plot_bar</a></span>(diamonds)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">## Right: `price` distribution of all discrete variables</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="kw"><a href="reference/plot_bar.html">plot_bar</a></span>(diamonds, <span class="dt">with =</span> <span class="st">"price"</span>)</span></code></pre></div>
+<p><img src="reference/figures/README-plot-bar-1.png"><!-- --></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## View histogram of all continuous variables</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw"><a href="reference/plot_histogram.html">plot_histogram</a></span>(diamonds)</span></code></pre></div>
+<p><img src="reference/figures/README-plot-histogram-1.png"><!-- --></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">## View estimated density distribution of all continuous variables</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw"><a href="reference/plot_density.html">plot_density</a></span>(diamonds)</span></code></pre></div>
+<p><img src="reference/figures/README-plot-density-1.png"><!-- --></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## View quantile-quantile plot of all continuous variables</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw"><a href="reference/plot_qq.html">plot_qq</a></span>(diamonds)</span></code></pre></div>
+<p><img src="reference/figures/README-plot-qq-1.png"><!-- --></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">## View quantile-quantile plot of all continuous variables by feature `cut`</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw"><a href="reference/plot_qq.html">plot_qq</a></span>(diamonds, <span class="dt">by =</span> <span class="st">"cut"</span>)</span></code></pre></div>
+<p><img src="reference/figures/README-plot-qq-cut-1.png"><!-- --></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">## View overall correlation heatmap</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="kw"><a href="reference/plot_correlation.html">plot_correlation</a></span>(diamonds)</span></code></pre></div>
+<p><img src="reference/figures/README-plot_correlation-1.png"><!-- --></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">## View bivariate continuous distribution based on `cut`</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="kw"><a href="reference/plot_boxplot.html">plot_boxplot</a></span>(diamonds, <span class="dt">by =</span> <span class="st">"cut"</span>)</span></code></pre></div>
+<p><img src="reference/figures/README-plot_boxplot-1.png"><!-- --></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">## Scatterplot `price` with all other continuous features</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="kw"><a href="reference/plot_scatterplot.html">plot_scatterplot</a></span>(<span class="kw"><a href="reference/split_columns.html">split_columns</a></span>(diamonds)<span class="op">$</span>continuous, <span class="dt">by =</span> <span class="st">"price"</span>, <span class="dt">sampled_rows =</span> 1000L)</span></code></pre></div>
+<p><img src="reference/figures/README-plot_scatterplot-1.png"><!-- --></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">## Visualize principal component analysis</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="kw"><a href="reference/plot_prcomp.html">plot_prcomp</a></span>(diamonds, <span class="dt">maxcat =</span> 5L)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">#&gt; 2 features with more than 5 categories ignored!</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="co">#&gt; color: 7 categories</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="co">#&gt; clarity: 8 categories</span></span></code></pre></div>
+<p><img src="reference/figures/README-plot_prcomp-1.png"><!-- --><img src="reference/figures/README-plot_prcomp-2.png"><!-- --></p>
 </div>
 <div id="feature-engineering" class="section level4">
 <h4 class="hasAnchor">
 <a href="#feature-engineering" class="anchor"></a>Feature Engineering</h4>
 <p>To make quick updates to your data:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## Group bottom 20% `clarity` by frequency</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="kw"><a href="reference/group_category.html">group_category</a></span>(diamonds, <span class="dt">feature =</span> <span class="st">"clarity"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">## Group bottom 20% `clarity` by `price`</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="kw"><a href="reference/group_category.html">group_category</a></span>(diamonds, <span class="dt">feature =</span> <span class="st">"clarity"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">measure =</span> <span class="st">"price"</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">## Dummify diamonds dataset</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="kw"><a href="reference/dummify.html">dummify</a></span>(diamonds)</span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="kw"><a href="reference/dummify.html">dummify</a></span>(diamonds, <span class="dt">select =</span> <span class="st">"cut"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10"></a></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">## Set values for missing observations</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="st">"a"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">260</span>), <span class="st">"b"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(letters, <span class="dv">10</span>))</span>
-<span id="cb7-13"><a href="#cb7-13"></a>df[<span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span>(<span class="dv">260</span>, <span class="dv">50</span>), ] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="kw"><a href="reference/set_missing.html">set_missing</a></span>(df, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(0L, <span class="st">"unknown"</span>))</span>
-<span id="cb7-15"><a href="#cb7-15"></a></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">## Update columns</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Month"</span>, <span class="st">"Day"</span>), as.factor)</span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, 1L, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)</span>
-<span id="cb7-19"><a href="#cb7-19"></a></span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="co">## Drop columns</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="dv">8</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="st">"clarity"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">## Group bottom 20% `clarity` by frequency</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw"><a href="reference/group_category.html">group_category</a></span>(diamonds, <span class="dt">feature =</span> <span class="st">"clarity"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="co">## Group bottom 20% `clarity` by `price`</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="kw"><a href="reference/group_category.html">group_category</a></span>(diamonds, <span class="dt">feature =</span> <span class="st">"clarity"</span>, <span class="dt">threshold =</span> <span class="fl">0.2</span>, <span class="dt">measure =</span> <span class="st">"price"</span>, <span class="dt">update =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb19-6"><a href="#cb19-6"></a></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="co">## Dummify diamonds dataset</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a><span class="kw"><a href="reference/dummify.html">dummify</a></span>(diamonds)</span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="kw"><a href="reference/dummify.html">dummify</a></span>(diamonds, <span class="dt">select =</span> <span class="st">"cut"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10"></a></span>
+<span id="cb19-11"><a href="#cb19-11"></a><span class="co">## Set values for missing observations</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="st">"a"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dv">260</span>), <span class="st">"b"</span> =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(letters, <span class="dv">10</span>))</span>
+<span id="cb19-13"><a href="#cb19-13"></a>df[<span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span>(<span class="dv">260</span>, <span class="dv">50</span>), ] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a><span class="kw"><a href="reference/set_missing.html">set_missing</a></span>(df, <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(0L, <span class="st">"unknown"</span>))</span>
+<span id="cb19-15"><a href="#cb19-15"></a></span>
+<span id="cb19-16"><a href="#cb19-16"></a><span class="co">## Update columns</span></span>
+<span id="cb19-17"><a href="#cb19-17"></a><span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Month"</span>, <span class="st">"Day"</span>), as.factor)</span>
+<span id="cb19-18"><a href="#cb19-18"></a><span class="kw"><a href="reference/update_columns.html">update_columns</a></span>(airquality, 1L, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb19-19"><a href="#cb19-19"></a></span>
+<span id="cb19-20"><a href="#cb19-20"></a><span class="co">## Drop columns</span></span>
+<span id="cb19-21"><a href="#cb19-21"></a><span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="dv">8</span><span class="op">:</span><span class="dv">10</span>)</span>
+<span id="cb19-22"><a href="#cb19-22"></a><span class="kw"><a href="reference/drop_columns.html">drop_columns</a></span>(diamonds, <span class="st">"clarity"</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="articles" class="section level2">
@@ -235,9 +274,13 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=DataExplorer"><img src="http://www.r-pkg.org/badges/version/DataExplorer" alt="CRAN Version"></a></li>
-<li><a href="https://bestpractices.coreinfrastructure.org/projects/2053"><img src="https://bestpractices.coreinfrastructure.org/projects/2053/badge" alt="CII Best Practices"></a></li>
 <li><a href="https://cran.r-project.org/package=DataExplorer"><img src="http://cranlogs.r-pkg.org/badges/DataExplorer" alt="Downloads"></a></li>
 <li><a href="https://cran.r-project.org/package=DataExplorer"><img src="http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer" alt="Total Downloads"></a></li>
+<li><a href="https://travis-ci.org/boxuancui/DataExplorer/branches"><img src="https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master" alt="Travis Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/boxuancui/DataExplorer"><img src="https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://codecov.io/gh/boxuancui/DataExplorer/branch/master"><img src="https://codecov.io/gh/boxuancui/DataExplorer/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://bestpractices.coreinfrastructure.org/projects/2053"><img src="https://bestpractices.coreinfrastructure.org/projects/2053/badge" alt="CII Best Practices"></a></li>
+<li><a href="https://github.com/boxuancui/DataExplorer"><img src="https://img.shields.io/github/stars/boxuancui/DataExplorer.svg?style=social" alt="GitHub Stars"></a></li>
 </ul>
 </div>
 </div>

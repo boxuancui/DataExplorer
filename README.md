@@ -1,106 +1,198 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # DataExplorer <img src="man/figures/logo.png" align="right" width="130" height="150"/>
 
-[![CRAN Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/2053/badge)](https://bestpractices.coreinfrastructure.org/projects/2053)
+[![CRAN
+Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 [![Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
-[![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
-
-###### master v0.8.1
-
-[![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer/branches)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=master&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
+[![Total
+Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
+[![Travis Build
+Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer/branches)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=master&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
 [![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/master/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer/branch/master)
-
-###### develop v0.8.1.9000
-
-[![Travis Build Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=develop)](https://travis-ci.org/boxuancui/DataExplorer/branches)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=develop&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
-[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/develop/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer/branch/develop)
-
----
+[![CII Best
+Practices](https://bestpractices.coreinfrastructure.org/projects/2053/badge)](https://bestpractices.coreinfrastructure.org/projects/2053)
+[![GitHub
+Stars](https://img.shields.io/github/stars/boxuancui/DataExplorer.svg?style=social)](https://github.com/boxuancui/DataExplorer)
 
 ## Background
-[Exploratory Data Analysis (EDA)](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is the initial and an important phase of data analysis/predictive modeling. During this process, analysts/modelers will have a first look of the data, and thus generate relevant hypotheses and decide next steps. However, the EDA process could be a hassle at times. This [R](https://cran.r-project.org/) package aims to automate most of data handling and visualization, so that users could focus on studying the data and extracting insights.
+
+[Exploratory Data Analysis
+(EDA)](https://en.wikipedia.org/wiki/Exploratory_data_analysis) is the
+initial and an important phase of data analysis/predictive modeling.
+During this process, analysts/modelers will have a first look of the
+data, and thus generate relevant hypotheses and decide next steps.
+However, the EDA process could be a hassle at times. This
+[R](https://cran.r-project.org/) package aims to automate most of data
+handling and visualization, so that users could focus on studying the
+data and extracting insights.
 
 ## Installation
+
 The package can be installed directly from CRAN.
 
-```R
+``` r
 install.packages("DataExplorer")
 ```
 
-However, the latest stable version (if any) could be found on [GitHub](https://github.com/boxuancui/DataExplorer), and installed using `remotes` package.
+However, the latest stable version (if any) could be found on
+[GitHub](https://github.com/boxuancui/DataExplorer), and installed using
+`devtools` package.
 
-```R
+``` r
 if (!require(devtools)) install.packages("devtools")
 devtools::install_github("boxuancui/DataExplorer")
 ```
 
-If you would like to install the latest [development version](https://github.com/boxuancui/DataExplorer/tree/develop), you may install the dev branch.
+If you would like to install the latest [development
+version](https://github.com/boxuancui/DataExplorer/tree/develop), you
+may install the develop branch.
 
-```R
+``` r
 if (!require(devtools)) install.packages("devtools")
 devtools::install_github("boxuancui/DataExplorer", ref = "develop")
 ```
 
 ## Examples
-The package is extremely easy to use. Almost everything could be done in one line of code. Please refer to the package manuals for more information. You may also find the package vignettes [here](https://CRAN.R-project.org/package=DataExplorer/vignettes/dataexplorer-intro.html).
+
+The package is extremely easy to use. Almost everything could be done in
+one line of code. Please refer to the package manuals for more
+information. You may also find the package vignettes
+[here](https://boxuancui.github.io/DataExplorer/articles/dataexplorer-intro.html).
 
 #### Report
-To get a report for the [airquality](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/airquality.html) dataset:
 
-```R
+To get a report for the
+[airquality](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/airquality.html)
+dataset:
+
+``` r
 library(DataExplorer)
 create_report(airquality)
 ```
 
-To get a report for the [diamonds](https://ggplot2.tidyverse.org/reference/diamonds.html) dataset with response variable **price**:
+To get a report for the
+[diamonds](https://ggplot2.tidyverse.org/reference/diamonds.html)
+dataset with response variable **price**:
 
-```R
+``` r
 library(ggplot2)
 create_report(diamonds, y = "price")
 ```
 
 #### Visualization
-You may also run all the plotting functions individually for your analysis, e.g.,
 
-```R
+Instead of running `create_report`, you may also run each function
+individually for your analysis, e.g.,
+
+``` r
 ## View basic description for airquality data
 introduce(airquality)
-plot_intro(airquality)
+```
 
+|                        |       |
+| :--------------------- | ----: |
+| rows                   |   153 |
+| columns                |     6 |
+| discrete\_columns      |     0 |
+| continuous\_columns    |     6 |
+| all\_missing\_columns  |     0 |
+| total\_missing\_values |    44 |
+| complete\_rows         |   111 |
+| total\_observations    |   918 |
+| memory\_usage          | 6,376 |
+
+``` r
+## Plot basic description for airquality data
+plot_intro(airquality)
+```
+
+![](man/figures/README-plot-intro-1.png)<!-- -->
+
+``` r
 ## View missing value distribution for airquality data
 plot_missing(airquality)
+```
 
-## View distribution of all discrete variables
+![](man/figures/README-plot-missing-1.png)<!-- -->
+
+``` r
+## Left: frequency distribution of all discrete variables
 plot_bar(diamonds)
+## Right: `price` distribution of all discrete variables
 plot_bar(diamonds, with = "price")
+```
 
-## View distribution of all continuous variables
+![](man/figures/README-plot-bar-1.png)<!-- -->
+
+``` r
+## View histogram of all continuous variables
 plot_histogram(diamonds)
-plot_density(diamonds)
+```
 
+![](man/figures/README-plot-histogram-1.png)<!-- -->
+
+``` r
+## View estimated density distribution of all continuous variables
+plot_density(diamonds)
+```
+
+![](man/figures/README-plot-density-1.png)<!-- -->
+
+``` r
 ## View quantile-quantile plot of all continuous variables
 plot_qq(diamonds)
-plot_qq(diamonds, by = "cut")
+```
 
+![](man/figures/README-plot-qq-1.png)<!-- -->
+
+``` r
+## View quantile-quantile plot of all continuous variables by feature `cut`
+plot_qq(diamonds, by = "cut")
+```
+
+![](man/figures/README-plot-qq-cut-1.png)<!-- -->
+
+``` r
 ## View overall correlation heatmap
 plot_correlation(diamonds)
+```
 
-## View bivariate continuous distribution based on `price`
+![](man/figures/README-plot_correlation-1.png)<!-- -->
+
+``` r
+## View bivariate continuous distribution based on `cut`
 plot_boxplot(diamonds, by = "cut")
-	
+```
+
+![](man/figures/README-plot_boxplot-1.png)<!-- -->
+
+``` r
 ## Scatterplot `price` with all other continuous features
 plot_scatterplot(split_columns(diamonds)$continuous, by = "price", sampled_rows = 1000L)
+```
 
+![](man/figures/README-plot_scatterplot-1.png)<!-- -->
+
+``` r
 ## Visualize principal component analysis
 plot_prcomp(diamonds, maxcat = 5L)
 ```
 
+    #> 2 features with more than 5 categories ignored!
+    #> color: 7 categories
+    #> clarity: 8 categories
+
+![](man/figures/README-plot_prcomp-1.png)<!-- -->![](man/figures/README-plot_prcomp-2.png)<!-- -->
+
 #### Feature Engineering
+
 To make quick updates to your data:
 
-```R
+``` r
 ## Group bottom 20% `clarity` by frequency
 group_category(diamonds, feature = "clarity", threshold = 0.2, update = TRUE)
 
@@ -127,4 +219,5 @@ drop_columns(diamonds, "clarity")
 
 ## Articles
 
-See [article wiki page](https://github.com/boxuancui/DataExplorer/wiki/Articles).
+See [article wiki
+page](https://github.com/boxuancui/DataExplorer/wiki/Articles).
