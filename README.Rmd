@@ -78,7 +78,7 @@ Instead of running `create_report`, you may also run each function individually 
 
 ```{r introduce-template}
 ## View basic description for airquality data
-introduce(airquality)
+introduce(airquality, add_percent = T)
 ```
 
 ```{r introduce, echo=FALSE, eval=TRUE}

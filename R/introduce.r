@@ -22,7 +22,7 @@
 #' @examples
 #' introduce(mtcars)
 
-introduce <- function(data) {
+introduce <- function(data, add_percent = F) {
 	## Check and set to data.table
 	is_data_table <- is.data.table(data)
 	data_class <- class(data)
@@ -41,8 +41,14 @@ introduce <- function(data) {
 		"total_observations" = nrow(data) * ncol(data),
 		"memory_usage" = as.numeric(object.size(data))
 	)
-
-	## Set data class back to original
-	if (!is_data_table) class(output) <- data_class
-	output
+	
+	if(add_percent){
+	  output <- as.data.frame(t(output))
+	  names(output) <- c('Count')
+	  output
+	} else {
+	  ## Set data class back to original
+	  if (!is_data_table) class(output) <- data_class
+	  output
+	}
 }
