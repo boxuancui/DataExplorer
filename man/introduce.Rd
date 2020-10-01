@@ -9,7 +9,7 @@ introduce(data, add_percent = F)
 \arguments{
 \item{data}{input data}
 
-\item{add_percent}{if True an additional column with % of total is returned}
+\item{add_percent}{if True an additional column with "\%" of total is returned}
 }
 \value{
 Describe basic information in input data class:
