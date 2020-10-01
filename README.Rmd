@@ -76,8 +76,11 @@ create_report(diamonds, y = "price")
 #### Visualization
 Instead of running `create_report`, you may also run each function individually for your analysis, e.g.,
 
-```{r introduce-template}
+```{r introduce-template, rows.print = 15}
 ## View basic description for airquality data
+airquality[53:59,3] <- Inf
+airquality[60:61,3] <- -Inf
+airquality[62:71,3] <- 0/0
 introduce(airquality, add_percent = T)
 ```
 
