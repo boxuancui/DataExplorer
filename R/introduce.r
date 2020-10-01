@@ -49,6 +49,13 @@ introduce <- function(data, add_percent = F) {
 	if(add_percent){
 	  output <- as.data.frame(t(output))
 	  names(output) <- c('Count')
+	  output['discrete_columns', '% of total'] <- round(output['discrete_columns', 'Count']/output['columns', 'Count']*100, 2)
+	  output['continuous_columns', '% of total'] <- round(output['continuous_columns', 'Count']/output['columns', 'Count']*100, 2)
+	  output['all_missing_columns', '% of total'] <- round(output['all_missing_columns', 'Count']/output['columns', 'Count']*100, 2)
+	  output['complete_rows', '% of total'] <- round(output['complete_rows', 'Count']/output['rows', 'Count']*100, 2)
+	  output['total_missing_values', '% of total'] <- round(output['total_missing_values', 'Count']/output['total_observations', 'Count']*100, 2)
+	  output['infinite_values', '% of total'] <- round(output['infinite_values', 'Count']/output['total_observations', 'Count']*100, 2)
+	  output['nan_values', '% of total'] <- round(output['nan_values', 'Count']/output['total_observations', 'Count']*100, 2)
 	  output
 	} else {
 	  ## Set data class back to original
