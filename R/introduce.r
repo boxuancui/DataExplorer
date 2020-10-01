@@ -2,6 +2,7 @@
 #'
 #' Describe basic information for input data.
 #' @param data input data
+#' @param add_percet input if True an additional column with % of total is returned
 #' @keywords introduce
 #' @return Describe basic information in input data class:
 #' \itemize{
