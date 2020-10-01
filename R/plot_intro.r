@@ -27,14 +27,16 @@ plot_intro <- function(data, geom_label_args = list(), title = NULL, ggtheme = t
   memory_usage_string <- format(memory_usage, unit = "auto")
   intro2 <- data.table(
     "id" = seq.int(5L),
-    "dimension" = c(rep("column", 3L), "row", "observation"),
-    "variable" = c("Discrete Columns", "Continuous Columns", "All Missing Columns", "Complete Rows", "Missing Observations"),
+    "dimension" = c(rep("column", 3L), "row", rep("observation", 3L)),
+    "variable" = c("Discrete Columns", "Continuous Columns", "All Missing Columns", "Complete Rows", "Missing Observations", "Infinite values", "NaN values"),
     "value" = c(
       intro[["discrete_columns"]] / intro[["columns"]],
       intro[["continuous_columns"]] / intro[["columns"]],
       intro[["all_missing_columns"]] / intro[["columns"]],
       intro[["complete_rows"]] / intro[["rows"]],
-      intro[["total_missing_values"]] / intro[["total_observations"]]
+      intro[["total_missing_values"]] / intro[["total_observations"]],
+      intro[["infinite_values"]] / intro[["total_observations"]],
+      intro[["nan_values"]] / intro[["total_observations"]]
     )
   )
   ## Create ggplot object
