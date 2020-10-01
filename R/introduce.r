@@ -2,6 +2,7 @@
 #'
 #' Describe basic information for input data.
 #' @param data input data
+#' @param add_percent if True an additional column with % of total is returned
 #' @keywords introduce
 #' @return Describe basic information in input data class:
 #' \itemize{
@@ -40,8 +41,8 @@ introduce <- function(data, add_percent = F) {
 		"complete_rows" = sum(complete.cases(data)),
 		"rows" = nrow(data),
 		"total_missing_values" = sum(is.na(data)),
-		"infinite_values" = sum(is.infinite(unlist(data))),
-		"nan_values" = sum(is.nan(unlist(data))),
+		"infinite_values" = sum(is.infinite(as.numeric(unlist(data)))),
+		"nan_values" = sum(is.nan(as.numeric(unlist(data)))),
 		"total_observations" = nrow(data) * ncol(data),
 		"memory_usage" = as.numeric(object.size(data))
 	)

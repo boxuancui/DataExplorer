@@ -4,21 +4,25 @@
 \alias{introduce}
 \title{Describe basic information}
 \usage{
-introduce(data)
+introduce(data, add_percent = F)
 }
 \arguments{
 \item{data}{input data}
+
+\item{add_percent}{if True an additional column with % of total is returned}
 }
 \value{
 Describe basic information in input data class:
 \itemize{
-  \item{rows: number of rows}
-  \item{columns: number of columns}
   \item{discrete_columns: number of discrete columns}
   \item{continuous_columns: number of continuous columns}
   \item{all_missing_columns: number of columns with everything missing}
-  \item{total_missing_values: number of missing observations}
+  \item{columns: number of columns}
   \item{complete_rows: number of rows without missing values. See \link{complete.cases}.}
+  \item{rows: number of rows}
+  \item{total_missing_values: number of missing observations}
+  \item{infinite_values: number of Inf/-Inf observations}
+  \item{nan_values: number of NaN observations}
   \item{total_observations: total number of observations}
   \item{memory_usage: estimated memory allocation in bytes. See \link{object.size}.}
 }
