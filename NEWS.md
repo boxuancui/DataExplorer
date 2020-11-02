@@ -1,3 +1,7 @@
+# DataExplorer 0.8.2
+## Bug Fixes
+* [#148](https://github.com/boxuancui/DataExplorer/issues/148): Address CRAN removal due to vignette build failure.
+
 # DataExplorer 0.8.1
 ## Enhancements
 * [#111](https://github.com/boxuancui/DataExplorer/issues/111): Continuous distributions can now be plotted with different scales, i.e., histogram, density, boxplot, scatterplot.
