@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -45,7 +49,6 @@
 <meta property="og:title" content="Create report — create_report" />
 <meta property="og:description" content="This function creates a data profiling report." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -73,7 +76,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataExplorer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -119,7 +122,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/boxuancui/DataExplorer/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -134,7 +142,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create report</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/boxuancui/DataExplorer/blob/master/R/create_report.r'><code>R/create_report.r</code></a></small>
     <div class="hidden name"><code>create_report.Rd</code></div>
     </div>
 
@@ -142,16 +150,16 @@
     <p>This function creates a data profiling report.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_report</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>output_format</span> <span class='kw'>=</span> <span class='fu'>html_document</span>(<span class='kw'>toc</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>toc_depth</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"yeti"</span>),
-  <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='st'>"report.html"</span>,
-  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>config</span> <span class='kw'>=</span> <span class='fu'><a href='configure_report.html'>configure_report</a></span>(),
-  <span class='kw'>report_title</span> <span class='kw'>=</span> <span class='st'>"Data Profiling Report"</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>create_report</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  output_format <span class='op'>=</span> <span class='fu'>html_document</span><span class='op'>(</span>toc <span class='op'>=</span> <span class='cn'>TRUE</span>, toc_depth <span class='op'>=</span> <span class='fl'>6</span>, theme <span class='op'>=</span> <span class='st'>"yeti"</span><span class='op'>)</span>,
+  output_file <span class='op'>=</span> <span class='st'>"report.html"</span>,
+  output_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>,
+  y <span class='op'>=</span> <span class='cn'>NULL</span>,
+  config <span class='op'>=</span> <span class='fu'><a href='configure_report.html'>configure_report</a></span><span class='op'>(</span><span class='op'>)</span>,
+  report_title <span class='op'>=</span> <span class='st'>"Data Profiling Report"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -213,74 +221,69 @@ For example, <code>create_report(..., y = "a", config = list("plot_bar" = list("
     <div class='dont-index'><p><a href='configure_report.html'>configure_report</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Create report</span>
-<span class='fu'>create_report</span>(<span class='no'>iris</span>)
-<span class='fu'>create_report</span>(<span class='no'>airquality</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"Ozone"</span>)
+<span class='fu'>create_report</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+<span class='fu'>create_report</span><span class='op'>(</span><span class='va'>airquality</span>, y <span class='op'>=</span> <span class='st'>"Ozone"</span><span class='op'>)</span>
 
 <span class='co'># Load library</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>data.table</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>rmarkdown</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://r-datatable.com'>data.table</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/rstudio/rmarkdown'>rmarkdown</a></span><span class='op'>)</span>
 
 <span class='co'># Set some missing values</span>
-<span class='no'>diamonds2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='no'>diamonds</span>)
-<span class='kw'>for</span> (<span class='no'>j</span> <span class='kw'>in</span> <span class='fl'>5</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span>(<span class='no'>diamonds2</span>)) {
-  <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/assign.html'>set</a></span>(<span class='no'>diamonds2</span>,
-      <span class='kw'>i</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>diamonds2</span>), <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>diamonds2</span>), <span class='fl'>1</span>)),
-      <span class='no'>j</span>,
-      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>NA_integer_</span>)
-}
+<span class='va'>diamonds2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span><span class='op'>(</span><span class='va'>diamonds</span><span class='op'>)</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>j</span> <span class='kw'>in</span> <span class='fl'>5</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>diamonds2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/assign.html'>set</a></span><span class='op'>(</span><span class='va'>diamonds2</span>,
+      i <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>diamonds2</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample.int</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>diamonds2</span><span class='op'>)</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>,
+      <span class='va'>j</span>,
+      value <span class='op'>=</span> <span class='cn'>NA_integer_</span><span class='op'>)</span>
+<span class='op'>}</span>
 
 <span class='co'># Create customized report for diamonds2 dataset</span>
-<span class='fu'>create_report</span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>diamonds2</span>,
-  <span class='kw'>output_format</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/html_document.html'>html_document</a></span>(<span class='kw'>toc</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>toc_depth</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='st'>"flatly"</span>),
-  <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='st'>"report.html"</span>,
-  <span class='kw'>output_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span>(),
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"price"</span>,
-  <span class='kw'>config</span> <span class='kw'>=</span> <span class='fu'><a href='configure_report.html'>configure_report</a></span>(
-    <span class='kw'>add_plot_prcomp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-    <span class='kw'>plot_qq_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"by"</span> <span class='kw'>=</span> <span class='st'>"cut"</span>, <span class='kw'>sampled_rows</span> <span class='kw'>=</span> <span class='fl'>1000L</span>),
-    <span class='kw'>plot_bar_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"with"</span> <span class='kw'>=</span> <span class='st'>"carat"</span>),
-    <span class='kw'>plot_correlation_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"cor_args"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"use"</span> <span class='kw'>=</span> <span class='st'>"pairwise.complete.obs"</span>)),
-    <span class='kw'>plot_boxplot_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"by"</span> <span class='kw'>=</span> <span class='st'>"cut"</span>),
-    <span class='kw'>global_ggtheme</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_light</a></span>())
-  )
-)
+<span class='fu'>create_report</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='va'>diamonds2</span>,
+  output_format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/rmarkdown/man/html_document.html'>html_document</a></span><span class='op'>(</span>toc <span class='op'>=</span> <span class='cn'>TRUE</span>, toc_depth <span class='op'>=</span> <span class='fl'>6</span>, theme <span class='op'>=</span> <span class='st'>"flatly"</span><span class='op'>)</span>,
+  output_file <span class='op'>=</span> <span class='st'>"report.html"</span>,
+  output_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>,
+  y <span class='op'>=</span> <span class='st'>"price"</span>,
+  config <span class='op'>=</span> <span class='fu'><a href='configure_report.html'>configure_report</a></span><span class='op'>(</span>
+    add_plot_prcomp <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    plot_qq_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"by"</span> <span class='op'>=</span> <span class='st'>"cut"</span>, sampled_rows <span class='op'>=</span> <span class='fl'>1000L</span><span class='op'>)</span>,
+    plot_bar_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"with"</span> <span class='op'>=</span> <span class='st'>"carat"</span><span class='op'>)</span>,
+    plot_correlation_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"cor_args"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"use"</span> <span class='op'>=</span> <span class='st'>"pairwise.complete.obs"</span><span class='op'>)</span><span class='op'>)</span>,
+    plot_boxplot_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"by"</span> <span class='op'>=</span> <span class='st'>"cut"</span><span class='op'>)</span>,
+    global_ggtheme <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_light</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
 
 <span class='co'>## Configure report without `configure_report`</span>
-<span class='no'>config</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-  <span class='st'>"introduce"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='st'>"plot_intro"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='st'>"plot_str"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='st'>"type"</span> <span class='kw'>=</span> <span class='st'>"diagonal"</span>,
-    <span class='st'>"fontSize"</span> <span class='kw'>=</span> <span class='fl'>35</span>,
-    <span class='st'>"width"</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-    <span class='st'>"margin"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"left"</span> <span class='kw'>=</span> <span class='fl'>350</span>, <span class='st'>"right"</span> <span class='kw'>=</span> <span class='fl'>250</span>)
-  ),
-  <span class='st'>"plot_missing"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='st'>"plot_histogram"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='st'>"plot_density"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='st'>"plot_qq"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sampled_rows</span> <span class='kw'>=</span> <span class='fl'>1000L</span>),
-  <span class='st'>"plot_bar"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='st'>"plot_correlation"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"cor_args"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"use"</span> <span class='kw'>=</span> <span class='st'>"pairwise.complete.obs"</span>)),
-  <span class='st'>"plot_prcomp"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='st'>"plot_boxplot"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='st'>"plot_scatterplot"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sampled_rows</span> <span class='kw'>=</span> <span class='fl'>1000L</span>)
-)
-}</div></pre>
+<span class='va'>config</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+  <span class='st'>"introduce"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='st'>"plot_intro"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='st'>"plot_str"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    <span class='st'>"type"</span> <span class='op'>=</span> <span class='st'>"diagonal"</span>,
+    <span class='st'>"fontSize"</span> <span class='op'>=</span> <span class='fl'>35</span>,
+    <span class='st'>"width"</span> <span class='op'>=</span> <span class='fl'>1000</span>,
+    <span class='st'>"margin"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"left"</span> <span class='op'>=</span> <span class='fl'>350</span>, <span class='st'>"right"</span> <span class='op'>=</span> <span class='fl'>250</span><span class='op'>)</span>
+  <span class='op'>)</span>,
+  <span class='st'>"plot_missing"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='st'>"plot_histogram"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='st'>"plot_density"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='st'>"plot_qq"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sampled_rows <span class='op'>=</span> <span class='fl'>1000L</span><span class='op'>)</span>,
+  <span class='st'>"plot_bar"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='st'>"plot_correlation"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"cor_args"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"use"</span> <span class='op'>=</span> <span class='st'>"pairwise.complete.obs"</span><span class='op'>)</span><span class='op'>)</span>,
+  <span class='st'>"plot_prcomp"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='st'>"plot_boxplot"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='st'>"plot_scatterplot"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sampled_rows <span class='op'>=</span> <span class='fl'>1000L</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -291,7 +294,7 @@ For example, <code>create_report(..., y = "a", config = list("plot_bar" = list("
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

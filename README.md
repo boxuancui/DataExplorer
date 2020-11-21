@@ -1,6 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # DataExplorer <img src="man/figures/logo.png" align="right" width="130" height="150"/>
 
 [![CRAN
@@ -127,6 +125,13 @@ plot_bar(diamonds, with = "price")
 ```
 
 ![](man/figures/README-plot-bar-1.png)<!-- -->
+
+``` r
+## View frequency distribution by a discrete variable
+plot_bar(diamonds, by = "cut")
+```
+
+![](man/figures/README-plot-bar-by-1.png)<!-- -->
 
 ``` r
 ## View histogram of all continuous variables

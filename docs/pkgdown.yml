@@ -1,6 +1,7 @@
 pandoc: 2.7.3
-pkgdown: 1.4.1
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   dataexplorer-intro: dataexplorer-intro.html
+last_built: 2020-11-21T05:34Z
 

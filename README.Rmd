@@ -119,6 +119,11 @@ DataExplorer:::plotDataExplorer.grid(
 )
 ```
 
+```{r plot-bar-by, eval=TRUE}
+## View frequency distribution by a discrete variable
+plot_bar(diamonds, by = "cut")
+```
+
 ```{r plot-histogram-template}
 ## View histogram of all continuous variables
 plot_histogram(diamonds)

@@ -122,7 +122,7 @@ if ("plot_density" %in% names(report_config)) {
 if ("plot_bar" %in% names(report_config)) {
   if (intro[["discrete_columns"]] > 0) {
     bar_option <- report_config[["plot_bar"]][setdiff(names(report_config[["plot_bar"]]), "with")]
-    cat("#### Bar Chart (by frequency)", fill = TRUE)
+    cat("#### Bar Chart (with frequency)", fill = TRUE)
     do.call(plot_bar, c(list("data" = data), bar_option))
   }
 }
@@ -130,11 +130,11 @@ if ("plot_bar" %in% names(report_config)) {
 
 ```{r plot_response_bar}
 if ("plot_bar" %in% names(report_config)) {
-  if (intro[["discrete_columns"]] > 0) {
+  if (intro[["discrete_columns"]] > 1) {
     if (!is.null(response)) {
-      if (is.numeric(data[[response]])) {
+      if (!is.numeric(data[[response]])) {
         cat(paste0("#### Bar Chart (by ", response, ")"), fill = TRUE)
-        do.call(plot_bar, c(list("data" = data, "with" = response), bar_option))
+        do.call(plot_bar, c(list("data" = data, "by" = response), bar_option))
       }
     }
   }
@@ -147,7 +147,7 @@ if ("plot_bar" %in% names(report_config)) {
     with_value <- report_config[["plot_bar"]][["with"]]
     if (!is.null(with_value)) {
       if (response != with_value) {
-        cat(paste0("#### Bar Chart (by ", with_value, ")"), fill = TRUE)
+        cat(paste0("#### Bar Chart (with ", with_value, ")"), fill = TRUE)
         do_call("plot_bar")
       }
     }

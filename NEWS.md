@@ -1,4 +1,7 @@
 # DataExplorer 0.8.2
+## Enhancements
+* [#139](https://github.com/boxuancui/DataExplorer/issues/139): Added `by` argument to `plot_bar`.
+
 ## Bug Fixes
 * [#148](https://github.com/boxuancui/DataExplorer/issues/148): Address CRAN removal due to vignette build failure.
 
