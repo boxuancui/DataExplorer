@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -44,7 +48,6 @@
 
 <meta property="og:title" content="Changelog" />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -72,7 +75,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -86,7 +89,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataExplorer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -118,7 +121,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/boxuancui/DataExplorer/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -132,25 +140,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/boxuancui/DataExplorer/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="dataexplorer-081" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-081" class="anchor"></a>DataExplorer 0.8.1<small> 2020-01-07 </small>
+    <div id="dataexplorer-082" class="section level1">
+<h1 class="page-header" data-toc-text="0.8.2">
+<a href="#dataexplorer-082" class="anchor"></a>DataExplorer 0.8.2<small> Unreleased </small>
 </h1>
 <div id="enhancements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#enhancements" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/111">#111</a>: Continuous distributions can now be plotted with different scales, i.e., histogram, density, boxplot, scatterplot.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/126">#126</a>: Cleaned up labels in legend guide.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/pull/127">#127 (PR)</a>: Added option to plot columns with missing values only in <code>plot_missing</code>.</li>
-<li>Cleaned up code for <code>create_report</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/139"><a href='https://github.com/boxuancui/DataExplorer/issues/139'>#139</a></a>: Added <code>by</code> argument to <code>plot_bar</code>.</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
@@ -158,53 +161,25 @@
 <a href="#bug-fixes" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/109">#109</a>: Fixed a bug causing unordered bar charts.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/114">#114</a>: Removed redundant message in <code>dummify</code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/116">#116</a>: Fixed pandoc document conversion error 99.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/120">#120</a>: Fixed type <code>logical</code> being parsed as <code>symbol</code> in <code>configure_report</code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/121">#121</a>: Fixed missing value bug when <code><a href="../reference/split_columns.html">split_columns(..., binary_as_factor = TRUE)</a></code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/pull/130">#130 (PR)</a>: <code>plot_prcomp</code> now drops columns with zero variance.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/148"><a href='https://github.com/boxuancui/DataExplorer/issues/148'>#148</a></a>: Address CRAN removal due to vignette build failure.</li>
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-080" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-080" class="anchor"></a>DataExplorer 0.8.0<small> 2019-03-17 </small>
+    <div id="dataexplorer-081" class="section level1">
+<h1 class="page-header" data-toc-text="0.8.1">
+<a href="#dataexplorer-081" class="anchor"></a>DataExplorer 0.8.1<small> 2020-01-07 </small>
 </h1>
-<div id="new-features" class="section level2">
-<h2 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New Features</h2>
-<ul>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/92">#92</a>: Added <code>update_columns</code> to transform any selected columns.</li>
-</ul>
-</div>
 <div id="enhancements-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#enhancements-1" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/87">#87</a>: Added <code>configure_report</code> function to customize report content.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/111"><a href='https://github.com/boxuancui/DataExplorer/issues/111'>#111</a></a>: Continuous distributions can now be plotted with different scales, i.e., histogram, density, boxplot, scatterplot.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/89">#89</a>: Added option to customize <code>geom_text</code> and <code>geom_label</code> arguments.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/126"><a href='https://github.com/boxuancui/DataExplorer/issues/126'>#126</a></a>: Cleaned up labels in legend guide.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/91">#91</a>: <code>create_report</code> now displays full report directory after completion.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/95">#95</a>: Added better exception handling for <code>plot_bar</code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/98">#98</a>: Added band customization to <code>plot_missing</code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/100">#100</a>: Switched <code>geom_text</code> to <code>geom_label</code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/103">#103</a>: Report title can now be customized in <code>create_report</code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/108">#108</a>: Added option to treat binary features as discrete in <code>plot_bar</code>, <code>plot_histogram</code>, <code>plot_density</code> and <code>plot_boxplot</code>.</li>
-<li>Updated d3.min.js to v5.9.2.</li>
+<a href="https://github.com/boxuancui/DataExplorer/pull/127"><a href='https://github.com/boxuancui/DataExplorer/issues/127'>#127</a> (PR)</a>: Added option to plot columns with missing values only in <code>plot_missing</code>.</li>
+<li>Cleaned up code for <code>create_report</code>.</li>
 </ul>
 </div>
 <div id="bug-fixes-1" class="section level2">
@@ -212,62 +187,53 @@
 <a href="#bug-fixes-1" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/88">#88</a>: Added <code>plot_intro</code> to report config.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/109"><a href='https://github.com/boxuancui/DataExplorer/issues/109'>#109</a></a>: Fixed a bug causing unordered bar charts.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/90">#90</a>: Added first plot in <code>plot_prcomp</code> to output and <code>page_0</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/114"><a href='https://github.com/boxuancui/DataExplorer/issues/114'>#114</a></a>: Removed redundant message in <code>dummify</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/94">#94</a>: Fixed typo for PCA.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/116"><a href='https://github.com/boxuancui/DataExplorer/issues/116'>#116</a></a>: Fixed pandoc document conversion error 99.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/120"><a href='https://github.com/boxuancui/DataExplorer/issues/120'>#120</a></a>: Fixed type <code>logical</code> being parsed as <code>symbol</code> in <code>configure_report</code>.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/121"><a href='https://github.com/boxuancui/DataExplorer/issues/121'>#121</a></a>: Fixed missing value bug when <code><a href="../reference/split_columns.html">split_columns(..., binary_as_factor = TRUE)</a></code>.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/pull/130"><a href='https://github.com/boxuancui/DataExplorer/issues/130'>#130</a> (PR)</a>: <code>plot_prcomp</code> now drops columns with zero variance.</li>
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-071" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-071" class="anchor"></a>DataExplorer 0.7.1<small> Unreleased </small>
+    <div id="dataexplorer-080" class="section level1">
+<h1 class="page-header" data-toc-text="0.8.0">
+<a href="#dataexplorer-080" class="anchor"></a>DataExplorer 0.8.0<small> 2019-03-17 </small>
 </h1>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New Features</h2>
+<ul>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/92"><a href='https://github.com/boxuancui/DataExplorer/issues/92'>#92</a></a>: Added <code>update_columns</code> to transform any selected columns.</li>
+</ul>
+</div>
 <div id="enhancements-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#enhancements-2" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/86">#86</a>: Replaced <code><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">gridExtra::grid.arrange</a></code> with facets.</li>
-<li>Added seeds to vignette and README for re-producible examples.</li>
-<li>Hid all internal functions.</li>
-</ul>
-</div>
-</div>
-    <div id="dataexplorer-070" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-070" class="anchor"></a>DataExplorer 0.7.0<small> 2018-10-19 </small>
-</h1>
-<div id="new-features-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#new-features-1" class="anchor"></a>New Features</h2>
-<ul>
+<a href="https://github.com/boxuancui/DataExplorer/issues/87"><a href='https://github.com/boxuancui/DataExplorer/issues/87'>#87</a></a>: Added <code>configure_report</code> function to customize report content.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/72">#72</a>: Added <code>plot_qq</code> for QQ plot.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/89"><a href='https://github.com/boxuancui/DataExplorer/issues/89'>#89</a></a>: Added option to customize <code>geom_text</code> and <code>geom_label</code> arguments.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/76">#76</a>: Added <code>plot_intro</code> to visualize results of <code>introduce</code>.</li>
-</ul>
-</div>
-<div id="enhancements-3" class="section level2">
-<h2 class="hasAnchor">
-<a href="#enhancements-3" class="anchor"></a>Enhancements</h2>
-<ul>
+<a href="https://github.com/boxuancui/DataExplorer/issues/91"><a href='https://github.com/boxuancui/DataExplorer/issues/91'>#91</a></a>: <code>create_report</code> now displays full report directory after completion.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/42">#42</a>: Applied S3 methods for plotting functions.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/95"><a href='https://github.com/boxuancui/DataExplorer/issues/95'>#95</a></a>: Added better exception handling for <code>plot_bar</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/77">#77</a>: <code>dummify</code> now works on selected columns.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/98"><a href='https://github.com/boxuancui/DataExplorer/issues/98'>#98</a></a>: Added band customization to <code>plot_missing</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/78">#78</a>: All ggplot objects from <code>plot_*</code> are now invisibly returned. As a result, extracted <code>profile_missing</code> from <code>plot_missing</code> for missing value profiles.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/100"><a href='https://github.com/boxuancui/DataExplorer/issues/100'>#100</a></a>: Switched <code>geom_text</code> to <code>geom_label</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/83">#83</a>: Removed all deprecated functions.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/103"><a href='https://github.com/boxuancui/DataExplorer/issues/103'>#103</a></a>: Report title can now be customized in <code>create_report</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/85">#85</a>: Users can now specify number of rows/columns for plot page layout.</li>
-<li>
-<code>plot_prcomp</code> now passed <code>scale. = TRUE</code> to <code>prcomp</code> by default.</li>
-<li>Added <code>sampled_rows</code> argument to <code>plot_scatterplot</code>.</li>
-<li>Added option to parallelize plot object construction.</li>
-<li>Updated default config for <code>create_report</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/108"><a href='https://github.com/boxuancui/DataExplorer/issues/108'>#108</a></a>: Added option to treat binary features as discrete in <code>plot_bar</code>, <code>plot_histogram</code>, <code>plot_density</code> and <code>plot_boxplot</code>.</li>
+<li>Updated d3.min.js to v5.9.2.</li>
 </ul>
 </div>
 <div id="bug-fixes-2" class="section level2">
@@ -275,27 +241,62 @@
 <a href="#bug-fixes-2" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/74">#74</a>: Fixed a bug causing <code>create_report</code> failure due to zero complete rows.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/88"><a href='https://github.com/boxuancui/DataExplorer/issues/88'>#88</a></a>: Added <code>plot_intro</code> to report config.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/75">#75</a>: Fixed a bug in <code>plot_str</code> when plotting data.frame with more than 100 columns.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/90"><a href='https://github.com/boxuancui/DataExplorer/issues/90'>#90</a></a>: Added first plot in <code>plot_prcomp</code> to output and <code>page_0</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/82">#82</a>: Removed hard-coded scales from all plot functions.</li>
-<li>Fixed a bug causing wrong column indices in <code>split_columns</code>.</li>
-<li>Fixed a bug using standard deviation instead of variance in <code>plot_prcomp</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/94"><a href='https://github.com/boxuancui/DataExplorer/issues/94'>#94</a></a>: Fixed typo for PCA.</li>
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-061" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-061" class="anchor"></a>DataExplorer 0.6.1<small> Unreleased </small>
+    <div id="dataexplorer-071" class="section level1">
+<h1 class="page-header" data-toc-text="0.7.1">
+<a href="#dataexplorer-071" class="anchor"></a>DataExplorer 0.7.1<small> Unreleased </small>
 </h1>
+<div id="enhancements-3" class="section level2">
+<h2 class="hasAnchor">
+<a href="#enhancements-3" class="anchor"></a>Enhancements</h2>
+<ul>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/86"><a href='https://github.com/boxuancui/DataExplorer/issues/86'>#86</a></a>: Replaced <code><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">gridExtra::grid.arrange</a></code> with facets.</li>
+<li>Added seeds to vignette and README for re-producible examples.</li>
+<li>Hid all internal functions.</li>
+</ul>
+</div>
+</div>
+    <div id="dataexplorer-070" class="section level1">
+<h1 class="page-header" data-toc-text="0.7.0">
+<a href="#dataexplorer-070" class="anchor"></a>DataExplorer 0.7.0<small> 2018-10-19 </small>
+</h1>
+<div id="new-features-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features-1" class="anchor"></a>New Features</h2>
+<ul>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/72"><a href='https://github.com/boxuancui/DataExplorer/issues/72'>#72</a></a>: Added <code>plot_qq</code> for QQ plot.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/76"><a href='https://github.com/boxuancui/DataExplorer/issues/76'>#76</a></a>: Added <code>plot_intro</code> to visualize results of <code>introduce</code>.</li>
+</ul>
+</div>
 <div id="enhancements-4" class="section level2">
 <h2 class="hasAnchor">
 <a href="#enhancements-4" class="anchor"></a>Enhancements</h2>
 <ul>
-<li>Updated vignette for better clarity.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/71">#71</a>: Added better error handler for <code>plot_prcomp</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/42"><a href='https://github.com/boxuancui/DataExplorer/issues/42'>#42</a></a>: Applied S3 methods for plotting functions.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/77"><a href='https://github.com/boxuancui/DataExplorer/issues/77'>#77</a></a>: <code>dummify</code> now works on selected columns.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/78"><a href='https://github.com/boxuancui/DataExplorer/issues/78'>#78</a></a>: All ggplot objects from <code>plot_*</code> are now invisibly returned. As a result, extracted <code>profile_missing</code> from <code>plot_missing</code> for missing value profiles.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/83"><a href='https://github.com/boxuancui/DataExplorer/issues/83'>#83</a></a>: Removed all deprecated functions.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/85"><a href='https://github.com/boxuancui/DataExplorer/issues/85'>#85</a></a>: Users can now specify number of rows/columns for plot page layout.</li>
+<li>
+<code>plot_prcomp</code> now passed <code>scale. = TRUE</code> to <code>prcomp</code> by default.</li>
+<li>Added <code>sampled_rows</code> argument to <code>plot_scatterplot</code>.</li>
+<li>Added option to parallelize plot object construction.</li>
+<li>Updated default config for <code>create_report</code>.</li>
 </ul>
 </div>
 <div id="bug-fixes-3" class="section level2">
@@ -303,13 +304,41 @@
 <a href="#bug-fixes-3" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/69">#69</a>: Fixed bug causing <code>create_report</code> failure (specifically from <code>plot_prcomp</code>) when <code>y</code> is specified.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/74"><a href='https://github.com/boxuancui/DataExplorer/issues/74'>#74</a></a>: Fixed a bug causing <code>create_report</code> failure due to zero complete rows.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/75"><a href='https://github.com/boxuancui/DataExplorer/issues/75'>#75</a></a>: Fixed a bug in <code>plot_str</code> when plotting data.frame with more than 100 columns.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/82"><a href='https://github.com/boxuancui/DataExplorer/issues/82'>#82</a></a>: Removed hard-coded scales from all plot functions.</li>
+<li>Fixed a bug causing wrong column indices in <code>split_columns</code>.</li>
+<li>Fixed a bug using standard deviation instead of variance in <code>plot_prcomp</code>.</li>
+</ul>
+</div>
+</div>
+    <div id="dataexplorer-061" class="section level1">
+<h1 class="page-header" data-toc-text="0.6.1">
+<a href="#dataexplorer-061" class="anchor"></a>DataExplorer 0.6.1<small> Unreleased </small>
+</h1>
+<div id="enhancements-5" class="section level2">
+<h2 class="hasAnchor">
+<a href="#enhancements-5" class="anchor"></a>Enhancements</h2>
+<ul>
+<li>Updated vignette for better clarity.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/71"><a href='https://github.com/boxuancui/DataExplorer/issues/71'>#71</a></a>: Added better error handler for <code>plot_prcomp</code>.</li>
+</ul>
+</div>
+<div id="bug-fixes-4" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes-4" class="anchor"></a>Bug Fixes</h2>
+<ul>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/69"><a href='https://github.com/boxuancui/DataExplorer/issues/69'>#69</a></a>: Fixed bug causing <code>create_report</code> failure (specifically from <code>plot_prcomp</code>) when <code>y</code> is specified.</li>
 <li>Added more unit tests for <code>create_report</code> and <code>plot_prcomp</code>.</li>
 </ul>
 </div>
 </div>
     <div id="dataexplorer-060" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.0">
 <a href="#dataexplorer-060" class="anchor"></a>DataExplorer 0.6.0<small> 2018-05-30 </small>
 </h1>
 <div id="new-features-2" class="section level2">
@@ -317,27 +346,27 @@
 <a href="#new-features-2" class="anchor"></a>New Features</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/15">#15</a>: Added <code>plot_prcomp</code> to visualize principal component analysis.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/15"><a href='https://github.com/boxuancui/DataExplorer/issues/15'>#15</a></a>: Added <code>plot_prcomp</code> to visualize principal component analysis.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/54">#54</a>: Extracted <code>dummify</code> from <code>plot_correlation</code> as a new function.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/54"><a href='https://github.com/boxuancui/DataExplorer/issues/54'>#54</a></a>: Extracted <code>dummify</code> from <code>plot_correlation</code> as a new function.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/59">#59</a>: Added <code>introduce</code> for basic metadata.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/59"><a href='https://github.com/boxuancui/DataExplorer/issues/59'>#59</a></a>: Added <code>introduce</code> for basic metadata.</li>
 </ul>
 </div>
-<div id="enhancements-5" class="section level2">
+<div id="enhancements-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-5" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-6" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/41">#41</a>: <code>create_report</code> can now be customized.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/41"><a href='https://github.com/boxuancui/DataExplorer/issues/41'>#41</a></a>: <code>create_report</code> can now be customized.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/53">#53</a>: Added page number for plots that span multiple pages.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/53"><a href='https://github.com/boxuancui/DataExplorer/issues/53'>#53</a></a>: Added page number for plots that span multiple pages.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/56">#56</a>: Added support for theme and customization for individual components.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/56"><a href='https://github.com/boxuancui/DataExplorer/issues/56'>#56</a></a>: Added support for theme and customization for individual components.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/62">#62</a>: <code>plot_bar</code> now supports optional measures (in addition to categorical frequency) using argument <code>with</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/62"><a href='https://github.com/boxuancui/DataExplorer/issues/62'>#62</a></a>: <code>plot_bar</code> now supports optional measures (in addition to categorical frequency) using argument <code>with</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/66">#66</a>: Feature engineering functions works on other classes in addition to just <strong>data.table</strong>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/66"><a href='https://github.com/boxuancui/DataExplorer/issues/66'>#66</a></a>: Feature engineering functions works on other classes in addition to just <strong>data.table</strong>.</li>
 <li>
 <code>plot_missing</code>:
 <ul>
@@ -348,21 +377,21 @@
 <li>Added <code>.ignoreCat</code> and <code>.getAllMissing</code> to helper.</li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/55">#55</a>: Fixed bugs and updated vignette with latest functions.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/55"><a href='https://github.com/boxuancui/DataExplorer/issues/55'>#55</a></a>: Fixed bugs and updated vignette with latest functions.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/57">#57</a>: Fixed <code>plot_str</code> bug for not supporting S4 objects.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/57"><a href='https://github.com/boxuancui/DataExplorer/issues/57'>#57</a></a>: Fixed <code>plot_str</code> bug for not supporting S4 objects.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/63">#63</a>: Fixed <code>plot_histogram</code> and <code>plot_density</code> not working with column names containing spaces.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/63"><a href='https://github.com/boxuancui/DataExplorer/issues/63'>#63</a></a>: Fixed <code>plot_histogram</code> and <code>plot_density</code> not working with column names containing spaces.</li>
 </ul>
 </div>
 </div>
     <div id="dataexplorer-050" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.0">
 <a href="#dataexplorer-050" class="anchor"></a>DataExplorer 0.5.0<small> 2018-01-10 </small>
 </h1>
 <div id="new-features-3" class="section level2">
@@ -370,23 +399,23 @@
 <a href="#new-features-3" class="anchor"></a>New Features</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/48">#48</a>: Added <code>plot_scatterplot</code> to visualize relationship of one feature against all other.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/48"><a href='https://github.com/boxuancui/DataExplorer/issues/48'>#48</a></a>: Added <code>plot_scatterplot</code> to visualize relationship of one feature against all other.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/50">#50</a>: Added <code>plot_boxplot</code> to visualize continuous distributions broken down by another feature.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/50"><a href='https://github.com/boxuancui/DataExplorer/issues/50'>#50</a></a>: Added <code>plot_boxplot</code> to visualize continuous distributions broken down by another feature.</li>
 </ul>
 </div>
-<div id="enhancements-6" class="section level2">
+<div id="enhancements-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-6" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-7" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/44">#44</a>: Added option to exclude categories in <code>group_category</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/44"><a href='https://github.com/boxuancui/DataExplorer/issues/44'>#44</a></a>: Added option to exclude categories in <code>group_category</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/45">#45</a>: Added title option for all plots.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/45"><a href='https://github.com/boxuancui/DataExplorer/issues/45'>#45</a></a>: Added title option for all plots.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/46">#46</a>: Added option to exclude columns in <code>set_missing</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/46"><a href='https://github.com/boxuancui/DataExplorer/issues/46'>#46</a></a>: Added option to exclude columns in <code>set_missing</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/49">#49</a> <strong>[Breaking Change]</strong>: Switched package to <a href="http://style.tidyverse.org/">tidyverse style</a>. All old functions are in <code>.Deprecated</code> mode. List of name changes in alphabetical order:
+<a href="https://github.com/boxuancui/DataExplorer/issues/49"><a href='https://github.com/boxuancui/DataExplorer/issues/49'>#49</a></a> <strong>[Breaking Change]</strong>: Switched package to <a href="https://style.tidyverse.org/">tidyverse style</a>. All old functions are in <code>.Deprecated</code> mode. List of name changes in alphabetical order:
 <ul>
 <li>
 <code>BarDiscrete</code> -&gt; <code>plot_bar</code>
@@ -427,31 +456,8 @@
 </ul>
 </li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/52">#52</a>: Combined <code>CorrelationContinuous</code> and <code>CorrelationDiscrete</code> into one function, and added option to view correlation of all features at once.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/52"><a href='https://github.com/boxuancui/DataExplorer/issues/52'>#52</a></a>: Combined <code>CorrelationContinuous</code> and <code>CorrelationDiscrete</code> into one function, and added option to view correlation of all features at once.</li>
 <li>Optimized layout for multiple plots.</li>
-</ul>
-</div>
-<div id="bug-fixes-5" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug Fixes</h2>
-<ul>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/47">#47</a>: Fixed color scale for correlation heatmap.</li>
-</ul>
-</div>
-</div>
-    <div id="dataexplorer-040" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-040" class="anchor"></a>DataExplorer 0.4.0<small> 2017-01-26 </small>
-</h1>
-<div id="new-features-4" class="section level2">
-<h2 class="hasAnchor">
-<a href="#new-features-4" class="anchor"></a>New Features</h2>
-<ul>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/33">#33</a>: Added <code>PlotStr</code> to visualize data structure.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/40">#40</a>: Added network graph to <code>GenerateReport</code>.</li>
 </ul>
 </div>
 <div id="bug-fixes-6" class="section level2">
@@ -459,43 +465,22 @@
 <a href="#bug-fixes-6" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/32">#32</a>: Fixed pandoc requirement error in unit test on cran.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/34">#34</a>: Fixed error message when <code>quiet</code> is not supplied. In addition, report directory are printed through <code><a href="https://rdrr.io/r/base/message.html">message()</a></code> instead of <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/35">#35</a>: Fixed <strong>rprojroot</strong> not found error.</li>
-</ul>
-</div>
-<div id="enhancements-7" class="section level2">
-<h2 class="hasAnchor">
-<a href="#enhancements-7" class="anchor"></a>Enhancements</h2>
-<ul>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/12">#12</a>: Added vignette: <strong>dataexplorer-intro</strong>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/36">#36</a>: Fixed warnings from data.table in <code>DropVar</code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/37">#37</a>: Changed all <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> to <code><a href="https://rdrr.io/r/base/message.html">message()</a></code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/38">#38</a>: Added option to order bars in <code>BarDiscrete</code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/39">#39</a>: Extended <code>SetNaTo</code> to discrete features.</li>
-<li>Added more examples to <strong>README.md</strong>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/47"><a href='https://github.com/boxuancui/DataExplorer/issues/47'>#47</a></a>: Fixed color scale for correlation heatmap.</li>
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-030" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-030" class="anchor"></a>DataExplorer 0.3.0<small> 2016-11-19 </small>
+    <div id="dataexplorer-040" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.0">
+<a href="#dataexplorer-040" class="anchor"></a>DataExplorer 0.4.0<small> 2017-01-26 </small>
 </h1>
-<div id="new-features-5" class="section level2">
+<div id="new-features-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features-5" class="anchor"></a>New Features</h2>
+<a href="#new-features-4" class="anchor"></a>New Features</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/25">#25</a>: Added <code>SetNaTo</code> to quickly reset missing numerical values.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/33"><a href='https://github.com/boxuancui/DataExplorer/issues/33'>#33</a></a>: Added <code>PlotStr</code> to visualize data structure.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/29">#29</a>: Added <code>DropVar</code> to quickly drop variables by either name or column position.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/40"><a href='https://github.com/boxuancui/DataExplorer/issues/40'>#40</a></a>: Added network graph to <code>GenerateReport</code>.</li>
 </ul>
 </div>
 <div id="bug-fixes-7" class="section level2">
@@ -503,7 +488,11 @@
 <a href="#bug-fixes-7" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/24">#24</a>: <code>CorrelationDiscrete</code> now displays all factor levels instead of full rank matrix from <code>model.matrix</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/32"><a href='https://github.com/boxuancui/DataExplorer/issues/32'>#32</a></a>: Fixed pandoc requirement error in unit test on cran.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/34"><a href='https://github.com/boxuancui/DataExplorer/issues/34'>#34</a></a>: Fixed error message when <code>quiet</code> is not supplied. In addition, report directory are printed through <code><a href="https://rdrr.io/r/base/message.html">message()</a></code> instead of <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code>.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/35"><a href='https://github.com/boxuancui/DataExplorer/issues/35'>#35</a></a>: Fixed <strong>rprojroot</strong> not found error.</li>
 </ul>
 </div>
 <div id="enhancements-8" class="section level2">
@@ -511,36 +500,39 @@
 <a href="#enhancements-8" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/11">#11</a>: Functions with return values will now match the input class and set it back.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/12"><a href='https://github.com/boxuancui/DataExplorer/issues/12'>#12</a></a>: Added vignette: <strong>dataexplorer-intro</strong>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/22">#22</a>: Added documentation for <code>num_all_missing</code> in <code>SplitColType</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/36"><a href='https://github.com/boxuancui/DataExplorer/issues/36'>#36</a></a>: Fixed warnings from data.table in <code>DropVar</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/23">#23</a>: Added additional measures (in addition to frequency) to <code>CollapseCategory</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/37"><a href='https://github.com/boxuancui/DataExplorer/issues/37'>#37</a></a>: Changed all <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> to <code><a href="https://rdrr.io/r/base/message.html">message()</a></code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/26">#26</a>: Removed density estimation section from report template.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/38"><a href='https://github.com/boxuancui/DataExplorer/issues/38'>#38</a></a>: Added option to order bars in <code>BarDiscrete</code>.</li>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/31">#31</a>: Added flexibility to name the new category in <code>CollapseCategory</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/39"><a href='https://github.com/boxuancui/DataExplorer/issues/39'>#39</a></a>: Extended <code>SetNaTo</code> to discrete features.</li>
+<li>Added more examples to <strong>README.md</strong>.</li>
 </ul>
 </div>
-<div id="other-notes" class="section level2">
+</div>
+    <div id="dataexplorer-030" class="section level1">
+<h1 class="page-header" data-toc-text="0.3.0">
+<a href="#dataexplorer-030" class="anchor"></a>DataExplorer 0.3.0<small> 2016-11-19 </small>
+</h1>
+<div id="new-features-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#other-notes" class="anchor"></a>Other notes</h2>
+<a href="#new-features-5" class="anchor"></a>New Features</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/30">#30</a>: In <code>CollapseCategory</code>, <code>update = TRUE</code> will only work with input data as <code>data.table</code>. However, it is still possible to view the frequency distribution with any input data class, as long as <code>update = FALSE</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/25"><a href='https://github.com/boxuancui/DataExplorer/issues/25'>#25</a></a>: Added <code>SetNaTo</code> to quickly reset missing numerical values.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/29"><a href='https://github.com/boxuancui/DataExplorer/issues/29'>#29</a></a>: Added <code>DropVar</code> to quickly drop variables by either name or column position.</li>
 </ul>
 </div>
-</div>
-    <div id="dataexplorer-026" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-026" class="anchor"></a>DataExplorer 0.2.6<small> 2016-05-08 </small>
-</h1>
 <div id="bug-fixes-8" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes-8" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/20">#20</a>: Fixed permission denied bug due to intermediates_dir argument in <code>knitr::render</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/24"><a href='https://github.com/boxuancui/DataExplorer/issues/24'>#24</a></a>: <code>CorrelationDiscrete</code> now displays all factor levels instead of full rank matrix from <code>model.matrix</code>.</li>
 </ul>
 </div>
 <div id="enhancements-9" class="section level2">
@@ -548,20 +540,36 @@
 <a href="#enhancements-9" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/16">#16</a>: Improved handling of missing values.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/11"><a href='https://github.com/boxuancui/DataExplorer/issues/11'>#11</a></a>: Functions with return values will now match the input class and set it back.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/22"><a href='https://github.com/boxuancui/DataExplorer/issues/22'>#22</a></a>: Added documentation for <code>num_all_missing</code> in <code>SplitColType</code>.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/23"><a href='https://github.com/boxuancui/DataExplorer/issues/23'>#23</a></a>: Added additional measures (in addition to frequency) to <code>CollapseCategory</code>.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/26"><a href='https://github.com/boxuancui/DataExplorer/issues/26'>#26</a></a>: Removed density estimation section from report template.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/31"><a href='https://github.com/boxuancui/DataExplorer/issues/31'>#31</a></a>: Added flexibility to name the new category in <code>CollapseCategory</code>.</li>
+</ul>
+</div>
+<div id="other-notes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#other-notes" class="anchor"></a>Other notes</h2>
+<ul>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/30"><a href='https://github.com/boxuancui/DataExplorer/issues/30'>#30</a></a>: In <code>CollapseCategory</code>, <code>update = TRUE</code> will only work with input data as <code>data.table</code>. However, it is still possible to view the frequency distribution with any input data class, as long as <code>update = FALSE</code>.</li>
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-025" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-025" class="anchor"></a>DataExplorer 0.2.5<small> Unreleased </small>
+    <div id="dataexplorer-026" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.6">
+<a href="#dataexplorer-026" class="anchor"></a>DataExplorer 0.2.6<small> 2016-05-08 </small>
 </h1>
 <div id="bug-fixes-9" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes-9" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/18">#18</a>: <code>GenerateReport</code> now handles data without discrete or continuous features.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/20"><a href='https://github.com/boxuancui/DataExplorer/issues/20'>#20</a></a>: Fixed permission denied bug due to intermediates_dir argument in <code>knitr::render</code>.</li>
 </ul>
 </div>
 <div id="enhancements-10" class="section level2">
@@ -569,21 +577,20 @@
 <a href="#enhancements-10" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/14">#14</a>: Updated rmarkdown template for <code>GenerateReport</code>.</li>
-<li>
-<a href="https://github.com/boxuancui/DataExplorer/issues/1">#1</a>: Features with all <code>NA</code> values will be ignored in <code>BarDiscrete</code>.</li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/16"><a href='https://github.com/boxuancui/DataExplorer/issues/16'>#16</a></a>: Improved handling of missing values.</li>
 </ul>
 </div>
 </div>
-    <div id="dataexplorer-024" class="section level1">
-<h1 class="page-header">
-<a href="#dataexplorer-024" class="anchor"></a>DataExplorer 0.2.4<small> 2016-03-02 </small>
+    <div id="dataexplorer-025" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.5">
+<a href="#dataexplorer-025" class="anchor"></a>DataExplorer 0.2.5<small> Unreleased </small>
 </h1>
 <div id="bug-fixes-10" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes-10" class="anchor"></a>Bug Fixes</h2>
 <ul>
-<li>Fixed a major bug in <code>GenerateReport</code> function due to package renaming.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/18"><a href='https://github.com/boxuancui/DataExplorer/issues/18'>#18</a></a>: <code>GenerateReport</code> now handles data without discrete or continuous features.</li>
 </ul>
 </div>
 <div id="enhancements-11" class="section level2">
@@ -591,12 +598,34 @@
 <a href="#enhancements-11" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/14"><a href='https://github.com/boxuancui/DataExplorer/issues/14'>#14</a></a>: Updated rmarkdown template for <code>GenerateReport</code>.</li>
+<li>
+<a href="https://github.com/boxuancui/DataExplorer/issues/1"><a href='https://github.com/boxuancui/DataExplorer/issues/1'>#1</a></a>: Features with all <code>NA</code> values will be ignored in <code>BarDiscrete</code>.</li>
+</ul>
+</div>
+</div>
+    <div id="dataexplorer-024" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.4">
+<a href="#dataexplorer-024" class="anchor"></a>DataExplorer 0.2.4<small> 2016-03-02 </small>
+</h1>
+<div id="bug-fixes-11" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes-11" class="anchor"></a>Bug Fixes</h2>
+<ul>
+<li>Fixed a major bug in <code>GenerateReport</code> function due to package renaming.</li>
+</ul>
+</div>
+<div id="enhancements-12" class="section level2">
+<h2 class="hasAnchor">
+<a href="#enhancements-12" class="anchor"></a>Enhancements</h2>
+<ul>
+<li>
 <code>GenerateReport</code> will now print the directory of the report to console.</li>
 </ul>
 </div>
 </div>
     <div id="dataexplorer-023" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.2.3">
 <a href="#dataexplorer-023" class="anchor"></a>DataExplorer 0.2.3<small> 2016-03-01 </small>
 </h1>
 <div id="new-features-6" class="section level2">
@@ -608,17 +637,17 @@
 <li>Added density plot for continuous features.</li>
 </ul>
 </div>
-<div id="bug-fixes-11" class="section level2">
+<div id="bug-fixes-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-11" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-12" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li>Fixed a bug in <code>BarDiscrete</code> and <code>CorrelationDiscrete</code> for not plotting non-factor class.</li>
 <li>Minor changes for CRAN re-submission.</li>
 </ul>
 </div>
-<div id="enhancements-12" class="section level2">
+<div id="enhancements-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#enhancements-12" class="anchor"></a>Enhancements</h2>
+<a href="#enhancements-13" class="anchor"></a>Enhancements</h2>
 <ul>
 <li>Changed grid layout for <code>BarDiscrete</code> and <code>HistogramContinuous</code>.</li>
 <li>Features with all missing values will be ignored.</li>
@@ -631,25 +660,10 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#dataexplorer-081">0.8.1</a></li>
-        <li><a href="#dataexplorer-080">0.8.0</a></li>
-        <li><a href="#dataexplorer-071">0.7.1</a></li>
-        <li><a href="#dataexplorer-070">0.7.0</a></li>
-        <li><a href="#dataexplorer-061">0.6.1</a></li>
-        <li><a href="#dataexplorer-060">0.6.0</a></li>
-        <li><a href="#dataexplorer-050">0.5.0</a></li>
-        <li><a href="#dataexplorer-040">0.4.0</a></li>
-        <li><a href="#dataexplorer-030">0.3.0</a></li>
-        <li><a href="#dataexplorer-026">0.2.6</a></li>
-        <li><a href="#dataexplorer-025">0.2.5</a></li>
-        <li><a href="#dataexplorer-024">0.2.4</a></li>
-        <li><a href="#dataexplorer-023">0.2.3</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -661,7 +675,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

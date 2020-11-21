@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -45,7 +49,6 @@
 <meta property="og:title" content="Group categories for discrete features — group_category" />
 <meta property="og:description" content="Sometimes discrete features have sparse categories. This function will group the sparse categories for a discrete feature based on a given threshold." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -73,7 +76,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataExplorer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -119,7 +122,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/boxuancui/DataExplorer/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -134,7 +142,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Group categories for discrete features</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/boxuancui/DataExplorer/blob/master/R/group_category.r'><code>R/group_category.r</code></a></small>
     <div class="hidden name"><code>group_category.Rd</code></div>
     </div>
 
@@ -142,15 +150,15 @@
     <p>Sometimes discrete features have sparse categories. This function will group the sparse categories for a discrete feature based on a given threshold.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>group_category</span>(
-  <span class='no'>data</span>,
-  <span class='no'>feature</span>,
-  <span class='no'>threshold</span>,
-  <span class='no'>measure</span>,
-  <span class='kw'>update</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>category_name</span> <span class='kw'>=</span> <span class='st'>"OTHER"</span>,
-  <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>group_category</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>feature</span>,
+  <span class='va'>threshold</span>,
+  <span class='va'>measure</span>,
+  update <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  category_name <span class='op'>=</span> <span class='st'>"OTHER"</span>,
+  exclude <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,7 +181,7 @@
     </tr>
     <tr>
       <th>update</th>
-      <td><p>logical, indicating if the data should be modified. The default is <code>FALSE</code>. Setting to <code>TRUE</code> will modify the input data.table object directly. Otherwise, input class will be returned.</p></td>
+      <td><p>logical, indicating if the data should be modified. The default is <code>FALSE</code>. Setting to <code>TRUE</code> will modify the input <a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a> object directly. Otherwise, input class will be returned.</p></td>
     </tr>
     <tr>
       <th>category_name</th>
@@ -195,13 +203,14 @@ If <code>update</code> is set to <code>TRUE</code>, updated data will be returne
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Load packages</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>data.table</span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://r-datatable.com'>data.table</a></span><span class='op'>)</span>
 
 <span class='co'># Generate data</span>
-<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='st'>"a"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>500</span>, <span class='fl'>10</span>, <span class='fl'>5</span>))), <span class='st'>"b"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>500</span>, <span class='fl'>500</span>))
+<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span><span class='op'>(</span><span class='st'>"a"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>500</span>, <span class='fl'>10</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, <span class='st'>"b"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='fl'>500</span>, <span class='fl'>500</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># View cumulative frequency without collpasing categories</span>
-<span class='fu'>group_category</span>(<span class='no'>data</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>)</div><div class='output co'>#&gt;      a cnt   pct cum_pct
+<span class='fu'>group_category</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      a cnt   pct cum_pct
 #&gt;  1: 13  41 0.082   0.082
 #&gt;  2:  7  40 0.080   0.162
 #&gt;  3: 11  39 0.078   0.240
@@ -215,7 +224,8 @@ If <code>update</code> is set to <code>TRUE</code>, updated data will be returne
 #&gt; 11: 17  21 0.042   0.748
 #&gt; 12:  3  19 0.038   0.786</div><div class='input'>
 <span class='co'># View cumulative frequency based on another measure</span>
-<span class='fu'>group_category</span>(<span class='no'>data</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"b"</span>)</div><div class='output co'>#&gt;      a        cnt        pct    cum_pct
+<span class='fu'>group_category</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>, measure <span class='op'>=</span> <span class='st'>"b"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      a        cnt        pct    cum_pct
 #&gt;  1:  7 0.08783473 0.08852054 0.08852054
 #&gt;  2: 13 0.08424364 0.08490141 0.17342195
 #&gt;  3:  8 0.08401002 0.08466596 0.25808791
@@ -228,15 +238,18 @@ If <code>update</code> is set to <code>TRUE</code>, updated data will be returne
 #&gt; 10: 17 0.04584915 0.04620714 0.74575203
 #&gt; 11: 14 0.04347191 0.04381133 0.78956337</div><div class='input'>
 <span class='co'># Group bottom 20% categories based on cumulative frequency</span>
-<span class='fu'>group_category</span>(<span class='no'>data</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>, <span class='kw'>update</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='plot_bar.html'>plot_bar</a></span>(<span class='no'>data</span>)</div><div class='img'><img src='group_category-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>group_category</span><span class='op'>(</span><span class='va'>data</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>, update <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='plot_bar.html'>plot_bar</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+</div><div class='img'><img src='group_category-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Exclude categories from being grouped</span>
-<span class='no'>dt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span>(<span class='st'>"a"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"c1"</span>, <span class='fl'>25</span>), <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"c2"</span>, <span class='fl'>10</span>), <span class='st'>"c3"</span>, <span class='st'>"c4"</span>))
-<span class='fu'>group_category</span>(<span class='no'>dt</span>, <span class='st'>"a"</span>, <span class='fl'>0.8</span>, <span class='kw'>update</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"c3"</span>, <span class='st'>"c4"</span>))
-<span class='fu'><a href='plot_bar.html'>plot_bar</a></span>(<span class='no'>dt</span>)</div><div class='img'><img src='group_category-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>dt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/data.table.html'>data.table</a></span><span class='op'>(</span><span class='st'>"a"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"c1"</span>, <span class='fl'>25</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"c2"</span>, <span class='fl'>10</span><span class='op'>)</span>, <span class='st'>"c3"</span>, <span class='st'>"c4"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>group_category</span><span class='op'>(</span><span class='va'>dt</span>, <span class='st'>"a"</span>, <span class='fl'>0.8</span>, update <span class='op'>=</span> <span class='cn'>TRUE</span>, exclude <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"c3"</span>, <span class='st'>"c4"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='plot_bar.html'>plot_bar</a></span><span class='op'>(</span><span class='va'>dt</span><span class='op'>)</span>
+</div><div class='img'><img src='group_category-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Return from non-data.table input</span>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='st'>"a"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>10</span>, <span class='fl'>5</span>))), <span class='st'>"b"</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='fl'>50</span>, <span class='fl'>10</span>))
-<span class='fu'>group_category</span>(<span class='no'>df</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>)</div><div class='output co'>#&gt;     a cnt  pct cum_pct
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='st'>"a"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>10</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, <span class='st'>"b"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='fl'>50</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>group_category</span><span class='op'>(</span><span class='va'>df</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     a cnt  pct cum_pct
 #&gt; 1  10   6 0.12    0.12
 #&gt; 2  11   4 0.08    0.20
 #&gt; 3  14   4 0.08    0.28
@@ -249,7 +262,8 @@ If <code>update</code> is set to <code>TRUE</code>, updated data will be returne
 #&gt; 10  9   2 0.04    0.68
 #&gt; 11 20   2 0.04    0.72
 #&gt; 12  7   2 0.04    0.76
-#&gt; 13  4   2 0.04    0.80</div><div class='input'><span class='fu'>group_category</span>(<span class='no'>df</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>, <span class='kw'>measure</span> <span class='kw'>=</span> <span class='st'>"b"</span>, <span class='kw'>update</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;        a           b
+#&gt; 13  4   2 0.04    0.80</div><div class='input'><span class='fu'>group_category</span><span class='op'>(</span><span class='va'>df</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>, measure <span class='op'>=</span> <span class='st'>"b"</span>, update <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        a           b
 #&gt; 1  OTHER 0.020373305
 #&gt; 2  OTHER 0.052507619
 #&gt; 3  OTHER 0.081805921
@@ -299,7 +313,8 @@ If <code>update</code> is set to <code>TRUE</code>, updated data will be returne
 #&gt; 47 OTHER 0.041757003
 #&gt; 48    11 0.289007986
 #&gt; 49 OTHER 0.024127883
-#&gt; 50    11 0.112046068</div><div class='input'><span class='fu'>group_category</span>(<span class='no'>df</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>, <span class='kw'>update</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;        a           b
+#&gt; 50    11 0.112046068</div><div class='input'><span class='fu'>group_category</span><span class='op'>(</span><span class='va'>df</span>, <span class='st'>"a"</span>, <span class='fl'>0.2</span>, update <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        a           b
 #&gt; 1  OTHER 0.020373305
 #&gt; 2     15 0.052507619
 #&gt; 3  OTHER 0.081805921
@@ -351,15 +366,10 @@ If <code>update</code> is set to <code>TRUE</code>, updated data will be returne
 #&gt; 49 OTHER 0.024127883
 #&gt; 50    11 0.112046068</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -370,7 +380,7 @@ If <code>update</code> is set to <code>TRUE</code>, updated data will be returne
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
