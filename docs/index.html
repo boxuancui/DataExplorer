@@ -198,6 +198,7 @@
 <span class="fu"><a href="reference/plot_bar.html">plot_bar</a></span><span class="op">(</span><span class="va">diamonds</span>, with <span class="op">=</span> <span class="st">"price"</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-plot-bar-1.png"><!-- --></p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
+<<<<<<< HEAD
 <span class="co">## View frequency distribution by a discrete variable</span>
 <span class="fu"><a href="reference/plot_bar.html">plot_bar</a></span><span class="op">(</span><span class="va">diamonds</span>, by <span class="op">=</span> <span class="st">"cut"</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-plot-bar-by-1.png"><!-- --></p>
@@ -235,13 +236,52 @@
 <div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">#&gt; 2 features with more than 5 categories ignored!</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="co">#&gt; color: 7 categories</span></span>
 <span id="cb19-3"><a href="#cb19-3"></a><span class="co">#&gt; clarity: 8 categories</span></span></code></pre></div>
+=======
+<span class="co">## View histogram of all continuous variables</span>
+<span class="fu"><a href="reference/plot_histogram.html">plot_histogram</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span></pre></div>
+<p><img src="reference/figures/README-plot-histogram-1.png"><!-- --></p>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="co">## View estimated density distribution of all continuous variables</span>
+<span class="fu"><a href="reference/plot_density.html">plot_density</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span></pre></div>
+<p><img src="reference/figures/README-plot-density-1.png"><!-- --></p>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="co">## View quantile-quantile plot of all continuous variables</span>
+<span class="fu"><a href="reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span></pre></div>
+<p><img src="reference/figures/README-plot-qq-1.png"><!-- --></p>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="co">## View quantile-quantile plot of all continuous variables by feature `cut`</span>
+<span class="fu"><a href="reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">diamonds</span>, by <span class="op">=</span> <span class="st">"cut"</span><span class="op">)</span></pre></div>
+<p><img src="reference/figures/README-plot-qq-cut-1.png"><!-- --></p>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="co">## View overall correlation heatmap</span>
+<span class="fu"><a href="reference/plot_correlation.html">plot_correlation</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span></pre></div>
+<p><img src="reference/figures/README-plot_correlation-1.png"><!-- --></p>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="co">## View bivariate continuous distribution based on `cut`</span>
+<span class="fu"><a href="reference/plot_boxplot.html">plot_boxplot</a></span><span class="op">(</span><span class="va">diamonds</span>, by <span class="op">=</span> <span class="st">"cut"</span><span class="op">)</span></pre></div>
+<p><img src="reference/figures/README-plot_boxplot-1.png"><!-- --></p>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="co">## Scatterplot `price` with all other continuous features</span>
+<span class="fu"><a href="reference/plot_scatterplot.html">plot_scatterplot</a></span><span class="op">(</span><span class="fu"><a href="reference/split_columns.html">split_columns</a></span><span class="op">(</span><span class="va">diamonds</span><span class="op">)</span><span class="op">$</span><span class="va">continuous</span>, by <span class="op">=</span> <span class="st">"price"</span>, sampled_rows <span class="op">=</span> <span class="fl">1000L</span><span class="op">)</span></pre></div>
+<p><img src="reference/figures/README-plot_scatterplot-1.png"><!-- --></p>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="co">## Visualize principal component analysis</span>
+<span class="fu"><a href="reference/plot_prcomp.html">plot_prcomp</a></span><span class="op">(</span><span class="va">diamonds</span>, maxcat <span class="op">=</span> <span class="fl">5L</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">#&gt; 2 features with more than 5 categories ignored!</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="co">#&gt; color: 7 categories</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="co">#&gt; clarity: 8 categories</span></span></code></pre></div>
+>>>>>>> master
 <p><img src="reference/figures/README-plot_prcomp-1.png"><!-- --><img src="reference/figures/README-plot_prcomp-2.png"><!-- --></p>
 </div>
 <div id="feature-engineering" class="section level4">
 <h4 class="hasAnchor">
 <a href="#feature-engineering" class="anchor"></a>Feature Engineering</h4>
 <p>To make quick updates to your data:</p>
+<<<<<<< HEAD
 <div class="sourceCode" id="cb20"><pre class="downlit">
+=======
+<div class="sourceCode" id="cb19"><pre class="downlit">
+>>>>>>> master
 <span class="co">## Group bottom 20% `clarity` by frequency</span>
 <span class="fu"><a href="reference/group_category.html">group_category</a></span><span class="op">(</span><span class="va">diamonds</span>, feature <span class="op">=</span> <span class="st">"clarity"</span>, threshold <span class="op">=</span> <span class="fl">0.2</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
