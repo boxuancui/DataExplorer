@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -45,7 +49,6 @@
 <meta property="og:title" content="Visualize principal component analysis — plot_prcomp" />
 <meta property="og:description" content="Visualize output of prcomp." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -73,7 +76,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataExplorer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -119,7 +122,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/boxuancui/DataExplorer/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -134,7 +142,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Visualize principal component analysis</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/boxuancui/DataExplorer/blob/master/R/plot_prcomp.r'><code>R/plot_prcomp.r</code></a></small>
     <div class="hidden name"><code>plot_prcomp.Rd</code></div>
     </div>
 
@@ -142,19 +150,19 @@
     <p>Visualize output of <a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plot_prcomp</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>variance_cap</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>maxcat</span> <span class='kw'>=</span> <span class='fl'>50L</span>,
-  <span class='kw'>prcomp_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>scale.</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>),
-  <span class='kw'>geom_label_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ggtheme</span> <span class='kw'>=</span> <span class='fu'>theme_gray</span>(),
-  <span class='kw'>theme_config</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3L</span>,
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3L</span>,
-  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>plot_prcomp</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  variance_cap <span class='op'>=</span> <span class='fl'>0.8</span>,
+  maxcat <span class='op'>=</span> <span class='fl'>50L</span>,
+  prcomp_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>scale. <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
+  geom_label_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_gray</a></span><span class='op'>(</span><span class='op'>)</span>,
+  theme_config <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  nrow <span class='op'>=</span> <span class='fl'>3L</span>,
+  ncol <span class='op'>=</span> <span class='fl'>3L</span>,
+  parallel <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,7 +185,7 @@
     </tr>
     <tr>
       <th>geom_label_args</th>
-      <td><p>a list of other arguments to geom_label</p></td>
+      <td><p>a list of other arguments to <a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></p></td>
     </tr>
     <tr>
       <th>title</th>
@@ -185,11 +193,11 @@
     </tr>
     <tr>
       <th>ggtheme</th>
-      <td><p>complete ggplot2 themes. The default is theme_gray.</p></td>
+      <td><p>complete ggplot2 themes. The default is <a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_gray</a>.</p></td>
     </tr>
     <tr>
       <th>theme_config</th>
-      <td><p>a list of configurations to be passed to theme.</p></td>
+      <td><p>a list of configurations to be passed to <a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a>.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
@@ -215,22 +223,17 @@
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Discrete features will be <a href='dummify.html'>dummify</a>-ed first before passing to <a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a>.</p>
-<p>Missing values may create issues in <a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a>. Consider <a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a> your input data first.</p>
+<p>Missing values may create issues in <a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a>. Consider <a href='https://Rdatatable.gitlab.io/data.table/reference/na.omit.data.table.html'>na.omit</a> your input data first.</p>
 <p>Features with zero variance are dropped.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>plot_prcomp</span>(<span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span>(<span class='no'>airquality</span>), <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</div><div class='img'><img src='plot_prcomp-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='plot_prcomp-2.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>plot_prcomp</span><span class='op'>(</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/na.omit.data.table.html'>na.omit</a></span><span class='op'>(</span><span class='va'>airquality</span><span class='op'>)</span>, nrow <span class='op'>=</span> <span class='fl'>2L</span>, ncol <span class='op'>=</span> <span class='fl'>2L</span><span class='op'>)</span>
+</div><div class='img'><img src='plot_prcomp-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='plot_prcomp-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -241,7 +244,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

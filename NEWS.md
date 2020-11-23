@@ -1,4 +1,7 @@
 # DataExplorer 0.8.2
+## Enhancements
+* [#139](https://github.com/boxuancui/DataExplorer/issues/139): Added `by` argument to `plot_bar`.
+
 ## Bug Fixes
 * [#148](https://github.com/boxuancui/DataExplorer/issues/148): Address CRAN removal due to vignette build failure.
 
@@ -106,7 +109,7 @@
 * [#44](https://github.com/boxuancui/DataExplorer/issues/44): Added option to exclude categories in `group_category`.
 * [#45](https://github.com/boxuancui/DataExplorer/issues/45): Added title option for all plots.
 * [#46](https://github.com/boxuancui/DataExplorer/issues/46): Added option to exclude columns in `set_missing`.
-* [#49](https://github.com/boxuancui/DataExplorer/issues/49) **[Breaking Change]**: Switched package to [tidyverse style](http://style.tidyverse.org/). All old functions are in `.Deprecated` mode. List of name changes in alphabetical order:
+* [#49](https://github.com/boxuancui/DataExplorer/issues/49) **[Breaking Change]**: Switched package to [tidyverse style](https://style.tidyverse.org/). All old functions are in `.Deprecated` mode. List of name changes in alphabetical order:
 	* `BarDiscrete` -> `plot_bar`
 	* `CollapseCategory` -> `group_category`
 	* `CorrelationContinuous`-> `plot_correlation(..., type = "continuous")`

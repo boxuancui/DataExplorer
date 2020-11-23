@@ -167,13 +167,13 @@ final_data[which(final_data$manufacturer %in% c("MCDONNELL DOUGLAS AIRCRAFT CO",
 plot_bar(final_data$manufacturer)
 ```
 
-Feature **dst_origin** and **tzone_origin** contains only 1 value, so we should drop them:
+Feature **dst_origin**, **tzone_origin**, **year_flights** and **tz_origin** contains only 1 value, so we should drop them:
 
 ```{r eda-drop-bar-features}
-final_data <- drop_columns(final_data, c("dst_origin", "tzone_origin"))
+final_data <- drop_columns(final_data, c("dst_origin", "tzone_origin", "year_flights", "tz_origin"))
 ```
 
-Frequently, it is very beneficial to look at bivariate frequency distribution. For example, to look at discrete features by **arr_delay**:
+Frequently, it is very beneficial to look at bi-variate frequency distribution. For example, to look at discrete features by **arr_delay**:
 
 ```{r eda-plot-bar-with-template, eval=FALSE}
 plot_bar(final_data, with = "arr_delay")
@@ -184,6 +184,17 @@ plot_bar(final_data, with = "arr_delay", theme_config = list("text" = element_te
 ```
 
 The resulting distribution looks quite different from the regular frequency distribution.
+
+You may choose to break out all frequencies by a discrete variable:
+
+```{r eda-plot-bar-by-template, eval=FALSE}
+plot_bar(final_data, by = "origin")
+```
+
+```{r eda-plot-bar-by-run, echo=FALSE, fig.width=8, fig.height=10}
+plot_bar(final_data, by = "origin", theme_config = list("text" = element_text(size = 6)))
+```
+
 
 #### Histograms
 To visualize distributions for all continuous features:

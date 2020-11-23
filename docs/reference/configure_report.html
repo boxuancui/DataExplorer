@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -45,7 +49,6 @@
 <meta property="og:title" content="Configure report template — configure_report" />
 <meta property="og:description" content="This function configures the content of the to-be-generated data profiling report." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -73,7 +76,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,7 +90,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">DataExplorer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -119,7 +122,12 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/boxuancui/DataExplorer/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -134,7 +142,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Configure report template</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/boxuancui/DataExplorer/blob/master/R/configure_report.r'><code>R/configure_report.r</code></a></small>
     <div class="hidden name"><code>configure_report.Rd</code></div>
     </div>
 
@@ -142,35 +150,35 @@
     <p>This function configures the content of the to-be-generated data profiling report.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>configure_report</span>(
-  <span class='kw'>add_introduce</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_intro</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_str</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_histogram</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_density</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>add_plot_qq</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_bar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_correlation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_prcomp</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_boxplot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>add_plot_scatterplot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>introduce_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>plot_intro_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>plot_str_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"diagonal"</span>, <span class='kw'>fontSize</span> <span class='kw'>=</span> <span class='fl'>35</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>margin</span> <span class='kw'>=</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>left</span> <span class='kw'>=</span> <span class='fl'>350</span>, <span class='kw'>right</span> <span class='kw'>=</span> <span class='fl'>250</span>)),
-  <span class='kw'>plot_missing_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>plot_histogram_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>plot_density_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>plot_qq_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sampled_rows</span> <span class='kw'>=</span> <span class='fl'>1000L</span>),
-  <span class='kw'>plot_bar_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>plot_correlation_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>cor_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>use</span> <span class='kw'>=</span> <span class='st'>"pairwise.complete.obs"</span>)),
-  <span class='kw'>plot_prcomp_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>plot_boxplot_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>plot_scatterplot_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sampled_rows</span> <span class='kw'>=</span> <span class='fl'>1000L</span>),
-  <span class='kw'>global_ggtheme</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span>(<span class='fu'>theme_gray</span>()),
-  <span class='kw'>global_theme_config</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
-)</pre>
+    <pre class="usage"><span class='fu'>configure_report</span><span class='op'>(</span>
+  add_introduce <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_intro <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_str <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_missing <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_histogram <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_density <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  add_plot_qq <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_bar <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_correlation <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_prcomp <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_boxplot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  add_plot_scatterplot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  introduce_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  plot_intro_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  plot_str_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"diagonal"</span>, fontSize <span class='op'>=</span> <span class='fl'>35</span>, width <span class='op'>=</span> <span class='fl'>1000</span>, margin <span class='op'>=</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>left <span class='op'>=</span> <span class='fl'>350</span>, right <span class='op'>=</span> <span class='fl'>250</span><span class='op'>)</span><span class='op'>)</span>,
+  plot_missing_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  plot_histogram_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  plot_density_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  plot_qq_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sampled_rows <span class='op'>=</span> <span class='fl'>1000L</span><span class='op'>)</span>,
+  plot_bar_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  plot_correlation_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>cor_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>use <span class='op'>=</span> <span class='st'>"pairwise.complete.obs"</span><span class='op'>)</span><span class='op'>)</span>,
+  plot_prcomp_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  plot_boxplot_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  plot_scatterplot_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sampled_rows <span class='op'>=</span> <span class='fl'>1000L</span><span class='op'>)</span>,
+  global_ggtheme <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_gray</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>,
+  global_theme_config <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -273,17 +281,17 @@
     </tr>
     <tr>
       <th>global_ggtheme</th>
-      <td><p>global setting for theme. Default is <code><a href='https://rdrr.io/r/base/substitute.html'>quote(theme_gray())</a></code>.</p></td>
+      <td><p>global setting for <a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a>. Default is <code><a href='https://rdrr.io/r/base/substitute.html'>quote(theme_gray())</a></code>.</p></td>
     </tr>
     <tr>
       <th>global_theme_config</th>
-      <td><p>global setting for theme. Default is <code><a href='https://rdrr.io/r/base/list.html'>list()</a></code>.</p></td>
+      <td><p>global setting for <a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a>. Default is <code><a href='https://rdrr.io/r/base/list.html'>list()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Individual settings will overwrite global settings. For example: if <code>plot_intro_args</code> has <code>ggtheme</code> set to <code>theme_light()</code> while <code>global_ggtheme</code> is set to <code>theme_gray()</code>, <code>theme_light()</code> will be used.</p>
+    <p>Individual settings will overwrite global settings. For example: if <code>plot_intro_args</code> has <code>ggtheme</code> set to <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_light()</a></code> while <code>global_ggtheme</code> is set to <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_gray()</a></code>, <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_light()</a></code> will be used.</p>
 <p>When setting global themes using <code>global_ggtheme</code>, please pass an unevaluated call to the theme function, e.g., <code><a href='https://rdrr.io/r/base/substitute.html'>quote(theme_light())</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -291,7 +299,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Get default configuration</span>
-<span class='fu'>configure_report</span>()</div><div class='output co'>#&gt; $introduce
+<span class='fu'>configure_report</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $introduce
 #&gt; list()
 #&gt; 
 #&gt; $plot_intro
@@ -397,7 +406,8 @@
 #&gt; 
 #&gt; </div><div class='input'>
 <span class='co'>## Set global theme</span>
-<span class='fu'>configure_report</span>(<span class='kw'>global_ggtheme</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span>(<span class='fu'>theme_light</span>(<span class='kw'>base_size</span> <span class='kw'>=</span> <span class='fl'>20L</span>)))</div><div class='output co'>#&gt; $introduce
+<span class='fu'>configure_report</span><span class='op'>(</span>global_ggtheme <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_light</a></span><span class='op'>(</span>base_size <span class='op'>=</span> <span class='fl'>20L</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $introduce
 #&gt; list()
 #&gt; 
 #&gt; $plot_intro
@@ -503,15 +513,10 @@
 #&gt; 
 #&gt; </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -522,7 +527,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

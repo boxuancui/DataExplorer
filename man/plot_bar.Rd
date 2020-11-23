@@ -7,6 +7,8 @@
 plot_bar(
   data,
   with = NULL,
+  by = NULL,
+  by_position = "fill",
   maxcat = 50,
   order_bar = TRUE,
   binary_as_factor = TRUE,
@@ -22,6 +24,10 @@ plot_bar(
 \item{data}{input data}
 
 \item{with}{name of continuous feature to be summed. Default is \code{NULL}, i.e., frequency.}
+
+\item{by}{discrete feature name to be broken down by.}
+
+\item{by_position}{position argument in \link{geom_bar} if \code{by} is supplied. Default is \code{"fill"}.}
 
 \item{maxcat}{maximum categories allowed for each feature. Default is 50.}
 
@@ -56,7 +62,11 @@ library(ggplot2)
 plot_bar(diamonds)
 plot_bar(diamonds, maxcat = 5)
 
-# Plot bar charts with `price` feature
+# Plot bar charts with `price`
 plot_bar(diamonds, with = "price")
+
+# Plot bar charts by `cut`
+plot_bar(diamonds, by = "cut")
+plot_bar(diamonds, by = "cut", by_position = "dodge")
 }
 \keyword{plot_bar}
