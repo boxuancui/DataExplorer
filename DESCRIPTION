@@ -9,7 +9,7 @@ Description: Automated data exploration process for analytic tasks and predictiv
 Depends:
     R (>= 3.6)
 Imports:
-    data.table (>= 1.12.0),
+    data.table,
     reshape2 (>= 1.4.3),
     scales (>= 1.1.0),
     ggplot2,
@@ -26,6 +26,8 @@ Suggests:
     knitr,
     jsonlite,
     nycflights13
+Remotes:
+    github::Rdatatable/data.table@master
 SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: MIT + file LICENSE
 Language: en-US
