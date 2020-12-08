@@ -9,7 +9,7 @@ Description: Automated data exploration process for analytic tasks and predictiv
 Depends:
     R (>= 3.6)
 Imports:
-    data.table (>= 1.13.3),
+    data.table (>= 1.13.4),
     reshape2 (>= 1.4.3),
     scales (>= 1.1.0),
     ggplot2,
