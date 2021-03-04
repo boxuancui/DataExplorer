@@ -5,6 +5,7 @@ params:
   response: response
   set_title: report_title
 title: "`r params$set_title`"
+always_allow_html: true
 ---
 
 ```{r global_options, include=FALSE}
