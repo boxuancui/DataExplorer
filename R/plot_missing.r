@@ -35,12 +35,16 @@ plot_missing <- function(data,
                          title = NULL,
                          ggtheme = theme_gray(),
                          theme_config = list("legend.position" = c("bottom"))) {
-  ## Verify group = fill_color
-  if (length(group) != length(fill_color)) {
-      stop('"group" and "fill_color" contain different amount of labels')
+ 
+  ## Decide what color pallete to use 
+  if (length(group) != length(fill_color)| (mean(names(group) %in% names(fill_color)) != 1)) {
+      
+      message('Labels in "group" are different to labels in "fill_colors"')
+      message('-----Using default ggplot colors')
+      color_fill <- scale_fill_discrete("Band")
   }
-  if (mean(names(group) %in% names(fill_color)) != 1) {
-      stop('Labels "group" are different to labels in "fill_colors"')
+  else{
+    color_fill <- scale_fill_manual(values = fill_color)
   }
   
   ## Declare variable first to pass R CMD check
@@ -60,7 +64,7 @@ plot_missing <- function(data,
   ## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "Band")) +
     geom_bar(stat = "identity") +
-    scale_fill_manual(values = fill_color) +
+    color_fill +
     coord_flip() +
     xlab("Features") + ylab("Missing Rows") +
     guides(fill = guide_legend(override.aes = aes(label = "")))
