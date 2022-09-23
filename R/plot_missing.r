@@ -41,10 +41,10 @@ plot_missing <- function(data,
       
       message('Labels in "group" are different to labels in "fill_colors"')
       message('-----Using default ggplot colors')
-      color_fill <- scale_fill_discrete("Band")
+      plot_fill <- scale_fill_discrete("Band")
   }
   else{
-    color_fill <- scale_fill_manual(values = fill_color)
+      plot_fill <- scale_fill_manual(values = fill_color)
   }
   
   ## Declare variable first to pass R CMD check
@@ -64,7 +64,7 @@ plot_missing <- function(data,
   ## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "Band")) +
     geom_bar(stat = "identity") +
-    color_fill +
+    plot_fill +
     coord_flip() +
     xlab("Features") + ylab("Missing Rows") +
     guides(fill = guide_legend(override.aes = aes(label = "")))
