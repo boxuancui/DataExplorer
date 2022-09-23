@@ -26,6 +26,10 @@
 
 plot_missing <- function(data,
                          group = list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1),
+                         fill_color = c("Good"   = "#1B9E77",
+                                        "OK"     = "#E6AB02",
+                                        "Bad"    = "#D95F02",
+                                        "Remove" = "#E41A1C"),
                          missing_only = FALSE,
                          geom_label_args = list(),
                          title = NULL,
@@ -48,7 +52,7 @@ plot_missing <- function(data,
   ## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "Band")) +
     geom_bar(stat = "identity") +
-    scale_fill_discrete("Band") +
+    scale_fill_manual(values = fill_color) +
     coord_flip() +
     xlab("Features") + ylab("Missing Rows") +
     guides(fill = guide_legend(override.aes = aes(label = "")))
