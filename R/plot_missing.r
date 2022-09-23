@@ -35,6 +35,14 @@ plot_missing <- function(data,
                          title = NULL,
                          ggtheme = theme_gray(),
                          theme_config = list("legend.position" = c("bottom"))) {
+  ## Verify group = fill_color
+  if (length(group) != length(fill_color)) {
+      stop('"group" and "fill_colors" contain different amount of labels')
+  }
+  if (mean(names(group) %in% names(fill_color)) != 1) {
+      stop('Labels "group" are different to labels in "fill_colors"')
+  }
+  
   ## Declare variable first to pass R CMD check
   num_missing <- pct_missing <- Band <- NULL
   ## Profile missing values
