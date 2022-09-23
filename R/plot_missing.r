@@ -37,7 +37,7 @@ plot_missing <- function(data,
                          theme_config = list("legend.position" = c("bottom"))) {
   ## Verify group = fill_color
   if (length(group) != length(fill_color)) {
-      stop('"group" and "fill_colors" contain different amount of labels')
+      stop('"group" and "fill_color" contain different amount of labels')
   }
   if (mean(names(group) %in% names(fill_color)) != 1) {
       stop('Labels "group" are different to labels in "fill_colors"')
