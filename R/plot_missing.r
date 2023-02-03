@@ -45,6 +45,15 @@ plot_missing <- function(data,
       missing_value[pct_missing > group[[i-1]] & pct_missing <= group[[i]], Band := names(group)[i]]
     }
   }))
+  
+  # Determine ordinal levels from group supplied
+  ordinal_levels <- names(group[sort.list(unlist(group))])
+  
+  # Convert character to ordered factor to support ordinal legend
+  missing_value[, Band := factor(Band,
+                                 levels=ordinal_levels,
+                                 ordered = T)]
+  
   ## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "Band")) +
     geom_bar(stat = "identity") +
