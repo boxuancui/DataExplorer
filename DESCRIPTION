@@ -1,13 +1,13 @@
 Package: DataExplorer
 Title: Automate Data Exploration and Treatment
-Version: 0.8.2
+Version: 0.8.2.9000
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: Automated data exploration process for analytic tasks and predictive modeling, so
     that users could focus on understanding data and extracting insights. The package scans and
     analyzes each variable, and visualizes them with typical graphical techniques. Common
     data processing methods are also available to treat and format data.
 Depends:
-    R (>= 3.6)
+    R (>= 3.5)
 Imports:
     data.table (>= 1.13.4),
     reshape2 (>= 1.4.3),
@@ -32,6 +32,6 @@ Language: en-US
 LazyData: true
 URL: http://boxuancui.github.io/DataExplorer/
 BugReports: https://github.com/boxuancui/DataExplorer/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 VignetteBuilder: knitr

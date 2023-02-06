@@ -6,10 +6,7 @@ Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-proje
 [![Downloads](http://cranlogs.r-pkg.org/badges/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 [![Total
 Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
-[![Travis Build
-Status](https://travis-ci.org/boxuancui/DataExplorer.svg?branch=master)](https://travis-ci.org/boxuancui/DataExplorer/branches)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/boxuancui/DataExplorer?branch=master&svg=true)](https://ci.appveyor.com/project/boxuancui/DataExplorer)
+[![R-CMD-check](https://github.com/boxuancui/DataExplorer/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/boxuancui/DataExplorer/actions/workflows/R-CMD-check.yaml)
 [![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/master/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer/branch/master)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/2053/badge)](https://bestpractices.coreinfrastructure.org/projects/2053)
@@ -91,17 +88,17 @@ individually for your analysis, e.g.,
 introduce(airquality)
 ```
 
-|                        |       |
-| :--------------------- | ----: |
-| rows                   |   153 |
-| columns                |     6 |
-| discrete\_columns      |     0 |
-| continuous\_columns    |     6 |
-| all\_missing\_columns  |     0 |
-| total\_missing\_values |    44 |
-| complete\_rows         |   111 |
-| total\_observations    |   918 |
-| memory\_usage          | 6,376 |
+|                      |       |
+|:---------------------|------:|
+| rows                 |   153 |
+| columns              |     6 |
+| discrete_columns     |     0 |
+| continuous_columns   |     6 |
+| all_missing_columns  |     0 |
+| total_missing_values |    44 |
+| complete_rows        |   111 |
+| total_observations   |   918 |
+| memory_usage         | 6,376 |
 
 ``` r
 ## Plot basic description for airquality data
