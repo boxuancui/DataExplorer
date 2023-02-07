@@ -1,3 +1,7 @@
+# DataExplorer 0.9.0
+## Enhancements
+* [#153](https://github.com/boxuancui/DataExplorer/issues/153): Expanded R version dependency to 3.5.
+
 # DataExplorer 0.8.2
 ## Enhancements
 * [#139](https://github.com/boxuancui/DataExplorer/issues/139): Added `by` argument to `plot_bar`.
