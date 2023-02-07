@@ -50,9 +50,7 @@ plot_missing <- function(data,
   ordinal_levels <- names(group[sort.list(unlist(group))])
   
   # Convert character to ordered factor to support ordinal legend
-  missing_value[, Band := factor(Band,
-                                 levels=ordinal_levels,
-                                 ordered = T)]
+  missing_value[, Band := factor(Band, levels = ordinal_levels, ordered = TRUE)]
   
   ## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "Band")) +
