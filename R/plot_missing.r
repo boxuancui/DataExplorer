@@ -26,11 +26,27 @@
 
 plot_missing <- function(data,
                          group = list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1),
+                         fill_color = c("Good"   = "#1B9E77",
+                                        "OK"     = "#E6AB02",
+                                        "Bad"    = "#D95F02",
+                                        "Remove" = "#E41A1C"),
                          missing_only = FALSE,
                          geom_label_args = list(),
                          title = NULL,
                          ggtheme = theme_gray(),
                          theme_config = list("legend.position" = c("bottom"))) {
+ 
+  ## Decide what color pallete to use 
+  if (length(group) != length(fill_color)| (mean(names(group) %in% names(fill_color)) != 1)) {
+      
+      message('Labels in "group" are different to labels in "fill_colors"')
+      message('-----Using default ggplot colors')
+      plot_fill <- scale_fill_discrete("Band")
+  }
+  else{
+      plot_fill <- scale_fill_manual(values = fill_color)
+  }
+  
   ## Declare variable first to pass R CMD check
   num_missing <- pct_missing <- Band <- NULL
   ## Profile missing values
@@ -46,6 +62,7 @@ plot_missing <- function(data,
     }
   }))
   
+  
   # Determine ordinal levels from group supplied
   ordinal_levels <- names(group[sort.list(unlist(group))])
   
@@ -54,10 +71,10 @@ plot_missing <- function(data,
                                  levels=ordinal_levels,
                                  ordered = T)]
   
-  ## Create ggplot object
+## Create ggplot object
   output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "Band")) +
     geom_bar(stat = "identity") +
-    scale_fill_discrete("Band") +
+    plot_fill +
     coord_flip() +
     xlab("Features") + ylab("Missing Rows") +
     guides(fill = guide_legend(override.aes = aes(label = "")))
