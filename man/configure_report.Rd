@@ -19,8 +19,8 @@ configure_report(
   add_plot_scatterplot = TRUE,
   introduce_args = list(),
   plot_intro_args = list(),
-  plot_str_args = list(type = "diagonal", fontSize = 35, width = 1000, margin =
-    list(left = 350, right = 250)),
+  plot_str_args = list(type = "diagonal", fontSize = 35, width = 1000, margin = list(left
+    = 350, right = 250)),
   plot_missing_args = list(),
   plot_histogram_args = list(),
   plot_density_args = list(),
