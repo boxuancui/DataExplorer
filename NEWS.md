@@ -3,6 +3,7 @@
 * [#153](https://github.com/boxuancui/DataExplorer/issues/153): Expanded R version dependency to 3.5.
 * [#154 PR](https://github.com/boxuancui/DataExplorer/pull/154): Added YAML option to allow HTML elements when choosing PDF report.
 * [#176 PR](https://github.com/boxuancui/DataExplorer/pull/176): Improved legend ordering in `plot_missing`.
+* [#177 PR](https://github.com/boxuancui/DataExplorer/pull/177): Added group color customization in `plot_missing`.
 
 # DataExplorer 0.8.2
 ## Enhancements
