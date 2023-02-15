@@ -2,6 +2,7 @@
 ## Enhancements
 * [#153](https://github.com/boxuancui/DataExplorer/issues/153): Expanded R version dependency to 3.5.
 * [#154 PR](https://github.com/boxuancui/DataExplorer/pull/154): Added YAML option to allow HTML elements when choosing PDF report.
+* [#165](https://github.com/boxuancui/DataExplorer/issues/165): Added `geom_jitter` option to `plot_boxplot` and `plot_scatterplot`.
 * [#176 PR](https://github.com/boxuancui/DataExplorer/pull/176): Improved legend ordering in `plot_missing`.
 * [#177 PR](https://github.com/boxuancui/DataExplorer/pull/177): Added group color customization in `plot_missing`.
 

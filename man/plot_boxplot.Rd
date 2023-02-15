@@ -9,6 +9,7 @@ plot_boxplot(
   by,
   binary_as_factor = TRUE,
   geom_boxplot_args = list(),
+  geom_jitter_args = list(),
   scale_y = "continuous",
   title = NULL,
   ggtheme = theme_gray(),
@@ -26,6 +27,8 @@ plot_boxplot(
 \item{binary_as_factor}{treat binary as categorical? Default is \code{TRUE}.}
 
 \item{geom_boxplot_args}{a list of other arguments to \link{geom_boxplot}}
+
+\item{geom_jitter_args}{a list of other arguments to \link{geom_jitter}. If empty, \link{geom_jitter} will not be added.}
 
 \item{scale_y}{scale of original y axis (before \code{coord_flip}). See \link{scale_y_continuous} for all options. Default is \code{continuous}.}
 
@@ -56,6 +59,9 @@ set.seed(1)
 skew <- data.frame(y = rep(c("a", "b"), 500), replicate(4L, rbeta(1000, 1, 5000)))
 plot_boxplot(skew, by = "y", ncol = 2L)
 plot_boxplot(skew, by = "y", scale_y = "log10", ncol = 2L)
+
+# Plot with `geom_jitter`
+plot_boxplot(iris, by = "Species", ncol = 2L, geom_jitter_args = list(width = NULL)) # Turn on with default settings
 }
 \seealso{
 \link{geom_boxplot}

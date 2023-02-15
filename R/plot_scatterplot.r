@@ -5,6 +5,7 @@
 #' @param by feature name to be fixed at
 #' @param sampled_rows number of rows to sample if data has too many rows. Default is all rows, which means do not sample.
 #' @param geom_point_args a list of other arguments to \link{geom_point}
+#' @param geom_jitter_args a list of other arguments to \link{geom_jitter}. If empty, \link{geom_jitter} will not be added.
 #' @param scale_x scale of original x axis (before \code{coord_flip}). See \link{scale_x_continuous} for all options. Default is \code{NULL}.
 #' @param scale_y scale of original y axis (before \code{coord_flip}). See \link{scale_y_continuous} for all options. Default is \code{NULL}.
 #' @param title plot title
@@ -28,6 +29,10 @@
 #' plot_scatterplot(skew, by = "X5", ncol = 2L)
 #' plot_scatterplot(skew, by = "X5", scale_x = "log10", scale_y = "log10", ncol = 2L)
 #' 
+#' # Plot with `geom_jitter`
+#' plot_scatterplot(iris, by = "Species", geom_jitter_args = list(width = NULL)) # Turn on with default settings
+#' plot_scatterplot(iris, by = "Species", geom_jitter_args = list(width = 0.1, height = 0.1))
+#' 
 #' \dontrun{
 #' # Customize themes
 #' library(ggplot2)
@@ -42,6 +47,7 @@
 
 plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
                              geom_point_args = list(),
+                             geom_jitter_args = list(),
                              scale_x = NULL,
                              scale_y = NULL,
                              title = NULL,
@@ -70,6 +76,7 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
         xlab(by)
       if (!is.null(scale_x)) base_plot <- base_plot + do.call(paste0("scale_x_", scale_x), list())
       if (!is.null(scale_y)) base_plot <- base_plot + do.call(paste0("scale_y_", scale_y), list())
+      if (!identical(geom_jitter_args, list())) base_plot <- base_plot + do.call("geom_jitter", geom_jitter_args)
       base_plot
     }
   )
