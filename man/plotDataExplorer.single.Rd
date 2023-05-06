@@ -7,6 +7,8 @@
 \method{plotDataExplorer}{single}(plot_obj, title, ggtheme, theme_config, ...)
 }
 \arguments{
+\item{plot_obj}{single ggplot object}
+
 \item{title}{plot title}
 
 \item{ggtheme}{complete ggplot2 themes}
@@ -14,8 +16,6 @@
 \item{theme_config}{a list of configurations to be passed to \link{theme}}
 
 \item{\dots}{other arguments to be passed}
-
-\item{obj}{single ggplot object}
 }
 \value{
 invisibly return the ggplot object
