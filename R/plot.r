@@ -27,19 +27,19 @@
 #'   )
 #' )
 plotDataExplorer <- function(plot_obj, title, ggtheme, theme_config, ...) {
-	UseMethod("plotDataExplorer")
+  UseMethod("plotDataExplorer")
 }
 
 #' Plot objects with gridExtra
 #'
 #' Plot multiple DataExplorer objects using grid.arrange
 #' @param plot_obj list of ggplot objects
-#' @param page_layout a list of page indices with associated plot indices
-#' @param nrow number of rows per page
-#' @param ncol number of columns per page
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
 #' @param theme_config a list of configurations to be passed to \link{theme}
+#' @param page_layout a list of page indices with associated plot indices
+#' @param nrow number of rows per page
+#' @param ncol number of columns per page
 #' @param \dots other arguments to be passed
 #' @return invisibly return the named list of ggplot objects
 #' @keywords internal
@@ -49,28 +49,28 @@ plotDataExplorer <- function(plot_obj, title, ggtheme, theme_config, ...) {
 #' @export
 #' @seealso \link{plotDataExplorer} \link{plotDataExplorer.single} \link{plotDataExplorer.multiple}
 plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_layout, nrow, ncol, ...) {
-	plot_list <- lapply(plot_obj, function(p) {
-		p +
-			eval(ggtheme) +
-			do.call(theme, theme_config)
-	})
-
-	if (length(page_layout) > 1) {
-		invisible(lapply(names(page_layout), function(pg_name) {
-			index <- page_layout[[pg_name]]
-			suppressMessages(do.call(grid.arrange, c(plot_list[index], ncol = ncol, nrow = nrow, top = title, bottom = pg_name)))
-		}))
-	} else {
-		suppressMessages(do.call(grid.arrange, c(plot_list, ncol = ncol, nrow = nrow, top = title)))
-	}
-
-	invisible(plot_list)
+  plot_list <- lapply(plot_obj, function(p) {
+    p +
+      eval(ggtheme) +
+      do.call(theme, theme_config)
+  })
+  
+  if (length(page_layout) > 1) {
+    invisible(lapply(names(page_layout), function(pg_name) {
+      index <- page_layout[[pg_name]]
+      suppressMessages(do.call(grid.arrange, c(plot_list[index], ncol = ncol, nrow = nrow, top = title, bottom = pg_name)))
+    }))
+  } else {
+    suppressMessages(do.call(grid.arrange, c(plot_list, ncol = ncol, nrow = nrow, top = title)))
+  }
+  
+  invisible(plot_list)
 }
 
 #' Plot single object
 #'
 #' Plot single DataExplorer object
-#' @param obj single ggplot object
+#' @param plot_obj single ggplot object
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
 #' @param theme_config a list of configurations to be passed to \link{theme}
@@ -82,13 +82,13 @@ plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_l
 #' @export
 #' @seealso \link{plotDataExplorer} \link{plotDataExplorer.grid} \link{plotDataExplorer.multiple}
 plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, ...) {
-	plot_obj <- plot_obj +
-		ggtitle(title) +
-		eval(ggtheme) +
-		do.call(theme, theme_config)
-
-	print(plot_obj)
-	invisible(plot_obj)
+  plot_obj <- plot_obj +
+    ggtitle(title) +
+    eval(ggtheme) +
+    do.call(theme, theme_config)
+  
+  print(plot_obj)
+  invisible(plot_obj)
 }
 
 #' Plot multiple objects
@@ -109,16 +109,16 @@ plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, ...)
 #' @export
 #' @seealso \link{plotDataExplorer} \link{plotDataExplorer.grid} \link{plotDataExplorer.single}
 plotDataExplorer.multiple <- function(plot_obj, title, ggtheme, theme_config, page_layout, facet_wrap_args = list(), ...) {
-	n <- length(page_layout)
-	plot_list <- lapply(setNames(seq.int(n), paste0("page_", seq.int(n))), function(i) {
-		plot_obj[[i]] +
-			do.call("facet_wrap", facet_wrap_args) +
-			labs(title = title, caption = ifelse(n > 1, names(page_layout)[i], "")) +
-			ggtitle(title) +
-			eval(ggtheme) +
-			do.call(theme, theme_config)
-	})
-
-	invisible(capture.output(print(plot_list)))
-	invisible(plot_list)
+  n <- length(page_layout)
+  plot_list <- lapply(setNames(seq.int(n), paste0("page_", seq.int(n))), function(i) {
+    plot_obj[[i]] +
+      do.call("facet_wrap", facet_wrap_args) +
+      labs(title = title, caption = ifelse(n > 1, names(page_layout)[i], "")) +
+      ggtitle(title) +
+      eval(ggtheme) +
+      do.call(theme, theme_config)
+  })
+  
+  invisible(capture.output(print(plot_list)))
+  invisible(plot_list)
 }

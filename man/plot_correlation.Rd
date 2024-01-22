@@ -12,8 +12,7 @@ plot_correlation(
   geom_text_args = list(),
   title = NULL,
   ggtheme = theme_gray(),
-  theme_config = list(legend.position = "bottom", axis.text.x = element_text(angle =
-    90))
+  theme_config = list(legend.position = "bottom", axis.text.x = element_text(angle = 90))
 )
 }
 \arguments{

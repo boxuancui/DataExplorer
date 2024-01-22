@@ -9,6 +9,7 @@ plot_scatterplot(
   by,
   sampled_rows = nrow(data),
   geom_point_args = list(),
+  geom_jitter_args = list(),
   scale_x = NULL,
   scale_y = NULL,
   title = NULL,
@@ -27,6 +28,8 @@ plot_scatterplot(
 \item{sampled_rows}{number of rows to sample if data has too many rows. Default is all rows, which means do not sample.}
 
 \item{geom_point_args}{a list of other arguments to \link{geom_point}}
+
+\item{geom_jitter_args}{a list of other arguments to \link{geom_jitter}. If empty, \link{geom_jitter} will not be added.}
 
 \item{scale_x}{scale of original x axis (before \code{coord_flip}). See \link{scale_x_continuous} for all options. Default is \code{NULL}.}
 
@@ -57,7 +60,14 @@ plot_scatterplot(iris, by = "Species")
 set.seed(1)
 skew <- data.frame(replicate(5L, rbeta(1000, 1, 5000)))
 plot_scatterplot(skew, by = "X5", ncol = 2L)
-plot_scatterplot(skew, by = "X5", scale_x = "log10", scale_y = "log10", ncol = 2L)
+plot_scatterplot(skew, by = "X5", scale_x = "log10",
+scale_y = "log10", ncol = 2L)
+
+# Plot with `geom_jitter`
+plot_scatterplot(iris, by = "Species",
+geom_jitter_args = list(width = NULL)) # Turn on with default settings
+plot_scatterplot(iris, by = "Species",
+geom_jitter_args = list(width = 0.1, height = 0.1))
 
 \dontrun{
 # Customize themes

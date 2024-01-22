@@ -11,3 +11,5 @@ report.html
 inst/doc
 report_files/
 /revdep/.cache.rds
+.Rdata
+.httr-oauth
