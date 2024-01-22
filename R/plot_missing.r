@@ -20,11 +20,13 @@
 #' 
 #' ## Customize band
 #' plot_missing(airquality, group = list("B1" = 0, "B2" = 0.06, "B3" = 1))
-#' plot_missing(airquality, group = list("Awesome!" = 0.2, "Oh no!" = 1), group_color = list("Awesome!" = "green", "Oh no!" = "red"))
+#' plot_missing(airquality, group = list("Awesome!" = 0.2, "Oh no!" = 1),
+#' group_color = list("Awesome!" = "green", "Oh no!" = "red"))
 #' 
 #' ## Shrink geom_label size
 #' library(ggplot2)
-#' plot_missing(airquality, geom_label_args = list("size" = 2, "label.padding" = unit(0.1, "lines")))
+#' plot_missing(airquality, geom_label_args = list("size" = 2,
+#' "label.padding" = unit(0.1, "lines")))
 
 plot_missing <- function(data,
                          group = list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1),

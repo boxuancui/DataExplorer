@@ -27,11 +27,14 @@
 #' set.seed(1)
 #' skew <- data.frame(replicate(5L, rbeta(1000, 1, 5000)))
 #' plot_scatterplot(skew, by = "X5", ncol = 2L)
-#' plot_scatterplot(skew, by = "X5", scale_x = "log10", scale_y = "log10", ncol = 2L)
+#' plot_scatterplot(skew, by = "X5", scale_x = "log10",
+#' scale_y = "log10", ncol = 2L)
 #' 
 #' # Plot with `geom_jitter`
-#' plot_scatterplot(iris, by = "Species", geom_jitter_args = list(width = NULL)) # Turn on with default settings
-#' plot_scatterplot(iris, by = "Species", geom_jitter_args = list(width = 0.1, height = 0.1))
+#' plot_scatterplot(iris, by = "Species",
+#' geom_jitter_args = list(width = NULL)) # Turn on with default settings
+#' plot_scatterplot(iris, by = "Species",
+#' geom_jitter_args = list(width = 0.1, height = 0.1))
 #' 
 #' \dontrun{
 #' # Customize themes

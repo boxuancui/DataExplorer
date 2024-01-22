@@ -7,7 +7,7 @@ Version](http://www.r-pkg.org/badges/version/DataExplorer)](https://cran.r-proje
 [![Total
 Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://cran.r-project.org/package=DataExplorer)
 [![R-CMD-check](https://github.com/boxuancui/DataExplorer/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/boxuancui/DataExplorer/actions/workflows/check-standard.yaml)
-[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/branch/master/graph/badge.svg)](https://codecov.io/gh/boxuancui/DataExplorer/branch/master)
+[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/graph/badge.svg?token=w8eMGjF8Jw)](https://codecov.io/gh/boxuancui/DataExplorer)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/2053/badge)](https://bestpractices.coreinfrastructure.org/projects/2053)
 [![GitHub

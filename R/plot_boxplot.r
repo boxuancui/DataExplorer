@@ -30,7 +30,8 @@
 #' plot_boxplot(skew, by = "y", scale_y = "log10", ncol = 2L)
 #' 
 #' # Plot with `geom_jitter`
-#' plot_boxplot(iris, by = "Species", ncol = 2L, geom_jitter_args = list(width = NULL)) # Turn on with default settings
+#' plot_boxplot(iris, by = "Species", ncol = 2L,
+#' geom_jitter_args = list(width = NULL)) # Turn on with default settings
 
 plot_boxplot <- function(data, by,
                          binary_as_factor = TRUE,

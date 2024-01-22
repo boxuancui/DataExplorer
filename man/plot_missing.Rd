@@ -45,11 +45,13 @@ plot_missing(airquality, missing_only = TRUE)
 
 ## Customize band
 plot_missing(airquality, group = list("B1" = 0, "B2" = 0.06, "B3" = 1))
-plot_missing(airquality, group = list("Awesome!" = 0.2, "Oh no!" = 1), group_color = list("Awesome!" = "green", "Oh no!" = "red"))
+plot_missing(airquality, group = list("Awesome!" = 0.2, "Oh no!" = 1),
+group_color = list("Awesome!" = "green", "Oh no!" = "red"))
 
 ## Shrink geom_label size
 library(ggplot2)
-plot_missing(airquality, geom_label_args = list("size" = 2, "label.padding" = unit(0.1, "lines")))
+plot_missing(airquality, geom_label_args = list("size" = 2,
+"label.padding" = unit(0.1, "lines")))
 }
 \seealso{
 \link{profile_missing}
