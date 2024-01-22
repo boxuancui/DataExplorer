@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   dataexplorer-intro: dataexplorer-intro.html
 last_built: 2020-11-21T06:37Z
+=======
+pandoc: 3.1.1
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  dataexplorer-intro: dataexplorer-intro.html
+last_built: 2024-01-22T23:29Z
+>>>>>>> master
 

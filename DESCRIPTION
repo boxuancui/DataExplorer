@@ -1,15 +1,15 @@
 Package: DataExplorer
 Title: Automate Data Exploration and Treatment
-Version: 0.8.2
+Version: 0.8.3
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: Automated data exploration process for analytic tasks and predictive modeling, so
     that users could focus on understanding data and extracting insights. The package scans and
     analyzes each variable, and visualizes them with typical graphical techniques. Common
     data processing methods are also available to treat and format data.
 Depends:
-    R (>= 4.0)
+    R (>= 3.6)
 Imports:
-    data.table (>= 1.12.0),
+    data.table (>= 1.13.4),
     reshape2 (>= 1.4.3),
     scales (>= 1.1.0),
     ggplot2,
@@ -29,9 +29,8 @@ Suggests:
 SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: MIT + file LICENSE
 Language: en-US
-LazyData: true
 URL: http://boxuancui.github.io/DataExplorer/
 BugReports: https://github.com/boxuancui/DataExplorer/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.0
 Encoding: UTF-8
 VignetteBuilder: knitr

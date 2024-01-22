@@ -2,17 +2,24 @@
 % Please edit documentation in R/DataExplorer-package.r
 \docType{package}
 \name{DataExplorer-package}
-\alias{DataExplorer-package}
 \alias{DataExplorer}
-\alias{dataexplorer}
-\title{Data Explorer}
+\alias{DataExplorer-package}
+\title{DataExplorer: Automate Data Exploration and Treatment}
 \description{
-Simplify and automate EDA process and report generation.
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+Automated data exploration process for analytic tasks and predictive modeling, so that users could focus on understanding data and extracting insights. The package scans and analyzes each variable, and visualizes them with typical graphical techniques. Common data processing methods are also available to treat and format data.
 }
-\details{
-Data exploration process for data analysis and model building, so
-that users could focus on understanding data and extracting insights. The
-package automatically scans through each variable and does data profiling.
-Typical graphical techniques will be performed for both discrete and
-continuous features.
+\seealso{
+Useful links:
+\itemize{
+  \item \url{http://boxuancui.github.io/DataExplorer/}
+  \item Report bugs at \url{https://github.com/boxuancui/DataExplorer/issues}
 }
+
+}
+\author{
+\strong{Maintainer}: Boxuan Cui \email{boxuancui@gmail.com}
+
+}
+\keyword{internal}
