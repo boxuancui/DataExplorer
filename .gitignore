@@ -13,3 +13,6 @@ report_files/
 /revdep/.cache.rds
 .Rdata
 .httr-oauth
+docs
+/doc/
+/Meta/

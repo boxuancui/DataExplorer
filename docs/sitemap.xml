@@ -1,120 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/404.html</loc>
   </url>
   <url>
-    <loc>/CONDUCT.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/articles/dataexplorer-intro.html</loc>
   </url>
   <url>
-    <loc>/articles/dataexplorer-intro.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/authors.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/code_of_conduct.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/DataExplorer-package.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/DataExplorer-package.html</loc>
   </url>
   <url>
-    <loc>/reference/configure_report.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/configure_report.html</loc>
   </url>
   <url>
-    <loc>/reference/create_report.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/create_report.html</loc>
   </url>
   <url>
-    <loc>/reference/dot-getAllMissing.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/dot-getAllMissing.html</loc>
   </url>
   <url>
-    <loc>/reference/dot-getPageLayout.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/dot-getPageLayout.html</loc>
   </url>
   <url>
-    <loc>/reference/dot-ignoreCat.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/dot-ignoreCat.html</loc>
   </url>
   <url>
-    <loc>/reference/dot-lapply.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/dot-lapply.html</loc>
   </url>
   <url>
-    <loc>/reference/drop_columns.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/drop_columns.html</loc>
   </url>
   <url>
-    <loc>/reference/dummify.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/dummify.html</loc>
   </url>
   <url>
-    <loc>/reference/group_category.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/group_category.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/introduce.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/introduce.html</loc>
   </url>
   <url>
-    <loc>/reference/plotDataExplorer.grid.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plotDataExplorer.grid.html</loc>
   </url>
   <url>
-    <loc>/reference/plotDataExplorer.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plotDataExplorer.html</loc>
   </url>
   <url>
-    <loc>/reference/plotDataExplorer.multiple.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plotDataExplorer.multiple.html</loc>
   </url>
   <url>
-    <loc>/reference/plotDataExplorer.single.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plotDataExplorer.single.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_bar.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_bar.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_boxplot.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_boxplot.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_correlation.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_correlation.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_density.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_density.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_histogram.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_histogram.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_intro.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_intro.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_missing.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_missing.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_prcomp.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_prcomp.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_qq.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_qq.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_scatterplot.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_scatterplot.html</loc>
   </url>
   <url>
-    <loc>/reference/plot_str.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/plot_str.html</loc>
   </url>
   <url>
-    <loc>/reference/profile_missing.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/profile_missing.html</loc>
   </url>
   <url>
-    <loc>/reference/set_missing.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/set_missing.html</loc>
   </url>
   <url>
-    <loc>/reference/split_columns.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/split_columns.html</loc>
   </url>
   <url>
-    <loc>/reference/update_columns.html</loc>
+    <loc>http://boxuancui.github.io/DataExplorer/reference/update_columns.html</loc>
   </url>
 </urlset>

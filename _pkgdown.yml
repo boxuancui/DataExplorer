@@ -1,7 +1,19 @@
+url: http://boxuancui.github.io/DataExplorer/
+
 template:
-  params:
-    bootswatch: cosmo
-    ganalytics: UA-127813892-1
+  bootstrap: 5
+  bootswatch: sandstone
+  includes:
+    in_header: |
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WEZQEP9LD5"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-WEZQEP9LD5');
+        </script>
 
 reference:
 - title: Package
@@ -41,3 +53,4 @@ reference:
   contents:
   - '`configure_report`'
   - '`create_report`'
+
