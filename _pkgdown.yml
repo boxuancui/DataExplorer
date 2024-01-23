@@ -5,22 +5,23 @@ template:
   bootswatch: sandstone
   includes:
     in_header: |
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WEZQEP9LD5"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-WEZQEP9LD5');
-        </script>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-WEZQEP9LD5"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-WEZQEP9LD5');
+      </script>
+
+development:
+  mode: auto
 
 reference:
 - title: Package
   desc: ~
-  contents:
-  - '`DataExplorer-package`'
-
+  contents: '`DataExplorer-package`'
 - title: Data Exploration
   desc: ~
   contents:
@@ -37,7 +38,6 @@ reference:
   - '`plot_scatterplot`'
   - '`plot_str`'
   - '`profile_missing`'
-
 - title: Feature Engineering
   desc: ~
   contents:
@@ -47,7 +47,6 @@ reference:
   - '`set_missing`'
   - '`split_columns`'
   - '`update_columns`'
-
 - title: Reporting
   desc: ~
   contents:
