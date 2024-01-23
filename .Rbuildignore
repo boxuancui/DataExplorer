@@ -10,10 +10,11 @@
 ^cran-comments\.md$
 ^revdep$
 ^appveyor\.yml$
-^code_of_conduct\.md$
 ^\.github$
 report.html
 report_files/
 ^README\.Rmd$
 ^README-.*\.png$
 ^pkgdown$
+^CODE_OF_CONDUCT\.md$
+^code_of_conduct\.md$
