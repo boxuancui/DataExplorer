@@ -9,7 +9,7 @@ Downloads](http://cranlogs.r-pkg.org/badges/grand-total/DataExplorer)](https://c
 [![GitHub
 Stars](https://img.shields.io/github/stars/boxuancui/DataExplorer.svg?style=social)](https://github.com/boxuancui/DataExplorer)
 [![R-CMD-check](https://github.com/boxuancui/DataExplorer/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/boxuancui/DataExplorer/actions/workflows/check-standard.yaml)
-[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/graph/badge.svg?token=w8eMGjF8Jw)](https://codecov.io/gh/boxuancui/DataExplorer)
+[![codecov](https://codecov.io/gh/boxuancui/DataExplorer/graph/badge.svg?token=w8eMGjF8Jw)](https://app.codecov.io/gh/boxuancui/DataExplorer)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/2053/badge)](https://bestpractices.coreinfrastructure.org/projects/2053)
 [![Contributor

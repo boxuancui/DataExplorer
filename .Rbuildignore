@@ -18,3 +18,4 @@ report_files/
 ^pkgdown$
 ^CODE_OF_CONDUCT\.md$
 ^code_of_conduct\.md$
+^CRAN-SUBMISSION$
