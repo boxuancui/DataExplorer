@@ -1,9 +1,9 @@
-pandoc: 2.19.2
+pandoc: 3.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   dataexplorer-intro: dataexplorer-intro.html
-last_built: 2024-01-24T00:37Z
+last_built: 2024-01-23T21:14Z
 urls:
   reference: http://boxuancui.github.io/DataExplorer/reference
   article: http://boxuancui.github.io/DataExplorer/articles
