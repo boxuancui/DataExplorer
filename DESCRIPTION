@@ -1,6 +1,6 @@
 Package: DataExplorer
 Title: Automate Data Exploration and Treatment
-Version: 0.8.3
+Version: 0.8.3.9000
 Authors@R: person("Boxuan", "Cui", email = "boxuancui@gmail.com", role = c("aut", "cre"))
 Description: Automated data exploration process for analytic tasks and predictive modeling, so
     that users could focus on understanding data and extracting insights. The package scans and
