@@ -22,7 +22,18 @@
 #' @importFrom stats reorder
 #' @importFrom tools toTitleCase
 #' @export
-
+#' @examples
+#' # Plot bar charts for diamonds dataset
+#' library(ggplot2)
+#' plot_bar(diamonds)
+#' plot_bar(diamonds, maxcat = 5)
+#'
+#' # Plot bar charts with `price`
+#' plot_bar(diamonds, with = "price")
+#' 
+#' # Plot bar charts by `cut`
+#' plot_bar(diamonds, by = "cut")
+#' plot_bar(diamonds, by = "cut", by_position = "dodge")
 plot_bar <- function(data, with = NULL,
                      by = NULL, by_position = "fill",
                      maxcat = 50, order_bar = TRUE, binary_as_factor = TRUE,
@@ -33,23 +44,21 @@ plot_bar <- function(data, with = NULL,
                      ...) {
   ## Declare vars to avoid CMD check warnings
   frequency <- measure <- variable <- value <- facet_value <- NULL
-  
+  ## Check if input is data.table
   if (!is.data.table(data)) data <- data.table(data)
-  
+  ## Stop if no discrete features
   split_data <- split_columns(data, binary_as_factor = binary_as_factor)
   if (split_data$num_discrete == 0) stop("No discrete features found!")
-  
+  ## Get discrete features
   discrete <- split_data$discrete
-  
-  ## Drop high-cardinality columns
+  ## Drop features with categories greater than `maxcat`
   ind <- .ignoreCat(discrete, maxcat = maxcat)
   if (length(ind)) {
     message(length(ind), " columns ignored with more than ", maxcat, " categories.\n", paste0(names(ind), ": ", ind, " categories\n"))
     drop_columns(discrete, names(ind))
     if (length(discrete) == 0) stop("Note: All discrete features ignored! Nothing to plot!")
   }
-  
-  ## Aggregate values
+  ## Aggregate feature categories
   feature_names <- names(discrete)
   if (is.null(with)) {
     dt <- discrete[, list(frequency = .N), by = feature_names]
@@ -78,8 +87,7 @@ plot_bar <- function(data, with = NULL,
   }
   
   dt2[, facet_value := paste0(value, "___", variable)]
-  
-  # 🔧 Add this block
+  ## Calculate number of pages
   other_vars <- setdiff(names(data), names(dt2))
   if (length(other_vars) > 0) {
     dt2 <- cbind(
@@ -87,31 +95,30 @@ plot_bar <- function(data, with = NULL,
       data[rep(seq_len(nrow(data)), times = length(feature_names)), ..other_vars]
     )
   }
-  
+  ## Calculate number of pages
   layout <- .getPageLayout(nrow, ncol, ncol(discrete))
+  ## Create list of ggplot objects
   plot_list <- .lapply(
     parallel = parallel,
     X = layout,
     FUN = function(x) {
       df <- dt2[variable %in% feature_names[x]]
       
+      # Capture extra parameters using ...
       dots_list <- enquos(...)
       flags <- vapply(dots_list, rlang::quo_is_symbolic, logical(1))
       mapped_aes <- dots_list[flags]
       constant_aes <- dots_list[!flags]
-      
       aes_base <- if (order_bar) {
         aes(x = reorder(facet_value, frequency), y = frequency)
       } else {
         aes(x = value, y = frequency)
       }
-      
       aes_all <- modifyList(aes_base, eval_tidy(expr(aes(!!!mapped_aes))))
       layer_args <- c(
         list(stat = "identity", position = by_position),
         lapply(constant_aes, eval_tidy)
       )
-      
       ggplot(df, aes_all) +
         do.call("geom_bar", layer_args) +
         ylab(ifelse(is.null(with), "Frequency", tools::toTitleCase(with))) +
@@ -121,7 +128,7 @@ plot_bar <- function(data, with = NULL,
     }
   )
   
-  
+  ## Plot objects
   class(plot_list) <- c("multiple", class(plot_list))
   plotDataExplorer(
     plot_obj = plot_list,
