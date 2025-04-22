@@ -72,10 +72,10 @@ test_that("plot_density works with mapped aesthetic (fill)", {
   expect_invisible(plot_density(iris, fill = Species))
 })
 
-test_that("plot_density works with constant aesthetic (alpha)", {
-  expect_invisible(plot_density(iris, alpha = 0.4))
+test_that("plot_density works with constant aesthetic (size)", {
+  expect_invisible(plot_density(iris, size = 4))
 })
 
 test_that("plot_density works with both mapped and constant aesthetics", {
-  expect_invisible(plot_density(iris, fill = Species, alpha = 0.3))
+  expect_invisible(plot_density(iris, fill = Species, alpha = 0.3, size=4))
 })
