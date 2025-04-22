@@ -14,26 +14,14 @@
 #' @param nrow number of rows per page. Default is 3.
 #' @param ncol number of columns per page. Default is 3.
 #' @param parallel enable parallel? Default is \code{FALSE}.
+#' @param ... aesthetic mappings (e.g., fill = Species, alpha = 0.5)
 #' @return invisibly return the named list of ggplot objects
-#' @keywords plot_bar
-#' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 #' @import data.table
 #' @import ggplot2
+#' @importFrom rlang enquos quo_is_symbolic eval_tidy expr
 #' @importFrom stats reorder
 #' @importFrom tools toTitleCase
 #' @export
-#' @examples
-#' # Plot bar charts for diamonds dataset
-#' library(ggplot2)
-#' plot_bar(diamonds)
-#' plot_bar(diamonds, maxcat = 5)
-#'
-#' # Plot bar charts with `price`
-#' plot_bar(diamonds, with = "price")
-#' 
-#' # Plot bar charts by `cut`
-#' plot_bar(diamonds, by = "cut")
-#' plot_bar(diamonds, by = "cut", by_position = "dodge")
 
 plot_bar <- function(data, with = NULL,
                      by = NULL, by_position = "fill",
@@ -41,24 +29,27 @@ plot_bar <- function(data, with = NULL,
                      title = NULL,
                      ggtheme = theme_gray(), theme_config = list(),
                      nrow = 3L, ncol = 3L,
-                     parallel = FALSE) {
-  ## Declare variable first to pass R CMD check
+                     parallel = FALSE,
+                     ...) {
+  ## Declare vars to avoid CMD check warnings
   frequency <- measure <- variable <- value <- facet_value <- NULL
-  ## Check if input is data.table
+  
   if (!is.data.table(data)) data <- data.table(data)
-  ## Stop if no discrete features
+  
   split_data <- split_columns(data, binary_as_factor = binary_as_factor)
   if (split_data$num_discrete == 0) stop("No discrete features found!")
-  ## Get discrete features
+  
   discrete <- split_data$discrete
-  ## Drop features with categories greater than `maxcat`
+  
+  ## Drop high-cardinality columns
   ind <- .ignoreCat(discrete, maxcat = maxcat)
   if (length(ind)) {
     message(length(ind), " columns ignored with more than ", maxcat, " categories.\n", paste0(names(ind), ": ", ind, " categories\n"))
     drop_columns(discrete, names(ind))
     if (length(discrete) == 0) stop("Note: All discrete features ignored! Nothing to plot!")
   }
-  ## Aggregate feature categories
+  
+  ## Aggregate values
   feature_names <- names(discrete)
   if (is.null(with)) {
     dt <- discrete[, list(frequency = .N), by = feature_names]
@@ -75,6 +66,8 @@ plot_bar <- function(data, with = NULL,
     tmp_dt <- data.table(discrete, "measure" = measure_var)
     dt <- tmp_dt[, list(frequency = sum(measure, na.rm = TRUE)), by = feature_names]
   }
+  
+  ## Reshape for plotting
   if (is.null(by)) {
     dt_tmp <- suppressWarnings(melt.data.table(dt, measure.vars = feature_names))
     dt2 <- dt_tmp[, list(frequency = sum(frequency)), by = list(variable, value)]
@@ -83,36 +76,45 @@ plot_bar <- function(data, with = NULL,
     dt_tmp <- suppressWarnings(melt.data.table(dt, measure.vars = setdiff(feature_names, by)))
     dt2 <- dt_tmp[, list(frequency = sum(frequency)), by = c("variable", "value", by)]
   }
+  
   dt2[, facet_value := paste0(value, "___", variable)]
-  ## Calculate number of pages
+  
+  ## Aesthetic handling
+  dots_list <- enquos(...)
+  flags <- vapply(dots_list, rlang::quo_is_symbolic, logical(1))
+  mapped_aes <- dots_list[flags]
+  constant_aes <- dots_list[!flags]
+  
   layout <- .getPageLayout(nrow, ncol, ncol(discrete))
-  ## Create list of ggplot objects
+  
   plot_list <- .lapply(
     parallel = parallel,
     X = layout,
     FUN = function(x) {
+      df <- dt2[variable %in% feature_names[x]]
+      
       if (order_bar) {
-        base_plot <- ggplot(dt2[variable %in% feature_names[x]],
-                            aes(x = reorder(facet_value, frequency), y = frequency))
+        aes_base <- aes(x = reorder(facet_value, frequency), y = frequency)
       } else {
-        base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = value, y = frequency))
+        aes_base <- aes(x = value, y = frequency)
       }
-      if (is.null(by)) {
-        base_plot2 <- base_plot +
-          geom_bar(stat = "identity") +
-          ylab(ifelse(is.null(with), "Frequency", toTitleCase(with)))
-      } else {
-        base_plot2 <- base_plot +
-          geom_bar(stat = "identity", aes_string(fill = by), position = by_position) +
-          ylab("")
-      }
-      base_plot2 +
+      
+      aes_all <- modifyList(aes_base, eval_tidy(expr(aes(!!!mapped_aes))))
+      
+      layer_args <- c(
+        list(stat = "identity", position = by_position),
+        lapply(constant_aes, eval_tidy)
+      )
+      
+      p <- ggplot(df, aes_all) +
+        do.call("geom_bar", layer_args) +
+        ylab(ifelse(is.null(with), "Frequency", toTitleCase(with))) +
         scale_x_discrete(labels = function(x) tstrsplit(x, "___")[[1]]) +
         coord_flip() +
         xlab("")
     }
   )
-  ## Plot objects
+  
   class(plot_list) <- c("multiple", class(plot_list))
   plotDataExplorer(
     plot_obj = plot_list,

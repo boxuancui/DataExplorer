@@ -16,7 +16,7 @@
 #' @keywords plot_histogram
 #' @import data.table
 #' @import ggplot2
-#' @importFrom rlang enquos eval_tidy expr quo_is_symbolic
+#' @importFrom rlang enquos quo_is_symbolic eval_tidy expr
 #' @export
 #' @seealso \link{geom_histogram} \link{plot_density}
 #' @examples
@@ -31,13 +31,18 @@ plot_histogram <- function(data, binary_as_factor = TRUE,
                            parallel = FALSE,
                            ...) {
   variable <- value <- NULL
+  
   if (!is.data.table(data)) data <- data.table(data)
+  
   split_data <- split_columns(data, binary_as_factor = binary_as_factor)
   if (split_data$num_continuous == 0) stop("No continuous features found!")
+  
   continuous <- split_data$continuous
   feature_names <- names(continuous)
+  
   dt <- suppressWarnings(melt.data.table(continuous, measure.vars = feature_names, variable.factor = FALSE))
-  # Copy over non-measured columns (e.g., fill/grouping variables)
+  
+  # Copy over non-measured columns (e.g., grouping vars like 'Species')
   other_vars <- setdiff(names(data), names(dt))
   if (length(other_vars) > 0) {
     dt <- cbind(
@@ -45,13 +50,18 @@ plot_histogram <- function(data, binary_as_factor = TRUE,
       data[rep(seq_len(nrow(data)), times = length(feature_names)), ..other_vars]
     )
   }
-  # Separate mapped vs constant aesthetics from ...
-  dots <- enquos(...)
-  mapped_aes <- dots[sapply(dots, rlang::quo_is_symbolic)]
-  constant_aes <- dots[!sapply(dots, rlang::quo_is_symbolic)]
-  # Combine mapped aesthetics with x = value
-  aes_combined <- eval_tidy(expr(aes(x = value, !!!mapped_aes)))
+  
+  # Capture and split mapped vs constant aesthetics
+  dots_list <- enquos(...)
+  flags <- vapply(dots_list, rlang::quo_is_symbolic, logical(1))
+  mapped_aes <- dots_list[flags]
+  constant_aes <- dots_list[!flags]
+  
+  # Combine x aesthetic with any mapped ones
+  aes_combined <- modifyList(aes(x = value), eval_tidy(expr(aes(!!!mapped_aes))))
+  
   layout <- .getPageLayout(nrow, ncol, ncol(continuous))
+  
   plot_list <- .lapply(
     parallel = parallel,
     X = layout,
@@ -62,12 +72,10 @@ plot_histogram <- function(data, binary_as_factor = TRUE,
         lapply(constant_aes, eval_tidy)
       )
       
-      p <- ggplot(dt[variable %in% feature_names[x]], mapping = aes_combined) +
+      ggplot(dt[variable %in% feature_names[x]], mapping = aes_combined) +
         do.call("geom_histogram", layer_args) +
         do.call(paste0("scale_x_", scale_x), list()) +
         ylab("Frequency")
-      
-      p
     }
   )
   

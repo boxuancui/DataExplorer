@@ -39,7 +39,7 @@ plot_histogram(
 
 \item{parallel}{enable parallel? Default is \code{FALSE}.}
 
-\item{...}{aesthetic mappings passed to \link{aes}, such as \code{fill = group}}
+\item{...}{aesthetic mappings passed to \link{aes}, such as \code{fill = group}, or constants like \code{alpha = 0.5}}
 }
 \value{
 invisibly return the named list of ggplot objects
@@ -48,7 +48,7 @@ invisibly return the named list of ggplot objects
 Plot histogram for each continuous feature
 }
 \examples{
-plot_histogram(iris, fill = Species, ncol = 2L)
+plot_histogram(iris, fill = Species, alpha = 0.5, ncol = 2L)
 }
 \seealso{
 \link{geom_histogram} \link{plot_density}
