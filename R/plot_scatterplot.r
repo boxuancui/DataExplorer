@@ -14,6 +14,7 @@
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
 #' @param parallel enable parallel? Default is \code{FALSE}.
+#' @param ... aesthetic mappings (e.g., fill = Species, alpha = 0.5)
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_scatterplot
 #' @import data.table
@@ -56,7 +57,8 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
                              title = NULL,
                              ggtheme = theme_gray(), theme_config = list(),
                              nrow = 3L, ncol = 3L,
-                             parallel = FALSE) {
+                             parallel = FALSE,
+                             ...) {
   ## Declare variable first to pass R CMD check
   variable <- NULL
   ## Check if input is data.table
@@ -65,6 +67,13 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
   if (sampled_rows < nrow(data)) data <- data[sample.int(nrow(data), sampled_rows)]
   ## Create plot function
   dt <- suppressWarnings(melt.data.table(data, id.vars = by, variable.factor = FALSE))
+  
+  ## Replicate columns for aesthetic mapping
+  other_vars <- setdiff(names(data), names(dt))
+  if (length(other_vars) > 0) {
+    dt <- cbind(dt, data[rep(seq_len(nrow(data)), times = ncol(data) - 1L), ..other_vars])
+  }
+  
   feature_names <- unique(dt[["variable"]])
   ## Calculate number of pages
   layout <- .getPageLayout(nrow, ncol, length(feature_names))
@@ -73,10 +82,20 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
     parallel = parallel,
     X = layout,
     FUN = function(x) {
-      base_plot <- ggplot(dt[variable %in% feature_names[x]], aes_string(x = by, y = "value")) +
-        do.call("geom_point", geom_point_args) +
+      dots_list <- rlang::enquos(...)
+      flags <- vapply(dots_list, rlang::quo_is_symbolic, logical(1))
+      mapped_aes <- dots_list[flags]
+      constant_aes <- dots_list[!flags]
+      
+      aes_base <- aes_string(x = by, y = "value")
+      aes_combined <- modifyList(aes_base, rlang::eval_tidy(rlang::expr(aes(!!!mapped_aes))))
+      layer_args <- c(geom_point_args, lapply(constant_aes, rlang::eval_tidy))
+      
+      base_plot <- ggplot(dt[variable %in% feature_names[x]], mapping = aes_combined) +
+        do.call("geom_point", layer_args) +
         coord_flip() +
         xlab(by)
+      
       if (!is.null(scale_x)) base_plot <- base_plot + do.call(paste0("scale_x_", scale_x), list())
       if (!is.null(scale_y)) base_plot <- base_plot + do.call(paste0("scale_y_", scale_y), list())
       if (!identical(geom_jitter_args, list())) base_plot <- base_plot + do.call("geom_jitter", geom_jitter_args)

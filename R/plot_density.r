@@ -11,6 +11,7 @@
 #' @param nrow number of rows per page. Default is 4.
 #' @param ncol number of columns per page. Default is 4.
 #' @param parallel enable parallel? Default is \code{FALSE}.
+#' @param ... aesthetic mappings (e.g., fill = Species, alpha = 0.5)
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_density
 #' @import data.table
@@ -36,7 +37,8 @@ plot_density <- function(data, binary_as_factor = TRUE,
                          title = NULL,
                          ggtheme = theme_gray(), theme_config = list(),
                          nrow = 4L, ncol = 4L,
-                         parallel = FALSE) {
+                         parallel = FALSE,
+                         ...) {
   ## Declare variable first to pass R CMD check
   variable <- value <- NULL
   ## Check if input is data.table
@@ -48,6 +50,16 @@ plot_density <- function(data, binary_as_factor = TRUE,
   continuous <- split_data$continuous
   feature_names <- names(continuous)
   dt <- suppressWarnings(melt.data.table(continuous, measure.vars = feature_names, variable.factor = FALSE))
+  
+  ## Replicate other columns so mapped aesthetics work
+  other_vars <- setdiff(names(data), names(dt))
+  if (length(other_vars) > 0) {
+    dt <- cbind(
+      dt,
+      data[rep(seq_len(nrow(data)), times = length(feature_names)), ..other_vars]
+    )
+  }
+  
   ## Calculate number of pages
   layout <- .getPageLayout(nrow, ncol, ncol(continuous))
   ## Create ggplot object
@@ -55,8 +67,16 @@ plot_density <- function(data, binary_as_factor = TRUE,
     parallel = parallel,
     X = layout,
     FUN = function(x) {
-      ggplot(dt[variable %in% feature_names[x]], aes(x = value)) +
-        do.call("geom_density", c("na.rm" = TRUE, geom_density_args)) +
+      dots_list <- rlang::enquos(...)
+      flags <- vapply(dots_list, rlang::quo_is_symbolic, logical(1))
+      mapped_aes <- dots_list[flags]
+      constant_aes <- dots_list[!flags]
+      
+      aes_combined <- modifyList(aes(x = value), rlang::eval_tidy(rlang::expr(aes(!!!mapped_aes))))
+      layer_args <- c(list(na.rm = TRUE), geom_density_args, lapply(constant_aes, rlang::eval_tidy))
+      
+      ggplot(dt[variable %in% feature_names[x]], mapping = aes_combined) +
+        do.call("geom_density", layer_args) +
         do.call(paste0("scale_x_", scale_x), list()) +
         ylab("Density")
     }

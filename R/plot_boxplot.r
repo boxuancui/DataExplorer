@@ -13,6 +13,7 @@
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
 #' @param parallel enable parallel? Default is \code{FALSE}.
+#' @param ... aesthetic mappings (e.g., fill = Species, alpha = 0.5)
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_boxplot
 #' @import data.table
