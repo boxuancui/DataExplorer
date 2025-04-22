@@ -79,41 +79,48 @@ plot_bar <- function(data, with = NULL,
   
   dt2[, facet_value := paste0(value, "___", variable)]
   
-  ## Aesthetic handling
-  dots_list <- enquos(...)
-  flags <- vapply(dots_list, rlang::quo_is_symbolic, logical(1))
-  mapped_aes <- dots_list[flags]
-  constant_aes <- dots_list[!flags]
+  # 🔧 Add this block
+  other_vars <- setdiff(names(data), names(dt2))
+  if (length(other_vars) > 0) {
+    dt2 <- cbind(
+      dt2,
+      data[rep(seq_len(nrow(data)), times = length(feature_names)), ..other_vars]
+    )
+  }
   
   layout <- .getPageLayout(nrow, ncol, ncol(discrete))
-  
   plot_list <- .lapply(
     parallel = parallel,
     X = layout,
     FUN = function(x) {
       df <- dt2[variable %in% feature_names[x]]
       
-      if (order_bar) {
-        aes_base <- aes(x = reorder(facet_value, frequency), y = frequency)
+      dots_list <- enquos(...)
+      flags <- vapply(dots_list, rlang::quo_is_symbolic, logical(1))
+      mapped_aes <- dots_list[flags]
+      constant_aes <- dots_list[!flags]
+      
+      aes_base <- if (order_bar) {
+        aes(x = reorder(facet_value, frequency), y = frequency)
       } else {
-        aes_base <- aes(x = value, y = frequency)
+        aes(x = value, y = frequency)
       }
       
       aes_all <- modifyList(aes_base, eval_tidy(expr(aes(!!!mapped_aes))))
-      
       layer_args <- c(
         list(stat = "identity", position = by_position),
         lapply(constant_aes, eval_tidy)
       )
       
-      p <- ggplot(df, aes_all) +
+      ggplot(df, aes_all) +
         do.call("geom_bar", layer_args) +
-        ylab(ifelse(is.null(with), "Frequency", toTitleCase(with))) +
+        ylab(ifelse(is.null(with), "Frequency", tools::toTitleCase(with))) +
         scale_x_discrete(labels = function(x) tstrsplit(x, "___")[[1]]) +
         coord_flip() +
         xlab("")
     }
   )
+  
   
   class(plot_list) <- c("multiple", class(plot_list))
   plotDataExplorer(
