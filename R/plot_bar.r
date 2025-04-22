@@ -16,6 +16,8 @@
 #' @param parallel enable parallel? Default is \code{FALSE}.
 #' @param ... aesthetic mappings (e.g., fill = Species, alpha = 0.5)
 #' @return invisibly return the named list of ggplot objects
+#' @keywords plot_bar
+#' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 #' @import data.table
 #' @import ggplot2
 #' @importFrom rlang enquos quo_is_symbolic eval_tidy expr
@@ -34,6 +36,7 @@
 #' # Plot bar charts by `cut`
 #' plot_bar(diamonds, by = "cut")
 #' plot_bar(diamonds, by = "cut", by_position = "dodge")
+
 plot_bar <- function(data, with = NULL,
                      by = NULL, by_position = "fill",
                      maxcat = 50, order_bar = TRUE, binary_as_factor = TRUE,
@@ -42,7 +45,7 @@ plot_bar <- function(data, with = NULL,
                      nrow = 3L, ncol = 3L,
                      parallel = FALSE,
                      ...) {
-  ## Declare vars to avoid CMD check warnings
+  ## Declare variable first to pass R CMD check
   frequency <- measure <- variable <- value <- facet_value <- NULL
   ## Check if input is data.table
   if (!is.data.table(data)) data <- data.table(data)

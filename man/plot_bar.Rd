@@ -56,3 +56,20 @@ invisibly return the named list of ggplot objects
 \description{
 Plot bar chart for each discrete feature, based on either frequency or another continuous feature.
 }
+\details{
+If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
+}
+\examples{
+# Plot bar charts for diamonds dataset
+library(ggplot2)
+plot_bar(diamonds)
+plot_bar(diamonds, maxcat = 5)
+
+# Plot bar charts with `price`
+plot_bar(diamonds, with = "price")
+
+# Plot bar charts by `cut`
+plot_bar(diamonds, by = "cut")
+plot_bar(diamonds, by = "cut", by_position = "dodge")
+}
+\keyword{plot_bar}

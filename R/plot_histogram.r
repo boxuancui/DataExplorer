@@ -21,7 +21,14 @@
 #' @seealso \link{geom_histogram} \link{plot_density}
 #' @examples
 #' plot_histogram(iris, fill = Species, alpha = 0.5, ncol = 2L)
-
+#' # Plot iris data
+#' plot_histogram(iris, ncol = 2L)
+#'
+#' # Plot skewed data on log scale
+#' set.seed(1)
+#' skew <- data.frame(replicate(4L, rbeta(1000, 1, 5000)))
+#' plot_histogram(skew, ncol = 2L)
+#' plot_histogram(skew, scale_x = "log10", ncol = 2L)
 plot_histogram <- function(data, binary_as_factor = TRUE,
                            geom_histogram_args = list("bins" = 30L),
                            scale_x = "continuous",
@@ -30,18 +37,17 @@ plot_histogram <- function(data, binary_as_factor = TRUE,
                            nrow = 4L, ncol = 4L,
                            parallel = FALSE,
                            ...) {
+  ## Declare variable first to pass R CMD check
   variable <- value <- NULL
-  
+  ## Check if input is data.table
   if (!is.data.table(data)) data <- data.table(data)
-  
+  ## Stop if no continuous features
   split_data <- split_columns(data, binary_as_factor = binary_as_factor)
   if (split_data$num_continuous == 0) stop("No continuous features found!")
-  
+  ## Get and reshape continuous features
   continuous <- split_data$continuous
   feature_names <- names(continuous)
-  
   dt <- suppressWarnings(melt.data.table(continuous, measure.vars = feature_names, variable.factor = FALSE))
-  
   # Copy over non-measured columns (e.g., grouping vars like 'Species')
   other_vars <- setdiff(names(data), names(dt))
   if (length(other_vars) > 0) {
@@ -60,8 +66,9 @@ plot_histogram <- function(data, binary_as_factor = TRUE,
   # Combine x aesthetic with any mapped ones
   aes_combined <- modifyList(aes(x = value), eval_tidy(expr(aes(!!!mapped_aes))))
   
+  ## Calculate number of pages
   layout <- .getPageLayout(nrow, ncol, ncol(continuous))
-  
+  ## Create ggplot object
   plot_list <- .lapply(
     parallel = parallel,
     X = layout,
@@ -78,7 +85,7 @@ plot_histogram <- function(data, binary_as_factor = TRUE,
         ylab("Frequency")
     }
   )
-  
+  ## Plot objects
   class(plot_list) <- c("multiple", class(plot_list))
   plotDataExplorer(
     plot_obj = plot_list,
