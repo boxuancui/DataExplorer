@@ -41,7 +41,8 @@ plot_boxplot <- function(data, by,
                          title = NULL,
                          ggtheme = theme_gray(), theme_config = list(),
                          nrow = 3L, ncol = 4L,
-                         parallel = FALSE) {
+                         parallel = FALSE,
+                         ...) {
   ## Declare variable first to pass R CMD check
   variable <- by_f <- value <- NULL
   ## Check if input is data.table
@@ -60,6 +61,16 @@ plot_boxplot <- function(data, by,
     dt <- suppressWarnings(melt.data.table(data.table(continuous, "by_f" = by_feature), id.vars = "by_f", variable.factor = FALSE))
   }
   dt2 <- dt[variable != by]
+  
+  ## Replicate other columns for use in ...
+  other_vars <- setdiff(names(data), names(dt2))
+  if (length(other_vars) > 0) {
+    dt2 <- cbind(
+      dt2,
+      data[rep(seq_len(nrow(data)), times = ncol(continuous)), ..other_vars]
+    )
+  }
+  
   feature_names <- unique(dt2[["variable"]])
   ## Calculate number of pages
   layout <- .getPageLayout(nrow, ncol, length(feature_names))
@@ -68,8 +79,18 @@ plot_boxplot <- function(data, by,
     parallel = parallel,
     X = layout,
     FUN = function(x) {
-      base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = by_f, y = value)) +
-        do.call("geom_boxplot", geom_boxplot_args) +
+      dots_list <- rlang::enquos(...)
+      flags <- vapply(dots_list, rlang::quo_is_symbolic, logical(1))
+      mapped_aes <- dots_list[flags]
+      constant_aes <- dots_list[!flags]
+      
+      aes_base <- aes(x = by_f, y = value)
+      aes_combined <- modifyList(aes_base, rlang::eval_tidy(rlang::expr(aes(!!!mapped_aes))))
+      
+      layer_args <- c(geom_boxplot_args, lapply(constant_aes, rlang::eval_tidy))
+      
+      base_plot <- ggplot(dt2[variable %in% feature_names[x]], mapping = aes_combined) +
+        do.call("geom_boxplot", layer_args) +
         do.call(paste0("scale_y_", scale_y), list()) +
         coord_flip() +
         xlab(by)
@@ -93,3 +114,4 @@ plot_boxplot <- function(data, by,
     )
   )
 }
+
