@@ -14,7 +14,8 @@ plot_histogram(
   theme_config = list(),
   nrow = 4L,
   ncol = 4L,
-  parallel = FALSE
+  parallel = FALSE,
+  ...
 )
 }
 \arguments{
