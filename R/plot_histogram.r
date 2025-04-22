@@ -11,16 +11,16 @@
 #' @param nrow number of rows per page. Default is 4.
 #' @param ncol number of columns per page. Default is 4.
 #' @param parallel enable parallel? Default is \code{FALSE}.
-#' @param ... aesthetic mappings passed to \link{aes}, such as \code{fill = group}
+#' @param ... aesthetic mappings passed to \link{aes}, such as \code{fill = group}, or constants like \code{alpha = 0.5}
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_histogram
 #' @import data.table
 #' @import ggplot2
-#' @importFrom rlang enquos eval_tidy expr
+#' @importFrom rlang enquos eval_tidy expr quo_is_symbolic
 #' @export
 #' @seealso \link{geom_histogram} \link{plot_density}
 #' @examples
-#' plot_histogram(iris, fill = Species, ncol = 2L)
+#' plot_histogram(iris, fill = Species, alpha = 0.5, ncol = 2L)
 
 plot_histogram <- function(data, binary_as_factor = TRUE,
                            geom_histogram_args = list("bins" = 30L),
@@ -31,17 +31,13 @@ plot_histogram <- function(data, binary_as_factor = TRUE,
                            parallel = FALSE,
                            ...) {
   variable <- value <- NULL
-  
   if (!is.data.table(data)) data <- data.table(data)
-  
   split_data <- split_columns(data, binary_as_factor = binary_as_factor)
   if (split_data$num_continuous == 0) stop("No continuous features found!")
-  
   continuous <- split_data$continuous
   feature_names <- names(continuous)
   dt <- suppressWarnings(melt.data.table(continuous, measure.vars = feature_names, variable.factor = FALSE))
-  
-  # Replicate any non-measured columns from data into dt
+  # Copy over non-measured columns (e.g., fill/grouping variables)
   other_vars <- setdiff(names(data), names(dt))
   if (length(other_vars) > 0) {
     dt <- cbind(
@@ -49,21 +45,28 @@ plot_histogram <- function(data, binary_as_factor = TRUE,
       data[rep(seq_len(nrow(data)), times = length(feature_names)), ..other_vars]
     )
   }
-  
-  # Capture aesthetic mappings
-  aesthetic_quos <- enquos(...)
-  aes_combined <- eval_tidy(expr(aes(x = value, !!!aesthetic_quos)))
-  
+  # Separate mapped vs constant aesthetics from ...
+  dots <- enquos(...)
+  mapped_aes <- dots[sapply(dots, rlang::quo_is_symbolic)]
+  constant_aes <- dots[!sapply(dots, rlang::quo_is_symbolic)]
+  # Combine mapped aesthetics with x = value
+  aes_combined <- eval_tidy(expr(aes(x = value, !!!mapped_aes)))
   layout <- .getPageLayout(nrow, ncol, ncol(continuous))
-  
   plot_list <- .lapply(
     parallel = parallel,
     X = layout,
     FUN = function(x) {
+      layer_args <- c(
+        list(na.rm = TRUE),
+        geom_histogram_args,
+        lapply(constant_aes, eval_tidy)
+      )
+      
       p <- ggplot(dt[variable %in% feature_names[x]], mapping = aes_combined) +
-        do.call("geom_histogram", c(list(na.rm = TRUE), geom_histogram_args)) +
+        do.call("geom_histogram", layer_args) +
         do.call(paste0("scale_x_", scale_x), list()) +
         ylab("Frequency")
+      
       p
     }
   )

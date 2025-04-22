@@ -38,6 +38,8 @@ plot_histogram(
 \item{ncol}{number of columns per page. Default is 4.}
 
 \item{parallel}{enable parallel? Default is \code{FALSE}.}
+
+\item{...}{aesthetic mappings passed to \link{aes}, such as \code{fill = group}}
 }
 \value{
 invisibly return the named list of ggplot objects
@@ -46,14 +48,7 @@ invisibly return the named list of ggplot objects
 Plot histogram for each continuous feature
 }
 \examples{
-# Plot iris data
-plot_histogram(iris, ncol = 2L)
-
-# Plot skewed data on log scale
-set.seed(1)
-skew <- data.frame(replicate(4L, rbeta(1000, 1, 5000)))
-plot_histogram(skew, ncol = 2L)
-plot_histogram(skew, scale_x = "log10", ncol = 2L)
+plot_histogram(iris, fill = Species, ncol = 2L)
 }
 \seealso{
 \link{geom_histogram} \link{plot_density}
