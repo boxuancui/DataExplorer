@@ -19,7 +19,8 @@ Imports:
     stats,
     utils,
     tools,
-    parallel
+    parallel,
+    rlang
 Suggests:
     testthat,
     covr,
