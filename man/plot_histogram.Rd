@@ -14,7 +14,8 @@ plot_histogram(
   theme_config = list(),
   nrow = 4L,
   ncol = 4L,
-  parallel = FALSE
+  parallel = FALSE,
+  ...
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ plot_histogram(
 \item{ncol}{number of columns per page. Default is 4.}
 
 \item{parallel}{enable parallel? Default is \code{FALSE}.}
+
+\item{...}{aesthetic mappings passed to \link{aes}, such as \code{fill = group}, or constants like \code{alpha = 0.5}}
 }
 \value{
 invisibly return the named list of ggplot objects
@@ -45,6 +48,7 @@ invisibly return the named list of ggplot objects
 Plot histogram for each continuous feature
 }
 \examples{
+plot_histogram(iris, fill = Species, alpha = 0.5, ncol = 2L)
 # Plot iris data
 plot_histogram(iris, ncol = 2L)
 

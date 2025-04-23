@@ -19,7 +19,8 @@ Imports:
     stats,
     utils,
     tools,
-    parallel
+    parallel,
+    rlang
 Suggests:
     testthat,
     covr,
@@ -31,6 +32,6 @@ License: MIT + file LICENSE
 Language: en-US
 URL: http://boxuancui.github.io/DataExplorer/
 BugReports: https://github.com/boxuancui/DataExplorer/issues
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 VignetteBuilder: knitr

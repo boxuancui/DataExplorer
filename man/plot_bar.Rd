@@ -17,7 +17,8 @@ plot_bar(
   theme_config = list(),
   nrow = 3L,
   ncol = 3L,
-  parallel = FALSE
+  parallel = FALSE,
+  ...
 )
 }
 \arguments{
@@ -46,6 +47,8 @@ plot_bar(
 \item{ncol}{number of columns per page. Default is 3.}
 
 \item{parallel}{enable parallel? Default is \code{FALSE}.}
+
+\item{...}{aesthetic mappings (e.g., fill = Species, alpha = 0.5)}
 }
 \value{
 invisibly return the named list of ggplot objects

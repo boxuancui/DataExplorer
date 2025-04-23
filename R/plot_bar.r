@@ -14,13 +14,16 @@
 #' @param nrow number of rows per page. Default is 3.
 #' @param ncol number of columns per page. Default is 3.
 #' @param parallel enable parallel? Default is \code{FALSE}.
+#' @param ... aesthetic mappings (e.g., fill = Species, alpha = 0.5)
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_bar
 #' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
 #' @import data.table
 #' @import ggplot2
+#' @importFrom rlang enquos quo_is_symbolic eval_tidy expr
 #' @importFrom stats reorder
 #' @importFrom tools toTitleCase
+#' @importFrom utils modifyList
 #' @export
 #' @examples
 #' # Plot bar charts for diamonds dataset
@@ -41,7 +44,12 @@ plot_bar <- function(data, with = NULL,
                      title = NULL,
                      ggtheme = theme_gray(), theme_config = list(),
                      nrow = 3L, ncol = 3L,
-                     parallel = FALSE) {
+                     parallel = FALSE,
+                     ...) {
+  # Ensure this works when data is a vector, like the vignette
+  if (!is.data.frame(data)) {
+    data <- data.frame(value = data)
+  }
   ## Declare variable first to pass R CMD check
   frequency <- measure <- variable <- value <- facet_value <- NULL
   ## Check if input is data.table
@@ -75,6 +83,8 @@ plot_bar <- function(data, with = NULL,
     tmp_dt <- data.table(discrete, "measure" = measure_var)
     dt <- tmp_dt[, list(frequency = sum(measure, na.rm = TRUE)), by = feature_names]
   }
+  
+  ## Reshape for plotting
   if (is.null(by)) {
     dt_tmp <- suppressWarnings(melt.data.table(dt, measure.vars = feature_names))
     dt2 <- dt_tmp[, list(frequency = sum(frequency)), by = list(variable, value)]
@@ -83,7 +93,16 @@ plot_bar <- function(data, with = NULL,
     dt_tmp <- suppressWarnings(melt.data.table(dt, measure.vars = setdiff(feature_names, by)))
     dt2 <- dt_tmp[, list(frequency = sum(frequency)), by = c("variable", "value", by)]
   }
+  
   dt2[, facet_value := paste0(value, "___", variable)]
+  ## Calculate number of pages
+  other_vars <- setdiff(names(data), names(dt2))
+  if (length(other_vars) > 0) {
+    dt2 <- cbind(
+      dt2,
+      data[rep(seq_len(nrow(data)), times = length(feature_names)), ..other_vars]
+    )
+  }
   ## Calculate number of pages
   layout <- .getPageLayout(nrow, ncol, ncol(discrete))
   ## Create list of ggplot objects
@@ -91,27 +110,32 @@ plot_bar <- function(data, with = NULL,
     parallel = parallel,
     X = layout,
     FUN = function(x) {
-      if (order_bar) {
-        base_plot <- ggplot(dt2[variable %in% feature_names[x]],
-                            aes(x = reorder(facet_value, frequency), y = frequency))
+      df <- dt2[variable %in% feature_names[x]]
+      
+      # Capture extra parameters using ...
+      dots_list <- enquos(...)
+      flags <- vapply(dots_list, rlang::quo_is_symbolic, logical(1))
+      mapped_aes <- dots_list[flags]
+      constant_aes <- dots_list[!flags]
+      aes_base <- if (order_bar) {
+        aes(x = reorder(facet_value, frequency), y = frequency)
       } else {
-        base_plot <- ggplot(dt2[variable %in% feature_names[x]], aes(x = value, y = frequency))
+        aes(x = value, y = frequency)
       }
-      if (is.null(by)) {
-        base_plot2 <- base_plot +
-          geom_bar(stat = "identity") +
-          ylab(ifelse(is.null(with), "Frequency", toTitleCase(with)))
-      } else {
-        base_plot2 <- base_plot +
-          geom_bar(stat = "identity", aes_string(fill = by), position = by_position) +
-          ylab("")
-      }
-      base_plot2 +
+      aes_all <- modifyList(aes_base, eval_tidy(expr(aes(!!!mapped_aes))))
+      layer_args <- c(
+        list(stat = "identity", position = by_position),
+        lapply(constant_aes, eval_tidy)
+      )
+      ggplot(df, aes_all) +
+        do.call("geom_bar", layer_args) +
+        ylab(ifelse(is.null(with), "Frequency", tools::toTitleCase(with))) +
         scale_x_discrete(labels = function(x) tstrsplit(x, "___")[[1]]) +
         coord_flip() +
         xlab("")
     }
   )
+  
   ## Plot objects
   class(plot_list) <- c("multiple", class(plot_list))
   plotDataExplorer(
