@@ -37,6 +37,10 @@ plot_histogram <- function(data, binary_as_factor = TRUE,
                            nrow = 4L, ncol = 4L,
                            parallel = FALSE,
                            ...) {
+  # Ensure this works when data is a vector, like the vignette
+  if (!is.data.frame(data)) {
+    data <- data.frame(value = data)
+  }
   ## Declare variable first to pass R CMD check
   variable <- value <- NULL
   ## Check if input is data.table

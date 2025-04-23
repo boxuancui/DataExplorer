@@ -44,6 +44,10 @@ plot_boxplot <- function(data, by,
                          nrow = 3L, ncol = 4L,
                          parallel = FALSE,
                          ...) {
+  # Ensure this works when data is a vector, like the vignette
+  if (!is.data.frame(data)) {
+    data <- data.frame(value = data)
+  }
   ## Declare variable first to pass R CMD check
   variable <- by_f <- value <- NULL
   ## Check if input is data.table

@@ -59,6 +59,10 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
                              nrow = 3L, ncol = 3L,
                              parallel = FALSE,
                              ...) {
+  # Ensure this works when data is a vector, like the vignette
+  if (!is.data.frame(data)) {
+    data <- data.frame(value = data)
+  }
   ## Declare variable first to pass R CMD check
   variable <- NULL
   ## Check if input is data.table

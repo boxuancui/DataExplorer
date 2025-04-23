@@ -45,6 +45,10 @@ plot_bar <- function(data, with = NULL,
                      nrow = 3L, ncol = 3L,
                      parallel = FALSE,
                      ...) {
+  # Ensure this works when data is a vector, like the vignette
+  if (!is.data.frame(data)) {
+    data <- data.frame(value = data)
+  }
   ## Declare variable first to pass R CMD check
   frequency <- measure <- variable <- value <- facet_value <- NULL
   ## Check if input is data.table
