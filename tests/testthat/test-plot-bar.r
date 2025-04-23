@@ -30,7 +30,7 @@ test_that("test binary categories", {
   )
   expect_silent(plot_bar(df, with = "a"))
   expect_error(suppressWarnings(plot_bar(df, with = "b")))
-  expect_silent(plot_bar(df, with = "c"))
+  expect_warning(plot_bar(df, with = "c"))
   expect_silent(plot_bar(df, with = "a", binary_as_factor = FALSE))
   expect_error(plot_bar(df, by = "c"))
 })

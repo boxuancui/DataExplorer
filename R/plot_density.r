@@ -16,6 +16,7 @@
 #' @keywords plot_density
 #' @import data.table
 #' @import ggplot2
+#' @importFrom utils modifyList
 #' @export
 #' @seealso \link{geom_density} \link{plot_histogram}
 #' @examples

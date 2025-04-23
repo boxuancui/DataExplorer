@@ -16,6 +16,7 @@
 #' @keywords plot_histogram
 #' @import data.table
 #' @import ggplot2
+#' @importFrom utils modifyList
 #' @importFrom rlang enquos quo_is_symbolic eval_tidy expr
 #' @export
 #' @seealso \link{geom_histogram} \link{plot_density}

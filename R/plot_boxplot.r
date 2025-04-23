@@ -18,6 +18,7 @@
 #' @keywords plot_boxplot
 #' @import data.table
 #' @import ggplot2
+#' @importFrom utils modifyList
 #' @export
 #' @seealso \link{geom_boxplot}
 #' @examples

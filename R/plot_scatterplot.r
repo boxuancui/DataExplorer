@@ -19,6 +19,7 @@
 #' @keywords plot_scatterplot
 #' @import data.table
 #' @import ggplot2
+#' @importFrom utils modifyList
 #' @export
 #' @seealso \link{geom_point}
 #' @examples

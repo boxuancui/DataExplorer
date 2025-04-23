@@ -23,6 +23,7 @@
 #' @importFrom rlang enquos quo_is_symbolic eval_tidy expr
 #' @importFrom stats reorder
 #' @importFrom tools toTitleCase
+#' @importFrom utils modifyList
 #' @export
 #' @examples
 #' # Plot bar charts for diamonds dataset
