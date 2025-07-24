@@ -4,11 +4,11 @@
 #' @param data input data
 #' @param by feature name to be broken down by. If selecting a continuous feature, it will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature. Default is \code{NULL}.
 #' @param sampled_rows number of rows to sample if data has too many rows. Default is all rows, which means do not sample.
-#' @param geom_qq_args a list of other arguments to \link{geom_qq}
-#' @param geom_qq_line_args a list of other arguments to \link{geom_qq_line}
+#' @param geom_qq_args a list of other arguments to \link[ggplot2]{geom_qq}
+#' @param geom_qq_line_args a list of other arguments to \link[ggplot2]{geom_qq_line}
 #' @param title plot title
-#' @param ggtheme complete ggplot2 themes. Default is \link{theme_gray}.
-#' @param theme_config a list of configurations to be passed to \link{theme}
+#' @param ggtheme complete ggplot2 themes. Default is \link[ggplot2]{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
 #' @param nrow number of rows per page. Default is 3.
 #' @param ncol number of columns per page. Default is 3.
 #' @param parallel enable parallel? Default is \code{FALSE}.

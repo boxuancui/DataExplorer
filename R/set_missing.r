@@ -1,13 +1,13 @@
 #' Set all missing values to indicated value
 #'
 #' Quickly set all missing values to indicated value.
-#' @param data input data, in \link{data.table} format only.
+#' @param data input data, in \link[data.table]{data.table} format only.
 #' @param value a single value or a list of two values to be set to. See 'Details'.
 #' @param exclude column index or name to be excluded.
 #' @keywords set_missing
 #' @details The class of \code{value} will determine what type of columns to be set, e.g., if \code{value} is 0, then missing values for continuous features will be set.
 #' When supplying a list of two values, only one numeric and one non-numeric is allowed.
-#' @details \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
+#' @details \bold{This function updates \link[data.table]{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 #' @import data.table
 #' @export
 #' @examples

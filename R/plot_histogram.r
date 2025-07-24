@@ -3,11 +3,11 @@
 #' Plot histogram for each continuous feature
 #' @param data input data
 #' @param binary_as_factor treat binary as categorical? Default is \code{TRUE}.
-#' @param geom_histogram_args a list of other arguments to \link{geom_histogram}
-#' @param scale_x scale of x axis. See \link{scale_x_continuous} for all options. Default is \code{continuous}.
+#' @param geom_histogram_args a list of other arguments to \link[ggplot2]{geom_histogram}
+#' @param scale_x scale of x axis. See \link[ggplot2]{scale_x_continuous} for all options. Default is \code{continuous}.
 #' @param title plot title
-#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
-#' @param theme_config a list of configurations to be passed to \link{theme}.
+#' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
 #' @param nrow number of rows per page. Default is 4.
 #' @param ncol number of columns per page. Default is 4.
 #' @param parallel enable parallel? Default is \code{FALSE}.
@@ -16,7 +16,7 @@
 #' @import data.table
 #' @import ggplot2
 #' @export
-#' @seealso \link{geom_histogram} \link{plot_density}
+#' @seealso \link[ggplot2]{geom_histogram} \link{plot_density}
 #' @examples
 #' # Plot iris data
 #' plot_histogram(iris, ncol = 2L)

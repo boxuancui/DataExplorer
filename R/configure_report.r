@@ -25,8 +25,8 @@
 #' @param plot_prcomp_args arguments to be passed to \link{plot_prcomp}. Default is \code{list()}.
 #' @param plot_boxplot_args arguments to be passed to \link{plot_boxplot}. Default is \code{list()}.
 #' @param plot_scatterplot_args arguments to be passed to \link{plot_scatterplot}. Default is \code{list(sampled_rows = 1000L)}.
-#' @param global_ggtheme global setting for \link{theme}. Default is \code{quote(theme_gray())}.
-#' @param global_theme_config global setting for \link{theme}. Default is \code{list()}.
+#' @param global_ggtheme global setting for \link[ggplot2]{theme}. Default is \code{quote(theme_gray())}.
+#' @param global_theme_config global setting for \link[ggplot2]{theme}. Default is \code{list()}.
 #' @keywords configure_report
 #' @note Individual settings will overwrite global settings. For example: if \code{plot_intro_args} has \code{ggtheme} set to \code{theme_light()} while \code{global_ggtheme} is set to \code{theme_gray()}, \code{theme_light()} will be used.
 #' @note When setting global themes using \code{global_ggtheme}, please pass an unevaluated call to the theme function, e.g., \code{quote(theme_light())}.

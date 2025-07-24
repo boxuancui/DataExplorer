@@ -4,14 +4,14 @@
 #' @param data input data
 #' @param type column type to be included in correlation calculation. "all" for all columns, "discrete" for discrete features, "continuous" for continuous features.
 #' @param maxcat maximum categories allowed for each discrete feature. The default is 20.
-#' @param cor_args a list of other arguments to \link{cor}
-#' @param geom_text_args a list of other arguments to \link{geom_text}
+#' @param cor_args a list of other arguments to \link[stats]{cor}
+#' @param geom_text_args a list of other arguments to \link[ggplot2]{geom_text}
 #' @param title plot title
-#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
-#' @param theme_config a list of configurations to be passed to \link{theme}.
+#' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
 #' @return invisibly return the ggplot object
 #' @keywords plot_correlation
-#' @details For discrete features, the function first dummifies all categories, then calculates the correlation matrix (see \link{cor}) and plots it.
+#' @details For discrete features, the function first dummifies all categories, then calculates the correlation matrix (see \link[stats]{cor}) and plots it.
 #' @import data.table
 #' @import ggplot2
 #' @importFrom stats cor

@@ -4,7 +4,7 @@
 #' @param data input data
 #' @param ind a vector of either names or column positions of the variables to be dropped.
 #' @keywords drop_columns
-#' @details \bold{This function updates \link{data.table} object directly.} Otherwise, output data will be returned matching input object class.
+#' @details \bold{This function updates \link[data.table]{data.table} object directly.} Otherwise, output data will be returned matching input object class.
 #' @import data.table
 #' @export
 #' @examples

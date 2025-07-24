@@ -2,10 +2,10 @@
 #'
 #' Plot basic information (from \link{introduce}) for input data.
 #' @param data input data
-#' @param geom_label_args a list of other arguments to \link{geom_label}
+#' @param geom_label_args a list of other arguments to \link[ggplot2]{geom_label}
 #' @param title plot title
-#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
-#' @param theme_config a list of configurations to be passed to \link{theme}.
+#' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
 #' @return invisibly return the ggplot object
 #' @keywords plot_intro
 #' @import ggplot2

@@ -4,13 +4,13 @@
 #' @param data input data
 #' @param by feature name to be fixed at
 #' @param sampled_rows number of rows to sample if data has too many rows. Default is all rows, which means do not sample.
-#' @param geom_point_args a list of other arguments to \link{geom_point}
-#' @param geom_jitter_args a list of other arguments to \link{geom_jitter}. If empty, \link{geom_jitter} will not be added.
-#' @param scale_x scale of original x axis (before \code{coord_flip}). See \link{scale_x_continuous} for all options. Default is \code{NULL}.
-#' @param scale_y scale of original y axis (before \code{coord_flip}). See \link{scale_y_continuous} for all options. Default is \code{NULL}.
+#' @param geom_point_args a list of other arguments to \link[ggplot2]{geom_point}
+#' @param geom_jitter_args a list of other arguments to \link[ggplot2]{geom_jitter}. If empty, \link[ggplot2]{geom_jitter} will not be added.
+#' @param scale_x scale of original x axis (before \code{coord_flip}). See \link[ggplot2]{scale_x_continuous} for all options. Default is \code{NULL}.
+#' @param scale_y scale of original y axis (before \code{coord_flip}). See \link[ggplot2]{scale_y_continuous} for all options. Default is \code{NULL}.
 #' @param title plot title
-#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
-#' @param theme_config a list of configurations to be passed to \link{theme}.
+#' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
 #' @param parallel enable parallel? Default is \code{FALSE}.
@@ -19,7 +19,7 @@
 #' @import data.table
 #' @import ggplot2
 #' @export
-#' @seealso \link{geom_point}
+#' @seealso \link[ggplot2]{geom_point}
 #' @examples
 #' plot_scatterplot(iris, by = "Species")
 #'

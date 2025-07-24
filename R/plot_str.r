@@ -2,17 +2,17 @@
 #'
 #' Visualize data structures in D3 network graph
 #' @param data input data
-#' @param type type of network diagram. Defaults to \link{diagonalNetwork}.
+#' @param type type of network diagram. Defaults to \link[networkD3]{diagonalNetwork}.
 #' @param max_level integer threshold of nested level to be visualized. Minimum 1 nested level and defaults to all.
 #' @param print_network logical indicating if network graph should be plotted. Defaults to \code{TRUE}.
-#' @param \dots other arguments to be passed to plotting functions. See \link{diagonalNetwork} and \link{radialNetwork}.
+#' @param \dots other arguments to be passed to plotting functions. See \link[networkD3]{diagonalNetwork} and \link[networkD3]{radialNetwork}.
 #' @keywords plot_str
 #' @return input data structure in nested list. Could be transformed to json format with most JSON packages.
 #' @import data.table
 #' @importFrom networkD3 diagonalNetwork radialNetwork
 #' @importFrom utils capture.output str
 #' @export
-#' @seealso \link{str}
+#' @seealso \link[utils]{str}
 #' @examples
 #' ## Visualize structure of iris dataset
 #' plot_str(iris)

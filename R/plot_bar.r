@@ -4,13 +4,13 @@
 #' @param data input data
 #' @param with name of continuous feature to be summed. Default is \code{NULL}, i.e., frequency.
 #' @param by discrete feature name to be broken down by.
-#' @param by_position position argument in \link{geom_bar} if \code{by} is supplied. Default is \code{"fill"}.
+#' @param by_position position argument in \link[ggplot2]{geom_bar} if \code{by} is supplied. Default is \code{"fill"}.
 #' @param maxcat maximum categories allowed for each feature. Default is 50.
 #' @param order_bar logical, indicating if bars should be ordered. Default is \code{TRUE}.
 #' @param binary_as_factor treat binary as categorical? Default is \code{TRUE}.
 #' @param title plot title
-#' @param ggtheme complete ggplot2 themes. Default is \link{theme_gray}.
-#' @param theme_config a list of configurations to be passed to \link{theme}
+#' @param ggtheme complete ggplot2 themes. Default is \link[ggplot2]{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
 #' @param nrow number of rows per page. Default is 3.
 #' @param ncol number of columns per page. Default is 3.
 #' @param parallel enable parallel? Default is \code{FALSE}.

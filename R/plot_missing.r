@@ -5,10 +5,10 @@
 #' @param group missing profile band taking a list of group name and group upper bounds. Default is \code{list("Good" = 0.05, "OK" = 0.4, "Bad" = 0.8, "Remove" = 1)}.
 #' @param group_color bar color list for each of the group. Default is \code{list("Good" = "#1B9E77", "OK" = "#E6AB02", "Bad" = "#D95F02", "Remove" = "#E41A1C")}.
 #' @param missing_only plot features with missing values only? Default is \code{FALSE}.
-#' @param geom_label_args a list of other arguments to \link{geom_label}
+#' @param geom_label_args a list of other arguments to \link[ggplot2]{geom_label}
 #' @param title plot title
-#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
-#' @param theme_config a list of configurations to be passed to \link{theme}.
+#' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
 #' @return invisibly return the ggplot object
 #' @keywords plot_missing
 #' @import ggplot2

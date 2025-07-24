@@ -1,6 +1,6 @@
 #' Split data into discrete and continuous parts
 #'
-#' This function splits the input data into two \link{data.table} objects: discrete and continuous. A feature is continuous if \code{is.numeric} returns \code{TRUE}.
+#' This function splits the input data into two \link[data.table]{data.table} objects: discrete and continuous. A feature is continuous if \code{is.numeric} returns \code{TRUE}.
 #' @param data input data
 #' @param binary_as_factor treat binary as categorical? Default is \code{FALSE}.
 #' @keywords split_columns

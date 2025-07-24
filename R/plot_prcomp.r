@@ -1,14 +1,14 @@
 #' Visualize principal component analysis
 #'
-#' Visualize output of \link{prcomp}.
+#' Visualize output of \link[stats]{prcomp}.
 #' @param data input data
 #' @param variance_cap maximum cumulative explained variance allowed for all principal components. Default is 80\%.
 #' @param maxcat maximum categories allowed for each discrete feature. The default is 50.
-#' @param prcomp_args a list of other arguments to \link{prcomp}
-#' @param geom_label_args a list of other arguments to \link{geom_label}
+#' @param prcomp_args a list of other arguments to \link[stats]{prcomp}
+#' @param geom_label_args a list of other arguments to \link[ggplot2]{geom_label}
 #' @param title plot title starting from page 2.
-#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
-#' @param theme_config a list of configurations to be passed to \link{theme}.
+#' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
 #' @param parallel enable parallel? Default is \code{FALSE}.
@@ -16,8 +16,8 @@
 #' @keywords plot_prcomp
 #' @details When cumulative explained variance exceeds \code{variance_cap}, remaining principal components will be ignored. Set \code{variance_cap} to 1 for all principal components.
 #' @details Discrete features containing more categories than \code{maxcat} specifies will be ignored.
-#' @note Discrete features will be \link{dummify}-ed first before passing to \link{prcomp}.
-#' @note Missing values may create issues in \link{prcomp}. Consider \link{na.omit} your input data first.
+#' @note Discrete features will be \link{dummify}-ed first before passing to \link[stats]{prcomp}.
+#' @note Missing values may create issues in \link[stats]{prcomp}. Consider \link[stats]{na.omit} your input data first.
 #' @note Features with zero variance are dropped.
 #' @import data.table
 #' @import ggplot2

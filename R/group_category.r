@@ -4,14 +4,14 @@
 #' @param data input data
 #' @param feature name of the discrete feature to be collapsed.
 #' @param threshold the bottom x\% categories to be grouped, e.g., if set to 20\%, categories with cumulative frequency of the bottom 20\% will be grouped
-#' @param update logical, indicating if the data should be modified. The default is \code{FALSE}. Setting to \code{TRUE} will modify the input \link{data.table} object directly. Otherwise, input class will be returned.
+#' @param update logical, indicating if the data should be modified. The default is \code{FALSE}. Setting to \code{TRUE} will modify the input \link[data.table]{data.table} object directly. Otherwise, input class will be returned.
 #' @param measure name of feature to be used as an alternative measure.
 #' @param category_name name of the new category if update is set to \code{TRUE}. The default is "OTHER".
 #' @param exclude categories to be excluded from grouping when update is set to \code{TRUE}.
 #' @keywords group_category
 #' @return If \code{update} is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
 #' If \code{update} is set to \code{TRUE}, updated data will be returned, and the output class will match the class of input data.
-#' @details If a continuous feature is passed to the argument \code{feature}, it will be force set to \link{character-class}.
+#' @details If a continuous feature is passed to the argument \code{feature}, it will be force set to \link[base]{character-class}.
 #' @import data.table
 #' @export group_category
 #' @examples

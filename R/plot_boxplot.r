@@ -4,12 +4,12 @@
 #' @param data input data
 #' @param by feature name to be broken down by. If selecting a continuous feature, boxplot will be grouped by 5 equal ranges, otherwise, all existing categories for a discrete feature.
 #' @param binary_as_factor treat binary as categorical? Default is \code{TRUE}.
-#' @param geom_boxplot_args a list of other arguments to \link{geom_boxplot}
-#' @param geom_jitter_args a list of other arguments to \link{geom_jitter}. If empty, \link{geom_jitter} will not be added.
-#' @param scale_y scale of original y axis (before \code{coord_flip}). See \link{scale_y_continuous} for all options. Default is \code{continuous}.
+#' @param geom_boxplot_args a list of other arguments to \link[ggplot2]{geom_boxplot}
+#' @param geom_jitter_args a list of other arguments to \link[ggplot2]{geom_jitter}. If empty, \link[ggplot2]{geom_jitter} will not be added.
+#' @param scale_y scale of original y axis (before \code{coord_flip}). See \link[ggplot2]{scale_y_continuous} for all options. Default is \code{continuous}.
 #' @param title plot title
-#' @param ggtheme complete ggplot2 themes. The default is \link{theme_gray}.
-#' @param theme_config a list of configurations to be passed to \link{theme}.
+#' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
 #' @param parallel enable parallel? Default is \code{FALSE}.
@@ -18,7 +18,7 @@
 #' @import data.table
 #' @import ggplot2
 #' @export
-#' @seealso \link{geom_boxplot}
+#' @seealso \link[ggplot2]{geom_boxplot}
 #' @examples
 #' plot_boxplot(iris, by = "Species", ncol = 2L)
 #' plot_boxplot(iris, by = "Species", geom_boxplot_args = list("outlier.color" = "red"))

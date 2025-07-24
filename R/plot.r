@@ -4,7 +4,7 @@
 #' @param plot_obj plot object
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
-#' @param theme_config a list of configurations to be passed to \link{theme}
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
 #' @param \dots other arguments to be passed
 #' @return invisibly return the named list of ggplot objects
 #' @keywords internal
@@ -36,7 +36,7 @@ plotDataExplorer <- function(plot_obj, title, ggtheme, theme_config, ...) {
 #' @param plot_obj list of ggplot objects
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
-#' @param theme_config a list of configurations to be passed to \link{theme}
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
 #' @param page_layout a list of page indices with associated plot indices
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
@@ -73,7 +73,7 @@ plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_l
 #' @param plot_obj single ggplot object
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
-#' @param theme_config a list of configurations to be passed to \link{theme}
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
 #' @param \dots other arguments to be passed
 #' @return invisibly return the ggplot object
 #' @keywords internal
@@ -96,10 +96,10 @@ plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, ...)
 #' Plot multiple DataExplorer objects with the defined layout
 #' @param plot_obj list of ggplot objects separated by page
 #' @param page_layout a list of page indices with associated plot indices
-#' @param facet_wrap_args a list of other arguments to \link{facet_wrap}
+#' @param facet_wrap_args a list of other arguments to \link[ggplot2]{facet_wrap}
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
-#' @param theme_config a list of configurations to be passed to \link{theme}
+#' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
 #' @param \dots other arguments to be passed
 #' @return invisibly return the named list of ggplot objects
 #' @keywords internal
