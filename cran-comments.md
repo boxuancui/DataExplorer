@@ -1,10 +1,5 @@
 ## Notes
-I have addressed the 2 NOTES in the Check Results page, i.e.,
-
-* Missing `obj` definition
-* `LazyData` is specified without a `data` directory
-
-In addition, I have fixed the invalid URL note from the previous submission.
+I have addressed the NOTE in the Check Results page regarding missing package anchors. In addition, I have updated all .r file extensions to .R for consistency with R naming conventions.
 
 ## Test environments
 GitHub Actions:
@@ -14,11 +9,17 @@ GitHub Actions:
 * ubuntu-latest (devel)
 * ubuntu-latest (release)
 * ubuntu-latest (oldrel-1)
-* ubuntu-latest (4.0)
-* ubuntu-latest (3.6)
+* ubuntu-latest (oldrel-2)
+* ubuntu-latest (oldrel-3)
+* ubuntu-latest (oldrel-4)
 
 ## R CMD check results
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
-## revdepcheck resultsWe checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package. * We saw 0 new problems * We failed to check 0 packages
+## revdepcheck results
+
+We checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages
