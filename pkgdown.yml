@@ -3,7 +3,7 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   dataexplorer-intro: dataexplorer-intro.html
-last_built: 2025-07-24T22:26Z
+last_built: 2025-07-24T22:31Z
 urls:
   reference: http://boxuancui.github.io/DataExplorer/reference
   article: http://boxuancui.github.io/DataExplorer/articles
