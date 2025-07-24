@@ -37,7 +37,7 @@ If \code{update} is set to \code{TRUE}, updated data will be returned, and the o
 Sometimes discrete features have sparse categories. This function will group the sparse categories for a discrete feature based on a given threshold.
 }
 \details{
-If a continuous feature is passed to the argument \code{feature}, it will be force set to \link[base]{character-class}.
+If a continuous feature is passed to the argument \code{feature}, it will be force set to \link[base]{character}.
 }
 \examples{
 # Load packages

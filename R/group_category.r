@@ -11,7 +11,7 @@
 #' @keywords group_category
 #' @return If \code{update} is set to \code{FALSE}, returns categories with cumulative frequency less than the input threshold. The output class will match the class of input data.
 #' If \code{update} is set to \code{TRUE}, updated data will be returned, and the output class will match the class of input data.
-#' @details If a continuous feature is passed to the argument \code{feature}, it will be force set to \link[base]{character-class}.
+#' @details If a continuous feature is passed to the argument \code{feature}, it will be force set to \link[base]{character}.
 #' @import data.table
 #' @export group_category
 #' @examples
