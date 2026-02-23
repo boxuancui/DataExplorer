@@ -6,6 +6,7 @@
 \usage{
 plot_histogram(
   data,
+  by = NULL,
   binary_as_factor = TRUE,
   geom_histogram_args = list(bins = 30L),
   scale_x = "continuous",
@@ -19,6 +20,8 @@ plot_histogram(
 }
 \arguments{
 \item{data}{input data}
+
+\item{by}{feature name to be broken down by. If \code{NULL}, no grouping. If a continuous feature, values are grouped into 5 equal ranges; otherwise all categories of a discrete feature are used.}
 
 \item{binary_as_factor}{treat binary as categorical? Default is \code{TRUE}.}
 
@@ -47,6 +50,9 @@ Plot histogram for each continuous feature
 \examples{
 # Plot iris data
 plot_histogram(iris, ncol = 2L)
+
+# Plot histogram by a discrete feature
+plot_histogram(iris, by = "Species", ncol = 2L)
 
 # Plot skewed data on log scale
 set.seed(1)

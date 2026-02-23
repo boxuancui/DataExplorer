@@ -104,8 +104,21 @@ if (any(c("plot_bar", "plot_histogram", "plot_density", "plot_qq") %in% names(re
 ```{r plot_histogram}
 if ("plot_histogram" %in% names(report_config)) {
   if (intro[["continuous_columns"]] > 0) {
+    hist_option <- report_config[["plot_histogram"]][setdiff(names(report_config[["plot_histogram"]]), "by")]
     cat("#### Histogram", fill = TRUE)
-    do_call("plot_histogram")
+    do.call(plot_histogram, c(list("data" = data), hist_option))
+  }
+}
+```
+
+```{r plot_response_histogram}
+if ("plot_histogram" %in% names(report_config)) {
+  if (intro[["continuous_columns"]] > 0) {
+    if (!is.null(response)) {
+      hist_option <- report_config[["plot_histogram"]][setdiff(names(report_config[["plot_histogram"]]), "by")]
+      cat(paste0("#### Histogram (by ", response, ")"), fill = TRUE)
+      do.call(plot_histogram, c(list("data" = data, "by" = response), hist_option))
+    }
   }
 }
 ```
@@ -113,8 +126,21 @@ if ("plot_histogram" %in% names(report_config)) {
 ```{r plot_density}
 if ("plot_density" %in% names(report_config)) {
   if (intro[["continuous_columns"]] > 0) {
+    density_option <- report_config[["plot_density"]][setdiff(names(report_config[["plot_density"]]), "by")]
     cat("#### Density Estimates", fill = TRUE)
-    do_call("plot_density")
+    do.call(plot_density, c(list("data" = data), density_option))
+  }
+}
+```
+
+```{r plot_response_density}
+if ("plot_density" %in% names(report_config)) {
+  if (intro[["continuous_columns"]] > 0) {
+    if (!is.null(response)) {
+      density_option <- report_config[["plot_density"]][setdiff(names(report_config[["plot_density"]]), "by")]
+      cat(paste0("#### Density Estimates (by ", response, ")"), fill = TRUE)
+      do.call(plot_density, c(list("data" = data, "by" = response), density_option))
+    }
   }
 }
 ```

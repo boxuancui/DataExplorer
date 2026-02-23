@@ -1,4 +1,7 @@
 # DataExplorer 0.9.0
+## Enhancements
+* [#181](https://github.com/boxuancui/DataExplorer/issues/181): Added `by` argument to `plot_histogram` and `plot_density` to break down distributions by a discrete or continuous feature.
+
 ## Bug Fixes
 * [#185](https://github.com/boxuancui/DataExplorer/issues/185): Fixed warnings from deprecated `aes_string`.
 

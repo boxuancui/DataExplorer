@@ -6,6 +6,7 @@
 \usage{
 plot_density(
   data,
+  by = NULL,
   binary_as_factor = TRUE,
   geom_density_args = list(),
   scale_x = "continuous",
@@ -19,6 +20,8 @@ plot_density(
 }
 \arguments{
 \item{data}{input data}
+
+\item{by}{feature name to be broken down by. If \code{NULL}, no grouping. If a continuous feature, values are grouped into 5 equal ranges; otherwise all categories of a discrete feature are used.}
 
 \item{binary_as_factor}{treat binary as categorical? Default is \code{TRUE}.}
 
@@ -47,6 +50,9 @@ Plot density estimates for each continuous feature
 \examples{
 # Plot iris data
 plot_density(iris, ncol = 2L)
+
+# Plot density by a discrete feature
+plot_density(iris, by = "Species", ncol = 2L)
 
 # Add color to density area
 plot_density(iris, geom_density_args = list("fill" = "black", "alpha" = 0.6), ncol = 2L)

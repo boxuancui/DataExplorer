@@ -35,3 +35,10 @@ test_that("test binary categories and error messages", {
   expect_silent(plot_density(sample.int(n = 2L, size = 26L, replace = TRUE), binary_as_factor = FALSE))
   expect_error(plot_density(sample.int(n = 2L, size = 26L, replace = TRUE)))
 })
+
+test_that("test by argument for plot_histogram and plot_density", {
+  expect_silent(plot_histogram(iris, by = "Species", ncol = 2L))
+  expect_silent(plot_density(iris, by = "Species", ncol = 2L))
+  expect_error(plot_histogram(iris, by = "Nonexistent"))
+  expect_error(plot_density(iris, by = "Nonexistent"))
+})
