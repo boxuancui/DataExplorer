@@ -103,7 +103,7 @@ plot_bar <- function(data, with = NULL,
           ylab(ifelse(is.null(with), "Frequency", toTitleCase(with)))
       } else {
         base_plot2 <- base_plot +
-          geom_bar(stat = "identity", aes_string(fill = by), position = by_position) +
+          geom_bar(stat = "identity", aes(fill = .data[[by]]), position = by_position) +
           ylab("")
       }
       base_plot2 +

@@ -66,7 +66,7 @@ plot_missing <- function(data,
   }
   
   ## Create ggplot object
-  output <- ggplot(missing_value, aes_string(x = "feature", y = "num_missing", fill = "Band")) +
+  output <- ggplot(missing_value, aes(x = .data[["feature"]], y = .data[["num_missing"]], fill = .data[["Band"]])) +
     geom_bar(stat = "identity") +
     bar_fill +
     coord_flip() +

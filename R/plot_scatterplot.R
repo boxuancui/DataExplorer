@@ -73,7 +73,7 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
     parallel = parallel,
     X = layout,
     FUN = function(x) {
-      base_plot <- ggplot(dt[variable %in% feature_names[x]], aes_string(x = by, y = "value")) +
+      base_plot <- ggplot(dt[variable %in% feature_names[x]], aes(x = .data[[by]], y = .data[["value"]])) +
         do.call("geom_point", geom_point_args) +
         coord_flip() +
         xlab(by)

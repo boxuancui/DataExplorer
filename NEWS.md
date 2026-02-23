@@ -1,3 +1,7 @@
+# DataExplorer 0.9.0
+## Bug Fixes
+* [#185](https://github.com/boxuancui/DataExplorer/issues/185): Fixed warnings from deprecated `aes_string`.
+
 # DataExplorer 0.8.4
 ## Bug Fixes
 * Fixed Rd cross-reference issues for CRAN submission by adding proper package anchors to external function links.
