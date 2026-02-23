@@ -103,8 +103,15 @@ create_report <- function(data,
   }
   ## Get directory of report markdown template
   report_dir <- system.file("rmd_template/report.rmd", package = "DataExplorer")
-  ## Render report into html
-  suppressWarnings(render(
+  ## When output format is PDF, ensure output_file has .pdf extension
+  is_pdf <- identical(output_format, "pdf_document") ||
+    "pdf_document" %in% class(output_format) ||
+    (is.list(output_format) && !is.null(output_format$pandoc$to) && grepl("^latex", output_format$pandoc$to))
+  if (is_pdf && !grepl("\\.pdf$", output_file, ignore.case = TRUE)) {
+    output_file <- paste0(sub("\\.[^.]+$", "", output_file), ".pdf")
+  }
+  ## Render report
+  report_path <- suppressWarnings(render(
     input = report_dir,
     output_format = output_format,
     output_file = output_file,
@@ -113,7 +120,6 @@ create_report <- function(data,
     params = list(data = data, report_config = config, response = y, set_title = report_title),
     ...
   ))
-  ## Open report
-  report_path <- path.expand(file.path(output_dir, output_file))
-  browseURL(report_path)
+  ## Open report (use path returned by render in case extension was normalized)
+  browseURL(path.expand(report_path))
 }

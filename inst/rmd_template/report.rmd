@@ -14,10 +14,15 @@ library(data.table)
 library(rmarkdown)
 library(knitr)
 
-## Set knitr options
+## Set knitr options (smaller figures for PDF so charts fit on page; see #169)
+fig_dims <- if (knitr::is_latex_output()) {
+  list(fig.width = 6, fig.height = 6)
+} else {
+  list(fig.width = 14, fig.height = 10)
+}
 opts_chunk$set(
-  fig.width = 14,
-  fig.height = 10,
+  fig.width = fig_dims$fig.width,
+  fig.height = fig_dims$fig.height,
   echo = FALSE,
   results = "asis",
   warning = TRUE

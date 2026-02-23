@@ -3,6 +3,7 @@
 * [#181](https://github.com/boxuancui/DataExplorer/issues/181): Added `by` argument to `plot_histogram` and `plot_density` to break down distributions by a discrete or continuous feature.
 
 ## Bug Fixes
+* [#169](https://github.com/boxuancui/DataExplorer/issues/169): Charts no longer run off the edge of PDF pages. Report template now uses smaller figure dimensions (6" x 6") for PDF output and keeps larger dimensions (14" x 10") for HTML.
 * [#172](https://github.com/boxuancui/DataExplorer/issues/172): Fixed `plot_qq(..., by = ...)` error "Faceting variables must have at least one value".
 * [#185](https://github.com/boxuancui/DataExplorer/issues/185): Fixed warnings from deprecated `aes_string`.
 
