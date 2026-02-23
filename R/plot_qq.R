@@ -58,8 +58,10 @@ plot_qq <- function(data, by = NULL, sampled_rows = nrow(data),
     dt2 <- suppressWarnings(melt.data.table(data.table(continuous), measure.vars = names(continuous), variable.factor = FALSE))
   }
   feature_names <- unique(dt2[["variable"]])
-  ## Calculate number of pages
-  layout <- .getPageLayout(nrow, ncol, ncol(continuous))
+  ## Calculate number of pages (when by is continuous it is removed from plot, so nplots is one less)
+  nplots <- ncol(continuous)
+  if (!is.null(by) && by %in% names(continuous)) nplots <- nplots - 1L
+  layout <- .getPageLayout(nrow, ncol, nplots)
   ## Create list of ggplot objects
   plot_list <- .lapply(
     parallel = parallel,
