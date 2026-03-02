@@ -12,7 +12,8 @@ plot_correlation(
   geom_text_args = list(),
   title = NULL,
   ggtheme = theme_gray(),
-  theme_config = list(legend.position = "bottom", axis.text.x = element_text(angle = 90))
+  theme_config = list(legend.position = "bottom", axis.text.x = element_text(angle = 90)),
+  plotly = FALSE
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ plot_correlation(
 \item{ggtheme}{complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.}
 
 \item{theme_config}{a list of configurations to be passed to \link[ggplot2]{theme}.}
+
+\item{plotly}{if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.}
 }
 \value{
 invisibly return the ggplot object

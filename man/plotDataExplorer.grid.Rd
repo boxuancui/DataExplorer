@@ -12,6 +12,7 @@
   page_layout,
   nrow,
   ncol,
+  plotly = FALSE,
   ...
 )
 }

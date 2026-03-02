@@ -9,6 +9,7 @@
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
+#' @param plotly if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @return invisibly return the ggplot object
 #' @keywords plot_correlation
 #' @details For discrete features, the function first dummifies all categories, then calculates the correlation matrix (see \link[stats]{cor}) and plots it.
@@ -27,7 +28,8 @@ plot_correlation <- function(data, type = c("all", "discrete", "continuous"), ma
                              title = NULL,
                              ggtheme = theme_gray(),
                              theme_config = list("legend.position" = "bottom",
-                                                 "axis.text.x" = element_text(angle = 90))) {
+                                                 "axis.text.x" = element_text(angle = 90)),
+                             plotly = FALSE) {
   ## Declare variable first to pass R CMD check
   Var1 <- Var2 <- value <- NULL
   ## Set data to data.table
@@ -73,6 +75,7 @@ plot_correlation <- function(data, type = c("all", "discrete", "continuous"), ma
     plot_obj = output,
     title = title,
     ggtheme = ggtheme,
-    theme_config = theme_config
+    theme_config = theme_config,
+    plotly = plotly
   )
 }

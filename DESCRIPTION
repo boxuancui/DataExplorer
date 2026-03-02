@@ -25,7 +25,8 @@ Suggests:
     covr,
     knitr,
     jsonlite,
-    nycflights13
+    nycflights13,
+    plotly
 SystemRequirements: pandoc (>= 1.12.3) - http://pandoc.org
 License: MIT + file LICENSE
 Language: en-US

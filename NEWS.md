@@ -1,4 +1,7 @@
 # DataExplorer 0.9.0
+## New Features
+* [#141](https://github.com/boxuancui/DataExplorer/issues/141): Added `plotly` argument to all plot functions. When `plotly = TRUE`, plots are converted to interactive plotly objects via `plotly::ggplotly()` (requires the plotly package).
+
 ## Enhancements
 * [#181](https://github.com/boxuancui/DataExplorer/issues/181): Added `by` argument to `plot_histogram` and `plot_density` to break down distributions by a discrete or continuous feature.
 

@@ -4,6 +4,7 @@ params:
   report_config: report_config
   response: response
   set_title: report_title
+  plotly: false
 title: "`r params$set_title`"
 always_allow_html: true
 ---
@@ -32,11 +33,15 @@ opts_chunk$set(
 data <- params$data
 report_config <- params$report_config
 response <- params$response
+use_plotly <- if (!is.null(params$plotly)) params$plotly else FALSE
 
-## Create helper functions
+## Create helper functions (inject plotly for plot functions when use_plotly is TRUE)
+plot_funs_with_plotly <- c("plot_intro", "plot_missing", "plot_correlation", "plot_bar", "plot_histogram", "plot_density", "plot_qq", "plot_boxplot", "plot_scatterplot", "plot_prcomp")
 do_call <- function(fun_name, na_omit = FALSE) {
   if (na_omit) data <- na.omit(data)
-  do.call(fun_name, c(list("data" = data), report_config[[fun_name]]))
+  args <- c(list("data" = data), report_config[[fun_name]])
+  if (fun_name %in% plot_funs_with_plotly) args <- c(args, list("plotly" = use_plotly))
+  do.call(fun_name, args)
 }
 
 ## Create global data
@@ -111,7 +116,7 @@ if ("plot_histogram" %in% names(report_config)) {
   if (intro[["continuous_columns"]] > 0) {
     hist_option <- report_config[["plot_histogram"]][setdiff(names(report_config[["plot_histogram"]]), "by")]
     cat("#### Histogram", fill = TRUE)
-    do.call(plot_histogram, c(list("data" = data), hist_option))
+    do.call(plot_histogram, c(list("data" = data), hist_option, list("plotly" = use_plotly)))
   }
 }
 ```
@@ -122,7 +127,7 @@ if ("plot_histogram" %in% names(report_config)) {
     if (!is.null(response)) {
       hist_option <- report_config[["plot_histogram"]][setdiff(names(report_config[["plot_histogram"]]), "by")]
       cat(paste0("#### Histogram (by ", response, ")"), fill = TRUE)
-      do.call(plot_histogram, c(list("data" = data, "by" = response), hist_option))
+      do.call(plot_histogram, c(list("data" = data, "by" = response), hist_option, list("plotly" = use_plotly)))
     }
   }
 }
@@ -133,7 +138,7 @@ if ("plot_density" %in% names(report_config)) {
   if (intro[["continuous_columns"]] > 0) {
     density_option <- report_config[["plot_density"]][setdiff(names(report_config[["plot_density"]]), "by")]
     cat("#### Density Estimates", fill = TRUE)
-    do.call(plot_density, c(list("data" = data), density_option))
+    do.call(plot_density, c(list("data" = data), density_option, list("plotly" = use_plotly)))
   }
 }
 ```
@@ -144,7 +149,7 @@ if ("plot_density" %in% names(report_config)) {
     if (!is.null(response)) {
       density_option <- report_config[["plot_density"]][setdiff(names(report_config[["plot_density"]]), "by")]
       cat(paste0("#### Density Estimates (by ", response, ")"), fill = TRUE)
-      do.call(plot_density, c(list("data" = data, "by" = response), density_option))
+      do.call(plot_density, c(list("data" = data, "by" = response), density_option, list("plotly" = use_plotly)))
     }
   }
 }
@@ -155,7 +160,7 @@ if ("plot_bar" %in% names(report_config)) {
   if (intro[["discrete_columns"]] > 0) {
     bar_option <- report_config[["plot_bar"]][setdiff(names(report_config[["plot_bar"]]), "with")]
     cat("#### Bar Chart (with frequency)", fill = TRUE)
-    do.call(plot_bar, c(list("data" = data), bar_option))
+    do.call(plot_bar, c(list("data" = data), bar_option, list("plotly" = use_plotly)))
   }
 }
 ```
@@ -166,7 +171,7 @@ if ("plot_bar" %in% names(report_config)) {
     if (!is.null(response)) {
       if (!is.numeric(data[[response]])) {
         cat(paste0("#### Bar Chart (by ", response, ")"), fill = TRUE)
-        do.call(plot_bar, c(list("data" = data, "by" = response), bar_option))
+        do.call(plot_bar, c(list("data" = data, "by" = response), bar_option, list("plotly" = use_plotly)))
       }
     }
   }
@@ -192,7 +197,7 @@ if ("plot_qq" %in% names(report_config)) {
   if (intro[["continuous_columns"]] > 0) {
     qq_option <- report_config[["plot_qq"]][setdiff(names(report_config[["plot_qq"]]), "by")]
     cat("#### QQ Plot", fill = TRUE)
-    do.call(plot_qq, c(list("data" = data), qq_option))
+    do.call(plot_qq, c(list("data" = data), qq_option, list("plotly" = use_plotly)))
   }
 }
 ```
@@ -202,7 +207,7 @@ if ("plot_qq" %in% names(report_config)) {
   if (intro[["continuous_columns"]] > 0) {
     if (!is.null(response)) {
       cat(paste0("#### QQ Plot (by ", response, ")"), fill = TRUE)
-      do.call(plot_qq, c(list("data" = data, "by" = response), qq_option))
+      do.call(plot_qq, c(list("data" = data, "by" = response), qq_option, list("plotly" = use_plotly)))
     }
   }
 }
@@ -239,7 +244,7 @@ if ("plot_prcomp" %in% names(report_config)) {
   if (intro[["complete_rows"]] > 0) {
     if (!is.null(response)) {
       dt <- na.omit(data[, -response, with = FALSE])
-      do.call(plot_prcomp, c(list("data" = dt), report_config[["plot_prcomp"]]))
+      do.call(plot_prcomp, c(list("data" = dt), report_config[["plot_prcomp"]], list("plotly" = use_plotly)))
     } else {
       do_call("plot_prcomp", na_omit = TRUE)
     }
@@ -260,7 +265,7 @@ if ("plot_boxplot" %in% names(report_config)) {
   boxplot_option <- report_config[["plot_boxplot"]][setdiff(names(report_config[["plot_boxplot"]]), "by")]
   if (!is.null(response)) {
     cat(paste0("#### Boxplot (by ", response, ")"), fill = TRUE)
-    do.call(plot_boxplot, c(list("data" = data, "by" = response), boxplot_option))
+    do.call(plot_boxplot, c(list("data" = data, "by" = response), boxplot_option, list("plotly" = use_plotly)))
   }
 }
 ```
@@ -282,7 +287,7 @@ if ("plot_scatterplot" %in% names(report_config)) {
   scatterplot_option <- report_config[["plot_scatterplot"]][setdiff(names(report_config[["plot_scatterplot"]]), "by")]
   if (!is.null(response)) {
     cat(paste0("#### Scatterplot (by ", response, ")"), fill = TRUE)
-    do.call(plot_scatterplot, c(list("data" = data, "by" = response), scatterplot_option))
+    do.call(plot_scatterplot, c(list("data" = data, "by" = response), scatterplot_option, list("plotly" = use_plotly)))
   }
 }
 ```

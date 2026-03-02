@@ -9,6 +9,7 @@
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
+#' @param plotly if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @return invisibly return the ggplot object
 #' @keywords plot_missing
 #' @import ggplot2
@@ -35,7 +36,8 @@ plot_missing <- function(data,
                          geom_label_args = list(),
                          title = NULL,
                          ggtheme = theme_gray(),
-                         theme_config = list("legend.position" = c("bottom"))) {
+                         theme_config = list("legend.position" = c("bottom")),
+                         plotly = FALSE) {
   
   ## Declare variable first to pass R CMD check
   num_missing <- pct_missing <- Band <- NULL
@@ -81,6 +83,7 @@ plot_missing <- function(data,
     plot_obj = output,
     title = title,
     ggtheme = ggtheme,
-    theme_config = theme_config
+    theme_config = theme_config,
+    plotly = plotly
   )
 }

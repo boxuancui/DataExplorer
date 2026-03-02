@@ -16,7 +16,8 @@ plot_boxplot(
   theme_config = list(),
   nrow = 3L,
   ncol = 4L,
-  parallel = FALSE
+  parallel = FALSE,
+  plotly = FALSE
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ plot_boxplot(
 \item{ncol}{number of columns per page}
 
 \item{parallel}{enable parallel? Default is \code{FALSE}.}
+
+\item{plotly}{if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.}
 }
 \value{
 invisibly return the named list of ggplot objects

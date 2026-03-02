@@ -4,7 +4,7 @@
 \alias{plotDataExplorer}
 \title{Default DataExplorer plotting function}
 \usage{
-plotDataExplorer(plot_obj, title, ggtheme, theme_config, ...)
+plotDataExplorer(plot_obj, title, ggtheme, theme_config, plotly = FALSE, ...)
 }
 \arguments{
 \item{plot_obj}{plot object}
@@ -14,6 +14,8 @@ plotDataExplorer(plot_obj, title, ggtheme, theme_config, ...)
 \item{ggtheme}{complete ggplot2 themes}
 
 \item{theme_config}{a list of configurations to be passed to \link[ggplot2]{theme}}
+
+\item{plotly}{if \code{TRUE}, convert ggplot to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.}
 
 \item{\dots}{other arguments to be passed}
 }

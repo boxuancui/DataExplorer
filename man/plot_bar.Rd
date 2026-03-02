@@ -17,7 +17,8 @@ plot_bar(
   theme_config = list(),
   nrow = 3L,
   ncol = 3L,
-  parallel = FALSE
+  parallel = FALSE,
+  plotly = FALSE
 )
 }
 \arguments{
@@ -46,6 +47,8 @@ plot_bar(
 \item{ncol}{number of columns per page. Default is 3.}
 
 \item{parallel}{enable parallel? Default is \code{FALSE}.}
+
+\item{plotly}{if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.}
 }
 \value{
 invisibly return the named list of ggplot objects
@@ -68,5 +71,8 @@ plot_bar(diamonds, with = "price")
 # Plot bar charts by `cut`
 plot_bar(diamonds, by = "cut")
 plot_bar(diamonds, by = "cut", by_position = "dodge")
+
+# Interactive plotly version (requires the plotly package)
+# plot_bar(diamonds, plotly = TRUE)
 }
 \keyword{plot_bar}

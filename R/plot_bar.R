@@ -14,6 +14,7 @@
 #' @param nrow number of rows per page. Default is 3.
 #' @param ncol number of columns per page. Default is 3.
 #' @param parallel enable parallel? Default is \code{FALSE}.
+#' @param plotly if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_bar
 #' @details If a discrete feature contains more categories than \code{maxcat} specifies, it will not be passed to the plotting function.
@@ -34,6 +35,9 @@
 #' # Plot bar charts by `cut`
 #' plot_bar(diamonds, by = "cut")
 #' plot_bar(diamonds, by = "cut", by_position = "dodge")
+#'
+#' # Interactive plotly version (requires the plotly package)
+#' # plot_bar(diamonds, plotly = TRUE)
 
 plot_bar <- function(data, with = NULL,
                      by = NULL, by_position = "fill",
@@ -41,7 +45,7 @@ plot_bar <- function(data, with = NULL,
                      title = NULL,
                      ggtheme = theme_gray(), theme_config = list(),
                      nrow = 3L, ncol = 3L,
-                     parallel = FALSE) {
+                     parallel = FALSE, plotly = FALSE) {
   ## Declare variable first to pass R CMD check
   frequency <- measure <- variable <- value <- facet_value <- NULL
   ## Check if input is data.table
@@ -120,6 +124,7 @@ plot_bar <- function(data, with = NULL,
     title = title,
     ggtheme = ggtheme,
     theme_config = theme_config,
+    plotly = plotly,
     facet_wrap_args = list(
       "facet" = ~ variable,
       "nrow" = nrow,

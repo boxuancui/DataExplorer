@@ -14,6 +14,7 @@
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
 #' @param parallel enable parallel? Default is \code{FALSE}.
+#' @param plotly if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_scatterplot
 #' @import data.table
@@ -56,7 +57,7 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
                              title = NULL,
                              ggtheme = theme_gray(), theme_config = list(),
                              nrow = 3L, ncol = 3L,
-                             parallel = FALSE) {
+                             parallel = FALSE, plotly = FALSE) {
   ## Declare variable first to pass R CMD check
   variable <- NULL
   ## Check if input is data.table
@@ -91,6 +92,7 @@ plot_scatterplot <- function(data, by, sampled_rows = nrow(data),
     title = title,
     ggtheme = ggtheme,
     theme_config = theme_config,
+    plotly = plotly,
     facet_wrap_args = list(
       "facet" = ~ variable,
       "nrow" = nrow,

@@ -15,7 +15,8 @@ plot_density(
   theme_config = list(),
   nrow = 4L,
   ncol = 4L,
-  parallel = FALSE
+  parallel = FALSE,
+  plotly = FALSE
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ plot_density(
 \item{ncol}{number of columns per page. Default is 4.}
 
 \item{parallel}{enable parallel? Default is \code{FALSE}.}
+
+\item{plotly}{if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.}
 }
 \value{
 invisibly return the named list of ggplot objects

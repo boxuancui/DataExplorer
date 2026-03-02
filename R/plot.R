@@ -5,6 +5,7 @@
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
 #' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
+#' @param plotly if \code{TRUE}, convert ggplot to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @param \dots other arguments to be passed
 #' @return invisibly return the named list of ggplot objects
 #' @keywords internal
@@ -26,7 +27,7 @@
 #'   "aspect.ratio" = 1
 #'   )
 #' )
-plotDataExplorer <- function(plot_obj, title, ggtheme, theme_config, ...) {
+plotDataExplorer <- function(plot_obj, title, ggtheme, theme_config, plotly = FALSE, ...) {
   UseMethod("plotDataExplorer")
 }
 
@@ -48,20 +49,43 @@ plotDataExplorer <- function(plot_obj, title, ggtheme, theme_config, ...) {
 #' @import gridExtra
 #' @export
 #' @seealso \link{plotDataExplorer} \link{plotDataExplorer.single} \link{plotDataExplorer.multiple}
-plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_layout, nrow, ncol, ...) {
+plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_layout, nrow, ncol, plotly = FALSE, ...) {
   plot_list <- lapply(plot_obj, function(p) {
     p +
       eval(ggtheme) +
       do.call(theme, theme_config)
   })
   
-  if (length(page_layout) > 1) {
-    invisible(lapply(names(page_layout), function(pg_name) {
-      index <- page_layout[[pg_name]]
-      suppressMessages(do.call(grid.arrange, c(plot_list[index], ncol = ncol, nrow = nrow, top = title, bottom = pg_name)))
-    }))
+  if (plotly) {
+    if (!requireNamespace("plotly", quietly = TRUE)) {
+      stop("Package \"plotly\" is required for plotly = TRUE. Install it with install.packages(\"plotly\").")
+    }
+    if (length(page_layout) > 1) {
+      pl_list <- lapply(names(page_layout), function(pg_name) {
+        index <- page_layout[[pg_name]]
+        plist <- lapply(plot_list[index], function(p) suppressWarnings(plotly::ggplotly(p)))
+        plotly::subplot(plist, nrows = nrow, ncols = ncol, margin = 0.05, titleY = TRUE, titleX = TRUE)
+      })
+    } else {
+      plist <- lapply(plot_list, function(p) suppressWarnings(plotly::ggplotly(p)))
+      pl_list <- list(plotly::subplot(plist, nrows = nrow, ncols = ncol, margin = 0.05, titleY = TRUE, titleX = TRUE))
+    }
+    if (isTRUE(getOption("knitr.in.progress"))) {
+      if (requireNamespace("htmltools", quietly = TRUE)) {
+        return(do.call(htmltools::tagList, pl_list))
+      }
+      return(pl_list)
+    }
+    invisible(lapply(pl_list, print))
   } else {
-    suppressMessages(do.call(grid.arrange, c(plot_list, ncol = ncol, nrow = nrow, top = title)))
+    if (length(page_layout) > 1) {
+      invisible(lapply(names(page_layout), function(pg_name) {
+        index <- page_layout[[pg_name]]
+        suppressMessages(do.call(grid.arrange, c(plot_list[index], ncol = ncol, nrow = nrow, top = title, bottom = pg_name)))
+      }))
+    } else {
+      suppressMessages(do.call(grid.arrange, c(plot_list, ncol = ncol, nrow = nrow, top = title)))
+    }
   }
   
   invisible(plot_list)
@@ -81,13 +105,22 @@ plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_l
 #' @import ggplot2
 #' @export
 #' @seealso \link{plotDataExplorer} \link{plotDataExplorer.grid} \link{plotDataExplorer.multiple}
-plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, ...) {
+plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, plotly = FALSE, ...) {
   plot_obj <- plot_obj +
     ggtitle(title) +
     eval(ggtheme) +
     do.call(theme, theme_config)
   
-  print(plot_obj)
+  if (plotly) {
+    if (!requireNamespace("plotly", quietly = TRUE)) {
+      stop("Package \"plotly\" is required for plotly = TRUE. Install it with install.packages(\"plotly\").")
+    }
+    pl <- suppressWarnings(plotly::ggplotly(plot_obj))
+    if (isTRUE(getOption("knitr.in.progress"))) return(pl)
+    print(pl)
+  } else {
+    print(plot_obj)
+  }
   invisible(plot_obj)
 }
 
@@ -108,7 +141,7 @@ plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, ...)
 #' @importFrom stats setNames
 #' @export
 #' @seealso \link{plotDataExplorer} \link{plotDataExplorer.grid} \link{plotDataExplorer.single}
-plotDataExplorer.multiple <- function(plot_obj, title, ggtheme, theme_config, page_layout, facet_wrap_args = list(), ...) {
+plotDataExplorer.multiple <- function(plot_obj, title, ggtheme, theme_config, page_layout, facet_wrap_args = list(), plotly = FALSE, ...) {
   n <- length(page_layout)
   plot_list <- lapply(setNames(seq.int(n), paste0("page_", seq.int(n))), function(i) {
     plot_obj[[i]] +
@@ -119,6 +152,21 @@ plotDataExplorer.multiple <- function(plot_obj, title, ggtheme, theme_config, pa
       do.call(theme, theme_config)
   })
   
-  invisible(capture.output(print(plot_list)))
+  if (plotly) {
+    if (!requireNamespace("plotly", quietly = TRUE)) {
+      stop("Package \"plotly\" is required for plotly = TRUE. Install it with install.packages(\"plotly\").")
+    }
+    pl_list <- lapply(plot_list, function(p) suppressWarnings(plotly::ggplotly(p)))
+    if (isTRUE(getOption("knitr.in.progress"))) {
+      if (requireNamespace("htmltools", quietly = TRUE)) {
+        return(do.call(htmltools::tagList, pl_list))
+      }
+      lapply(pl_list, print)
+      return(invisible(plot_list))
+    }
+    invisible(lapply(pl_list, print))
+  } else {
+    invisible(capture.output(print(plot_list)))
+  }
   invisible(plot_list)
 }

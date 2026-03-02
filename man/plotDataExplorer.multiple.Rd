@@ -11,6 +11,7 @@
   theme_config,
   page_layout,
   facet_wrap_args = list(),
+  plotly = FALSE,
   ...
 )
 }

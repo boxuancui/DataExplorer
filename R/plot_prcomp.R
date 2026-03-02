@@ -12,6 +12,7 @@
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
 #' @param parallel enable parallel? Default is \code{FALSE}.
+#' @param plotly if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_prcomp
 #' @details When cumulative explained variance exceeds \code{variance_cap}, remaining principal components will be ignored. Set \code{variance_cap} to 1 for all principal components.
@@ -35,7 +36,7 @@ plot_prcomp <- function(data,
                         title = NULL,
                         ggtheme = theme_gray(),
                         theme_config = list(), nrow = 3L, ncol = 3L,
-                        parallel = FALSE) {
+                        parallel = FALSE, plotly = FALSE) {
   ## Declare variable first to pass R CMD check
   pc <- pct <- cum_pct <- Feature <- variable <- value <- NULL
   ## Check if input is data.table
@@ -100,13 +101,38 @@ plot_prcomp <- function(data,
   ## Plot objects
   class(varexp_plot) <- c("single", class(varexp_plot))
   class(plot_list) <- c("multiple", class(plot_list))
+  if (plotly && isTRUE(getOption("knitr.in.progress")) && requireNamespace("htmltools", quietly = TRUE)) {
+    out1 <- plotDataExplorer(
+      plot_obj = varexp_plot,
+      title = "% Variance Explained By Principal Components\n(Note: Labels indicate cumulative % explained variance)",
+      ggtheme = ggtheme,
+      theme_config = theme_config,
+      plotly = TRUE
+    )
+    out2 <- plotDataExplorer(
+      plot_obj = plot_list,
+      page_layout = layout,
+      title = title,
+      ggtheme = ggtheme,
+      theme_config = theme_config,
+      plotly = TRUE,
+      facet_wrap_args = list(
+        "facet" = ~ variable,
+        "nrow" = nrow,
+        "ncol" = ncol,
+        "scales" = "free_x"
+      )
+    )
+    return(htmltools::tagList(out1, out2))
+  }
   invisible(c(
     list(
       "page_0" = plotDataExplorer(
         plot_obj = varexp_plot,
         title = "% Variance Explained By Principal Components\n(Note: Labels indicate cumulative % explained variance)",
         ggtheme = ggtheme,
-        theme_config = theme_config
+        theme_config = theme_config,
+        plotly = plotly
       )),
     plotDataExplorer(
       plot_obj = plot_list,
@@ -114,6 +140,7 @@ plot_prcomp <- function(data,
       title = title,
       ggtheme = ggtheme,
       theme_config = theme_config,
+      plotly = plotly,
       facet_wrap_args = list(
         "facet" = ~ variable,
         "nrow" = nrow,

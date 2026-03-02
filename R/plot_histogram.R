@@ -12,6 +12,7 @@
 #' @param nrow number of rows per page. Default is 4.
 #' @param ncol number of columns per page. Default is 4.
 #' @param parallel enable parallel? Default is \code{FALSE}.
+#' @param plotly if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @return invisibly return the named list of ggplot objects
 #' @keywords plot_histogram
 #' @import data.table
@@ -37,7 +38,7 @@ plot_histogram <- function(data, by = NULL, binary_as_factor = TRUE,
                            title = NULL,
                            ggtheme = theme_gray(), theme_config = list(),
                            nrow = 4L, ncol = 4L,
-                           parallel = FALSE) {
+                           parallel = FALSE, plotly = FALSE) {
   ## Declare variable first to pass R CMD check
   variable <- value <- by_f <- NULL
   ## Check if input is data.table
@@ -92,6 +93,7 @@ plot_histogram <- function(data, by = NULL, binary_as_factor = TRUE,
     title = title,
     ggtheme = ggtheme,
     theme_config = theme_config,
+    plotly = plotly,
     facet_wrap_args = list(
       "facet" = ~ variable,
       "nrow" = nrow,

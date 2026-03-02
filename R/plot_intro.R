@@ -6,6 +6,7 @@
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes. The default is \link[ggplot2]{theme_gray}.
 #' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}.
+#' @param plotly if \code{TRUE}, convert to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @return invisibly return the ggplot object
 #' @keywords plot_intro
 #' @import ggplot2
@@ -17,7 +18,7 @@
 #' plot_intro(airquality)
 #' plot_intro(iris)
 
-plot_intro <- function(data, geom_label_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list()) {
+plot_intro <- function(data, geom_label_args = list(), title = NULL, ggtheme = theme_gray(), theme_config = list(), plotly = FALSE) {
   ## Declare variable first to pass R CMD check
   id <- dimension <- variable <- value <- NULL
   ## Get intro data
@@ -54,6 +55,7 @@ plot_intro <- function(data, geom_label_args = list(), title = NULL, ggtheme = t
     plot_obj = output,
     title = ifelse(is.null(title), paste("Memory Usage:", memory_usage_string), title),
     ggtheme = ggtheme,
-    theme_config = theme_config
+    theme_config = theme_config,
+    plotly = plotly
   )
 }
