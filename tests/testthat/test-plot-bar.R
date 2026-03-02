@@ -14,12 +14,12 @@ test_that("test return object", {
   plot_list <- plot_bar(diamonds)
   expect_is(plot_list, "list")
   expect_equal(names(plot_list), "page_1")
-  expect_true(is.ggplot(plot_list[[1]]))
+  expect_true(is_ggplot(plot_list[[1]]))
   
   plot_list2 <- plot_bar(diamonds, nrow = 1L, ncol = 1L)
   expect_is(plot_list2, "list")
   expect_equal(names(plot_list2), c("page_1", "page_2", "page_3"))
-  expect_true(all(vapply(plot_list2, is.ggplot, TRUE)))
+  expect_true(all(vapply(plot_list2, is_ggplot, TRUE)))
 })
 
 test_that("test binary categories", {
