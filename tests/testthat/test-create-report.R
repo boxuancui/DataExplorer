@@ -21,6 +21,12 @@ test_that("test overall functionalities", {
                 config = list("plot_correlation" = list(), "plot_prcomp" = list()),
                 report_title = "5/6: Detect 0 complete rows", quiet = TRUE)
   create_report(airquality, y = "Ozone", plotly = TRUE,
+                config = list(
+                    "introduce" = list(),
+                    "plot_intro" = list(),
+                    "plot_missing" = list(),
+                    "plot_histogram" = list(nrow = 1L, ncol = 2L)
+                ),
                 output_file = file_name, output_dir = dir_name,
                 report_title = "6/6: Test plotly", quiet = TRUE)
   create_report(iris, output_file = file_name, output_dir = dir_name, quiet = TRUE)
