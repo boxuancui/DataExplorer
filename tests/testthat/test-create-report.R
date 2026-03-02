@@ -20,19 +20,13 @@ test_that("test overall functionalities", {
                 output_file = file_name, output_dir = dir_name,
                 config = list("plot_correlation" = list(), "plot_prcomp" = list()),
                 report_title = "5/6: Detect 0 complete rows", quiet = TRUE)
-  create_report(iris, output_file = file_name, output_dir = dir_name, quiet = TRUE)
-  expect_true(file.exists(file_dir))
-  expect_gte(file.info(file_dir)$size, 100000)
-  if (file.exists(file_dir)) expect_true(file.remove(file_dir))
-})
-
-test_that("test create_report with plotly", {
-  skip_on_cran()
-  skip_if_not_installed("plotly")
   create_report(airquality, y = "Ozone", plotly = TRUE,
                 output_file = file_name, output_dir = dir_name,
-                report_title = "6/6: Create report with plotly", quiet = TRUE)
+                report_title = "6/6: Test plotly", quiet = TRUE)
+  create_report(iris, output_file = file_name, output_dir = dir_name, quiet = TRUE)
+  Sys.sleep(5)
   expect_true(file.exists(file_dir))
+  expect_gte(file.info(file_dir)$size, 100000)
   if (file.exists(file_dir)) expect_true(file.remove(file_dir))
 })
 
