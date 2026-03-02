@@ -72,7 +72,9 @@ plot_bar(diamonds, with = "price")
 plot_bar(diamonds, by = "cut")
 plot_bar(diamonds, by = "cut", by_position = "dodge")
 
+\dontrun{
 # Interactive plotly version (requires the plotly package)
 # plot_bar(diamonds, plotly = TRUE)
+}
 }
 \keyword{plot_bar}

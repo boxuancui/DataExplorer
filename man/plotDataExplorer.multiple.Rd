@@ -9,9 +9,9 @@
   title,
   ggtheme,
   theme_config,
+  plotly = FALSE,
   page_layout,
   facet_wrap_args = list(),
-  plotly = FALSE,
   ...
 )
 }
@@ -23,6 +23,8 @@
 \item{ggtheme}{complete ggplot2 themes}
 
 \item{theme_config}{a list of configurations to be passed to \link[ggplot2]{theme}}
+
+\item{plotly}{if \code{TRUE}, convert ggplot to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.}
 
 \item{page_layout}{a list of page indices with associated plot indices}
 

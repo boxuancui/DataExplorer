@@ -15,6 +15,8 @@
 
 \item{theme_config}{a list of configurations to be passed to \link[ggplot2]{theme}}
 
+\item{plotly}{if \code{TRUE}, convert ggplot to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.}
+
 \item{\dots}{other arguments to be passed}
 }
 \value{

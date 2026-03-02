@@ -38,6 +38,7 @@ plotDataExplorer <- function(plot_obj, title, ggtheme, theme_config, plotly = FA
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
 #' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
+#' @param plotly if \code{TRUE}, convert ggplot to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @param page_layout a list of page indices with associated plot indices
 #' @param nrow number of rows per page
 #' @param ncol number of columns per page
@@ -49,7 +50,7 @@ plotDataExplorer <- function(plot_obj, title, ggtheme, theme_config, plotly = FA
 #' @import gridExtra
 #' @export
 #' @seealso \link{plotDataExplorer} \link{plotDataExplorer.single} \link{plotDataExplorer.multiple}
-plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_layout, nrow, ncol, plotly = FALSE, ...) {
+plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, plotly = FALSE, page_layout, nrow, ncol, ...) {
   plot_list <- lapply(plot_obj, function(p) {
     p +
       eval(ggtheme) +
@@ -98,6 +99,7 @@ plotDataExplorer.grid <- function(plot_obj, title, ggtheme, theme_config, page_l
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
 #' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
+#' @param plotly if \code{TRUE}, convert ggplot to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @param \dots other arguments to be passed
 #' @return invisibly return the ggplot object
 #' @keywords internal
@@ -133,6 +135,7 @@ plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, plot
 #' @param title plot title
 #' @param ggtheme complete ggplot2 themes
 #' @param theme_config a list of configurations to be passed to \link[ggplot2]{theme}
+#' @param plotly if \code{TRUE}, convert ggplot to interactive plotly object (requires the \pkg{plotly} package). Default is \code{FALSE}.
 #' @param \dots other arguments to be passed
 #' @return invisibly return the named list of ggplot objects
 #' @keywords internal
@@ -141,7 +144,7 @@ plotDataExplorer.single <- function(plot_obj, title, ggtheme, theme_config, plot
 #' @importFrom stats setNames
 #' @export
 #' @seealso \link{plotDataExplorer} \link{plotDataExplorer.grid} \link{plotDataExplorer.single}
-plotDataExplorer.multiple <- function(plot_obj, title, ggtheme, theme_config, page_layout, facet_wrap_args = list(), plotly = FALSE, ...) {
+plotDataExplorer.multiple <- function(plot_obj, title, ggtheme, theme_config, plotly = FALSE, page_layout, facet_wrap_args = list(), ...) {
   n <- length(page_layout)
   plot_list <- lapply(setNames(seq.int(n), paste0("page_", seq.int(n))), function(i) {
     plot_obj[[i]] +

@@ -36,8 +36,10 @@
 #' plot_bar(diamonds, by = "cut")
 #' plot_bar(diamonds, by = "cut", by_position = "dodge")
 #'
+#' \dontrun{
 #' # Interactive plotly version (requires the plotly package)
 #' # plot_bar(diamonds, plotly = TRUE)
+#' }
 
 plot_bar <- function(data, with = NULL,
                      by = NULL, by_position = "fill",

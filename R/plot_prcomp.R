@@ -24,6 +24,7 @@
 #' @import ggplot2
 #' @importFrom scales percent
 #' @importFrom stats prcomp
+#' @importFrom htmltools tagList
 #' @export
 #' @examples
 #' plot_prcomp(na.omit(airquality), nrow = 2L, ncol = 2L)
@@ -123,7 +124,7 @@ plot_prcomp <- function(data,
         "scales" = "free_x"
       )
     )
-    return(htmltools::tagList(out1, out2))
+    return(tagList(out1, out2))
   }
   invisible(c(
     list(
