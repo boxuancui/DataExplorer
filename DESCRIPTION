@@ -33,6 +33,6 @@ License: MIT + file LICENSE
 Language: en-US
 URL: http://boxuancui.github.io/DataExplorer/
 BugReports: https://github.com/boxuancui/DataExplorer/issues
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Encoding: UTF-8
 VignetteBuilder: knitr
