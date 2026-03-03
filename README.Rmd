@@ -4,10 +4,11 @@ output: github_document
 
 ```{r setup, echo = FALSE}
 suppressWarnings(suppressPackageStartupMessages({
-  library(DataExplorer)
   library(knitr)
   library(ggplot2)
   library(gridExtra)
+  library(devtools)
+  load_all()
 }))
 set.seed(1)
 
@@ -117,6 +118,7 @@ DataExplorer:::plotDataExplorer.grid(
 	ncol = 2L,
 	ggtheme = theme_gray(),
 	theme_config = list(),
+	plotly = FALSE,
 	title = NULL
 )
 ```
@@ -133,6 +135,16 @@ plot_histogram(diamonds)
 
 ```{r plot-histogram, echo=FALSE, eval=TRUE}
 plot_histogram(diamonds, nrow = 3L, ncol = 3L)
+```
+
+```{r plot-histogram-by-template}
+## View histogram of all continuous variables
+plot_histogram(diamonds, by = "cut")
+```
+
+```{r plot-histogram-by, echo=FALSE, eval=TRUE}
+## View histogram of all continuous variables by a discrete variable
+plot_histogram(diamonds, nrow = 3L, ncol = 3L, by = "cut")
 ```
 
 ```{r plot-density-template}

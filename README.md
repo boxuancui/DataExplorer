@@ -1,4 +1,6 @@
 
+    ## ℹ Loading DataExplorer
+
 # DataExplorer <img src="man/figures/logo.png" align="right" width="130" height="150"/>
 
 [![CRAN
@@ -138,6 +140,13 @@ plot_histogram(diamonds)
 ```
 
 ![](man/figures/README-plot-histogram-1.png)<!-- -->
+
+``` r
+## View histogram of all continuous variables
+plot_histogram(diamonds, by = "cut")
+```
+
+![](man/figures/README-plot-histogram-by-1.png)<!-- -->
 
 ``` r
 ## View estimated density distribution of all continuous variables
