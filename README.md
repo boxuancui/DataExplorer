@@ -1,6 +1,4 @@
 
-    ## ℹ Loading DataExplorer
-
 # DataExplorer <img src="man/figures/logo.png" align="right" width="130" height="150"/>
 
 [![CRAN

@@ -3,13 +3,13 @@ output: github_document
 ---
 
 ```{r setup, echo = FALSE}
-suppressWarnings(suppressPackageStartupMessages({
+suppressMessages(suppressWarnings(suppressPackageStartupMessages({
   library(knitr)
   library(ggplot2)
   library(gridExtra)
   library(devtools)
   load_all()
-}))
+})))
 set.seed(1)
 
 knitr::opts_chunk$set(
