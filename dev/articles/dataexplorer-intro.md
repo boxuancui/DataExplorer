@@ -204,7 +204,7 @@ plot_bar(final_data, by = "origin")
 
 ![](dataexplorer-intro_files/figure-html/eda-plot-bar-by-run-1.png)
 
-#### Histograms
+#### Histograms & Density Estimates
 
 To visualize distributions for all continuous features:
 
@@ -235,6 +235,16 @@ final_data <- update_columns(final_data, "flight", as.factor)
 ``` r
 final_data <- drop_columns(final_data, c("year_flights", "tz_origin"))
 ```
+
+You may also view the histogram and the density estimates for all
+continuous features broken down by another feature (discrete or
+continuous).
+
+``` r
+plot_density(final_data, by = "origin")
+```
+
+![](dataexplorer-intro_files/figure-html/eda-plot-density-1.png)![](dataexplorer-intro_files/figure-html/eda-plot-density-2.png)![](dataexplorer-intro_files/figure-html/eda-plot-density-3.png)
 
 #### QQ Plot
 
@@ -320,7 +330,45 @@ plot_prcomp(pca_df, variance_cap = 0.9, nrow = 2L, ncol = 2L)
 
 ![](dataexplorer-intro_files/figure-html/eda-plot-prcomp-1.png)![](dataexplorer-intro_files/figure-html/eda-plot-prcomp-2.png)
 
-### Slicing & dicing
+With `variance_cap = 0.9`, the first 4 principal components are
+retained, capturing roughly 84% of the total variance. Let’s interpret
+the first four:
+
+- **PC1 (~25% variance) - Flight delay severity.** The dominant loadings
+  are `dep_delay` (0.60) and `arr_delay` (0.61), both pointing in the
+  same direction. This is unsurprising since departure and arrival
+  delays are tightly coupled. A high PC1 score indicates a severely
+  delayed flight. The small negative loadings on `air_time` and `seats`
+  hint that longer flights on larger aircraft tend to absorb delays
+  slightly better.
+- **PC2 (~22% variance) - Long-haul route profile (JFK hub).**
+  `origin_JFK` (0.53), `air_time` (0.47), and `seats` (0.36) all load
+  positively, while `origin_LGA` (-0.30) loads negatively. This
+  component separates JFK’s international and long-haul flights, which
+  use larger, wide-body aircraft, from LaGuardia’s shorter domestic
+  routes on smaller planes. In essence, PC2 captures the type of route
+  rather than whether it was delayed.
+- **PC3 (~19% variance) - LaGuardia vs. Newark contrast.** `origin_LGA`
+  (0.68) and `origin_EWR` (-0.64) dominate this component. Since PC2
+  already isolated the JFK effect, PC3 picks up the remaining airport
+  distinction: LaGuardia vs. Newark. These two airports serve
+  overlapping domestic markets but differ in carrier mix and runway
+  configurations. The secondary loading on `year_planes` (-0.26)
+  suggests that fleet age varies slightly between the two airports.
+- **PC4 (~18% variance) - Aircraft age vs. size trade-off.**
+  `year_planes` (0.51) loads positively while `seats` (-0.47) and
+  `air_time` (-0.38) load negatively. This reflects a trade-off between
+  newer, smaller regional jets and older, larger wide-body aircraft that
+  fly longer routes. Newer planes in the fleet tend to be narrower-body,
+  shorter-range models, whereas older planes (lower `year_planes`) tend
+  to be wide-bodies with more seats covering longer distances.
+
+Together, these four components reveal that the main sources of
+variation in this flight data are (1) delay behavior, (2) route length
+and aircraft class, (3) departure airport identity, and (4) fleet age
+composition, a clean separation of operationally distinct dimensions.
+
+### Slicing & Dicing
 
 Often, slicing and dicing data in different ways could be crucial to
 your analysis, and yields insights quickly.
@@ -357,6 +405,73 @@ plot_scatterplot(arr_delay_df2, by = "arr_delay", sampled_rows = 1000L)
 ```
 
 ![](dataexplorer-intro_files/figure-html/eda-plot-scatterplot-1.png)
+
+#### Interactive Plots
+
+All plotting functions in **DataExplorer** support an optional
+`plotly = TRUE` argument that converts static **ggplot2** charts into
+interactive [plotly](https://plotly.com/r/) widgets. This is especially
+useful when you are exploring large, messy datasets where hovering,
+zooming, and panning can reveal patterns that are hard to see in a
+static image.
+
+To use this feature, install the **plotly** package:
+
+``` r
+install.packages("plotly")
+```
+
+**Basic usage**: Simply pass `plotly = TRUE` to any plot function:
+
+``` r
+plot_bar(final_data, plotly = TRUE)
+```
+
+This produces an interactive bar chart where you can hover over each bar
+to see the exact count, zoom into a specific region, or toggle
+categories on and off via the legend.
+
+**Navigating dense histograms**: Interactive plots shine when
+distributions overlap or have long tails:
+
+``` r
+plot_histogram(final_data, plotly = TRUE)
+```
+
+You can click-and-drag to zoom into a specific range, then double-click
+to reset the view. This is invaluable for spotting outliers or skewed
+distributions buried in noisy data.
+
+**Correlation heatmaps**: For datasets with many features, the static
+correlation heatmap can become difficult to read. The interactive
+version lets you hover over individual cells to see the exact variable
+pair and correlation coefficient:
+
+``` r
+plot_correlation(final_data, plotly = TRUE)
+```
+
+##### Known limitations
+
+The `plotly = TRUE` option relies on
+[`plotly::ggplotly()`](https://rdrr.io/pkg/plotly/man/ggplotly.html) to
+convert **ggplot2** objects. While this works well for most chart types,
+there are known limitations:
+
+- **`geom_label` rendering**: Functions that use `geom_label` (e.g.,
+  `plot_missing`, `plot_intro`, `plot_prcomp`) may render label text
+  incorrectly in plotly. The labels can overlap, lose their background
+  boxes, or display with unexpected formatting. This is an upstream
+  limitation of `ggplotly()`’s translation of `geom_label`.
+- **Empty facet panels**: Some plots that use `facet_wrap` (e.g.,
+  `plot_boxplot`) may show blank panels in plotly. This is a [known
+  issue](https://github.com/plotly/plotly.R/issues/2032) in the plotly R
+  package.
+- **`coord_flip` translation**: Charts using `coord_flip` may not render
+  identically in plotly. Hover text and axis labels can be swapped.
+- **PDF reports**: The `plotly` option only applies to HTML output. When
+  generating PDF reports, static **ggplot2** plots are always used
+  regardless of the `plotly` argument.
 
 ## Feature Engineering
 
@@ -572,6 +687,13 @@ example,
 
 ``` r
 create_report(final_data, y = "arr_delay")
+```
+
+You may also generate a fully interactive HTML report with
+`plotly = TRUE`:
+
+``` r
+create_report(final_data, y = "arr_delay", plotly = TRUE)
 ```
 
 You may also customize each individual section using `configure_report`

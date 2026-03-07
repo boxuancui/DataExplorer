@@ -131,10 +131,10 @@
 <span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"a"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="fl">10L</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	10 obs. of  1 variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ a: Factor w/ 10 levels "1","2","3","4",..: 4 6 8 1 9 5 2 7 3 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ a: Factor w/ 10 levels "1","2","3","4",..: 7 4 9 6 1 5 2 10 3 8</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu">update_columns</span><span class="op">(</span><span class="va">df</span>, <span class="st">"a"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">x</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	10 obs. of  1 variable:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ a: num  4 6 8 1 9 5 2 7 3 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ a: num  7 4 9 6 1 5 2 10 3 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, ".internal.selfref")=&lt;externalptr&gt; </span>
 </code></pre></div>
     </div>

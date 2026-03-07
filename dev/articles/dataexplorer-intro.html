@@ -70,7 +70,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Introduction to DataExplorer</h1>
                         <h4 data-toc-skip class="author">Boxuan Cui</h4>
             
-            <h4 data-toc-skip class="date">2026-03-03</h4>
+            <h4 data-toc-skip class="date">2026-03-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/boxuancui/DataExplorer/blob/master/vignettes/dataexplorer-intro.Rmd" class="external-link"><code>vignettes/dataexplorer-intro.Rmd</code></a></small>
       <div class="d-none name"><code>dataexplorer-intro.Rmd</code></div>
@@ -274,7 +274,7 @@ variable:</p>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-bar-by-run-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level4">
-<h4 id="histograms">Histograms<a class="anchor" aria-label="anchor" href="#histograms"></a>
+<h4 id="histograms-density-estimates">Histograms &amp; Density Estimates<a class="anchor" aria-label="anchor" href="#histograms-density-estimates"></a>
 </h4>
 <p>To visualize distributions for all continuous features:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
@@ -298,6 +298,12 @@ since there is only one value:</li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">final_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/drop_columns.html">drop_columns</a></span><span class="op">(</span><span class="va">final_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year_flights"</span>, <span class="st">"tz_origin"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>You may also view the histogram and the density estimates for all
+continuous features broken down by another feature (discrete or
+continuous).</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_density.html">plot_density</a></span><span class="op">(</span><span class="va">final_data</span>, by <span class="op">=</span> <span class="st">"origin"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="dataexplorer-intro_files/figure-html/eda-plot-density-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"><img src="dataexplorer-intro_files/figure-html/eda-plot-density-2.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"><img src="dataexplorer-intro_files/figure-html/eda-plot-density-3.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level4">
 <h4 id="qq-plot">QQ Plot<a class="anchor" aria-label="anchor" href="#qq-plot"></a>
@@ -309,7 +315,7 @@ models like linear regression. To do so, we can use <code>plot_qq</code>
 function. By default, it compares with normal distribution.</p>
 <p>Note: The function will take a long time with many observations, so
 you may choose to specify an appropriate <code>sampled_rows</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qq_data</span> <span class="op">&lt;-</span> <span class="va">final_data</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">qq_data</span>, sampled_rows <span class="op">=</span> <span class="fl">1000L</span><span class="op">)</span></span></code></pre></div>
@@ -317,14 +323,14 @@ you may choose to specify an appropriate <code>sampled_rows</code>:</p>
 <p>From the chart, <strong>air_time</strong>, <strong>distance</strong>
 and <strong>seats</strong> seems skewed on both tails. Let’s apply a
 simple log transformation and plot them again.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">log_qq_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/update_columns.html">update_columns</a></span><span class="op">(</span><span class="va">qq_data</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">log_qq_data</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, sampled_rows <span class="op">=</span> <span class="fl">1000L</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-qq-log-features-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
 <p>The distribution looks better now! If necessary, you may also view
 the QQ plot by another feature:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">qq_data</span> <span class="op">&lt;-</span> <span class="va">final_data</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name_origin"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"seats"</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">qq_data</span>, by <span class="op">=</span> <span class="st">"name_origin"</span>, sampled_rows <span class="op">=</span> <span class="fl">1000L</span><span class="op">)</span></span></code></pre></div>
@@ -335,7 +341,7 @@ the QQ plot by another feature:</p>
 <h3 id="correlation-analysis">Correlation Analysis<a class="anchor" aria-label="anchor" href="#correlation-analysis"></a>
 </h3>
 <p>To visualize correlation heatmap for all non-missing features:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_correlation.html">plot_correlation</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">final_data</span><span class="op">)</span>, maxcat <span class="op">=</span> <span class="fl">5L</span><span class="op">)</span></span>
 <span><span class="co">## 11 features with more than 5 categories ignored!</span></span>
 <span><span class="co">## dest: 100 categories</span></span>
@@ -352,7 +358,7 @@ the QQ plot by another feature:</p>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-correlation-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
 <p>You may also choose to visualize only discrete/continuous features
 with:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_correlation.html">plot_correlation</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">final_data</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_correlation.html">plot_correlation</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">final_data</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"d"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -362,14 +368,60 @@ with:</p>
 <p>While you can always do <code>plot_prcomp(na.omit(final_data))</code>
 directly, but PCA works better with cleaner data. To perform and
 visualize PCA on some selected features:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">final_data</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"origin"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_delay"</span>, <span class="st">"air_time"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_prcomp.html">plot_prcomp</a></span><span class="op">(</span><span class="va">pca_df</span>, variance_cap <span class="op">=</span> <span class="fl">0.9</span>, nrow <span class="op">=</span> <span class="fl">2L</span>, ncol <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-prcomp-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"><img src="dataexplorer-intro_files/figure-html/eda-plot-prcomp-2.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
+<p>With <code>variance_cap = 0.9</code>, the first 4 principal
+components are retained, capturing roughly 84% of the total variance.
+Let’s interpret the first four:</p>
+<ul>
+<li>
+<strong>PC1 (~25% variance) - Flight delay severity.</strong> The
+dominant loadings are <code>dep_delay</code> (0.60) and
+<code>arr_delay</code> (0.61), both pointing in the same direction. This
+is unsurprising since departure and arrival delays are tightly coupled.
+A high PC1 score indicates a severely delayed flight. The small negative
+loadings on <code>air_time</code> and <code>seats</code> hint that
+longer flights on larger aircraft tend to absorb delays slightly
+better.</li>
+<li>
+<strong>PC2 (~22% variance) - Long-haul route profile (JFK
+hub).</strong> <code>origin_JFK</code> (0.53), <code>air_time</code>
+(0.47), and <code>seats</code> (0.36) all load positively, while
+<code>origin_LGA</code> (-0.30) loads negatively. This component
+separates JFK’s international and long-haul flights, which use larger,
+wide-body aircraft, from LaGuardia’s shorter domestic routes on smaller
+planes. In essence, PC2 captures the type of route rather than whether
+it was delayed.</li>
+<li>
+<strong>PC3 (~19% variance) - LaGuardia vs. Newark
+contrast.</strong> <code>origin_LGA</code> (0.68) and
+<code>origin_EWR</code> (-0.64) dominate this component. Since PC2
+already isolated the JFK effect, PC3 picks up the remaining airport
+distinction: LaGuardia vs. Newark. These two airports serve overlapping
+domestic markets but differ in carrier mix and runway configurations.
+The secondary loading on <code>year_planes</code> (-0.26) suggests that
+fleet age varies slightly between the two airports.</li>
+<li>
+<strong>PC4 (~18% variance) - Aircraft age vs. size
+trade-off.</strong> <code>year_planes</code> (0.51) loads positively
+while <code>seats</code> (-0.47) and <code>air_time</code> (-0.38) load
+negatively. This reflects a trade-off between newer, smaller regional
+jets and older, larger wide-body aircraft that fly longer routes. Newer
+planes in the fleet tend to be narrower-body, shorter-range models,
+whereas older planes (lower <code>year_planes</code>) tend to be
+wide-bodies with more seats covering longer distances.</li>
+</ul>
+<p>Together, these four components reveal that the main sources of
+variation in this flight data are (1) delay behavior, (2) route length
+and aircraft class, (3) departure airport identity, and (4) fleet age
+composition, a clean separation of operationally distinct
+dimensions.</p>
 </div>
 <div class="section level3">
-<h3 id="slicing-dicing">Slicing &amp; dicing<a class="anchor" aria-label="anchor" href="#slicing-dicing"></a>
+<h3 id="slicing-dicing">Slicing &amp; Dicing<a class="anchor" aria-label="anchor" href="#slicing-dicing"></a>
 </h3>
 <p>Often, slicing and dicing data in different ways could be crucial to
 your analysis, and yields insights quickly.</p>
@@ -379,7 +431,7 @@ your analysis, and yields insights quickly.</p>
 <p>Suppose you would like to build a model to predict arrival delays,
 you may visualize the distribution of all continuous features based on
 arrival delays with a boxplot:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Reduce data size for demo purpose</span></span>
 <span><span class="va">arr_delay_df</span> <span class="op">&lt;-</span> <span class="va">final_data</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"arr_delay"</span>, <span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"dep_delay"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
@@ -395,11 +447,76 @@ or generate more hypotheses.</p>
 <h4 id="scatterplots">Scatterplots<a class="anchor" aria-label="anchor" href="#scatterplots"></a>
 </h4>
 <p>An alternative visualization is scatterplot. For example:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">arr_delay_df2</span> <span class="op">&lt;-</span> <span class="va">final_data</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"arr_delay"</span>, <span class="st">"dep_time"</span>, <span class="st">"dep_delay"</span>, <span class="st">"arr_time"</span>, <span class="st">"air_time"</span>, <span class="st">"distance"</span>, <span class="st">"year_planes"</span>, <span class="st">"seats"</span><span class="op">)</span><span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_scatterplot.html">plot_scatterplot</a></span><span class="op">(</span><span class="va">arr_delay_df2</span>, by <span class="op">=</span> <span class="st">"arr_delay"</span>, sampled_rows <span class="op">=</span> <span class="fl">1000L</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/eda-plot-scatterplot-1.png" class="r-plt" alt="" width="768" style="display: block; margin: auto;"></p>
+</div>
+<div class="section level4">
+<h4 id="interactive-plots">Interactive Plots<a class="anchor" aria-label="anchor" href="#interactive-plots"></a>
+</h4>
+<p>All plotting functions in <strong>DataExplorer</strong> support an
+optional <code>plotly = TRUE</code> argument that converts static
+<strong>ggplot2</strong> charts into interactive <a href="https://plotly.com/r/" class="external-link">plotly</a> widgets. This is especially
+useful when you are exploring large, messy datasets where hovering,
+zooming, and panning can reveal patterns that are hard to see in a
+static image.</p>
+<p>To use this feature, install the <strong>plotly</strong> package:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"plotly"</span><span class="op">)</span></span></code></pre></div>
+<p><strong>Basic usage</strong>: Simply pass <code>plotly = TRUE</code>
+to any plot function:</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_bar.html">plot_bar</a></span><span class="op">(</span><span class="va">final_data</span>, plotly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>This produces an interactive bar chart where you can hover over each
+bar to see the exact count, zoom into a specific region, or toggle
+categories on and off via the legend.</p>
+<p><strong>Navigating dense histograms</strong>: Interactive plots shine
+when distributions overlap or have long tails:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_histogram.html">plot_histogram</a></span><span class="op">(</span><span class="va">final_data</span>, plotly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>You can click-and-drag to zoom into a specific range, then
+double-click to reset the view. This is invaluable for spotting outliers
+or skewed distributions buried in noisy data.</p>
+<p><strong>Correlation heatmaps</strong>: For datasets with many
+features, the static correlation heatmap can become difficult to read.
+The interactive version lets you hover over individual cells to see the
+exact variable pair and correlation coefficient:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_correlation.html">plot_correlation</a></span><span class="op">(</span><span class="va">final_data</span>, plotly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="section level5">
+<h5 id="known-limitations">Known limitations<a class="anchor" aria-label="anchor" href="#known-limitations"></a>
+</h5>
+<p>The <code>plotly = TRUE</code> option relies on
+<code><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html" class="external-link">plotly::ggplotly()</a></code> to convert <strong>ggplot2</strong>
+objects. While this works well for most chart types, there are known
+limitations:</p>
+<ul>
+<li>
+<strong><code>geom_label</code> rendering</strong>: Functions that
+use <code>geom_label</code> (e.g., <code>plot_missing</code>,
+<code>plot_intro</code>, <code>plot_prcomp</code>) may render label text
+incorrectly in plotly. The labels can overlap, lose their background
+boxes, or display with unexpected formatting. This is an upstream
+limitation of <code>ggplotly()</code>’s translation of
+<code>geom_label</code>.</li>
+<li>
+<strong>Empty facet panels</strong>: Some plots that use
+<code>facet_wrap</code> (e.g., <code>plot_boxplot</code>) may show blank
+panels in plotly. This is a <a href="https://github.com/plotly/plotly.R/issues/2032" class="external-link">known issue</a> in
+the plotly R package.</li>
+<li>
+<strong><code>coord_flip</code> translation</strong>: Charts using
+<code>coord_flip</code> may not render identically in plotly. Hover text
+and axis labels can be swapped.</li>
+<li>
+<strong>PDF reports</strong>: The <code>plotly</code> option only
+applies to HTML output. When generating PDF reports, static
+<strong>ggplot2</strong> plots are always used regardless of the
+<code>plotly</code> argument.</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -427,7 +544,7 @@ argument for either discrete or continuous features, i.e., if you
 specify a number, all missing continuous values will be set to that
 number. If you specify a string, all missing discrete values will be set
 to that string. If you supply both, both types will be set.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Return data.frame</span></span>
 <span><span class="va">final_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/set_missing.html">set_missing</a></span><span class="op">(</span><span class="va">final_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">0L</span>, <span class="st">"unknown"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## Column [dep_time]: Set 8255 missing values to 0</span></span>
@@ -452,7 +569,7 @@ to that string. If you supply both, both types will be set.</p>
 <span><span class="co">## Column [tzone_dest]: Set 7602 missing values to unknown</span></span>
 <span><span class="fu"><a href="../reference/plot_missing.html">plot_missing</a></span><span class="op">(</span><span class="va">final_df</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/fe-set-missing-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">## Update data.table by reference</span></span>
 <span><span class="co"># library(data.table)</span></span>
@@ -471,7 +588,7 @@ the work.</p>
 <p>Take <strong>manufacturer</strong> feature for example, suppose we
 want to group the long tail to another category. We could try with
 bottom 20% (by count) first:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/group_category.html">group_category</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">final_data</span>, feature <span class="op">=</span> <span class="st">"manufacturer"</span>, threshold <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="co">##   manufacturer   cnt       pct   cum_pct</span></span>
 <span><span class="co">## 1       AIRBUS 88193 0.2618744 0.2618744</span></span>
@@ -481,7 +598,7 @@ bottom 20% (by count) first:</p>
 i.e., AIRBUS, BOEING, EMBRAER, and OTHER. If you like this threshold,
 you may specify <code>update = TRUE</code> to update the original
 dataset:</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">final_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/group_category.html">group_category</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">final_data</span>, feature <span class="op">=</span> <span class="st">"manufacturer"</span>, threshold <span class="op">=</span> <span class="fl">0.2</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_bar.html">plot_bar</a></span><span class="op">(</span><span class="va">final_df</span><span class="op">$</span><span class="va">manufacturer</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/fe-group-category-count-update-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
@@ -489,7 +606,7 @@ dataset:</p>
 categories by another continuous metric. For example, if you want to
 bucket the carrier with bottom 20% distance traveled, you may do the
 following:</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/group_category.html">group_category</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">final_data</span>, feature <span class="op">=</span> <span class="st">"name_carrier"</span>, threshold <span class="op">=</span> <span class="fl">0.2</span>, measure <span class="op">=</span> <span class="st">"distance"</span><span class="op">)</span></span>
 <span><span class="co">##             name_carrier      cnt       pct   cum_pct</span></span>
 <span><span class="co">## 1  United Air Lines Inc. 89705524 0.2561422 0.2561422</span></span>
@@ -498,7 +615,7 @@ following:</p>
 <span><span class="co">## 4 American Airlines Inc. 43864584 0.1252495 0.7180152</span></span></code></pre></div>
 <p>Similarly, if you like it, you may add <code>update = TRUE</code> to
 update the original dataset.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">final_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/group_category.html">group_category</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">final_data</span>, feature <span class="op">=</span> <span class="st">"name_carrier"</span>, threshold <span class="op">=</span> <span class="fl">0.2</span>, measure <span class="op">=</span> <span class="st">"distance"</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_bar.html">plot_bar</a></span><span class="op">(</span><span class="va">final_df</span><span class="op">$</span><span class="va">name_carrier</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dataexplorer-intro_files/figure-html/fe-group-category-metric-update-1.png" class="r-plt" alt="" width="576" style="display: block; margin: auto;"></p>
@@ -510,7 +627,7 @@ update the original dataset.</p>
 pick it up), <code>dummify</code> will do the job. The function
 preserves original data structure, so that only eligible discrete
 features will be turned into binary format.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_str.html">plot_str</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    <span class="st">"original"</span> <span class="op">=</span> <span class="va">final_data</span>,</span>
@@ -543,7 +660,7 @@ features that are insignificant. For example, features like
 any valuable information. You can use <code>drop_columns</code> to
 quickly drop features. The function takes either names or column
 indices.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/drop_columns.html">drop_columns</a></span><span class="op">(</span><span class="va">final_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dst_dest"</span>, <span class="st">"tzone_dest"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  <span class="fu"><a href="../reference/drop_columns.html">drop_columns</a></span><span class="op">(</span><span class="va">final_data</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">36</span>, <span class="fl">37</span><span class="op">)</span><span class="op">)</span></span>
@@ -557,7 +674,7 @@ indices.</p>
 <code>update_columns</code>. A very common use case is to set features
 to a different type, e.g., continuous to discrete. To quickly set all
 time related features to discrete:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temporal_features</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"tz_dest"</span><span class="op">)</span></span>
 <span><span class="va">final_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/update_columns.html">update_columns</a></span><span class="op">(</span><span class="va">final_data</span>, <span class="va">temporal_features</span>, <span class="va">as.factor</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">final_data</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"month"</span>, <span class="st">"day"</span>, <span class="st">"hour"</span>, <span class="st">"minute"</span>, <span class="st">"tz_dest"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
@@ -569,7 +686,7 @@ time related features to discrete:</p>
 <span><span class="co">##  $ tz_dest: Factor w/ 6 levels "-10","-9","-8",..: 4 4 4 4 4 4 4 4 4 4 ...</span></span></code></pre></div>
 <p>You may also use this function to transform selected features with a
 customized function:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bin_seat</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">x</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0L</span>, <span class="fl">50L</span>, <span class="fl">100L</span>, <span class="fl">150L</span>, <span class="fl">200L</span>, <span class="fl">500L</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">transformed_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/update_columns.html">update_columns</a></span><span class="op">(</span><span class="va">final_data</span>, <span class="st">"seats"</span>, <span class="va">bin_seat</span><span class="op">)</span></span>
 <span></span>
@@ -583,13 +700,17 @@ customized function:</p>
 <p>To organize all the data profiling statistics into a report, you may
 use the <code>create_report</code> function. It will run most of the EDA
 functions and output a html file.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/create_report.html">create_report</a></span><span class="op">(</span><span class="va">final_data</span><span class="op">)</span></span></code></pre></div>
 <p>To maximize the usage of this function, always supply a response
 variable (if applicable) to automate various bivariate analyses. For
 example,</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/create_report.html">create_report</a></span><span class="op">(</span><span class="va">final_data</span>, y <span class="op">=</span> <span class="st">"arr_delay"</span><span class="op">)</span></span></code></pre></div>
+<p>You may also generate a fully interactive HTML report with
+<code>plotly = TRUE</code>:</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/create_report.html">create_report</a></span><span class="op">(</span><span class="va">final_data</span>, y <span class="op">=</span> <span class="st">"arr_delay"</span>, plotly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>You may also customize each individual section using
 <code>configure_report</code> function. It returns all specified
 arguments in a list, and then will be passed to <code>do.call</code> to
@@ -600,7 +721,7 @@ be invoked. There are 3 types of arguments in this function:</p>
 <li>global settings (<code>global_*</code>): global theme settings</li>
 </ol>
 <p>To turn off a few sections and set a global theme:</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/configure_report.html">configure_report</a></span><span class="op">(</span></span>
 <span>  add_plot_str <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  add_plot_qq <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -656,7 +777,7 @@ be invoked. There are 3 types of arguments in this function:</p>
 <span><span class="co">## [1] "pairwise.complete.obs"</span></span></code></pre></div>
 <p>The output can be passed directly to <code>config</code> argument in
 <code>create_repot</code>, e.g.,</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/configure_report.html">configure_report</a></span><span class="op">(</span></span>
 <span>  add_plot_str <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  add_plot_qq <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -669,7 +790,7 @@ be invoked. There are 3 types of arguments in this function:</p>
 <p>To configure the report without using <code>configure_report</code>
 function, you may edit the template below and pass it directly to
 <code>config</code> argument:</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  <span class="st">"introduce"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="st">"plot_intro"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>

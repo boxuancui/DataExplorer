@@ -91,9 +91,9 @@ summary(update_columns(airquality, names(airquality), log))
 df <- data.frame("a" = as.factor(sample.int(10L)))
 str(df)
 #> 'data.frame':    10 obs. of  1 variable:
-#>  $ a: Factor w/ 10 levels "1","2","3","4",..: 4 6 8 1 9 5 2 7 3 10
+#>  $ a: Factor w/ 10 levels "1","2","3","4",..: 7 4 9 6 1 5 2 10 3 8
 str(update_columns(df, "a", function(x) as.numeric(levels(x))[x]))
 #> 'data.frame':    10 obs. of  1 variable:
-#>  $ a: num  4 6 8 1 9 5 2 7 3 10
+#>  $ a: num  7 4 9 6 1 5 2 10 3 8
 #>  - attr(*, ".internal.selfref")=<externalptr> 
 ```
