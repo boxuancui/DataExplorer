@@ -206,6 +206,22 @@ plot_prcomp(diamonds, maxcat = 5L)
 plot_prcomp(diamonds, maxcat = 5L, nrow = 2L, ncol = 2L)
 ```
 
+#### Interactive Plots
+
+All plotting functions support `plotly = TRUE` to generate interactive charts (requires the [plotly](https://plotly.com/r/) package). Hover, zoom, and pan to explore your data:
+
+```{r plotly-example}
+plot_histogram(diamonds, plotly = TRUE)
+```
+
+You can also generate a fully interactive HTML report:
+
+```{r plotly-report}
+create_report(diamonds, y = "price", plotly = TRUE)
+```
+
+**Note:** The plotly conversion relies on `plotly::ggplotly()`, which has known limitations with `geom_label` and `facet_wrap` (some labels or facet panels may not render correctly). See the [vignette](https://boxuancui.github.io/DataExplorer/articles/dataexplorer-intro.html) for details.
+
 #### Feature Engineering
 
 To make quick updates to your data:
