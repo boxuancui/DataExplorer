@@ -2,6 +2,8 @@
 
 ## DataExplorer 0.9.0
 
+CRAN release: 2026-03-08
+
 ### New Features
 
 - [\#141](https://github.com/boxuancui/DataExplorer/issues/141): Added
