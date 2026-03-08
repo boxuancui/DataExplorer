@@ -1,5 +1,5 @@
 ## Notes
-I have addressed the NOTE in the Check Results page regarding missing package anchors. In addition, I have updated all .r file extensions to .R for consistency with R naming conventions.
+No notes.
 
 ## Test environments
 GitHub Actions:
@@ -19,7 +19,7 @@ GitHub Actions:
 
 ## revdepcheck results
 
-We checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+We checked 3 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
  * We saw 0 new problems
  * We failed to check 0 packages
