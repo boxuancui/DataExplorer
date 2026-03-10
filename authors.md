@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/boxuancui/DataExplorer/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/boxuancui/DataExplorer/blob/v0.9.0/DESCRIPTION)
 
 Cui B (2026). *DataExplorer: Automate Data Exploration and Treatment*. R
 package version 0.9.0, <http://boxuancui.github.io/DataExplorer/>.
